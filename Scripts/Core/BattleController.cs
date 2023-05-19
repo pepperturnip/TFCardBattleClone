@@ -57,6 +57,15 @@ namespace TFCardBattle.Core
             State.Hand.Add(card);
         }
 
+        public void PlayCard(int handIndex)
+        {
+            var card = State.Hand[handIndex];
+
+            State.Hand.Remove(card);
+            State.PlayedThisTurn.Add(card);
+            card.Activate(this);
+        }
+
         public void ReshuffleDiscardIntoDeck()
         {
             State.Deck.AddRange(State.Discard);
