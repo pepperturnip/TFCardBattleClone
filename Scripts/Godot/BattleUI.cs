@@ -9,11 +9,13 @@ namespace TFCardBattle.Godot
     {
         [Export] public PackedScene CardDisplayPrefab;
 
-        [Export] public int PlayerTF
-        {
-            get => Battle.State.PlayerTF;
-            set {}
-        }
+        private Label _playerTF => GetNode<Label>("%PlayerTF");
+        private Label _enemyTF => GetNode<Label>("%EnemyTF");
+        private Label _brain => GetNode<Label>("%BrainLabel");
+        private Label _heart => GetNode<Label>("%HeartLabel");
+        private Label _sub => GetNode<Label>("%SubLabel");
+        private Label _shield => GetNode<Label>("%ShieldLabel");
+        private Label _tf => GetNode<Label>("%TFLabel");
 
         private HBoxContainer _handDisplay => GetNode<HBoxContainer>("%HandDisplay");
 
@@ -37,6 +39,15 @@ namespace TFCardBattle.Godot
 
         private void RefreshDisplay()
         {
+            _playerTF.Text = $"Player TF: {Battle.State.PlayerTF} / {Battle.State.PlayerMaxTF}";
+            _enemyTF.Text = $"Enemy TF: {Battle.State.EnemyTF} / {Battle.State.EnemyMaxTF}";
+
+            _brain.Text = $"Brain: {Battle.State.Brain}";
+            _heart.Text = $"Heart: {Battle.State.Heart}";
+            _sub.Text = $"Sub: {Battle.State.Subs}";
+            _shield.Text = $"Shield: {Battle.State.Shield}";
+            _tf.Text = $"TF: {Battle.State.TF}";
+
             RefreshHandDisplay();
         }
 
