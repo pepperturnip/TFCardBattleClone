@@ -16,13 +16,13 @@ namespace TFCardBattle.Core
 
         public CardPurchaseStats PurchaseStats {get; set;}
 
-        public void Activate(BattleState battleState)
+        public void Activate(BattleController battle)
         {
-            battleState.Brain += BrainGain;
-            battleState.Heart += HeartGain;
-            battleState.Subs += SubsGain;
-            battleState.Shield += ShieldGain;
-            battleState.TF += TFGain;
+            battle.State.Brain += BrainGain;
+            battle.State.Heart += HeartGain;
+            battle.State.Subs += SubsGain;
+            battle.State.Shield += ShieldGain;
+            battle.State.TF += TFGain;
         }
     }
 }

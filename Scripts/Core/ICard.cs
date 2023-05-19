@@ -7,6 +7,6 @@ namespace TFCardBattle.Core
 
         CardPurchaseStats PurchaseStats {get;}
 
-        void Activate(BattleState battleState);
+        void Activate(BattleController battle);
     }
 }
