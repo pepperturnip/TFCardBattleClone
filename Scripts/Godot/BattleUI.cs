@@ -18,6 +18,7 @@ namespace TFCardBattle.Godot
         private Label _tf => GetNode<Label>("%TFLabel");
 
         private HBoxContainer _handDisplay => GetNode<HBoxContainer>("%HandDisplay");
+        private HBoxContainer _buyPileDisplay => GetNode<HBoxContainer>("%BuyPileDisplay");
 
         private BattleController Battle = new BattleController(
             PlaceholderCards.AutoGenerateCatalog(),
@@ -39,8 +40,13 @@ namespace TFCardBattle.Godot
 
         public void OnPlayCardClicked(int handIndex)
         {
-            GD.Print($"clicking hand index {handIndex}");
             Battle.PlayCard(handIndex);
+            RefreshDisplay();
+        }
+
+        public void OnBuyCardClicked(int buyPileIndex)
+        {
+            Battle.BuyCard(buyPileIndex);
             RefreshDisplay();
         }
 
@@ -56,6 +62,7 @@ namespace TFCardBattle.Godot
             _tf.Text = $"TF: {Battle.State.TF}";
 
             RefreshHandDisplay();
+            RefreshBuyPileDisplay();
         }
 
         private void RefreshHandDisplay()
@@ -76,6 +83,27 @@ namespace TFCardBattle.Godot
 
                 int handIndex = i;
                 cardDisplay.Clicked += () => OnPlayCardClicked(handIndex);
+            }
+        }
+
+        private void RefreshBuyPileDisplay()
+        {
+            while (_buyPileDisplay.GetChildCount() > 0)
+            {
+                var c = _buyPileDisplay.GetChild(0);
+                _buyPileDisplay.RemoveChild(c);
+                c.QueueFree();
+            }
+
+            for(int i = 0; i < Battle.State.BuyPile.Count; i++)
+            {
+                var card = Battle.State.BuyPile[i];
+                var cardDisplay = CardDisplayPrefab.Instantiate<CardDisplay>();
+                cardDisplay.Card = card;
+                _buyPileDisplay.AddChild(cardDisplay);
+
+                int buyPileIndex = i;
+                cardDisplay.Clicked += () => OnBuyCardClicked(buyPileIndex);
             }
         }
     }
