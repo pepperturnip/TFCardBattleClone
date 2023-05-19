@@ -68,7 +68,7 @@ namespace TFCardBattle.Core
             var card = State.Hand[handIndex];
 
             State.Hand.Remove(card);
-            State.PlayedThisTurn.Add(card);
+            State.CardsPlayedThisTurn.Add(card);
             card.Activate(this);
         }
 
@@ -86,7 +86,7 @@ namespace TFCardBattle.Core
             State.Shield = 0;
             State.TF = 0;
 
-            TransferAllCards(State.PlayedThisTurn, State.Discard);
+            TransferAllCards(State.CardsPlayedThisTurn, State.Discard);
             TransferAllCards(State.Hand, State.Discard);
 
             for (int i = 0; i < StartingHandSize; i++)

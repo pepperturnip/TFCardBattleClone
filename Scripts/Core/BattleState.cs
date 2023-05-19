@@ -25,7 +25,7 @@ namespace TFCardBattle.Core
 
         public List<ICard> Deck = new List<ICard>();
         public List<ICard> Hand = new List<ICard>();
-        public List<ICard> PlayedThisTurn = new List<ICard>();
+        public List<ICard> CardsPlayedThisTurn = new List<ICard>();
         public List<ICard> Discard = new List<ICard>();
 
         public List<ICard> BuyPile = new List<ICard>();
