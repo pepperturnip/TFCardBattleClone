@@ -13,6 +13,7 @@ namespace TFCardBattle.Core
         public int SubsGain {get; set;}
         public int ShieldGain {get; set;}
         public int TFGain {get; set;}
+        public int CardDraw {get; set;}
 
         public CardPurchaseStats PurchaseStats {get; set;}
 
@@ -23,6 +24,11 @@ namespace TFCardBattle.Core
             battle.State.Subs += SubsGain;
             battle.State.Shield += ShieldGain;
             battle.State.TF += TFGain;
+
+            for (int i = 0; i < CardDraw; i++)
+            {
+                battle.DrawCard();
+            }
         }
     }
 }
