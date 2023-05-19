@@ -11,6 +11,7 @@ namespace TFCardBattle.Core
     {
         public const int MaxHandSize = 6;
         public const int StartingHandSize = 5;
+        public const int OfferedCardCount = 5;
 
         public const int EnemyMinTFDamage = 0;
         public const int EnemyMaxTFDamage = 5;
@@ -22,6 +23,7 @@ namespace TFCardBattle.Core
         private readonly Random _rng;
 
         public BattleController(
+            IEnumerable<ICard> offerableCards,
             IEnumerable<ICard> startingDeck,
             Random rng
         )
@@ -30,6 +32,7 @@ namespace TFCardBattle.Core
 
             State = new BattleState();
             State.Deck = startingDeck.ToList();
+            State.OfferableCards = offerableCards.ToArray();
         }
 
         public void DrawCard()
@@ -78,9 +81,28 @@ namespace TFCardBattle.Core
             card.Activate(this);
         }
 
+        public void BuyCard(int buyPileIndex)
+        {
+            // Fail to buy the card if the player can't afford it.
+            // TODO: Show some kind of message
+            if (!CanAffordCard(buyPileIndex))
+                return;
+
+            var card = State.BuyPile[buyPileIndex];
+            State.BuyPile.RemoveAt(buyPileIndex);
+            State.Discard.Add(card);
+
+            var cost = card.PurchaseStats;
+            State.Brain -= cost.BrainCost;
+            State.Heart -= cost.HeartCost;
+            State.Subs -= cost.SubsCost;
+        }
+
         public void StartTurn()
         {
             AssertBattleRunning();
+
+            RefreshBuyPile();
 
             // Throw out the player's unused cards and resources from the last
             // turn, and draw a new hand.
@@ -99,8 +121,6 @@ namespace TFCardBattle.Core
             {
                 DrawCard();
             }
-
-            // TODO: refresh the buy pile
         }
 
         public void EndTurn()
@@ -129,6 +149,41 @@ namespace TFCardBattle.Core
             StartTurn();
         }
 
+        public void RefreshBuyPile()
+        {
+            var offerableCards = CardsOfferableAtTf(State.PlayerTF).ToHashSet();
+            var offeredCards = new HashSet<ICard>();
+
+            while(offeredCards.Count < OfferedCardCount && offerableCards.Count > 0)
+            {
+                var weights = offerableCards
+                    .Select(c => (c, c.PurchaseStats.OfferWeight))
+                    .ToArray();
+
+                var card = _rng.PickFromWeighted(weights);
+                offerableCards.Remove(card);
+                offeredCards.Add(card);
+            }
+
+            State.BuyPile = offerableCards.ToList();
+        }
+
+        public bool CanAffordCard(int buyPileIndex)
+        {
+            var card = State.BuyPile[buyPileIndex].PurchaseStats;
+
+            if (State.Brain < card.BrainCost)
+                return false;
+
+            if (State.Heart < card.HeartCost)
+                return false;
+
+            if (State.Subs < card.SubsCost)
+                return false;
+
+            return true;
+        }
+
         private void TransferAllCards(List<ICard> src, List<ICard> dst)
         {
             dst.AddRange(src);
@@ -149,6 +204,13 @@ namespace TFCardBattle.Core
         {
             if (BattleEnded)
                 throw new Exception("You can't do that after the battle has ended");
+        }
+
+        private IEnumerable<ICard> CardsOfferableAtTf(int tf)
+        {
+            return State.OfferableCards
+                .Where(c => tf <= c.PurchaseStats.MaxTF)
+                .Where(c => tf >= c.PurchaseStats.MinTF);
         }
     }
 }
