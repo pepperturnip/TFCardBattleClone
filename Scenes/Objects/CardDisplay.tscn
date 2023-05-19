@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1mx8tkl5qxjp"]
+
+[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/CardDisplay.cs" id="1_mxb3w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xr7rt"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a4kh4"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_52n1x"]
+script/source = "extends Label
+
+func _process(_delta):
+    text = owner.CardName
+"
+
+[node name="CardDisplay" type="Panel"]
+custom_minimum_size = Vector2(128, 192)
+offset_right = 128.0
+offset_bottom = 192.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xr7rt")
+script = ExtResource("1_mxb3w")
+
+[node name="NameLabel" type="Label" parent="."]
+offset_right = 128.0
+offset_bottom = 26.0
+text = "Card Name"
+label_settings = SubResource("LabelSettings_a4kh4")
+horizontal_alignment = 1
+script = SubResource("GDScript_52n1x")

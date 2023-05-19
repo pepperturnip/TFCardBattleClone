@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0eo6qr3qxgyd"]
+
+[ext_resource type="Script" path="res://Scripts/Godot/BattleUI.cs" id="1_napwg"]
+[ext_resource type="PackedScene" uid="uid://c1mx8tkl5qxjp" path="res://Scenes/Objects/CardDisplay.tscn" id="2_hhg6y"]
+
+[node name="BattleUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_napwg")
+CardDisplayPrefab = ExtResource("2_hhg6y")
+
+[node name="HandDisplay" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -202.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="BuyPileDisplay" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 174.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerTF" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Player TF: "
+
+[node name="EnemyTF" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Enemy TF: "
+
+[node name="BrainLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Brain:"
+
+[node name="HeartLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Heart:"
+
+[node name="SubLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Sub:"
+
+[node name="ShieldLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Shield:"
+
+[node name="TFLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "TF:"
+
+[node name="EndTurnButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "End Turn"
+
+[connection signal="pressed" from="VBoxContainer/EndTurnButton" to="." method="OnEndTurnClicked"]
