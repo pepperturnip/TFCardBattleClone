@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TFCardBattle.Core
 {
@@ -20,10 +21,15 @@ namespace TFCardBattle.Core
 
         private readonly Random _rng;
 
-        public BattleController(BattleState state, Random rng)
+        public BattleController(
+            IEnumerable<ICard> startingDeck,
+            Random rng
+        )
         {
-            State = state;
             _rng = rng;
+
+            State = new BattleState();
+            State.Deck = startingDeck.ToList();
         }
 
         public void DrawCard()
