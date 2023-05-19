@@ -6,6 +6,24 @@ namespace TFCardBattle.Godot
 {
     public static class PlaceholderCards
     {
+        public static IEnumerable<ICard> StartingDeck()
+        {
+            var basicCard = new TransitioningBasicCard();
+            var mysteriousPills = new SimpleCard
+            {
+                Name = "Mysterious Pills",
+                TFGain = 1
+            };
+
+            for (int i = 0; i < 8; i++)
+            {
+                yield return basicCard;
+            }
+
+            yield return mysteriousPills;
+            yield return mysteriousPills;
+        }
+
         public static IEnumerable<ICard> AutoGenerateCatalog()
         {
             yield return BrainCard("Quick Thinking", brainCost: 3, tf: 1, shield: 1, brain: 1);
