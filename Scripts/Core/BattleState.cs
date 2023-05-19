@@ -9,9 +9,13 @@ namespace TFCardBattle.Core
     /// </summary>
     public class BattleState
     {
+        public int TurnsElapsed = 0;
+
         public int PlayerTF = 0;
         public int EnemyTF = 0;
-        public int TurnsElapsed = 0;
+
+        public int PlayerMaxTF = 100;
+        public int EnemyMaxTF = 100;
 
         public int Brain = 0;
         public int Heart = 0;

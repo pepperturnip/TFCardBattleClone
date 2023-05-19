@@ -9,8 +9,14 @@ namespace TFCardBattle.Core
     public class BattleController
     {
         public const int MaxHandSize = 6;
+        public const int StartingHandSize = 5;
+
+        public const int EnemyMinTFDamage = 0;
+        public const int EnemyMaxTFDamage = 5;
 
         public readonly BattleState State;
+
+        public bool BattleEnded {get; private set;} = false;
 
         private readonly Random _rng;
 
@@ -25,7 +31,7 @@ namespace TFCardBattle.Core
             // Reshuffle discard pile into the deck if the deck is empty
             if (State.Deck.Count == 0)
             {
-                ReshuffleDiscardIntoDeck();
+                TransferAllCards(State.Discard, State.Deck);
 
                 // If the deck is _still_ empty after shuffling in the discard
                 // pile, then we simply fail to draw a card.
@@ -66,10 +72,69 @@ namespace TFCardBattle.Core
             card.Activate(this);
         }
 
-        public void ReshuffleDiscardIntoDeck()
+        public void StartTurn()
         {
-            State.Deck.AddRange(State.Discard);
-            State.Discard.Clear();
+            // Throw out the player's unused cards and resources from the last
+            // turn, and draw a new hand.
+            //
+            // Sorry, but this is one of those use-it-or-lose-it card games.
+            State.Brain = 0;
+            State.Heart = 0;
+            State.Subs = 0;
+            State.Shield = 0;
+            State.TF = 0;
+
+            TransferAllCards(State.PlayedThisTurn, State.Discard);
+            TransferAllCards(State.Hand, State.Discard);
+
+            for (int i = 0; i < StartingHandSize; i++)
+            {
+                DrawCard();
+            }
+
+            // TODO: refresh the buy pile
+        }
+
+        public void EndTurn()
+        {
+            // Allow the player to attack
+            State.EnemyTF += State.TF;
+            if (State.EnemyTF >= State.EnemyMaxTF)
+            {
+                EndBattle();
+                return;
+            }
+
+            // Allow the enemy to attack.
+            int enemyTfDamage = RollEnemyDamage() - State.Shield;
+            enemyTfDamage = Math.Clamp(enemyTfDamage, 0, int.MaxValue);
+
+            State.PlayerTF += enemyTfDamage;
+            if (State.PlayerTF >= State.PlayerMaxTF)
+            {
+                EndBattle();
+                return;
+            }
+
+            // Start the next turn
+            State.TurnsElapsed++;
+            StartTurn();
+        }
+
+        private void TransferAllCards(List<ICard> src, List<ICard> dst)
+        {
+            dst.AddRange(src);
+            src.Clear();
+        }
+
+        private void EndBattle()
+        {
+            BattleEnded = true;
+        }
+
+        private int RollEnemyDamage()
+        {
+            return _rng.Next(EnemyMinTFDamage, EnemyMaxTFDamage + 1);
         }
     }
 }
