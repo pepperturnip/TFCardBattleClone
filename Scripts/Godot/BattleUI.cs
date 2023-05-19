@@ -12,5 +12,16 @@ namespace TFCardBattle.Godot
             PlaceholderCards.StartingDeck(),
             new Random((int)DateTimeOffset.Now.ToUnixTimeMilliseconds())
         );
+
+        [Export] public int PlayerTF
+        {
+            get => Battle.State.PlayerTF;
+            set {}
+        }
+
+        public void OnEndTurnClicked()
+        {
+            Battle.EndTurn();
+        }
     }
 }
