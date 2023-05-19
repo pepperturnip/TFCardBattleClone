@@ -25,13 +25,14 @@ namespace TFCardBattle.Godot
 
         public override void _Ready()
         {
-            RefreshHandDisplay();
+            Battle.StartTurn();
+            RefreshDisplay();
         }
 
         public void OnEndTurnClicked()
         {
             Battle.EndTurn();
-            RefreshHandDisplay();
+            RefreshDisplay();
         }
 
         private void RefreshDisplay()
