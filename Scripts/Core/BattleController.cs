@@ -74,6 +74,8 @@ namespace TFCardBattle.Core
 
         public void StartTurn()
         {
+            AssertBattleRunning();
+
             // Throw out the player's unused cards and resources from the last
             // turn, and draw a new hand.
             //
@@ -135,6 +137,12 @@ namespace TFCardBattle.Core
         private int RollEnemyDamage()
         {
             return _rng.Next(EnemyMinTFDamage, EnemyMaxTFDamage + 1);
+        }
+
+        private void AssertBattleRunning()
+        {
+            if (BattleEnded)
+                throw new Exception("You can't do that after the battle has ended");
         }
     }
 }
