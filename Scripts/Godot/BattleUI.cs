@@ -54,7 +54,11 @@ namespace TFCardBattle.Godot
         private void RefreshHandDisplay()
         {
             while (_handDisplay.GetChildCount() > 0)
-                _handDisplay.RemoveChild(_handDisplay.GetChild(0));
+            {
+                var c = _handDisplay.GetChild(0);
+                _handDisplay.RemoveChild(c);
+                c.QueueFree();
+            }
 
             foreach (var card in Battle.State.Hand)
             {
