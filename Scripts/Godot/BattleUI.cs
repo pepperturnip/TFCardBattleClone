@@ -37,6 +37,13 @@ namespace TFCardBattle.Godot
             RefreshDisplay();
         }
 
+        public void OnPlayCardClicked(int handIndex)
+        {
+            GD.Print($"clicking hand index {handIndex}");
+            Battle.PlayCard(handIndex);
+            RefreshDisplay();
+        }
+
         private void RefreshDisplay()
         {
             _playerTF.Text = $"Player TF: {Battle.State.PlayerTF} / {Battle.State.PlayerMaxTF}";
@@ -60,11 +67,15 @@ namespace TFCardBattle.Godot
                 c.QueueFree();
             }
 
-            foreach (var card in Battle.State.Hand)
+            for(int i = 0; i < Battle.State.Hand.Count; i++)
             {
+                var card = Battle.State.Hand[i];
                 var cardDisplay = CardDisplayPrefab.Instantiate<CardDisplay>();
                 cardDisplay.Card = card;
                 _handDisplay.AddChild(cardDisplay);
+
+                int handIndex = i;
+                cardDisplay.Clicked += () => OnPlayCardClicked(handIndex);
             }
         }
     }

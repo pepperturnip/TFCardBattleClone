@@ -15,7 +15,7 @@ func _process(_delta):
     text = owner.CardName
 "
 
-[node name="Panel" type="Panel"]
+[node name="CardDisplay" type="Panel"]
 custom_minimum_size = Vector2(128, 192)
 offset_right = 128.0
 offset_bottom = 192.0
