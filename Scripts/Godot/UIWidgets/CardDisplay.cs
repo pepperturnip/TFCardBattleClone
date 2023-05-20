@@ -10,16 +10,13 @@ namespace TFCardBattle.Godot
 
         public ICard Card;
 
-        [Export] public string CardName
-        {
-            get => Card?.Name ?? "null";
-            set {}
-        }
+        private Label _nameLabel => GetNode<Label>("%NameLabel");
+        private Label _descLabel => GetNode<Label>("%DescLabel");
 
-        [Export] public string CardDescription
+        public override void _Process(double delta)
         {
-            get => Card?.Desc ?? "";
-            set {}
+            _nameLabel.Text = Card?.Name ?? "null";
+            _descLabel.Text = Card?.Desc ?? "";
         }
 
         public override void _GuiInput(InputEvent ev)
