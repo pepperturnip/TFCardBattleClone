@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1mx8tkl5qxjp"]
+[gd_scene load_steps=6 format=3 uid="uid://c1mx8tkl5qxjp"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/CardDisplay.cs" id="1_mxb3w"]
 
@@ -8,7 +8,24 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_a4kh4"]
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1jsd"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [sub_resource type="LabelSettings" id="LabelSettings_mld0a"]
+font_size = 12
 font_color = Color(0, 0, 0, 1)
 
 [node name="CardDisplay" type="Panel"]
@@ -34,5 +51,7 @@ offset_left = 8.0
 offset_top = 104.0
 offset_right = 120.0
 offset_bottom = 184.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_b1jsd")
 text = "Description"
 label_settings = SubResource("LabelSettings_mld0a")
+vertical_alignment = 1
