@@ -4,7 +4,7 @@ namespace TFCardBattle.Core
     {
         public int BrainCost;
         public int HeartCost;
-        public int SubsCost;
+        public int SubCost;
 
         public int MinTF;
         public int MaxTF;

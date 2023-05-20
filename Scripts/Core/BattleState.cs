@@ -19,7 +19,7 @@ namespace TFCardBattle.Core
 
         public int Brain = 0;
         public int Heart = 0;
-        public int Subs = 0;
+        public int Sub = 0;
         public int Shield = 0;
         public int TF = 0;
 

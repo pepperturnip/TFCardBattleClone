@@ -57,7 +57,7 @@ namespace TFCardBattle.Godot
 
             _brain.Text = $"Brain: {Battle.State.Brain}";
             _heart.Text = $"Heart: {Battle.State.Heart}";
-            _sub.Text = $"Sub: {Battle.State.Subs}";
+            _sub.Text = $"Sub: {Battle.State.Sub}";
             _shield.Text = $"Shield: {Battle.State.Shield}";
             _tf.Text = $"TF: {Battle.State.TF}";
 

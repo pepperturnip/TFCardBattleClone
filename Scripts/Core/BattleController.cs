@@ -95,7 +95,7 @@ namespace TFCardBattle.Core
             var cost = card.PurchaseStats;
             State.Brain -= cost.BrainCost;
             State.Heart -= cost.HeartCost;
-            State.Subs -= cost.SubsCost;
+            State.Sub -= cost.SubCost;
         }
 
         public void StartTurn()
@@ -110,7 +110,7 @@ namespace TFCardBattle.Core
             // Sorry, but this is one of those use-it-or-lose-it card games.
             State.Brain = 0;
             State.Heart = 0;
-            State.Subs = 0;
+            State.Sub = 0;
             State.Shield = 0;
             State.TF = 0;
 
@@ -178,7 +178,7 @@ namespace TFCardBattle.Core
             if (State.Heart < card.HeartCost)
                 return false;
 
-            if (State.Subs < card.SubsCost)
+            if (State.Sub < card.SubCost)
                 return false;
 
             return true;
