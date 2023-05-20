@@ -16,6 +16,12 @@ namespace TFCardBattle.Godot
             set {}
         }
 
+        [Export] public string CardDescription
+        {
+            get => Card?.Desc ?? "";
+            set {}
+        }
+
         public override void _GuiInput(InputEvent ev)
         {
             if (ev is InputEventMouseButton clickEvent)
