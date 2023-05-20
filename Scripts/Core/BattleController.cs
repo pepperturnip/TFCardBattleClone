@@ -152,9 +152,9 @@ namespace TFCardBattle.Core
         public void RefreshBuyPile()
         {
             var offerableCards = CardsOfferableAtTf(State.PlayerTF).ToHashSet();
-            var offeredCards = new HashSet<ICard>();
+            var buyPile = new HashSet<ICard>();
 
-            while(offeredCards.Count < OfferedCardCount && offerableCards.Count > 0)
+            while(buyPile.Count < OfferedCardCount && offerableCards.Count > 0)
             {
                 var weights = offerableCards
                     .Select(c => (c, c.PurchaseStats.OfferWeight))
@@ -162,10 +162,10 @@ namespace TFCardBattle.Core
 
                 var card = _rng.PickFromWeighted(weights);
                 offerableCards.Remove(card);
-                offeredCards.Add(card);
+                buyPile.Add(card);
             }
 
-            State.BuyPile = offerableCards.ToList();
+            State.BuyPile = buyPile.ToList();
         }
 
         public bool CanAffordCard(int buyPileIndex)
