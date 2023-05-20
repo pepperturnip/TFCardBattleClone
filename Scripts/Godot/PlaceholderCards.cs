@@ -95,7 +95,7 @@ namespace TFCardBattle.Godot
                 {
                     BrainCost = brainCost,
                     HeartCost = heartCost,
-                    SubsCost = subCost,
+                    SubCost = subCost,
                     MinTF = 0,
                     MaxTF = 42,
                     OfferWeight = 1
@@ -103,7 +103,7 @@ namespace TFCardBattle.Godot
 
                 BrainGain = brain,
                 HeartGain = heart,
-                SubsGain = sub,
+                SubGain = sub,
                 ShieldGain = shield,
                 TFGain = tf,
                 CardDraw = draw
@@ -130,7 +130,7 @@ namespace TFCardBattle.Godot
                 {
                     BrainCost = brainCost,
                     HeartCost = heartCost,
-                    SubsCost = subCost,
+                    SubCost = subCost,
                     MinTF = 33,
                     MaxTF = 71,
                     OfferWeight = 1
@@ -138,7 +138,7 @@ namespace TFCardBattle.Godot
 
                 BrainGain = brain,
                 HeartGain = heart,
-                SubsGain = sub,
+                SubGain = sub,
                 ShieldGain = shield,
                 TFGain = tf,
                 CardDraw = draw
@@ -165,7 +165,7 @@ namespace TFCardBattle.Godot
                 {
                     BrainCost = brainCost,
                     HeartCost = heartCost,
-                    SubsCost = subCost,
+                    SubCost = subCost,
                     MinTF = 66,
                     MaxTF = int.MaxValue,
                     OfferWeight = 1
@@ -173,7 +173,7 @@ namespace TFCardBattle.Godot
 
                 BrainGain = brain,
                 HeartGain = heart,
-                SubsGain = sub,
+                SubGain = sub,
                 ShieldGain = shield,
                 TFGain = tf,
                 CardDraw = draw

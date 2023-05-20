@@ -20,7 +20,7 @@ namespace TFCardBattle.Core
             else if (tf < 66)
                 battle.State.Heart++;
             else
-                battle.State.Subs++;
+                battle.State.Sub++;
         }
     }
 }

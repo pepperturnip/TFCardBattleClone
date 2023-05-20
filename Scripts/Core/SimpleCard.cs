@@ -10,7 +10,7 @@ namespace TFCardBattle.Core
 
         public int BrainGain {get; set;}
         public int HeartGain {get; set;}
-        public int SubsGain {get; set;}
+        public int SubGain {get; set;}
         public int ShieldGain {get; set;}
         public int TFGain {get; set;}
         public int CardDraw {get; set;}
@@ -21,7 +21,7 @@ namespace TFCardBattle.Core
         {
             battle.State.Brain += BrainGain;
             battle.State.Heart += HeartGain;
-            battle.State.Subs += SubsGain;
+            battle.State.Sub += SubGain;
             battle.State.Shield += ShieldGain;
             battle.State.TF += TFGain;
 
