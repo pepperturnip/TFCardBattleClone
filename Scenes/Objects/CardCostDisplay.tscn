@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bycsfwfkgv85h"]
+[gd_scene load_steps=7 format=3 uid="uid://bycsfwfkgv85h"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/CardCostDisplay.cs" id="1_jh5qn"]
 [ext_resource type="Texture2D" uid="uid://bvk74u16yhllh" path="res://Icons/Brain.svg" id="2_wmum8"]
+[ext_resource type="Texture2D" uid="uid://dososbff7cd0m" path="res://Icons/Heart.svg" id="3_o2cid"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tr8r0"]
 texture = ExtResource("2_wmum8")
@@ -9,6 +10,9 @@ texture = ExtResource("2_wmum8")
 [sub_resource type="LabelSettings" id="LabelSettings_rwc1w"]
 font_size = 41
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cut4h"]
+texture = ExtResource("3_o2cid")
 
 [node name="CardCostDisplay" type="Node2D"]
 script = ExtResource("1_jh5qn")
@@ -32,7 +36,7 @@ vertical_alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxTexture_tr8r0")
+theme_override_styles/normal = SubResource("StyleBoxTexture_cut4h")
 text = "2"
 label_settings = SubResource("LabelSettings_rwc1w")
 horizontal_alignment = 1
