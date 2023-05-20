@@ -1,5 +1,6 @@
 
 using System;
+using System.Threading.Tasks;
 using Godot;
 using TFCardBattle.Core;
 
@@ -23,6 +24,7 @@ namespace TFCardBattle.Godot
         private BattleController Battle = new BattleController(
             PlaceholderCards.AutoGenerateCatalog(),
             PlaceholderCards.StartingDeck(),
+            new BattleAnimationPlayer(),
             new Random((int)DateTimeOffset.Now.ToUnixTimeMilliseconds())
         );
 
@@ -32,9 +34,9 @@ namespace TFCardBattle.Godot
             RefreshDisplay();
         }
 
-        public void OnEndTurnClicked()
+        public async void OnEndTurnClicked()
         {
-            Battle.EndTurn();
+            await Battle.EndTurn();
             RefreshDisplay();
         }
 
