@@ -21,15 +21,17 @@ namespace TFCardBattle.Godot
         private HBoxContainer _handDisplay => GetNode<HBoxContainer>("%HandDisplay");
         private HBoxContainer _buyPileDisplay => GetNode<HBoxContainer>("%BuyPileDisplay");
 
-        private BattleController Battle = new BattleController(
-            PlaceholderCards.AutoGenerateCatalog(),
-            PlaceholderCards.StartingDeck(),
-            new BattleAnimationPlayer(),
-            new Random((int)DateTimeOffset.Now.ToUnixTimeMilliseconds())
-        );
+        private BattleController Battle;
 
         public override void _Ready()
         {
+            Battle = new BattleController(
+                PlaceholderCards.AutoGenerateCatalog(),
+                PlaceholderCards.StartingDeck(),
+                GetNode<BattleAnimationPlayer>("%BattleAnimationPlayer"),
+                new Random((int)DateTimeOffset.Now.ToUnixTimeMilliseconds())
+            );
+
             Battle.StartTurn();
             RefreshDisplay();
         }
