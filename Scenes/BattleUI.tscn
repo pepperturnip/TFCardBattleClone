@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c0eo6qr3qxgyd"]
+[gd_scene load_steps=9 format=3 uid="uid://c0eo6qr3qxgyd"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/BattleUI.cs" id="1_napwg"]
 [ext_resource type="PackedScene" uid="uid://c1mx8tkl5qxjp" path="res://Scenes/Objects/CardDisplay.tscn" id="2_hhg6y"]
@@ -100,6 +100,14 @@ _data = {
 "Damage": SubResource("Animation_pd711"),
 "RESET": SubResource("Animation_1tqjv")
 }
+
+[sub_resource type="SystemFont" id="SystemFont_hwabp"]
+font_names = PackedStringArray("sans-serif")
+oversampling = 4.2
+
+[sub_resource type="LabelSettings" id="LabelSettings_dc5cw"]
+font = SubResource("SystemFont_hwabp")
+font_color = Color(1, 0.780392, 0.784314, 1)
 
 [node name="BattleUI" type="Control"]
 layout_mode = 3
@@ -210,7 +218,9 @@ offset_left = -32.0
 offset_top = -16.0
 offset_right = 32.0
 offset_bottom = 16.0
+theme_override_colors/font_color = Color(1, 0.780392, 0.784314, 1)
 text = "+5"
+label_settings = SubResource("LabelSettings_dc5cw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
