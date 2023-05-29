@@ -9,16 +9,17 @@ namespace TFCardBattle.Godot
     {
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
 
-        public async Task DamageEnemy(int damageAmount)
+        public Task DamageEnemy(int damageAmount) => DamageAnimation("DamageEnemy", damageAmount);
+        public Task DamagePlayer(int damageAmount) => DamageAnimation("DamagePlayer", damageAmount);
+
+        private async Task DamageAnimation(string animationName, int damageAmount)
         {
             if (damageAmount <= 0)
                 return;
 
             GetNode<Label>("%DamageAnimationLabel").Text = $"+{damageAmount}";
-            _animator.ResetAndPlay("Damage");
+            _animator.ResetAndPlay(animationName);
             await ToSignal(_animator, AnimationPlayer.SignalName.AnimationFinished);
         }
-
-        public Task DamagePlayer(int damageAmount) => DamageEnemy(damageAmount);
     }
 }
