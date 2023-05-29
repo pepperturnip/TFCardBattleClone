@@ -7,13 +7,18 @@ namespace TFCardBattle.Godot
 {
     public partial class BattleAnimationPlayer : Node, IBattleAnimationPlayer
     {
-        public Task DamageEnemy(int damageAmount) => Delay(1);
-        public Task DamagePlayer(int damageAmount) => Delay(1);
+        private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
 
-        private async Task Delay(double seconds)
+        public async Task DamageEnemy(int damageAmount)
         {
-            var timer = GetTree().CreateTimer(seconds);
-            await timer.ToSignal(timer, SceneTreeTimer.SignalName.Timeout);
+            if (damageAmount <= 0)
+                return;
+
+            GetNode<Label>("%DamageAnimationLabel").Text = $"+{damageAmount}";
+            _animator.ResetAndPlay("Damage");
+            await ToSignal(_animator, AnimationPlayer.SignalName.AnimationFinished);
         }
+
+        public Task DamagePlayer(int damageAmount) => DamageEnemy(damageAmount);
     }
 }
