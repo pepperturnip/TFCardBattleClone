@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace TFCardBattle.Core
 {
@@ -20,14 +21,17 @@ namespace TFCardBattle.Core
 
         public bool BattleEnded {get; private set;} = false;
 
+        private readonly IBattleAnimationPlayer _animationPlayer;
         private readonly Random _rng;
 
         public BattleController(
             IEnumerable<ICard> offerableCards,
             IEnumerable<ICard> startingDeck,
+            IBattleAnimationPlayer animationPlayer,
             Random rng
         )
         {
+            _animationPlayer = animationPlayer;
             _rng = rng;
 
             State = new BattleState();
@@ -123,10 +127,12 @@ namespace TFCardBattle.Core
             }
         }
 
-        public void EndTurn()
+        public async Task EndTurn()
         {
             // Allow the player to attack
             State.EnemyTF += State.TF;
+            await _animationPlayer.DamageEnemy(State.TF);
+
             if (State.EnemyTF >= State.EnemyMaxTF)
             {
                 EndBattle();
@@ -138,6 +144,8 @@ namespace TFCardBattle.Core
             enemyTfDamage = Math.Clamp(enemyTfDamage, 0, int.MaxValue);
 
             State.PlayerTF += enemyTfDamage;
+            await _animationPlayer.DamagePlayer(enemyTfDamage);
+
             if (State.PlayerTF >= State.PlayerMaxTF)
             {
                 EndBattle();
