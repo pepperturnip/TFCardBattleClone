@@ -10,18 +10,26 @@ namespace TFCardBattle.Godot
     {
         [Export] public PackedScene CardDisplayPrefab;
 
-        private Label _playerTF => GetNode<Label>("%PlayerTF");
-        private Label _enemyTF => GetNode<Label>("%EnemyTF");
+        private Label _playerTFLabel => GetNode<Label>("%PlayerTFLabel");
+        private ProgressBar _playerTFBar => GetNode<ProgressBar>("%PlayerTFBar");
+
+        private Label _enemyTFLabel => GetNode<Label>("%EnemyTFLabel");
+        private ProgressBar _enemyTFBar => GetNode<ProgressBar>("%EnemyTFBar");
+
+
         private Label _brain => GetNode<Label>("%BrainLabel");
         private Label _heart => GetNode<Label>("%HeartLabel");
         private Label _sub => GetNode<Label>("%SubLabel");
         private Label _shield => GetNode<Label>("%ShieldLabel");
         private Label _tf => GetNode<Label>("%TFLabel");
 
+
         private HBoxContainer _handDisplay => GetNode<HBoxContainer>("%HandDisplay");
         private HBoxContainer _buyPileDisplay => GetNode<HBoxContainer>("%BuyPileDisplay");
 
+
         private BattleController Battle;
+
 
         public override void _Ready()
         {
@@ -54,10 +62,15 @@ namespace TFCardBattle.Godot
             RefreshDisplay();
         }
 
-        private void RefreshDisplay()
+        public void RefreshDisplay()
         {
-            _playerTF.Text = $"Player TF: {Battle.State.PlayerTF} / {Battle.State.PlayerMaxTF}";
-            _enemyTF.Text = $"Enemy TF: {Battle.State.EnemyTF} / {Battle.State.EnemyMaxTF}";
+            _playerTFBar.MaxValue = Battle.State.PlayerMaxTF;
+            _playerTFBar.Value = Battle.State.PlayerTF;
+            _playerTFLabel.Text = $"{Battle.State.PlayerTF} / {Battle.State.PlayerMaxTF}";
+
+            _enemyTFBar.MaxValue = Battle.State.EnemyMaxTF;
+            _enemyTFBar.Value = Battle.State.EnemyTF;
+            _enemyTFLabel.Text = $"{Battle.State.EnemyTF} / {Battle.State.EnemyMaxTF}";
 
             _brain.Text = $"Brain: {Battle.State.Brain}";
             _heart.Text = $"Heart: {Battle.State.Heart}";
