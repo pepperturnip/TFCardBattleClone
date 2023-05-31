@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ds2nh3axu3wjs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruiv0"]
+bg_color = Color(1, 0.780392, 0.784314, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[resource]
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 3
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_ruiv0")
