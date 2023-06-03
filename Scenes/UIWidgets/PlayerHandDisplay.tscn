@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dao0w4slv7603"]
+
+[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/PlayerHandDisplay.cs" id="1_ka2l4"]
+[ext_resource type="PackedScene" uid="uid://c1mx8tkl5qxjp" path="res://Scenes/UIWidgets/CardDisplay.tscn" id="2_f82et"]
+
+[node name="PlayerHandDisplay" type="HBoxContainer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -202.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+script = ExtResource("1_ka2l4")
+CardDisplayPrefab = ExtResource("2_f82et")

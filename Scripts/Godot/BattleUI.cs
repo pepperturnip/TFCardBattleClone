@@ -24,7 +24,7 @@ namespace TFCardBattle.Godot
         private Label _tf => GetNode<Label>("%TFLabel");
 
 
-        private HBoxContainer _handDisplay => GetNode<HBoxContainer>("%HandDisplay");
+        private PlayerHandDisplay _handDisplay => GetNode<PlayerHandDisplay>("%HandDisplay");
         private HBoxContainer _buyPileDisplay => GetNode<HBoxContainer>("%BuyPileDisplay");
 
 
@@ -78,29 +78,8 @@ namespace TFCardBattle.Godot
             _shield.Text = $"Shield: {Battle.State.Shield}";
             _tf.Text = $"TF: {Battle.State.TF}";
 
-            RefreshHandDisplay();
+            _handDisplay.Refresh(Battle.State);
             RefreshBuyPileDisplay();
-        }
-
-        private void RefreshHandDisplay()
-        {
-            while (_handDisplay.GetChildCount() > 0)
-            {
-                var c = _handDisplay.GetChild(0);
-                _handDisplay.RemoveChild(c);
-                c.QueueFree();
-            }
-
-            for(int i = 0; i < Battle.State.Hand.Count; i++)
-            {
-                var card = Battle.State.Hand[i];
-                var cardDisplay = CardDisplayPrefab.Instantiate<CardDisplay>();
-                cardDisplay.Card = card;
-                _handDisplay.AddChild(cardDisplay);
-
-                int handIndex = i;
-                cardDisplay.Clicked += () => OnPlayCardClicked(handIndex);
-            }
         }
 
         private void RefreshBuyPileDisplay()
