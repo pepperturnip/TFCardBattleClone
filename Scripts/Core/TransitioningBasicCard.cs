@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace TFCardBattle.Core
 {
     public class TransitioningBasicCard : ICard
@@ -8,7 +10,7 @@ namespace TFCardBattle.Core
 
         public CardPurchaseStats PurchaseStats => default;
 
-        public void Activate(BattleController battle)
+        public Task Activate(BattleController battle)
         {
             // HACK: Add a different resource depending on how TF'd you are
             // TODO: Don't transition _all_ basic cards at the same time!
@@ -21,6 +23,8 @@ namespace TFCardBattle.Core
                 battle.State.Heart++;
             else
                 battle.State.Sub++;
+
+            return Task.CompletedTask;
         }
     }
 }

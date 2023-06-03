@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace TFCardBattle.Core
 {
     public interface ICard
@@ -7,6 +9,6 @@ namespace TFCardBattle.Core
 
         CardPurchaseStats PurchaseStats {get;}
 
-        void Activate(BattleController battle);
+        Task Activate(BattleController battle);
     }
 }

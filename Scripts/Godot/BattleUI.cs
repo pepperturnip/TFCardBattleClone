@@ -31,7 +31,7 @@ namespace TFCardBattle.Godot
         private BattleController Battle;
 
 
-        public override void _Ready()
+        public override async void _Ready()
         {
             Battle = new BattleController(
                 PlaceholderCards.AutoGenerateCatalog(),
@@ -40,7 +40,7 @@ namespace TFCardBattle.Godot
                 new Random((int)DateTimeOffset.Now.ToUnixTimeMilliseconds())
             );
 
-            Battle.StartTurn();
+            await Battle.StartTurn();
             RefreshDisplay();
         }
 
@@ -50,19 +50,19 @@ namespace TFCardBattle.Godot
             RefreshDisplay();
         }
 
-        public void OnPlayCardClicked(int handIndex)
+        public async void OnPlayCardClicked(int handIndex)
         {
-            Battle.PlayCard(handIndex);
+            await Battle.PlayCard(handIndex);
             RefreshDisplay();
         }
 
-        public void OnBuyCardClicked(int buyPileIndex)
+        public async void OnBuyCardClicked(int buyPileIndex)
         {
-            Battle.BuyCard(buyPileIndex);
+            await Battle.BuyCard(buyPileIndex);
             RefreshDisplay();
         }
 
-        public void RefreshDisplay()
+        private void RefreshDisplay()
         {
             _playerTFBar.MaxValue = Battle.State.PlayerMaxTF;
             _playerTFBar.Value = Battle.State.PlayerTF;
