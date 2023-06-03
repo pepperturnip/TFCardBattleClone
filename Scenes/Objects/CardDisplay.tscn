@@ -1,66 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1mx8tkl5qxjp"]
+[gd_scene load_steps=3 format=3 uid="uid://c1mx8tkl5qxjp"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/CardDisplay.cs" id="1_mxb3w"]
-[ext_resource type="PackedScene" uid="uid://bycsfwfkgv85h" path="res://Scenes/Objects/CardCostDisplay.tscn" id="2_1vtqo"]
+[ext_resource type="PackedScene" uid="uid://cs4vf3jnrvk57" path="res://Scenes/Models/CardModel.tscn" id="2_ecqts"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xr7rt"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="LabelSettings" id="LabelSettings_a4kh4"]
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1jsd"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 0)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="LabelSettings" id="LabelSettings_mld0a"]
-font_size = 12
-font_color = Color(0, 0, 0, 1)
-
-[node name="CardDisplay" type="Panel"]
+[node name="CardDisplay" type="Control"]
 custom_minimum_size = Vector2(128, 192)
+layout_mode = 3
+anchors_preset = 0
 offset_right = 128.0
 offset_bottom = 192.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_xr7rt")
 script = ExtResource("1_mxb3w")
 
-[node name="NameLabel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 32.0
-offset_right = 128.0
-offset_bottom = 26.0
-text = "Card Name"
-label_settings = SubResource("LabelSettings_a4kh4")
-horizontal_alignment = 1
-
-[node name="DescLabel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 8.0
-offset_top = 104.0
-offset_right = 120.0
-offset_bottom = 184.0
-theme_override_styles/normal = SubResource("StyleBoxFlat_b1jsd")
-text = "Description"
-label_settings = SubResource("LabelSettings_mld0a")
-vertical_alignment = 1
-
-[node name="CardCostDisplay" parent="." instance=ExtResource("2_1vtqo")]
+[node name="CardModel" parent="." instance=ExtResource("2_ecqts")]
 unique_name_in_owner = true

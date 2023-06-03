@@ -8,18 +8,13 @@ namespace TFCardBattle.Godot
     {
         [Signal] public delegate void ClickedEventHandler();
 
-        public ICard Card;
-
-        private Label _nameLabel => GetNode<Label>("%NameLabel");
-        private Label _descLabel => GetNode<Label>("%DescLabel");
-        private CardCostDisplay _costDisplay => GetNode<CardCostDisplay>("%CardCostDisplay");
-
-        public override void _Process(double delta)
+        public ICard Card
         {
-            _nameLabel.Text = Card?.Name ?? "null";
-            _descLabel.Text = Card?.Desc ?? "";
-            _costDisplay.Card = Card;
+            get => _model.Card;
+            set => _model.Card = value;
         }
+
+        private CardModel _model => GetNode<CardModel>("%CardModel");
 
         public override void _GuiInput(InputEvent ev)
         {

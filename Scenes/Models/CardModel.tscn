@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://cs4vf3jnrvk57"]
+
+[ext_resource type="Script" path="res://Scripts/Godot/Models/CardModel.cs" id="1_65srg"]
+[ext_resource type="PackedScene" uid="uid://bycsfwfkgv85h" path="res://Scenes/Objects/CardCostDisplay.tscn" id="2_psc0e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8eyp4"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_31aqx"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6a6bp"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_fdhvm"]
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+
+[node name="CardModel" type="Node2D"]
+script = ExtResource("1_65srg")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(128, 192)
+offset_right = 128.0
+offset_bottom = 192.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_8eyp4")
+
+[node name="NameLabel" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 32.0
+offset_right = 128.0
+offset_bottom = 26.0
+text = "Card Name"
+label_settings = SubResource("LabelSettings_31aqx")
+horizontal_alignment = 1
+
+[node name="DescLabel" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 104.0
+offset_right = 120.0
+offset_bottom = 184.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_6a6bp")
+text = "Description"
+label_settings = SubResource("LabelSettings_fdhvm")
+vertical_alignment = 1
+
+[node name="CardCostDisplay" parent="Panel" instance=ExtResource("2_psc0e")]
+unique_name_in_owner = true
