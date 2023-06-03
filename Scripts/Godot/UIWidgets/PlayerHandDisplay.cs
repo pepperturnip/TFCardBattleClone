@@ -9,22 +9,68 @@ namespace TFCardBattle.Godot
         [Signal] public delegate void CardPlayedEventHandler(int handIndex);
 
         [Export] public PackedScene CardModelPrefab;
+        [Export] public float CardMoveSpeed = 1000;
 
         private HBoxContainer _cardPositions => GetNode<HBoxContainer>("%CardPositions");
-        private Node2D _cardModels => GetNode<Node2D>("%CardModels");
+        private Node2D _cardModelsHolder => GetNode<Node2D>("%CardModels");
 
-        public override void _Process(double delta)
+        private CardModel[] _cardModels = new CardModel[BattleController.MaxHandSize];
+
+        public override void _Ready()
         {
-            for (int i = 0; i < _cardModels.GetChildCount(); i++)
+            for (int i = 0; i < _cardModels.Length; i++)
             {
-                var model = _cardModels.GetChild<Node2D>(i);
+                _cardModels[i] = CardModelPrefab.Instantiate<CardModel>();
+            }
+        }
+
+        public override void _Process(double deltaD)
+        {
+            float delta = (float)deltaD;
+
+            // Gradually move each card model to its positioner
+            for (int i = 0; i < _cardModelsHolder.GetChildCount(); i++)
+            {
+                var model = _cardModelsHolder.GetChild<Node2D>(i);
                 var positioner = _cardPositions.GetChild<CardPositioner>(i);
 
-                model.GlobalPosition = positioner.GlobalPosition;
+                model.GlobalPosition = model.GlobalPosition.MoveToward(
+                    positioner.PositionNode.GlobalPosition,
+                    CardMoveSpeed * delta
+                );
             }
         }
 
         public void Refresh(BattleState state)
+        {
+            RefreshCardModels(state);
+            RefreshCardPositioners(state);
+        }
+
+        private void RefreshCardModels(BattleState state)
+        {
+            for (int i = 0; i < _cardModels.Length; i++)
+            {
+                var model = _cardModels[i];
+
+                // Add it to the scene tree if it's needed, and remove it if
+                // it's not.
+                if (i < state.Hand.Count && !_cardModelsHolder.IsAncestorOf(model))
+                {
+                    _cardModelsHolder.AddChild(model);
+                }
+                if (i >= state.Hand.Count && _cardModelsHolder.IsAncestorOf(model))
+                {
+                    _cardModelsHolder.RemoveChild(model);
+                }
+
+                // Make it display the correct card
+                if (i < state.Hand.Count)
+                    model.Card = state.Hand[i];
+            }
+        }
+
+        private void RefreshCardPositioners(BattleState state)
         {
             while (_cardPositions.GetChildCount() > 0)
             {
@@ -33,19 +79,9 @@ namespace TFCardBattle.Godot
                 c.QueueFree();
             }
 
-            while (_cardModels.GetChildCount() > 0)
-            {
-                var c = _cardModels.GetChild(0);
-                _cardModels.RemoveChild(c);
-                c.QueueFree();
-            }
-
             for(int i = 0; i < state.Hand.Count; i++)
             {
-                var cardModel = CardModelPrefab.Instantiate<CardModel>();
-                cardModel.Card = state.Hand[i];
-                _cardModels.AddChild(cardModel);
-
+                var cardModel = _cardModels[i];
                 var cardPositioner = new CardPositioner();
                 cardPositioner.Size = cardModel.Size;
                 cardPositioner.CustomMinimumSize = cardModel.Size;
