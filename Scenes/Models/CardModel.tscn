@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cs4vf3jnrvk57"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/Models/CardModel.cs" id="1_65srg"]
-[ext_resource type="PackedScene" uid="uid://bycsfwfkgv85h" path="res://Scenes/Objects/CardCostDisplay.tscn" id="2_psc0e"]
+[ext_resource type="PackedScene" uid="uid://bycsfwfkgv85h" path="res://Scenes/UIWidgets/CardCostDisplay.tscn" id="2_psc0e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8eyp4"]
 bg_color = Color(1, 1, 1, 1)
