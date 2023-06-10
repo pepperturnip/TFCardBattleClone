@@ -35,6 +35,11 @@ namespace TFCardBattle.Godot
 
         public Task DrawCard(BattleState state) => _handDisplay.DrawCard(state.Hand.ToArray());
 
+        public Task PlayCard(int handIndexPlayed, BattleState newState)
+        {
+            return _handDisplay.RemoveCard(handIndexPlayed, newState.Hand.ToArray());
+        }
+
         private async Task DamageAnimation(string animationName, int damageAmount)
         {
             if (damageAmount <= 0)

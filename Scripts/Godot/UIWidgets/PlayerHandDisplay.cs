@@ -45,6 +45,18 @@ namespace TFCardBattle.Godot
             Refresh(newHand);
         }
 
+        public async Task RemoveCard(int removedHandIndex, ICard[] newHand)
+        {
+            RefreshCardPositioners(newHand);
+
+            var modelToRemove = _cardModels.GetChild<CardModel>(removedHandIndex);
+            _cardModels.RemoveChild(modelToRemove);
+            modelToRemove.QueueFree();
+
+            await TweenModelsToTargetPositions(DrawAnimationDuration, newHand);
+            Refresh(newHand);
+        }
+
         public void Refresh(ICard[] hand)
         {
             RefreshCardPositioners(hand);

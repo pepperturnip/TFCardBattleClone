@@ -8,5 +8,6 @@ namespace TFCardBattle.Core
         Task DamagePlayer(int damageAmount);
         Task DamageEnemy(int damageAmount);
         Task DrawCard(BattleState state);
+        Task PlayCard(int handIndexPlayed, BattleState newState);
     }
 }

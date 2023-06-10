@@ -84,6 +84,8 @@ namespace TFCardBattle.Core
 
             State.Hand.Remove(card);
             State.CardsPlayedThisTurn.Add(card);
+            await _animationPlayer.PlayCard(handIndex, State);
+
             await card.Activate(this);
         }
 
