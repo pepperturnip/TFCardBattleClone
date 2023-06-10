@@ -13,9 +13,7 @@ namespace TFCardBattle.Godot
         [Export] public float MinCardSeparation = 8;
 
         private Control _cardPositions => GetNode<Control>("%CardPositions");
-        private Node2D _cardModelsHolder => GetNode<Node2D>("%CardModels");
-
-        private CardModel[] _cardModels = new CardModel[BattleController.MaxHandSize];
+        private Node2D _cardModels => GetNode<Node2D>("%CardModels");
         private Vector2 _cardSize;
 
         public override void _Ready()
@@ -25,58 +23,16 @@ namespace TFCardBattle.Godot
             _cardSize = dummyCard.Size;
             dummyCard.QueueFree();
             dummyCard = null;
-
-            // Create a pool of card models
-            for (int i = 0; i < _cardModels.Length; i++)
-            {
-                _cardModels[i] = CardModelPrefab.Instantiate<CardModel>();
-            }
         }
 
         public override void _Process(double deltaD)
         {
-            float delta = (float)deltaD;
-
-            // Gradually move each card model to its positioner
-            for (int i = 0; i < _cardModelsHolder.GetChildCount(); i++)
-            {
-                var model = _cardModelsHolder.GetChild<Node2D>(i);
-                var positioner = _cardPositions.GetChild<CardPositioner>(i);
-
-                model.GlobalPosition = model.GlobalPosition.MoveToward(
-                    positioner.PositionNode.GlobalPosition,
-                    CardMoveSpeed * delta
-                );
-            }
         }
 
         public void Refresh(BattleState state)
         {
-            RefreshCardModels(state);
             RefreshCardPositioners(state);
-        }
-
-        private void RefreshCardModels(BattleState state)
-        {
-            for (int i = 0; i < _cardModels.Length; i++)
-            {
-                var model = _cardModels[i];
-
-                // Add it to the scene tree if it's needed, and remove it if
-                // it's not.
-                if (i < state.Hand.Count && !_cardModelsHolder.IsAncestorOf(model))
-                {
-                    _cardModelsHolder.AddChild(model);
-                }
-                if (i >= state.Hand.Count && _cardModelsHolder.IsAncestorOf(model))
-                {
-                    _cardModelsHolder.RemoveChild(model);
-                }
-
-                // Make it display the correct card
-                if (i < state.Hand.Count)
-                    model.Card = state.Hand[i];
-            }
+            RefreshCardModels(state);
         }
 
         private void RefreshCardPositioners(BattleState state)
@@ -86,12 +42,7 @@ namespace TFCardBattle.Godot
                 _cardSize.Y
             );
 
-            while (_cardPositions.GetChildCount() > 0)
-            {
-                var c = _cardPositions.GetChild(0);
-                _cardPositions.RemoveChild(c);
-                c.QueueFree();
-            }
+            DeleteAllChildren(_cardPositions);
 
             for(int i = 0; i < state.Hand.Count; i++)
             {
@@ -110,6 +61,31 @@ namespace TFCardBattle.Godot
                 // time the card is clicked, since it's the looping variable.
                 int handIndex = i;
                 cardPositioner.Clicked += () => EmitSignal(SignalName.CardPlayed, handIndex);
+            }
+        }
+
+        private void RefreshCardModels(BattleState state)
+        {
+            DeleteAllChildren(_cardModels);
+
+            for (int i = 0; i < state.Hand.Count; i++)
+            {
+                var model = CardModelPrefab.Instantiate<CardModel>();
+                model.Card = state.Hand[i];
+                _cardModels.AddChild(model);
+
+                // Immediately move it to its position
+                model.GlobalPosition = _cardPositions.GetChild<CardPositioner>(i).PositionNode.GlobalPosition;
+            }
+        }
+
+        private void DeleteAllChildren(Node node)
+        {
+            while (node.GetChildCount() > 0)
+            {
+                var c = node.GetChild(0);
+                node.RemoveChild(c);
+                c.QueueFree();
             }
         }
 
