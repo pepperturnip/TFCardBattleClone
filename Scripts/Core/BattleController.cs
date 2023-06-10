@@ -126,6 +126,7 @@ namespace TFCardBattle.Core
 
             TransferAllCards(State.CardsPlayedThisTurn, State.Discard);
             TransferAllCards(State.Hand, State.Discard);
+            await _animationPlayer.DiscardHand();
 
             for (int i = 0; i < StartingHandSize; i++)
             {

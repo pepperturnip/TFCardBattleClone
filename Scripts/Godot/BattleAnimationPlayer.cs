@@ -40,6 +40,12 @@ namespace TFCardBattle.Godot
             return _handDisplay.RemoveCard(handIndexPlayed, newState.Hand.ToArray());
         }
 
+        public Task DiscardHand()
+        {
+            _handDisplay.Refresh(Array.Empty<ICard>());
+            return Task.CompletedTask;
+        }
+
         private async Task DamageAnimation(string animationName, int damageAmount)
         {
             if (damageAmount <= 0)
