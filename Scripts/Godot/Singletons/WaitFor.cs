@@ -15,6 +15,12 @@ namespace TFCardBattle.Godot
         /// <returns></returns>
         public static Task<double> NextFrame() => _nextFrameTcs.Task;
 
+        public static async Task Seconds(double seconds)
+        {
+            var timer = _instance.GetTree().CreateTimer(seconds);
+            await timer.ToSignal(timer, SceneTreeTimer.SignalName.Timeout);
+        }
+
         public override void _Ready()
         {
             if (_instance != null)
