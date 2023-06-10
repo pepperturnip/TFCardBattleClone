@@ -15,9 +15,17 @@ namespace TFCardBattle.Godot
         private Node2D _cardModelsHolder => GetNode<Node2D>("%CardModels");
 
         private CardModel[] _cardModels = new CardModel[BattleController.MaxHandSize];
+        private Vector2 _cardSize;
 
         public override void _Ready()
         {
+            // Get the size of a card by measuring a dummy one
+            var dummyCard = CardModelPrefab.Instantiate<CardModel>();
+            _cardSize = dummyCard.Size;
+            dummyCard.QueueFree();
+            dummyCard = null;
+
+            // Create a pool of card models
             for (int i = 0; i < _cardModels.Length; i++)
             {
                 _cardModels[i] = CardModelPrefab.Instantiate<CardModel>();
@@ -81,10 +89,9 @@ namespace TFCardBattle.Godot
 
             for(int i = 0; i < state.Hand.Count; i++)
             {
-                var cardModel = _cardModels[i];
                 var cardPositioner = new CardPositioner();
-                cardPositioner.Size = cardModel.Size;
-                cardPositioner.CustomMinimumSize = cardModel.Size;
+                cardPositioner.Size = _cardSize;
+                cardPositioner.CustomMinimumSize = _cardSize;
                 _cardPositions.AddChild(cardPositioner);
 
                 // We need to make a copy of this value so it can be used within
