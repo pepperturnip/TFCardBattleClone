@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 namespace TFCardBattle.Core
 {
@@ -22,7 +23,7 @@ namespace TFCardBattle.Core
         private string _description;
         private int _descriptionHash;
 
-        public void Activate(BattleController battle)
+        public async Task Activate(BattleController battle)
         {
             battle.State.Brain += BrainGain;
             battle.State.Heart += HeartGain;
@@ -32,7 +33,7 @@ namespace TFCardBattle.Core
 
             for (int i = 0; i < CardDraw; i++)
             {
-                battle.DrawCard();
+                await battle.DrawCard();
             }
         }
 

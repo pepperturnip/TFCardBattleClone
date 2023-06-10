@@ -8,15 +8,7 @@ namespace TFCardBattle.Godot
     public partial class BattleAnimationPlayer : Node, IBattleAnimationPlayer
     {
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
-
-        private TaskCompletionSource<double> _nextFrameTcs = new TaskCompletionSource<double>();
-
-        public override void _Process(double delta)
-        {
-            var tcs = _nextFrameTcs;
-            _nextFrameTcs = new TaskCompletionSource<double>();
-            tcs.SetResult(delta);
-        }
+        private PlayerHandDisplay _handDisplay => GetNode<PlayerHandDisplay>("%HandDisplay");
 
         public async Task DamageEnemy(int damageAmount)
         {
@@ -41,6 +33,8 @@ namespace TFCardBattle.Godot
             );
         }
 
+        public Task DrawCard(BattleState state) => _handDisplay.DrawCard(state);
+
         private async Task DamageAnimation(string animationName, int damageAmount)
         {
             if (damageAmount <= 0)
@@ -62,7 +56,7 @@ namespace TFCardBattle.Godot
 
             while (timer < duration)
             {
-                double delta = await NextFrame();
+                double delta = await WaitFor.NextFrame();
                 timer += delta;
 
                 bar.Value = Mathf.Lerp(startValue, targetValue, timer / duration);
@@ -71,11 +65,6 @@ namespace TFCardBattle.Godot
 
             bar.Value = targetValue;
             label.Text = $"{targetValue} / {(int)bar.MaxValue}";
-        }
-
-        private Task<double> NextFrame()
-        {
-            return _nextFrameTcs.Task;
         }
     }
 }

@@ -39,7 +39,7 @@ namespace TFCardBattle.Core
             State.OfferableCards = offerableCards.ToArray();
         }
 
-        public void DrawCard()
+        public async Task DrawCard()
         {
             // Reshuffle discard pile into the deck if the deck is empty
             if (State.Deck.Count == 0)
@@ -74,23 +74,25 @@ namespace TFCardBattle.Core
             var card = _rng.PickFrom(State.Deck);
             State.Deck.Remove(card);
             State.Hand.Add(card);
+
+            await _animationPlayer.DrawCard(State);
         }
 
-        public void PlayCard(int handIndex)
+        public async Task PlayCard(int handIndex)
         {
             var card = State.Hand[handIndex];
 
             State.Hand.Remove(card);
             State.CardsPlayedThisTurn.Add(card);
-            card.Activate(this);
+            await card.Activate(this);
         }
 
-        public void BuyCard(int buyPileIndex)
+        public Task BuyCard(int buyPileIndex)
         {
             // Fail to buy the card if the player can't afford it.
             // TODO: Show some kind of message
             if (!CanAffordCard(buyPileIndex))
-                return;
+                return Task.CompletedTask;
 
             var card = State.BuyPile[buyPileIndex];
             State.BuyPile.RemoveAt(buyPileIndex);
@@ -100,13 +102,15 @@ namespace TFCardBattle.Core
             State.Brain -= cost.BrainCost;
             State.Heart -= cost.HeartCost;
             State.Sub -= cost.SubCost;
+
+            return Task.CompletedTask;
         }
 
-        public void StartTurn()
+        public async Task StartTurn()
         {
             AssertBattleRunning();
 
-            RefreshBuyPile();
+            await RefreshBuyPile();
 
             // Throw out the player's unused cards and resources from the last
             // turn, and draw a new hand.
@@ -123,7 +127,7 @@ namespace TFCardBattle.Core
 
             for (int i = 0; i < StartingHandSize; i++)
             {
-                DrawCard();
+                await DrawCard();
             }
         }
 
@@ -154,10 +158,10 @@ namespace TFCardBattle.Core
 
             // Start the next turn
             State.TurnsElapsed++;
-            StartTurn();
+            await StartTurn();
         }
 
-        public void RefreshBuyPile()
+        public Task RefreshBuyPile()
         {
             var offerableCards = CardsOfferableAtTf(State.PlayerTF).ToHashSet();
             var buyPile = new HashSet<ICard>();
@@ -174,6 +178,8 @@ namespace TFCardBattle.Core
             }
 
             State.BuyPile = buyPile.ToList();
+
+            return Task.CompletedTask;
         }
 
         public bool CanAffordCard(int buyPileIndex)

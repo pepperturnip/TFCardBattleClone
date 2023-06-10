@@ -1,4 +1,6 @@
 using System;
+using System.Threading.Tasks;
+using System.Linq;
 using Godot;
 using TFCardBattle.Core;
 
@@ -9,83 +11,63 @@ namespace TFCardBattle.Godot
         [Signal] public delegate void CardPlayedEventHandler(int handIndex);
 
         [Export] public PackedScene CardModelPrefab;
-        [Export] public float CardMoveSpeed = 1000;
+        [Export] public float MinCardSeparation = 8;
 
-        private HBoxContainer _cardPositions => GetNode<HBoxContainer>("%CardPositions");
-        private Node2D _cardModelsHolder => GetNode<Node2D>("%CardModels");
+        [Export] public double DrawAnimationDuration = 0.125;
 
-        private CardModel[] _cardModels = new CardModel[BattleController.MaxHandSize];
+        private Control _cardPositions => GetNode<Control>("%CardPositions");
+        private Node2D _cardModels => GetNode<Node2D>("%CardModels");
+        private Vector2 _cardSize;
 
         public override void _Ready()
         {
-            for (int i = 0; i < _cardModels.Length; i++)
-            {
-                _cardModels[i] = CardModelPrefab.Instantiate<CardModel>();
-            }
+            // Get the size of a card by measuring a dummy one
+            var dummyCard = CardModelPrefab.Instantiate<CardModel>();
+            _cardSize = dummyCard.Size;
+            dummyCard.QueueFree();
+            dummyCard = null;
         }
 
-        public override void _Process(double deltaD)
+        public async Task DrawCard(BattleState state)
         {
-            float delta = (float)deltaD;
+            RefreshCardPositioners(state);
 
-            // Gradually move each card model to its positioner
-            for (int i = 0; i < _cardModelsHolder.GetChildCount(); i++)
-            {
-                var model = _cardModelsHolder.GetChild<Node2D>(i);
-                var positioner = _cardPositions.GetChild<CardPositioner>(i);
+            // Spawn a model for the new card at the deck position.
+            var newestModel = CardModelPrefab.Instantiate<CardModel>();
+            newestModel.Card = state.Hand.Last();
+            _cardModels.AddChild(newestModel);
+            newestModel.GlobalPosition = Vector2.Zero;
 
-                model.GlobalPosition = model.GlobalPosition.MoveToward(
-                    positioner.PositionNode.GlobalPosition,
-                    CardMoveSpeed * delta
-                );
-            }
+            // Gradually move all the models to their final position
+            await TweenModelsToTargetPositions(DrawAnimationDuration, state);
+
+            // Refresh to ensure a consistent state
+            Refresh(state);
         }
 
         public void Refresh(BattleState state)
         {
-            RefreshCardModels(state);
             RefreshCardPositioners(state);
-        }
-
-        private void RefreshCardModels(BattleState state)
-        {
-            for (int i = 0; i < _cardModels.Length; i++)
-            {
-                var model = _cardModels[i];
-
-                // Add it to the scene tree if it's needed, and remove it if
-                // it's not.
-                if (i < state.Hand.Count && !_cardModelsHolder.IsAncestorOf(model))
-                {
-                    _cardModelsHolder.AddChild(model);
-                }
-                if (i >= state.Hand.Count && _cardModelsHolder.IsAncestorOf(model))
-                {
-                    _cardModelsHolder.RemoveChild(model);
-                }
-
-                // Make it display the correct card
-                if (i < state.Hand.Count)
-                    model.Card = state.Hand[i];
-            }
+            RefreshCardModels(state);
         }
 
         private void RefreshCardPositioners(BattleState state)
         {
-            while (_cardPositions.GetChildCount() > 0)
-            {
-                var c = _cardPositions.GetChild(0);
-                _cardPositions.RemoveChild(c);
-                c.QueueFree();
-            }
+            var totalSize = new Vector2(
+                (_cardSize.X + MinCardSeparation) * state.Hand.Count,
+                _cardSize.Y
+            );
+
+            DeleteAllChildren(_cardPositions);
 
             for(int i = 0; i < state.Hand.Count; i++)
             {
-                var cardModel = _cardModels[i];
                 var cardPositioner = new CardPositioner();
-                cardPositioner.Size = cardModel.Size;
-                cardPositioner.CustomMinimumSize = cardModel.Size;
+                cardPositioner.Size = _cardSize;
+                cardPositioner.CustomMinimumSize = _cardSize;
                 _cardPositions.AddChild(cardPositioner);
+
+                cardPositioner.GlobalPosition = TargetGlobalPosition(i, state);
 
                 // We need to make a copy of this value so it can be used within
                 // the closure.  This is because "i" will have changed by the
@@ -95,17 +77,77 @@ namespace TFCardBattle.Godot
             }
         }
 
+        private void RefreshCardModels(BattleState state)
+        {
+            DeleteAllChildren(_cardModels);
+
+            for (int i = 0; i < state.Hand.Count; i++)
+            {
+                var model = CardModelPrefab.Instantiate<CardModel>();
+                model.Card = state.Hand[i];
+                _cardModels.AddChild(model);
+
+                // Immediately move it to its position
+                model.GlobalPosition = TargetGlobalPosition(i, state);
+            }
+        }
+
+        private void DeleteAllChildren(Node node)
+        {
+            while (node.GetChildCount() > 0)
+            {
+                var c = node.GetChild(0);
+                node.RemoveChild(c);
+                c.QueueFree();
+            }
+        }
+
+        private Vector2 TargetGlobalPosition(int handIndex, BattleState state)
+        {
+            var totalSize = new Vector2(
+                (_cardSize.X + MinCardSeparation) * state.Hand.Count,
+                _cardSize.Y
+            );
+
+            float x = (_cardSize.X + MinCardSeparation) * handIndex;
+            x -= totalSize.X / 2;
+
+            return _cardPositions.GlobalPosition + Vector2.Right * x;
+        }
+
+        private async Task TweenModelsToTargetPositions(double duration, BattleState state)
+        {
+            var startPositions = new Vector2[_cardModels.GetChildCount()];
+            var endPositions = new Vector2[_cardModels.GetChildCount()];
+
+            for (int i = 0; i < startPositions.Length; i++)
+            {
+                startPositions[i] = _cardModels.GetChild<CardModel>(i).GlobalPosition;
+                endPositions[i] = TargetGlobalPosition(i, state);
+            }
+
+            for (double timer = 0; timer < duration; timer += await WaitFor.NextFrame())
+            {
+                float t = (float)(timer / duration);
+
+                for (int i = 0; i < _cardModels.GetChildCount(); i++)
+                {
+                    var card = _cardModels.GetChild<CardModel>(i);
+                    card.GlobalPosition = startPositions[i].Lerp(endPositions[i], t);
+                }
+            }
+
+            // Set all the cards to their end position, in case the timer overshot.
+            for (int i = 0; i < _cardModels.GetChildCount(); i++)
+            {
+                var card = _cardModels.GetChild<CardModel>(i);
+                card.GlobalPosition = endPositions[i];
+            }
+        }
+
         private partial class CardPositioner : Control
         {
             [Signal] public delegate void ClickedEventHandler();
-
-            public readonly Node2D PositionNode;
-
-            public CardPositioner()
-            {
-                PositionNode = new Node2D();
-                AddChild(PositionNode);
-            }
 
             public override void _GuiInput(InputEvent ev)
             {
