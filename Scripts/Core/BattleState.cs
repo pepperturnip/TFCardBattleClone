@@ -21,7 +21,7 @@ namespace TFCardBattle.Core
         public int Heart = 0;
         public int Sub = 0;
         public int Shield = 0;
-        public int TF = 0;
+        public int Damage = 0;
 
         public List<ICard> Deck = new List<ICard>();
         public List<ICard> Hand = new List<ICard>();

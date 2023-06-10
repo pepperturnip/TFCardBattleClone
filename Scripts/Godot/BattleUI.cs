@@ -21,7 +21,7 @@ namespace TFCardBattle.Godot
         private Label _heart => GetNode<Label>("%HeartLabel");
         private Label _sub => GetNode<Label>("%SubLabel");
         private Label _shield => GetNode<Label>("%ShieldLabel");
-        private Label _tf => GetNode<Label>("%TFLabel");
+        private Label _damage => GetNode<Label>("%DamageLabel");
 
 
         private PlayerHandDisplay _handDisplay => GetNode<PlayerHandDisplay>("%HandDisplay");
@@ -76,7 +76,7 @@ namespace TFCardBattle.Godot
             _heart.Text = $"Heart: {Battle.State.Heart}";
             _sub.Text = $"Sub: {Battle.State.Sub}";
             _shield.Text = $"Shield: {Battle.State.Shield}";
-            _tf.Text = $"TF: {Battle.State.TF}";
+            _damage.Text = $"Damage: {Battle.State.Damage}";
 
             _handDisplay.Refresh(Battle.State);
             RefreshBuyPileDisplay();

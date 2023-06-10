@@ -15,7 +15,7 @@ namespace TFCardBattle.Core
         public int HeartGain {get; set;}
         public int SubGain {get; set;}
         public int ShieldGain {get; set;}
-        public int TFGain {get; set;}
+        public int Damage {get; set;}
         public int CardDraw {get; set;}
 
         public CardPurchaseStats PurchaseStats {get; set;}
@@ -29,7 +29,7 @@ namespace TFCardBattle.Core
             battle.State.Heart += HeartGain;
             battle.State.Sub += SubGain;
             battle.State.Shield += ShieldGain;
-            battle.State.TF += TFGain;
+            battle.State.Damage += Damage;
 
             for (int i = 0; i < CardDraw; i++)
             {
@@ -54,7 +54,7 @@ namespace TFCardBattle.Core
             LabelFor("Heart", HeartGain);
             LabelFor("Sub", SubGain);
             LabelFor("Shield", ShieldGain);
-            LabelFor("TF", TFGain);
+            LabelFor("TF", Damage);
             LabelFor("Draw", CardDraw);
 
             _description = builder.ToString();
@@ -68,7 +68,7 @@ namespace TFCardBattle.Core
                 hash.Add(HeartGain);
                 hash.Add(SubGain);
                 hash.Add(ShieldGain);
-                hash.Add(TFGain);
+                hash.Add(Damage);
                 hash.Add(CardDraw);
 
                 return hash.ToHashCode();

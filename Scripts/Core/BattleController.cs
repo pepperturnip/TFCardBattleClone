@@ -120,7 +120,7 @@ namespace TFCardBattle.Core
             State.Heart = 0;
             State.Sub = 0;
             State.Shield = 0;
-            State.TF = 0;
+            State.Damage = 0;
 
             TransferAllCards(State.CardsPlayedThisTurn, State.Discard);
             TransferAllCards(State.Hand, State.Discard);
@@ -134,8 +134,8 @@ namespace TFCardBattle.Core
         public async Task EndTurn()
         {
             // Allow the player to attack
-            State.EnemyTF += State.TF;
-            await _animationPlayer.DamageEnemy(State.TF);
+            State.EnemyTF += State.Damage;
+            await _animationPlayer.DamageEnemy(State.Damage);
 
             if (State.EnemyTF >= State.EnemyMaxTF)
             {
