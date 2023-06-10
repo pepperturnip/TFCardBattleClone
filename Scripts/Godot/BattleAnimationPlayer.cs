@@ -8,6 +8,7 @@ namespace TFCardBattle.Godot
     public partial class BattleAnimationPlayer : Node, IBattleAnimationPlayer
     {
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
+        private PlayerHandDisplay _handDisplay => GetNode<PlayerHandDisplay>("%HandDisplay");
 
         public async Task DamageEnemy(int damageAmount)
         {
@@ -31,6 +32,8 @@ namespace TFCardBattle.Godot
                 0.5
             );
         }
+
+        public Task DrawCard(BattleState state) => _handDisplay.DrawCard(state);
 
         private async Task DamageAnimation(string animationName, int damageAmount)
         {

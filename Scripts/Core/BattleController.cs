@@ -39,7 +39,7 @@ namespace TFCardBattle.Core
             State.OfferableCards = offerableCards.ToArray();
         }
 
-        public Task DrawCard()
+        public async Task DrawCard()
         {
             // Reshuffle discard pile into the deck if the deck is empty
             if (State.Deck.Count == 0)
@@ -59,7 +59,7 @@ namespace TFCardBattle.Core
                 if (State.Deck.Count == 0)
                 {
                     // TODO: show a message
-                    return Task.CompletedTask;
+                    return;
                 }
             }
 
@@ -68,14 +68,14 @@ namespace TFCardBattle.Core
             if (State.Hand.Count >= MaxHandSize)
             {
                 // TODO: Show a message
-                return Task.CompletedTask;
+                return;
             }
 
             var card = _rng.PickFrom(State.Deck);
             State.Deck.Remove(card);
             State.Hand.Add(card);
 
-            return Task.CompletedTask;
+            await _animationPlayer.DrawCard(State);
         }
 
         public async Task PlayCard(int handIndex)
