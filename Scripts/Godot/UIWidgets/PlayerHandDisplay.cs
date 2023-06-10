@@ -10,8 +10,9 @@ namespace TFCardBattle.Godot
 
         [Export] public PackedScene CardModelPrefab;
         [Export] public float CardMoveSpeed = 1000;
+        [Export] public float MinCardSeparation = 8;
 
-        private HBoxContainer _cardPositions => GetNode<HBoxContainer>("%CardPositions");
+        private Control _cardPositions => GetNode<Control>("%CardPositions");
         private Node2D _cardModelsHolder => GetNode<Node2D>("%CardModels");
 
         private CardModel[] _cardModels = new CardModel[BattleController.MaxHandSize];
@@ -80,6 +81,11 @@ namespace TFCardBattle.Godot
 
         private void RefreshCardPositioners(BattleState state)
         {
+            var totalSize = new Vector2(
+                (_cardSize.X + MinCardSeparation) * state.Hand.Count,
+                _cardSize.Y
+            );
+
             while (_cardPositions.GetChildCount() > 0)
             {
                 var c = _cardPositions.GetChild(0);
@@ -93,6 +99,11 @@ namespace TFCardBattle.Godot
                 cardPositioner.Size = _cardSize;
                 cardPositioner.CustomMinimumSize = _cardSize;
                 _cardPositions.AddChild(cardPositioner);
+
+                cardPositioner.Position = new Vector2(
+                    ((_cardSize.X + MinCardSeparation) * i) - (totalSize.X / 2),
+                    0
+                );
 
                 // We need to make a copy of this value so it can be used within
                 // the closure.  This is because "i" will have changed by the
