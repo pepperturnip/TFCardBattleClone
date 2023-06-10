@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using System.Linq;
 using Godot;
 using TFCardBattle.Core;
@@ -12,8 +11,7 @@ namespace TFCardBattle.Godot
 
         [Export] public PackedScene CardModelPrefab;
         [Export] public float MinCardSeparation = 8;
-
-        [Export] public double DrawAnimationDuration = 0.125;
+        [Export] public float CardMoveDecayRate = 10;
 
         private Control _cardPositions => GetNode<Control>("%CardPositions");
         private Node2D _cardModels => GetNode<Node2D>("%CardModels");
@@ -28,7 +26,23 @@ namespace TFCardBattle.Godot
             dummyCard = null;
         }
 
-        public async Task DrawCard(ICard[] newHand)
+        public override void _Process(double delta)
+        {
+            // Exponentially decay all card models to their target positions
+            for (int i = 0; i < _cardModels.GetChildCount(); i++)
+            {
+                var card = _cardModels.GetChild<CardModel>(i);
+                var targetPos = TargetGlobalPosition(i, _cardModels.GetChildCount());
+
+                float dist = card.GlobalPosition.DistanceTo(targetPos);
+                float newDist = dist * Mathf.Pow(Mathf.E, -CardMoveDecayRate * (float)delta);
+                float deltaPos = Mathf.Abs(dist - newDist);
+
+                card.GlobalPosition = card.GlobalPosition.MoveToward(targetPos, deltaPos);
+            }
+        }
+
+        public void DrawCard(ICard[] newHand)
         {
             RefreshCardPositioners(newHand);
 
@@ -37,31 +51,34 @@ namespace TFCardBattle.Godot
             newestModel.Card = newHand.Last();
             _cardModels.AddChild(newestModel);
             newestModel.GlobalPosition = Vector2.Zero;
-
-            // Gradually move all the models to their final position
-            await TweenModelsToTargetPositions(DrawAnimationDuration, newHand);
-
-            // Refresh to ensure a consistent state
-            Refresh(newHand);
         }
 
-        public async Task RemoveCard(int removedHandIndex, ICard[] newHand)
+        public void RemoveCard(int removedHandIndex, ICard[] newHand)
         {
             RefreshCardPositioners(newHand);
 
             var modelToRemove = _cardModels.GetChild<CardModel>(removedHandIndex);
             _cardModels.RemoveChild(modelToRemove);
             modelToRemove.QueueFree();
-
-            await TweenModelsToTargetPositions(DrawAnimationDuration, newHand);
-            Refresh(newHand);
         }
 
         public void Refresh(ICard[] hand)
         {
+            // HACK: Skip refreshing if nothing changed, to prevent the card
+            // move animation from being needlessly interrupted.
+            var oldHand = _cardModels
+                .EnumerateChildren<CardModel>()
+                .Select(m => m.Card);
+
+            if (hand.SequenceEqual(oldHand))
+                return;
+
+            GD.Print($"Forcibly refreshing hand display({_forceRefreshCount++})");
+
             RefreshCardPositioners(hand);
             RefreshCardModels(hand);
         }
+        private int _forceRefreshCount = 0;
 
         private void RefreshCardPositioners(ICard[] hand)
         {
@@ -79,7 +96,7 @@ namespace TFCardBattle.Godot
                 cardPositioner.CustomMinimumSize = _cardSize;
                 _cardPositions.AddChild(cardPositioner);
 
-                cardPositioner.GlobalPosition = TargetGlobalPosition(i, hand);
+                cardPositioner.GlobalPosition = TargetGlobalPosition(i, hand.Length);
 
                 // We need to make a copy of this value so it can be used within
                 // the closure.  This is because "i" will have changed by the
@@ -100,7 +117,7 @@ namespace TFCardBattle.Godot
                 _cardModels.AddChild(model);
 
                 // Immediately move it to its position
-                model.GlobalPosition = TargetGlobalPosition(i, hand);
+                model.GlobalPosition = TargetGlobalPosition(i, hand.Length);
             }
         }
 
@@ -114,10 +131,10 @@ namespace TFCardBattle.Godot
             }
         }
 
-        private Vector2 TargetGlobalPosition(int handIndex, ICard[] hand)
+        private Vector2 TargetGlobalPosition(int handIndex, int handCount)
         {
             var totalSize = new Vector2(
-                (_cardSize.X + MinCardSeparation) * hand.Length,
+                (_cardSize.X + MinCardSeparation) * handCount,
                 _cardSize.Y
             );
 
@@ -125,36 +142,6 @@ namespace TFCardBattle.Godot
             x -= totalSize.X / 2;
 
             return _cardPositions.GlobalPosition + Vector2.Right * x;
-        }
-
-        private async Task TweenModelsToTargetPositions(double duration, ICard[] hand)
-        {
-            var startPositions = new Vector2[_cardModels.GetChildCount()];
-            var endPositions = new Vector2[_cardModels.GetChildCount()];
-
-            for (int i = 0; i < startPositions.Length; i++)
-            {
-                startPositions[i] = _cardModels.GetChild<CardModel>(i).GlobalPosition;
-                endPositions[i] = TargetGlobalPosition(i, hand);
-            }
-
-            for (double timer = 0; timer < duration; timer += await WaitFor.NextFrame())
-            {
-                float t = (float)(timer / duration);
-
-                for (int i = 0; i < _cardModels.GetChildCount(); i++)
-                {
-                    var card = _cardModels.GetChild<CardModel>(i);
-                    card.GlobalPosition = startPositions[i].Lerp(endPositions[i], t);
-                }
-            }
-
-            // Set all the cards to their end position, in case the timer overshot.
-            for (int i = 0; i < _cardModels.GetChildCount(); i++)
-            {
-                var card = _cardModels.GetChild<CardModel>(i);
-                card.GlobalPosition = endPositions[i];
-            }
         }
 
         private partial class CardPositioner : Control
