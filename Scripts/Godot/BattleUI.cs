@@ -78,7 +78,7 @@ namespace TFCardBattle.Godot
             _shield.Text = $"Shield: {Battle.State.Shield}";
             _damage.Text = $"Damage: {Battle.State.Damage}";
 
-            _handDisplay.Refresh(Battle.State);
+            _handDisplay.Refresh(Battle.State.Hand.ToArray());
             RefreshBuyPileDisplay();
         }
 

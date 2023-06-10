@@ -84,6 +84,8 @@ namespace TFCardBattle.Core
 
             State.Hand.Remove(card);
             State.CardsPlayedThisTurn.Add(card);
+            await _animationPlayer.PlayCard(handIndex, State);
+
             await card.Activate(this);
         }
 
@@ -124,6 +126,7 @@ namespace TFCardBattle.Core
 
             TransferAllCards(State.CardsPlayedThisTurn, State.Discard);
             TransferAllCards(State.Hand, State.Discard);
+            await _animationPlayer.DiscardHand();
 
             for (int i = 0; i < StartingHandSize; i++)
             {

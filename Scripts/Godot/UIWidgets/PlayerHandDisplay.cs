@@ -28,46 +28,58 @@ namespace TFCardBattle.Godot
             dummyCard = null;
         }
 
-        public async Task DrawCard(BattleState state)
+        public async Task DrawCard(ICard[] newHand)
         {
-            RefreshCardPositioners(state);
+            RefreshCardPositioners(newHand);
 
             // Spawn a model for the new card at the deck position.
             var newestModel = CardModelPrefab.Instantiate<CardModel>();
-            newestModel.Card = state.Hand.Last();
+            newestModel.Card = newHand.Last();
             _cardModels.AddChild(newestModel);
             newestModel.GlobalPosition = Vector2.Zero;
 
             // Gradually move all the models to their final position
-            await TweenModelsToTargetPositions(DrawAnimationDuration, state);
+            await TweenModelsToTargetPositions(DrawAnimationDuration, newHand);
 
             // Refresh to ensure a consistent state
-            Refresh(state);
+            Refresh(newHand);
         }
 
-        public void Refresh(BattleState state)
+        public async Task RemoveCard(int removedHandIndex, ICard[] newHand)
         {
-            RefreshCardPositioners(state);
-            RefreshCardModels(state);
+            RefreshCardPositioners(newHand);
+
+            var modelToRemove = _cardModels.GetChild<CardModel>(removedHandIndex);
+            _cardModels.RemoveChild(modelToRemove);
+            modelToRemove.QueueFree();
+
+            await TweenModelsToTargetPositions(DrawAnimationDuration, newHand);
+            Refresh(newHand);
         }
 
-        private void RefreshCardPositioners(BattleState state)
+        public void Refresh(ICard[] hand)
+        {
+            RefreshCardPositioners(hand);
+            RefreshCardModels(hand);
+        }
+
+        private void RefreshCardPositioners(ICard[] hand)
         {
             var totalSize = new Vector2(
-                (_cardSize.X + MinCardSeparation) * state.Hand.Count,
+                (_cardSize.X + MinCardSeparation) * hand.Length,
                 _cardSize.Y
             );
 
             DeleteAllChildren(_cardPositions);
 
-            for(int i = 0; i < state.Hand.Count; i++)
+            for(int i = 0; i < hand.Length; i++)
             {
                 var cardPositioner = new CardPositioner();
                 cardPositioner.Size = _cardSize;
                 cardPositioner.CustomMinimumSize = _cardSize;
                 _cardPositions.AddChild(cardPositioner);
 
-                cardPositioner.GlobalPosition = TargetGlobalPosition(i, state);
+                cardPositioner.GlobalPosition = TargetGlobalPosition(i, hand);
 
                 // We need to make a copy of this value so it can be used within
                 // the closure.  This is because "i" will have changed by the
@@ -77,18 +89,18 @@ namespace TFCardBattle.Godot
             }
         }
 
-        private void RefreshCardModels(BattleState state)
+        private void RefreshCardModels(ICard[] hand)
         {
             DeleteAllChildren(_cardModels);
 
-            for (int i = 0; i < state.Hand.Count; i++)
+            for (int i = 0; i < hand.Length; i++)
             {
                 var model = CardModelPrefab.Instantiate<CardModel>();
-                model.Card = state.Hand[i];
+                model.Card = hand[i];
                 _cardModels.AddChild(model);
 
                 // Immediately move it to its position
-                model.GlobalPosition = TargetGlobalPosition(i, state);
+                model.GlobalPosition = TargetGlobalPosition(i, hand);
             }
         }
 
@@ -102,10 +114,10 @@ namespace TFCardBattle.Godot
             }
         }
 
-        private Vector2 TargetGlobalPosition(int handIndex, BattleState state)
+        private Vector2 TargetGlobalPosition(int handIndex, ICard[] hand)
         {
             var totalSize = new Vector2(
-                (_cardSize.X + MinCardSeparation) * state.Hand.Count,
+                (_cardSize.X + MinCardSeparation) * hand.Length,
                 _cardSize.Y
             );
 
@@ -115,7 +127,7 @@ namespace TFCardBattle.Godot
             return _cardPositions.GlobalPosition + Vector2.Right * x;
         }
 
-        private async Task TweenModelsToTargetPositions(double duration, BattleState state)
+        private async Task TweenModelsToTargetPositions(double duration, ICard[] hand)
         {
             var startPositions = new Vector2[_cardModels.GetChildCount()];
             var endPositions = new Vector2[_cardModels.GetChildCount()];
@@ -123,7 +135,7 @@ namespace TFCardBattle.Godot
             for (int i = 0; i < startPositions.Length; i++)
             {
                 startPositions[i] = _cardModels.GetChild<CardModel>(i).GlobalPosition;
-                endPositions[i] = TargetGlobalPosition(i, state);
+                endPositions[i] = TargetGlobalPosition(i, hand);
             }
 
             for (double timer = 0; timer < duration; timer += await WaitFor.NextFrame())
