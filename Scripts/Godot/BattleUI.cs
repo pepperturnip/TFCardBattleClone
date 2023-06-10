@@ -21,7 +21,7 @@ namespace TFCardBattle.Godot
         private Label _heart => GetNode<Label>("%HeartLabel");
         private Label _sub => GetNode<Label>("%SubLabel");
         private Label _shield => GetNode<Label>("%ShieldLabel");
-        private Label _damage => GetNode<Label>("%DamageLabel");
+        private Label _damage => GetNode<Label>("%DamageResourceLabel");
 
 
         private PlayerHandDisplay _handDisplay => GetNode<PlayerHandDisplay>("%HandDisplay");

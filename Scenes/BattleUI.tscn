@@ -216,37 +216,37 @@ offset_bottom = 174.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Resources" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="BrainLabel" type="Label" parent="VBoxContainer"]
+[node name="BrainLabel" type="Label" parent="Resources"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Brain:"
 
-[node name="HeartLabel" type="Label" parent="VBoxContainer"]
+[node name="HeartLabel" type="Label" parent="Resources"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Heart:"
 
-[node name="SubLabel" type="Label" parent="VBoxContainer"]
+[node name="SubLabel" type="Label" parent="Resources"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Sub:"
 
-[node name="ShieldLabel" type="Label" parent="VBoxContainer"]
+[node name="ShieldLabel" type="Label" parent="Resources"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Shield:"
 
-[node name="TFLabel" type="Label" parent="VBoxContainer"]
+[node name="DamageResourceLabel" type="Label" parent="Resources"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "TF:"
 
-[node name="EndTurnButton" type="Button" parent="VBoxContainer"]
+[node name="EndTurnButton" type="Button" parent="Resources"]
 layout_mode = 2
 text = "End Turn"
 
@@ -361,4 +361,4 @@ text = "0 / 100
 horizontal_alignment = 1
 
 [connection signal="CardPlayed" from="HandDisplay" to="." method="OnPlayCardClicked"]
-[connection signal="pressed" from="VBoxContainer/EndTurnButton" to="." method="OnEndTurnClicked"]
+[connection signal="pressed" from="Resources/EndTurnButton" to="." method="OnEndTurnClicked"]
