@@ -67,10 +67,7 @@ namespace TFCardBattle.Godot
                 cardPositioner.CustomMinimumSize = _cardSize;
                 _cardPositions.AddChild(cardPositioner);
 
-                cardPositioner.Position = new Vector2(
-                    ((_cardSize.X + MinCardSeparation) * i) - (totalSize.X / 2),
-                    0
-                );
+                cardPositioner.GlobalPosition = TargetGlobalPosition(i, state);
 
                 // We need to make a copy of this value so it can be used within
                 // the closure.  This is because "i" will have changed by the
@@ -91,7 +88,7 @@ namespace TFCardBattle.Godot
                 _cardModels.AddChild(model);
 
                 // Immediately move it to its position
-                model.GlobalPosition = _cardPositions.GetChild<CardPositioner>(i).PositionNode.GlobalPosition;
+                model.GlobalPosition = TargetGlobalPosition(i, state);
             }
         }
 
@@ -151,14 +148,6 @@ namespace TFCardBattle.Godot
         private partial class CardPositioner : Control
         {
             [Signal] public delegate void ClickedEventHandler();
-
-            public readonly Node2D PositionNode;
-
-            public CardPositioner()
-            {
-                PositionNode = new Node2D();
-                AddChild(PositionNode);
-            }
 
             public override void _GuiInput(InputEvent ev)
             {
