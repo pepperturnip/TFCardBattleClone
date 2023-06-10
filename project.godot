@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/BattleUI.tscn"
 config/features=PackedStringArray("4.0", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+WaitFor="*res://Scripts/Godot/Singletons/WaitFor.cs"
+
 [dotnet]
 
 project/assembly_name="Tf Card Battle Clone"
