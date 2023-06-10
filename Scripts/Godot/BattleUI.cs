@@ -24,7 +24,7 @@ namespace TFCardBattle.Godot
         private Label _damage => GetNode<Label>("%DamageResourceLabel");
 
 
-        private PlayerHandDisplay _handDisplay => GetNode<PlayerHandDisplay>("%HandDisplay");
+        private CardRowDisplay _handDisplay => GetNode<CardRowDisplay>("%HandDisplay");
         private HBoxContainer _buyPileDisplay => GetNode<HBoxContainer>("%BuyPileDisplay");
 
 

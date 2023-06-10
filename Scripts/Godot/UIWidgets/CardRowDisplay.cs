@@ -5,7 +5,7 @@ using TFCardBattle.Core;
 
 namespace TFCardBattle.Godot
 {
-    public partial class PlayerHandDisplay : Control
+    public partial class CardRowDisplay : Control
     {
         [Signal] public delegate void CardPlayedEventHandler(int handIndex);
 
