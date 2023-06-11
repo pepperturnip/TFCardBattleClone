@@ -67,6 +67,88 @@ namespace TFCardBattle.Godot
             RefreshCardPositioners(_cardHolders.GetChildCount());
         }
 
+        public void RemoveCardWithActivateAnimation(int cardIndex)
+        {
+            // Make a copy of the card being removed, so we can animate it
+            // after removing it.
+            var originalHolder = GetCardHolder(cardIndex);
+            CardHolder cloneHolder = CreateCardHolder(originalHolder.Model.Card);
+            AddChild(cloneHolder);
+            cloneHolder.GlobalPosition = originalHolder.GlobalPosition;
+
+            // Remove the original model
+            RemoveCard(cardIndex);
+
+            // Start animating the clone in the background.
+            const double stepDuration = 0.1;
+            var tween = GetTree().CreateTween();
+
+            tween.TweenProperty(
+                cloneHolder,
+                "position",
+                cloneHolder.Position + Vector2.Up * _cardSize.Y,
+                stepDuration
+            );
+            tween.Parallel();
+            tween.TweenProperty(
+                cloneHolder.Scaler,
+                "scale",
+                Vector2.One * 1.1f,
+                stepDuration
+            );
+
+            tween.TweenProperty(
+                cloneHolder.Scaler,
+                "scale",
+                Vector2.One * 0.95f,
+                stepDuration
+            );
+            tween.TweenProperty(
+                cloneHolder.Scaler,
+                "scale",
+                Vector2.One,
+                stepDuration
+            );
+            tween.TweenProperty(
+                cloneHolder,
+                "modulate",
+                Colors.Transparent,
+                stepDuration);
+            tween.TweenCallback(new Callable(cloneHolder, "queue_free"));
+        }
+
+        public void RemoveCardWithBuyAnimation(int cardIndex)
+        {
+            // Make a copy of the card being removed, so we can animate it
+            // after removing it.
+            var originalHolder = GetCardHolder(cardIndex);
+            CardHolder cloneHolder = CreateCardHolder(originalHolder.Model.Card);
+            AddChild(cloneHolder);
+            cloneHolder.GlobalPosition = originalHolder.GlobalPosition;
+
+            // Remove the original model
+            RemoveCard(cardIndex);
+
+            // Start animating the clone in the background.
+            const double stepDuration = 0.1;
+            var tween = GetTree().CreateTween();
+
+            tween.TweenProperty(
+                cloneHolder,
+                "position",
+                cloneHolder.Position + Vector2.Down * _cardSize.Y,
+                stepDuration
+            );
+            tween.Parallel();
+            tween.TweenProperty(
+                cloneHolder.Scaler,
+                "scale",
+                Vector2.Zero,
+                stepDuration
+            );
+            tween.TweenCallback(new Callable(cloneHolder, "queue_free"));
+        }
+
         public void Refresh(ICard[] cards)
         {
             // HACK: Skip refreshing if nothing changed, to prevent the card
@@ -161,6 +243,23 @@ namespace TFCardBattle.Godot
             x -= totalSize.X / 2;
 
             return _cardPositions.GlobalPosition + Vector2.Right * x;
+        }
+
+        private CardHolder CreateCardHolder(ICard card)
+        {
+            var model = CardModelPrefab.Instantiate<CardModel>();
+            model.Card = card;
+
+            var holder = new CardHolder(model);
+            holder.Scaler.Position = _cardSize / 2;
+            holder.Model.Position = -_cardSize / 2;
+
+            return holder;
+        }
+
+        private CardHolder GetCardHolder(int cardIndex)
+        {
+            return _cardHolders.GetChild<CardHolder>(cardIndex);
         }
 
         private partial class CardPositioner : Control

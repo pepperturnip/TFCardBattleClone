@@ -22,6 +22,7 @@ namespace TFCardBattle.Godot
 
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
         private CardRowDisplay _handDisplay => GetNode<CardRowDisplay>("%HandDisplay");
+        private CardRowDisplay _buyPileDisplay => GetNode<CardRowDisplay>("%BuyPileDisplay");
 
         public async Task DamageEnemy(int damageAmount)
         {
@@ -42,6 +43,8 @@ namespace TFCardBattle.Godot
             {
                 await DamageAnimation("DamagePlayer", damageAmount);
 
+                // Don't wait for the bar to finish moving.
+                // This ain't Pokemon Diamond.
                 var tfBar = GetNode<TFBar>("%PlayerTFBar");
                 var tween = GetTree().CreateTween();
                 tween.SetTrans(Tween.TransitionType.Bounce);
@@ -62,7 +65,7 @@ namespace TFCardBattle.Godot
         {
             using (SetAnimating())
             {
-                _handDisplay.RemoveCard(handIndexPlayed);
+                _handDisplay.RemoveCardWithActivateAnimation(handIndexPlayed);
                 await WaitFor.Seconds(0.125);
             }
         }
@@ -71,10 +74,30 @@ namespace TFCardBattle.Godot
         {
             using (SetAnimating())
             {
+                await TweenPos(_handDisplay, Vector2.Down * 208, 0.1);
                 _handDisplay.Refresh(Array.Empty<ICard>());
+                _handDisplay.Position = Vector2.Zero;
+            }
+        }
 
-                // Silence that dumb "you didn't await anything" warning
-                await Task.Yield();
+        public async Task RefreshBuyPile(ICard[] cards)
+        {
+            const double moveTime = 0.1;
+
+            using (SetAnimating())
+            {
+                await TweenPos(_buyPileDisplay, Vector2.Up * 208, moveTime);
+                _buyPileDisplay.Refresh(cards);
+                await TweenPos(_buyPileDisplay, Vector2.Zero, moveTime);
+            }
+        }
+
+        public async Task BuyCard(int buyPileIndex)
+        {
+            using (SetAnimating())
+            {
+                _buyPileDisplay.RemoveCardWithBuyAnimation(buyPileIndex);
+                await WaitFor.Seconds(0.125);
             }
         }
 
@@ -86,6 +109,19 @@ namespace TFCardBattle.Godot
             GetNode<Label>("%DamageAnimationLabel").Text = $"+{damageAmount}";
             _animator.ResetAndPlay(animationName);
             await ToSignal(_animator, AnimationPlayer.SignalName.AnimationFinished);
+        }
+
+        private async Task TweenPos(GodotObject node, Vector2 destination, double duration)
+        {
+            var tween = GetTree().CreateTween();
+
+            tween.TweenProperty(
+                node,
+                "position",
+                destination,
+                duration
+            );
+            await tween.ToSignal(tween, Tween.SignalName.Finished);
         }
 
         private IDisposable SetAnimating() => new IsAnimatingDisposable(this);
