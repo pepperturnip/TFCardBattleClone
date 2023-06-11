@@ -74,10 +74,9 @@ namespace TFCardBattle.Godot
         {
             using (SetAnimating())
             {
+                await TweenPos(_handDisplay, Vector2.Down * 208, 0.1);
                 _handDisplay.Refresh(Array.Empty<ICard>());
-
-                // Silence that dumb "you didn't await anything" warning
-                await Task.Yield();
+                _handDisplay.Position = Vector2.Zero;
             }
         }
 
