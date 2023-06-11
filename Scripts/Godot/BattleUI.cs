@@ -11,10 +11,10 @@ namespace TFCardBattle.Godot
         [Export] public PackedScene CardDisplayPrefab;
 
         private Label _playerTFLabel => GetNode<Label>("%PlayerTFLabel");
-        private ProgressBar _playerTFBar => GetNode<ProgressBar>("%PlayerTFBar");
+        private TFBar _playerTFBar => GetNode<TFBar>("%PlayerTFBar");
 
         private Label _enemyTFLabel => GetNode<Label>("%EnemyTFLabel");
-        private ProgressBar _enemyTFBar => GetNode<ProgressBar>("%EnemyTFBar");
+        private TFBar _enemyTFBar => GetNode<TFBar>("%EnemyTFBar");
 
         private Label _brain => GetNode<Label>("%BrainLabel");
         private Label _heart => GetNode<Label>("%HeartLabel");
@@ -67,10 +67,12 @@ namespace TFCardBattle.Godot
         {
             _playerTFBar.MaxValue = Battle.State.PlayerMaxTF;
             _playerTFBar.Value = Battle.State.PlayerTF;
+            _playerTFBar.TargetValue = Battle.State.PlayerTF;
             _playerTFLabel.Text = $"{Battle.State.PlayerTF} / {Battle.State.PlayerMaxTF}";
 
             _enemyTFBar.MaxValue = Battle.State.EnemyMaxTF;
             _enemyTFBar.Value = Battle.State.EnemyTF;
+            _enemyTFBar.TargetValue = Battle.State.EnemyTF;
             _enemyTFLabel.Text = $"{Battle.State.EnemyTF} / {Battle.State.EnemyMaxTF}";
 
             _brain.Text = $"Brain: {Battle.State.Brain}";
