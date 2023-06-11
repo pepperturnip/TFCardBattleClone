@@ -31,7 +31,8 @@ namespace TFCardBattle.Godot
 
                 var tfBar = GetNode<TFBar>("%EnemyTFBar");
                 var tween = GetTree().CreateTween();
-                tween.TweenProperty(tfBar, "value", tfBar.Value + damageAmount, 1);
+                tween.SetTrans(Tween.TransitionType.Bounce);
+                tween.TweenProperty(tfBar, "value", tfBar.Value + damageAmount, 2);
             }
         }
 
@@ -43,7 +44,8 @@ namespace TFCardBattle.Godot
 
                 var tfBar = GetNode<TFBar>("%PlayerTFBar");
                 var tween = GetTree().CreateTween();
-                tween.TweenProperty(tfBar, "value", tfBar.Value + damageAmount, 1);
+                tween.SetTrans(Tween.TransitionType.Bounce);
+                tween.TweenProperty(tfBar, "value", tfBar.Value + damageAmount, 2);
             }
         }
 
