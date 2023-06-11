@@ -11,10 +11,10 @@ namespace TFCardBattle.Godot
         [Export] public PackedScene CardDisplayPrefab;
 
         private Label _playerTFLabel => GetNode<Label>("%PlayerTFLabel");
-        private ProgressBar _playerTFBar => GetNode<ProgressBar>("%PlayerTFBar");
+        private TFBar _playerTFBar => GetNode<TFBar>("%PlayerTFBar");
 
         private Label _enemyTFLabel => GetNode<Label>("%EnemyTFLabel");
-        private ProgressBar _enemyTFBar => GetNode<ProgressBar>("%EnemyTFBar");
+        private TFBar _enemyTFBar => GetNode<TFBar>("%EnemyTFBar");
 
         private Label _brain => GetNode<Label>("%BrainLabel");
         private Label _heart => GetNode<Label>("%HeartLabel");
