@@ -23,7 +23,7 @@ namespace TFCardBattle.Godot
         private Label _shield => GetNode<Label>("%ShieldLabel");
         private Label _damage => GetNode<Label>("%DamageResourceLabel");
 
-
+        private BattleAnimationPlayer _battleAnimationPlayer => GetNode<BattleAnimationPlayer>("%BattleAnimationPlayer");
         private CardRowDisplay _handDisplay => GetNode<CardRowDisplay>("%HandDisplay");
         private CardRowDisplay _buyPileDisplay => GetNode<CardRowDisplay>("%BuyPileDisplay");
 
@@ -42,6 +42,11 @@ namespace TFCardBattle.Godot
 
             await Battle.StartTurn();
             RefreshDisplay();
+        }
+
+        public override void _Process(double delta)
+        {
+            EnableInput(!_battleAnimationPlayer.IsAnimating);
         }
 
         public async void OnEndTurnClicked()
@@ -81,6 +86,13 @@ namespace TFCardBattle.Godot
 
             _handDisplay.Refresh(Battle.State.Hand.ToArray());
             _buyPileDisplay.Refresh(Battle.State.BuyPile.ToArray());
+        }
+
+        private void EnableInput(bool enabled)
+        {
+            _handDisplay.EnableInput = enabled;
+            _buyPileDisplay.EnableInput = enabled;
+            GetNode<Button>("%EndTurnButton").Disabled = !enabled;
         }
     }
 }
