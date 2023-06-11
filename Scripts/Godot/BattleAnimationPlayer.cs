@@ -65,7 +65,7 @@ namespace TFCardBattle.Godot
         {
             using (SetAnimating())
             {
-                _handDisplay.RemoveCard(handIndexPlayed);
+                _handDisplay.RemoveCardWithActivateAnimation(handIndexPlayed);
                 await WaitFor.Seconds(0.125);
             }
         }
