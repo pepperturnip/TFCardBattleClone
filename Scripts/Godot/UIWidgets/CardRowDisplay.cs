@@ -80,21 +80,40 @@ namespace TFCardBattle.Godot
             RemoveCard(cardIndex);
 
             // Start animating the clone in the background.
-            const double duration = 0.1;
+            const double stepDuration = 0.1;
             var tween = GetTree().CreateTween();
+
+            tween.TweenProperty(
+                cloneHolder,
+                "position",
+                cloneHolder.Position + Vector2.Up * _cardSize.Y,
+                stepDuration
+            );
+            tween.Parallel();
+            tween.TweenProperty(
+                cloneHolder.Scaler,
+                "scale",
+                Vector2.One * 1.1f,
+                stepDuration
+            );
 
             tween.TweenProperty(
                 cloneHolder.Scaler,
                 "scale",
-                Vector2.One * 2,
-                duration
+                Vector2.One * 0.95f,
+                stepDuration
             );
-            tween.Parallel();
+            tween.TweenProperty(
+                cloneHolder.Scaler,
+                "scale",
+                Vector2.One,
+                stepDuration
+            );
             tween.TweenProperty(
                 cloneHolder,
                 "modulate",
                 Colors.Transparent,
-                duration);
+                stepDuration);
             tween.TweenCallback(new Callable(cloneHolder, "queue_free"));
         }
 
