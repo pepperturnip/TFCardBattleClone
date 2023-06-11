@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dao0w4slv7603"]
 
-[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/PlayerHandDisplay.cs" id="1_ka2l4"]
+[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/CardRowDisplay.cs" id="1_ka2l4"]
 [ext_resource type="PackedScene" uid="uid://cs4vf3jnrvk57" path="res://Scenes/Models/CardModel.tscn" id="2_sqsni"]
 
-[node name="PlayerHandDisplay" type="Control"]
+[node name="CardRowDisplay" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_bottom = 202.0

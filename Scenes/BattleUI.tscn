@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Godot/BattleUI.cs" id="1_napwg"]
 [ext_resource type="PackedScene" uid="uid://c1mx8tkl5qxjp" path="res://Scenes/UIWidgets/CardDisplay.tscn" id="2_w4jlf"]
 [ext_resource type="Script" path="res://Scripts/Godot/BattleAnimationPlayer.cs" id="3_1bxi8"]
-[ext_resource type="PackedScene" uid="uid://dao0w4slv7603" path="res://Scenes/UIWidgets/PlayerHandDisplay.tscn" id="3_408ej"]
+[ext_resource type="PackedScene" uid="uid://dao0w4slv7603" path="res://Scenes/UIWidgets/CardRowDisplay.tscn" id="3_408ej"]
 [ext_resource type="Theme" uid="uid://ds2nh3axu3wjs" path="res://Themes/TFBarTheme.tres" id="4_gpf4a"]
 
 [sub_resource type="Animation" id="Animation_dsfeu"]
@@ -207,14 +207,13 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="BuyPileDisplay" type="HBoxContainer" parent="."]
+[node name="BuyPileDisplay" parent="." instance=ExtResource("3_408ej")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 174.0
+offset_bottom = 136.0
 grow_horizontal = 2
-alignment = 1
 
 [node name="Resources" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -360,5 +359,6 @@ text = "0 / 100
 "
 horizontal_alignment = 1
 
-[connection signal="CardPlayed" from="HandDisplay" to="." method="OnPlayCardClicked"]
+[connection signal="CardClicked" from="HandDisplay" to="." method="OnPlayCardClicked"]
+[connection signal="CardClicked" from="BuyPileDisplay" to="." method="OnBuyCardClicked"]
 [connection signal="pressed" from="Resources/EndTurnButton" to="." method="OnEndTurnClicked"]

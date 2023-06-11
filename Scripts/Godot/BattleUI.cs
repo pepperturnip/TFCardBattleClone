@@ -24,8 +24,8 @@ namespace TFCardBattle.Godot
         private Label _damage => GetNode<Label>("%DamageResourceLabel");
 
 
-        private PlayerHandDisplay _handDisplay => GetNode<PlayerHandDisplay>("%HandDisplay");
-        private HBoxContainer _buyPileDisplay => GetNode<HBoxContainer>("%BuyPileDisplay");
+        private CardRowDisplay _handDisplay => GetNode<CardRowDisplay>("%HandDisplay");
+        private CardRowDisplay _buyPileDisplay => GetNode<CardRowDisplay>("%BuyPileDisplay");
 
 
         private BattleController Battle;
@@ -59,6 +59,7 @@ namespace TFCardBattle.Godot
         public async void OnBuyCardClicked(int buyPileIndex)
         {
             await Battle.BuyCard(buyPileIndex);
+            _buyPileDisplay.RemoveCard(buyPileIndex);
             RefreshDisplay();
         }
 
@@ -79,28 +80,7 @@ namespace TFCardBattle.Godot
             _damage.Text = $"Damage: {Battle.State.Damage}";
 
             _handDisplay.Refresh(Battle.State.Hand.ToArray());
-            RefreshBuyPileDisplay();
-        }
-
-        private void RefreshBuyPileDisplay()
-        {
-            while (_buyPileDisplay.GetChildCount() > 0)
-            {
-                var c = _buyPileDisplay.GetChild(0);
-                _buyPileDisplay.RemoveChild(c);
-                c.QueueFree();
-            }
-
-            for(int i = 0; i < Battle.State.BuyPile.Count; i++)
-            {
-                var card = Battle.State.BuyPile[i];
-                var cardDisplay = CardDisplayPrefab.Instantiate<CardDisplay>();
-                cardDisplay.Card = card;
-                _buyPileDisplay.AddChild(cardDisplay);
-
-                int buyPileIndex = i;
-                cardDisplay.Clicked += () => OnBuyCardClicked(buyPileIndex);
-            }
+            _buyPileDisplay.Refresh(Battle.State.BuyPile.ToArray());
         }
     }
 }
