@@ -16,14 +16,12 @@ namespace TFCardBattle.Godot
         private Label _enemyTFLabel => GetNode<Label>("%EnemyTFLabel");
         private ProgressBar _enemyTFBar => GetNode<ProgressBar>("%EnemyTFBar");
 
-
         private Label _brain => GetNode<Label>("%BrainLabel");
         private Label _heart => GetNode<Label>("%HeartLabel");
         private Label _sub => GetNode<Label>("%SubLabel");
         private Label _shield => GetNode<Label>("%ShieldLabel");
         private Label _damage => GetNode<Label>("%DamageResourceLabel");
 
-        private BattleAnimationPlayer _battleAnimationPlayer => GetNode<BattleAnimationPlayer>("%BattleAnimationPlayer");
         private CardRowDisplay _handDisplay => GetNode<CardRowDisplay>("%HandDisplay");
         private CardRowDisplay _buyPileDisplay => GetNode<CardRowDisplay>("%BuyPileDisplay");
 
@@ -44,10 +42,7 @@ namespace TFCardBattle.Godot
             RefreshDisplay();
         }
 
-        public override void _Process(double delta)
-        {
-            EnableInput(!_battleAnimationPlayer.IsAnimating);
-        }
+        public void OnIsAnimatingChanged(bool isAnimating) => EnableInput(!isAnimating);
 
         public async void OnEndTurnClicked()
         {

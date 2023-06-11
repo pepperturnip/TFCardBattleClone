@@ -7,7 +7,18 @@ namespace TFCardBattle.Godot
 {
     public partial class BattleAnimationPlayer : Node, IBattleAnimationPlayer
     {
-        public bool IsAnimating {get; private set;}
+        [Signal] public delegate void IsAnimatingChangedEventHandler(bool isAnimating);
+
+        public bool IsAnimating
+        {
+            get => _isAnimating;
+            set
+            {
+                _isAnimating = value;
+                EmitSignal(SignalName.IsAnimatingChanged, value);
+            }
+        }
+        private bool _isAnimating;
 
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
         private CardRowDisplay _handDisplay => GetNode<CardRowDisplay>("%HandDisplay");

@@ -363,3 +363,4 @@ horizontal_alignment = 1
 [connection signal="CardClicked" from="HandDisplay" to="." method="OnPlayCardClicked"]
 [connection signal="CardClicked" from="BuyPileDisplay" to="." method="OnBuyCardClicked"]
 [connection signal="pressed" from="Resources/EndTurnButton" to="." method="OnEndTurnClicked"]
+[connection signal="IsAnimatingChanged" from="BattleAnimationPlayer" to="." method="OnIsAnimatingChanged"]
