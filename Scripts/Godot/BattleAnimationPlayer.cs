@@ -35,13 +35,13 @@ namespace TFCardBattle.Godot
 
         public Task DrawCard(BattleState state)
         {
-            _handDisplay.DrawCard(state.Hand.ToArray());
+            _handDisplay.AddCard(state.Hand[state.Hand.Count - 1]);
             return WaitFor.Seconds(0.125);
         }
 
         public Task PlayCard(int handIndexPlayed, BattleState newState)
         {
-            _handDisplay.RemoveCard(handIndexPlayed, newState.Hand.ToArray());
+            _handDisplay.RemoveCard(handIndexPlayed);
             return WaitFor.Seconds(0.125);
         }
 

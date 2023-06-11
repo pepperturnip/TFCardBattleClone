@@ -42,61 +42,55 @@ namespace TFCardBattle.Godot
             }
         }
 
-        public void DrawCard(ICard[] newHand)
+        public void AddCard(ICard card)
         {
-            RefreshCardPositioners(newHand);
-
-            // Spawn a model for the new card at the deck position.
             var newestModel = CardModelPrefab.Instantiate<CardModel>();
-            newestModel.Card = newHand.Last();
+            newestModel.Card = card;
             _cardModels.AddChild(newestModel);
             newestModel.GlobalPosition = Vector2.Zero;
+
+            RefreshCardPositioners(_cardModels.GetChildCount());
         }
 
-        public void RemoveCard(int removedHandIndex, ICard[] newHand)
+        public void RemoveCard(int removedHandIndex)
         {
-            RefreshCardPositioners(newHand);
-
             var modelToRemove = _cardModels.GetChild<CardModel>(removedHandIndex);
             _cardModels.RemoveChild(modelToRemove);
             modelToRemove.QueueFree();
+
+            RefreshCardPositioners(_cardModels.GetChildCount());
         }
 
-        public void Refresh(ICard[] hand)
+        public void Refresh(ICard[] cards)
         {
             // HACK: Skip refreshing if nothing changed, to prevent the card
             // move animation from being needlessly interrupted.
-            var oldHand = _cardModels
+            var oldCards = _cardModels
                 .EnumerateChildren<CardModel>()
                 .Select(m => m.Card);
 
-            if (hand.SequenceEqual(oldHand))
+            if (cards.SequenceEqual(oldCards))
                 return;
 
-            GD.Print($"Forcibly refreshing hand display({_forceRefreshCount++})");
+            GD.Print($"Forcibly refreshing card row display({_forceRefreshCount++})");
 
-            RefreshCardPositioners(hand);
-            RefreshCardModels(hand);
+            RefreshCardPositioners(cards.Length);
+            RefreshCardModels(cards);
         }
         private int _forceRefreshCount = 0;
 
-        private void RefreshCardPositioners(ICard[] hand)
+        private void RefreshCardPositioners(int cardCount)
         {
-            var totalSize = new Vector2(
-                (_cardSize.X + MinCardSeparation) * hand.Length,
-                _cardSize.Y
-            );
-
             DeleteAllChildren(_cardPositions);
 
-            for(int i = 0; i < hand.Length; i++)
+            for(int i = 0; i < cardCount; i++)
             {
                 var cardPositioner = new CardPositioner();
                 cardPositioner.Size = _cardSize;
                 cardPositioner.CustomMinimumSize = _cardSize;
                 _cardPositions.AddChild(cardPositioner);
 
-                cardPositioner.GlobalPosition = TargetGlobalPosition(i, hand.Length);
+                cardPositioner.GlobalPosition = TargetGlobalPosition(i, cardCount);
 
                 // We need to make a copy of this value so it can be used within
                 // the closure.  This is because "i" will have changed by the
@@ -106,18 +100,18 @@ namespace TFCardBattle.Godot
             }
         }
 
-        private void RefreshCardModels(ICard[] hand)
+        private void RefreshCardModels(ICard[] cards)
         {
             DeleteAllChildren(_cardModels);
 
-            for (int i = 0; i < hand.Length; i++)
+            for (int i = 0; i < cards.Length; i++)
             {
                 var model = CardModelPrefab.Instantiate<CardModel>();
-                model.Card = hand[i];
+                model.Card = cards[i];
                 _cardModels.AddChild(model);
 
                 // Immediately move it to its position
-                model.GlobalPosition = TargetGlobalPosition(i, hand.Length);
+                model.GlobalPosition = TargetGlobalPosition(i, cards.Length);
             }
         }
 
