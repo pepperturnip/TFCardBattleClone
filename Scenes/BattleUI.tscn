@@ -207,14 +207,13 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="BuyPileDisplay" type="HBoxContainer" parent="."]
+[node name="BuyPileDisplay" parent="." instance=ExtResource("3_408ej")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 174.0
+offset_bottom = 136.0
 grow_horizontal = 2
-alignment = 1
 
 [node name="Resources" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -361,4 +360,5 @@ text = "0 / 100
 horizontal_alignment = 1
 
 [connection signal="CardClicked" from="HandDisplay" to="." method="OnPlayCardClicked"]
+[connection signal="CardClicked" from="BuyPileDisplay" to="." method="OnBuyCardClicked"]
 [connection signal="pressed" from="Resources/EndTurnButton" to="." method="OnEndTurnClicked"]
