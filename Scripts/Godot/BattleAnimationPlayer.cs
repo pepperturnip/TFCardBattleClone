@@ -33,9 +33,9 @@ namespace TFCardBattle.Godot
             );
         }
 
-        public Task DrawCard(BattleState state)
+        public Task DrawCard(ICard card)
         {
-            _handDisplay.AddCard(state.Hand[state.Hand.Count - 1]);
+            _handDisplay.AddCard(card);
             return WaitFor.Seconds(0.125);
         }
 
