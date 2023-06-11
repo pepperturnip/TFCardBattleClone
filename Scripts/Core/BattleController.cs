@@ -75,7 +75,7 @@ namespace TFCardBattle.Core
             State.Deck.Remove(card);
             State.Hand.Add(card);
 
-            await _animationPlayer.DrawCard(State);
+            await _animationPlayer.DrawCard(card);
         }
 
         public async Task PlayCard(int handIndex)
