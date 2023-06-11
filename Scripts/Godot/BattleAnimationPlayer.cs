@@ -7,48 +7,68 @@ namespace TFCardBattle.Godot
 {
     public partial class BattleAnimationPlayer : Node, IBattleAnimationPlayer
     {
+        public bool IsAnimating {get; private set;}
+
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
         private CardRowDisplay _handDisplay => GetNode<CardRowDisplay>("%HandDisplay");
 
         public async Task DamageEnemy(int damageAmount)
         {
-            await DamageAnimation("DamageEnemy", damageAmount);
+            using (SetAnimating())
+            {
+                await DamageAnimation("DamageEnemy", damageAmount);
 
-            await FillTFBar(
-                GetNode<ProgressBar>("%EnemyTFBar"),
-                GetNode<Label>("%EnemyTFLabel"),
-                damageAmount,
-                0.5
-            );
+                await FillTFBar(
+                    GetNode<ProgressBar>("%EnemyTFBar"),
+                    GetNode<Label>("%EnemyTFLabel"),
+                    damageAmount,
+                    0.5
+                );
+            }
         }
+
         public async Task DamagePlayer(int damageAmount)
         {
-            await DamageAnimation("DamagePlayer", damageAmount);
+            using (SetAnimating())
+            {
+                await DamageAnimation("DamagePlayer", damageAmount);
 
-            await FillTFBar(
-                GetNode<ProgressBar>("%PlayerTFBar"),
-                GetNode<Label>("%PlayerTFLabel"),
-                damageAmount,
-                0.5
-            );
+                await FillTFBar(
+                    GetNode<ProgressBar>("%PlayerTFBar"),
+                    GetNode<Label>("%PlayerTFLabel"),
+                    damageAmount,
+                    0.5
+                );
+            }
         }
 
-        public Task DrawCard(ICard card)
+        public async Task DrawCard(ICard card)
         {
-            _handDisplay.AddCard(card);
-            return WaitFor.Seconds(0.125);
+            using (SetAnimating())
+            {
+                _handDisplay.AddCard(card);
+                await WaitFor.Seconds(0.125);
+            }
         }
 
-        public Task PlayCard(int handIndexPlayed, BattleState newState)
+        public async Task PlayCard(int handIndexPlayed, BattleState newState)
         {
-            _handDisplay.RemoveCard(handIndexPlayed);
-            return WaitFor.Seconds(0.125);
+            using (SetAnimating())
+            {
+                _handDisplay.RemoveCard(handIndexPlayed);
+                await WaitFor.Seconds(0.125);
+            }
         }
 
-        public Task DiscardHand()
+        public async Task DiscardHand()
         {
-            _handDisplay.Refresh(Array.Empty<ICard>());
-            return Task.CompletedTask;
+            using (SetAnimating())
+            {
+                _handDisplay.Refresh(Array.Empty<ICard>());
+
+                // Silence that dumb "you didn't await anything" warning
+                await Task.Yield();
+            }
         }
 
         private async Task DamageAnimation(string animationName, int damageAmount)
@@ -81,6 +101,28 @@ namespace TFCardBattle.Godot
 
             bar.Value = targetValue;
             label.Text = $"{targetValue} / {(int)bar.MaxValue}";
+        }
+
+        private IDisposable SetAnimating() => new IsAnimatingDisposable(this);
+
+        private class IsAnimatingDisposable : IDisposable
+        {
+            private BattleAnimationPlayer _owner;
+
+            public IsAnimatingDisposable(BattleAnimationPlayer owner)
+            {
+                _owner = owner;
+
+                if (_owner.IsAnimating)
+                    throw new InvalidOperationException("It's already animating!");
+
+                _owner.IsAnimating = true;
+            }
+
+            public void Dispose()
+            {
+                _owner.IsAnimating = false;
+            }
         }
     }
 }
