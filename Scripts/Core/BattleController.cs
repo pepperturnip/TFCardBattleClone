@@ -89,12 +89,12 @@ namespace TFCardBattle.Core
             await card.Activate(this);
         }
 
-        public Task BuyCard(int buyPileIndex)
+        public async Task BuyCard(int buyPileIndex)
         {
             // Fail to buy the card if the player can't afford it.
             // TODO: Show some kind of message
             if (!CanAffordCard(buyPileIndex))
-                return Task.CompletedTask;
+                return;
 
             var card = State.BuyPile[buyPileIndex];
             State.BuyPile.RemoveAt(buyPileIndex);
@@ -105,7 +105,7 @@ namespace TFCardBattle.Core
             State.Heart -= cost.HeartCost;
             State.Sub -= cost.SubCost;
 
-            return Task.CompletedTask;
+            await _animationPlayer.BuyCard(buyPileIndex);
         }
 
         public async Task StartTurn()

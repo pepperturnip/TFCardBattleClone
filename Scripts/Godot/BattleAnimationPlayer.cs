@@ -92,6 +92,15 @@ namespace TFCardBattle.Godot
             }
         }
 
+        public async Task BuyCard(int buyPileIndex)
+        {
+            using (SetAnimating())
+            {
+                _buyPileDisplay.RemoveCardWithBuyAnimation(buyPileIndex);
+                await WaitFor.Seconds(0.125);
+            }
+        }
+
         private async Task DamageAnimation(string animationName, int damageAmount)
         {
             if (damageAmount <= 0)

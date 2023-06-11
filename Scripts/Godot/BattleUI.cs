@@ -59,7 +59,6 @@ namespace TFCardBattle.Godot
         public async void OnBuyCardClicked(int buyPileIndex)
         {
             await Battle.BuyCard(buyPileIndex);
-            _buyPileDisplay.RemoveCard(buyPileIndex);
             RefreshDisplay();
         }
 

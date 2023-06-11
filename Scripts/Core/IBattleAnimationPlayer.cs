@@ -11,5 +11,6 @@ namespace TFCardBattle.Core
         Task PlayCard(int handIndexPlayed, BattleState newState);
         Task DiscardHand();
         Task RefreshBuyPile(ICard[] cards);
+        Task BuyCard(int buyPileIndex);
     }
 }
