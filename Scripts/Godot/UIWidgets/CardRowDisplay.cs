@@ -12,6 +12,7 @@ namespace TFCardBattle.Godot
         [Export] public PackedScene CardModelPrefab;
         [Export] public float MinCardSeparation = 8;
         [Export] public float CardMoveDecayRate = 10;
+        [Export] public bool EnableInput = true;
 
         private Control _cardPositions => GetNode<Control>("%CardPositions");
         private Node2D _cardModels => GetNode<Node2D>("%CardModels");
@@ -96,7 +97,11 @@ namespace TFCardBattle.Godot
                 // the closure.  This is because "i" will have changed by the
                 // time the card is clicked, since it's the looping variable.
                 int handIndex = i;
-                cardPositioner.Clicked += () => EmitSignal(SignalName.CardClicked, handIndex);
+                cardPositioner.Clicked += () =>
+                {
+                    if (EnableInput)
+                        EmitSignal(SignalName.CardClicked, handIndex);
+                };
             }
         }
 
