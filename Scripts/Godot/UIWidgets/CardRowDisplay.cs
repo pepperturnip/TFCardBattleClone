@@ -7,7 +7,7 @@ namespace TFCardBattle.Godot
 {
     public partial class CardRowDisplay : Control
     {
-        [Signal] public delegate void CardPlayedEventHandler(int handIndex);
+        [Signal] public delegate void CardClickedEventHandler(int handIndex);
 
         [Export] public PackedScene CardModelPrefab;
         [Export] public float MinCardSeparation = 8;
@@ -96,7 +96,7 @@ namespace TFCardBattle.Godot
                 // the closure.  This is because "i" will have changed by the
                 // time the card is clicked, since it's the looping variable.
                 int handIndex = i;
-                cardPositioner.Clicked += () => EmitSignal(SignalName.CardPlayed, handIndex);
+                cardPositioner.Clicked += () => EmitSignal(SignalName.CardClicked, handIndex);
             }
         }
 

@@ -360,5 +360,5 @@ text = "0 / 100
 "
 horizontal_alignment = 1
 
-[connection signal="CardPlayed" from="HandDisplay" to="." method="OnPlayCardClicked"]
+[connection signal="CardClicked" from="HandDisplay" to="." method="OnPlayCardClicked"]
 [connection signal="pressed" from="Resources/EndTurnButton" to="." method="OnEndTurnClicked"]
