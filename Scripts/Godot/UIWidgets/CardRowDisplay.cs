@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using TFCardBattle.Core;
@@ -12,10 +13,12 @@ namespace TFCardBattle.Godot
         [Export] public PackedScene CardModelPrefab;
         [Export] public float MinCardSeparation = 8;
         [Export] public float CardMoveDecayRate = 10;
+        [Export] public float CardHoverGrowSpeed = 1;
+        [Export] public float CardHoverScale = 1.1f;
         [Export] public bool EnableInput = true;
 
         private Control _cardPositions => GetNode<Control>("%CardPositions");
-        private Node2D _cardModels => GetNode<Node2D>("%CardModels");
+        private Node2D _cardHolders => GetNode<Node2D>("%CardModels");
         private Vector2 _cardSize;
 
         public override void _Ready()
@@ -27,48 +30,50 @@ namespace TFCardBattle.Godot
             dummyCard = null;
         }
 
-        public override void _Process(double delta)
+        public override void _Process(double deltaD)
         {
-            // Exponentially decay all card models to their target positions
-            for (int i = 0; i < _cardModels.GetChildCount(); i++)
-            {
-                var card = _cardModels.GetChild<CardModel>(i);
-                var targetPos = TargetGlobalPosition(i, _cardModels.GetChildCount());
+            float delta = (float)deltaD;
 
-                float dist = card.GlobalPosition.DistanceTo(targetPos);
-                float newDist = dist * Mathf.Pow(Mathf.E, -CardMoveDecayRate * (float)delta);
+            for (int i = 0; i < _cardHolders.GetChildCount(); i++)
+            {
+                // Exponentially decay all card models to their target positions
+                var holder = _cardHolders.GetChild<CardHolder>(i);
+                var targetPos = TargetGlobalPosition(i, _cardHolders.GetChildCount());
+
+                float dist = holder.GlobalPosition.DistanceTo(targetPos);
+                float newDist = dist * Mathf.Pow(Mathf.E, -CardMoveDecayRate * delta);
                 float deltaPos = Mathf.Abs(dist - newDist);
 
-                card.GlobalPosition = card.GlobalPosition.MoveToward(targetPos, deltaPos);
+                holder.GlobalPosition = holder.GlobalPosition.MoveToward(targetPos, deltaPos);
+
+                // Make cards bigger when being hovered over
+                var targetScale = (_cardPositions.GetChild<CardPositioner>(i).IsMouseOver && EnableInput)
+                    ? Vector2.One * CardHoverScale
+                    : Vector2.One;
+
+                holder.Scaler.Scale = holder.Scaler.Scale.MoveToward(targetScale, CardHoverGrowSpeed * delta);
             }
         }
 
         public void AddCard(ICard card)
         {
-            var newestModel = CardModelPrefab.Instantiate<CardModel>();
-            newestModel.Card = card;
-            _cardModels.AddChild(newestModel);
-            newestModel.GlobalPosition = Vector2.Zero;
-
-            RefreshCardPositioners(_cardModels.GetChildCount());
+            AddCardModel(card, Vector2.Zero);
+            RefreshCardPositioners(_cardHolders.GetChildCount());
         }
 
         public void RemoveCard(int removedHandIndex)
         {
-            var modelToRemove = _cardModels.GetChild<CardModel>(removedHandIndex);
-            _cardModels.RemoveChild(modelToRemove);
-            modelToRemove.QueueFree();
-
-            RefreshCardPositioners(_cardModels.GetChildCount());
+            RemoveCardModel(removedHandIndex);
+            RefreshCardPositioners(_cardHolders.GetChildCount());
         }
 
         public void Refresh(ICard[] cards)
         {
             // HACK: Skip refreshing if nothing changed, to prevent the card
             // move animation from being needlessly interrupted.
-            var oldCards = _cardModels
-                .EnumerateChildren<CardModel>()
-                .Select(m => m.Card);
+            var oldCards = _cardHolders
+                .EnumerateChildren<CardHolder>()
+                .Select(h => h.Model.Card);
 
             if (cards.SequenceEqual(oldCards))
                 return;
@@ -107,17 +112,32 @@ namespace TFCardBattle.Godot
 
         private void RefreshCardModels(ICard[] cards)
         {
-            DeleteAllChildren(_cardModels);
+            DeleteAllChildren(_cardHolders);
 
             for (int i = 0; i < cards.Length; i++)
             {
-                var model = CardModelPrefab.Instantiate<CardModel>();
-                model.Card = cards[i];
-                _cardModels.AddChild(model);
-
-                // Immediately move it to its position
-                model.GlobalPosition = TargetGlobalPosition(i, cards.Length);
+                AddCardModel(cards[i], TargetGlobalPosition(i, cards.Length));
             }
+        }
+
+        private void AddCardModel(ICard card, Vector2 globalPos)
+        {
+            var model = CardModelPrefab.Instantiate<CardModel>();
+            model.Card = card;
+
+            var holder = new CardHolder(model);
+            _cardHolders.AddChild(holder);
+
+            holder.GlobalPosition = globalPos;
+            holder.Scaler.Position = _cardSize / 2;
+            holder.Model.Position = -_cardSize / 2;
+        }
+
+        private void RemoveCardModel(int index)
+        {
+            var holder = _cardHolders.GetChild(index);
+            _cardHolders.RemoveChild(holder);
+            holder.QueueFree();
         }
 
         private void DeleteAllChildren(Node node)
@@ -147,10 +167,35 @@ namespace TFCardBattle.Godot
         {
             [Signal] public delegate void ClickedEventHandler();
 
+            public bool IsMouseOver {get; private set;}
+
+            public override void _Ready()
+            {
+                base._Ready();
+
+                MouseEntered += () => IsMouseOver = true;
+                MouseExited += () => IsMouseOver = false;
+            }
+
             public override void _GuiInput(InputEvent ev)
             {
                 if (ev is InputEventMouseButton clickEvent)
                     EmitSignal(SignalName.Clicked);
+            }
+        }
+
+        private partial class CardHolder : Node2D
+        {
+            public Node2D Scaler {get; private set;}
+            public CardModel Model {get; private set;}
+
+            public CardHolder(CardModel model)
+            {
+                Model = model;
+                Scaler = new Node2D();
+
+                AddChild(Scaler);
+                Scaler.AddChild(Model);
             }
         }
     }
