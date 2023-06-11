@@ -12,6 +12,8 @@ namespace TFCardBattle.Godot
         [Export] public PackedScene CardModelPrefab;
         [Export] public float MinCardSeparation = 8;
         [Export] public float CardMoveDecayRate = 10;
+        [Export] public float CardHoverGrowSpeed = 1;
+        [Export] public float CardHoverScale = 1.1f;
         [Export] public bool EnableInput = true;
 
         private Control _cardPositions => GetNode<Control>("%CardPositions");
@@ -27,19 +29,28 @@ namespace TFCardBattle.Godot
             dummyCard = null;
         }
 
-        public override void _Process(double delta)
+        public override void _Process(double deltaD)
         {
-            // Exponentially decay all card models to their target positions
+            float delta = (float)deltaD;
+
             for (int i = 0; i < _cardModels.GetChildCount(); i++)
             {
+                // Exponentially decay all card models to their target positions
                 var card = _cardModels.GetChild<CardModel>(i);
                 var targetPos = TargetGlobalPosition(i, _cardModels.GetChildCount());
 
                 float dist = card.GlobalPosition.DistanceTo(targetPos);
-                float newDist = dist * Mathf.Pow(Mathf.E, -CardMoveDecayRate * (float)delta);
+                float newDist = dist * Mathf.Pow(Mathf.E, -CardMoveDecayRate * delta);
                 float deltaPos = Mathf.Abs(dist - newDist);
 
                 card.GlobalPosition = card.GlobalPosition.MoveToward(targetPos, deltaPos);
+
+                // Make cards bigger when being hovered over
+                var targetScale = (_cardPositions.GetChild<CardPositioner>(i).IsMouseOver && EnableInput)
+                    ? Vector2.One * CardHoverScale
+                    : Vector2.One;
+
+                card.Scale = card.Scale.MoveToward(targetScale, CardHoverGrowSpeed * delta);
             }
         }
 
@@ -146,6 +157,16 @@ namespace TFCardBattle.Godot
         private partial class CardPositioner : Control
         {
             [Signal] public delegate void ClickedEventHandler();
+
+            public bool IsMouseOver {get; private set;}
+
+            public override void _Ready()
+            {
+                base._Ready();
+
+                MouseEntered += () => IsMouseOver = true;
+                MouseExited += () => IsMouseOver = false;
+            }
 
             public override void _GuiInput(InputEvent ev)
             {
