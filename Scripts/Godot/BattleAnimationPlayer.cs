@@ -30,7 +30,8 @@ namespace TFCardBattle.Godot
                 await DamageAnimation("DamageEnemy", damageAmount);
 
                 var tfBar = GetNode<TFBar>("%EnemyTFBar");
-                tfBar.TargetValue += damageAmount;
+                var tween = GetTree().CreateTween();
+                tween.TweenProperty(tfBar, "value", tfBar.Value + damageAmount, 1);
             }
         }
 
@@ -41,7 +42,8 @@ namespace TFCardBattle.Godot
                 await DamageAnimation("DamagePlayer", damageAmount);
 
                 var tfBar = GetNode<TFBar>("%PlayerTFBar");
-                tfBar.TargetValue += damageAmount;
+                var tween = GetTree().CreateTween();
+                tween.TweenProperty(tfBar, "value", tfBar.Value + damageAmount, 1);
             }
         }
 
