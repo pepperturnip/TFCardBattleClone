@@ -182,7 +182,7 @@ namespace TFCardBattle.Core
 
             State.BuyPile = buyPile.ToList();
 
-            return Task.CompletedTask;
+            return _animationPlayer.RefreshBuyPile(State.BuyPile.ToArray());
         }
 
         public bool CanAffordCard(int buyPileIndex)
