@@ -1,11 +1,11 @@
 [gd_scene load_steps=16 format=3 uid="uid://tm66spq6dn0h"]
 
-[ext_resource type="Script" path="res://Scripts/Godot/BattleUI.cs" id="1_napwg"]
-[ext_resource type="PackedScene" uid="uid://c1mx8tkl5qxjp" path="res://Scenes/UIWidgets/CardDisplay.tscn" id="2_w4jlf"]
-[ext_resource type="Script" path="res://Scripts/Godot/BattleAnimationPlayer.cs" id="3_1bxi8"]
-[ext_resource type="PackedScene" uid="uid://dao0w4slv7603" path="res://Scenes/UIWidgets/CardRowDisplay.tscn" id="3_408ej"]
-[ext_resource type="Theme" uid="uid://ds2nh3axu3wjs" path="res://Themes/TFBarTheme.tres" id="4_gpf4a"]
-[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/TFBar.cs" id="6_6jdln"]
+[ext_resource type="Script" path="res://Scripts/Godot/BattleUI.cs" id="1_s1rg7"]
+[ext_resource type="PackedScene" uid="uid://c1mx8tkl5qxjp" path="res://Scenes/UIWidgets/CardDisplay.tscn" id="2_mjjtt"]
+[ext_resource type="PackedScene" uid="uid://dao0w4slv7603" path="res://Scenes/UIWidgets/CardRowDisplay.tscn" id="3_wgfut"]
+[ext_resource type="Script" path="res://Scripts/Godot/BattleAnimationPlayer.cs" id="4_uf642"]
+[ext_resource type="Theme" uid="uid://ds2nh3axu3wjs" path="res://Themes/TFBarTheme.tres" id="5_24u5e"]
+[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/TFBar.cs" id="6_02prk"]
 
 [sub_resource type="Animation" id="Animation_dsfeu"]
 resource_name = "DamageEnemy"
@@ -193,8 +193,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_napwg")
-CardDisplayPrefab = ExtResource("2_w4jlf")
+script = ExtResource("1_s1rg7")
+CardDisplayPrefab = ExtResource("2_mjjtt")
 
 [node name="HandHolder" type="Control" parent="."]
 layout_mode = 1
@@ -207,7 +207,7 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HandDisplay" parent="HandHolder" instance=ExtResource("3_408ej")]
+[node name="HandDisplay" parent="HandHolder" instance=ExtResource("3_wgfut")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 12
@@ -227,7 +227,7 @@ offset_top = 8.0
 offset_bottom = 200.0
 grow_horizontal = 2
 
-[node name="BuyPileDisplay" parent="BuyPileHolder" instance=ExtResource("3_408ej")]
+[node name="BuyPileDisplay" parent="BuyPileHolder" instance=ExtResource("3_wgfut")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 10
@@ -272,7 +272,7 @@ text = "End Turn"
 
 [node name="BattleAnimationPlayer" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3_1bxi8")
+script = ExtResource("4_uf642")
 
 [node name="Animator" type="AnimationPlayer" parent="BattleAnimationPlayer"]
 unique_name_in_owner = true
@@ -329,9 +329,9 @@ offset_top = 192.0
 offset_right = 56.0
 offset_bottom = -56.0
 grow_vertical = 2
-theme = ExtResource("4_gpf4a")
+theme = ExtResource("5_24u5e")
 fill_mode = 3
-script = ExtResource("6_6jdln")
+script = ExtResource("6_02prk")
 
 [node name="PlayerTFLabel" type="Label" parent="."]
 unique_name_in_owner = true
@@ -360,9 +360,9 @@ offset_right = -40.0
 offset_bottom = -56.0
 grow_horizontal = 0
 grow_vertical = 2
-theme = ExtResource("4_gpf4a")
+theme = ExtResource("5_24u5e")
 fill_mode = 3
-script = ExtResource("6_6jdln")
+script = ExtResource("6_02prk")
 
 [node name="EnemyTFLabel" type="Label" parent="."]
 unique_name_in_owner = true
