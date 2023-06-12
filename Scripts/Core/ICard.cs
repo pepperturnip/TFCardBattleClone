@@ -6,6 +6,7 @@ namespace TFCardBattle.Core
     {
         string Name {get;}
         string Desc {get;}
+        string TexturePath {get;}
 
         CardPurchaseStats PurchaseStats {get;}
 
