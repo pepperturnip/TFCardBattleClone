@@ -42,6 +42,12 @@ namespace TFCardBattle.Godot
             RefreshDisplay();
         }
 
+        public override void _Process(double delta)
+        {
+            if (Battle.BattleEnded)
+                GetTree().ChangeSceneToPacked(Maps.Instance.TitleScreen);
+        }
+
         public void OnIsAnimatingChanged(bool isAnimating) => EnableInput(!isAnimating);
 
         public async void OnEndTurnClicked()

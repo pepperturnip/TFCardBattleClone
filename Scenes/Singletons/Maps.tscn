@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://dokqyu4gu55ok"]
+
+[ext_resource type="Script" path="res://Scripts/Godot/Singletons/Maps.cs" id="1_4brms"]
+[ext_resource type="PackedScene" uid="uid://b44tuins5ycq2" path="res://Scenes/Maps/TitleScreen.tscn" id="2_l8iea"]
+[ext_resource type="PackedScene" uid="uid://tm66spq6dn0h" path="res://Scenes/Maps/BattleUI.tscn" id="3_20wgp"]
+
+[node name="Maps" type="Node"]
+script = ExtResource("1_4brms")
+TitleScreen = ExtResource("2_l8iea")
+BattleScreen = ExtResource("3_20wgp")
