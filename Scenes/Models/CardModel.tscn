@@ -22,18 +22,23 @@ script = ExtResource("1_65srg")
 [node name="Panel" type="Panel" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 192)
-offset_right = 128.0
-offset_bottom = 192.0
+offset_right = 152.0
+offset_bottom = 216.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_obthe")
 
 [node name="NameLabel" type="Label" parent="Panel"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 28.0
-offset_top = 6.0
-offset_right = 118.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.194
+anchor_top = 0.029
+anchor_right = 0.92
+anchor_bottom = 0.12
+offset_left = 0.0639992
+offset_top = -0.0320001
+offset_right = -0.479996
+offset_bottom = 0.039999
 text = "Card Name"
 label_settings = SubResource("LabelSettings_31aqx")
 horizontal_alignment = 1
@@ -41,11 +46,12 @@ vertical_alignment = 1
 
 [node name="DescLabel" type="Label" parent="Panel"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 8.0
-offset_top = 120.0
-offset_right = 120.0
-offset_bottom = 168.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.086
+anchor_top = 0.624
+anchor_right = 0.915
+anchor_bottom = 0.895
 text = "Description"
 label_settings = SubResource("LabelSettings_fdhvm")
 horizontal_alignment = 1
