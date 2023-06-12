@@ -1,2 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
+
+# Let's not keep ApolloSeven's images in the repo, just in case they're not a
+# fan of me using them.  That way I can easily replace them with custom ones
+# if it comes to that.
+ApolloSevenImages/
