@@ -10,7 +10,7 @@ namespace TFCardBattle.Core
     {
         public string Name {get; set;}
         public string Desc => GetDescription();
-        public string TexturePath => "res://ApolloSevenImages/cardgame/card0.webp";
+        public string TexturePath => "res://ApolloSevenImages/cardgame/cards/card0.webp";
 
         public int BrainGain {get; set;}
         public int HeartGain {get; set;}

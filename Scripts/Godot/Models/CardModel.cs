@@ -23,12 +23,28 @@ namespace TFCardBattle.Godot
         private Label _nameLabel => GetNode<Label>("%NameLabel");
         private Label _descLabel => GetNode<Label>("%DescLabel");
         private CardCostDisplay _costDisplay => GetNode<CardCostDisplay>("%CardCostDisplay");
+        private TextureRect _texture => GetNode<TextureRect>("%Texture");
 
         public void Refresh()
         {
             _nameLabel.Text = Card?.Name ?? "null";
             _descLabel.Text = Card?.Desc ?? "";
             _costDisplay.Card = Card;
+
+            // Attempt to load the texture.  If it exists, we'll draw that on
+            // top of the placeholder stuff.  If it doesn't, we'll hide the
+            // texture and use the placeholder stuff.
+            if (!ResourceLoader.Exists(Card.TexturePath))
+            {
+                _texture.Visible = false;
+                GD.Print($"Could not find texture {Card.TexturePath}");
+                return;
+            }
+
+            var image = Image.LoadFromFile(Card.TexturePath);
+            var texture = ImageTexture.CreateFromImage(image);
+            _texture.Texture = texture;
+            _texture.Visible = true;
         }
     }
 }

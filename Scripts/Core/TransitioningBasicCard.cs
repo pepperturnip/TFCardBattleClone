@@ -8,7 +8,7 @@ namespace TFCardBattle.Core
 
         public string Desc => "";
 
-        public string TexturePath => "res://ApolloSevenImages/cardgame/card1.webp";
+        public string TexturePath => "res://ApolloSevenImages/cardgame/cards/card4.webp";
 
         public CardPurchaseStats PurchaseStats => default;
 
