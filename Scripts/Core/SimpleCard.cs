@@ -10,6 +10,7 @@ namespace TFCardBattle.Core
     {
         public string Name {get; set;}
         public string Desc => GetDescription();
+        public string TexturePath {get; set;}
 
         public int BrainGain {get; set;}
         public int HeartGain {get; set;}
