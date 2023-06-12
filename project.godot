@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 WaitFor="*res://Scripts/Godot/Singletons/WaitFor.cs"
+Maps="*res://Scenes/Singletons/Maps.tscn"
 
 [dotnet]
 

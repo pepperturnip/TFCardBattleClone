@@ -1,14 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b44tuins5ycq2"]
-
-[ext_resource type="PackedScene" uid="uid://tm66spq6dn0h" path="res://Scenes/Maps/BattleUI.tscn" id="1_jct82"]
+[gd_scene load_steps=4 format=3 uid="uid://b44tuins5ycq2"]
 
 [sub_resource type="GDScript" id="GDScript_vkbfj"]
 script/source = "extends Control
 
-@export var BattleScreen: PackedScene
-
 func OnPlayButtonClicked():
-    get_tree().change_scene_to_packed(BattleScreen)
+    get_tree().change_scene_to_packed(Maps.BattleScreen)
 "
 
 [sub_resource type="SystemFont" id="SystemFont_t60qf"]
@@ -25,7 +21,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_vkbfj")
-BattleScreen = ExtResource("1_jct82")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1

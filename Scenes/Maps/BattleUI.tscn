@@ -1,7 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://tm66spq6dn0h"]
+[gd_scene load_steps=15 format=3 uid="uid://tm66spq6dn0h"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/BattleUI.cs" id="1_s1rg7"]
-[ext_resource type="PackedScene" uid="uid://c1mx8tkl5qxjp" path="res://Scenes/UIWidgets/CardDisplay.tscn" id="2_mjjtt"]
 [ext_resource type="PackedScene" uid="uid://dao0w4slv7603" path="res://Scenes/UIWidgets/CardRowDisplay.tscn" id="3_wgfut"]
 [ext_resource type="Script" path="res://Scripts/Godot/BattleAnimationPlayer.cs" id="4_uf642"]
 [ext_resource type="Theme" uid="uid://ds2nh3axu3wjs" path="res://Themes/TFBarTheme.tres" id="5_24u5e"]
@@ -194,7 +193,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s1rg7")
-CardDisplayPrefab = ExtResource("2_mjjtt")
 
 [node name="HandHolder" type="Control" parent="."]
 layout_mode = 1
