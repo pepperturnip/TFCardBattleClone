@@ -159,6 +159,9 @@ namespace TFCardBattle.Core
                 return;
             }
 
+            // Transition the basic cards
+            TransitionBasicCards();
+
             // Start the next turn
             State.TurnsElapsed++;
             await StartTurn();
@@ -215,6 +218,22 @@ namespace TFCardBattle.Core
         private int RollEnemyDamage()
         {
             return _rng.Next(EnemyMinTFDamage, EnemyMaxTFDamage + 1);
+        }
+
+        private void TransitionBasicCards()
+        {
+            var allCards = State.Deck
+                .Concat(State.Hand)
+                .Concat(State.Discard)
+                .Concat(State.CardsPlayedThisTurn);
+
+            foreach (var card in allCards)
+            {
+                if (card is TransitioningBasicCard transCard)
+                {
+                    transCard.UpdateTransitionState(State.PlayerTF);
+                }
+            }
         }
 
         private void AssertBattleRunning()
