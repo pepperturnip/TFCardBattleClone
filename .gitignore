@@ -4,4 +4,14 @@
 # Let's not keep ApolloSeven's images in the repo, just in case they're not a
 # fan of me using them.  That way I can easily replace them with custom ones
 # if it comes to that.
-ApolloSevenImages/
+ApolloSevenImages/**/*
+
+# For whatever reason, Godot keeps trying to reimport the "mods" folder, even
+# though nothing changes in it.  This is very annoying, because every time it
+# reimports, Godot forces its window in front of whatever other program I'm
+# trying to use.  Usually my text editor >.<
+#
+# So I need to ensure that folder's .gdignore file is tracked by git, to ensure
+# Godot doesn't try to reimport it.
+!ApolloSevenImages/mods
+!ApolloSevenImages/mods/.gdignore
