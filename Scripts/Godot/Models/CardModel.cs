@@ -41,9 +41,7 @@ namespace TFCardBattle.Godot
                 return;
             }
 
-            var image = Image.LoadFromFile(Card.TexturePath);
-            var texture = ImageTexture.CreateFromImage(image);
-            _texture.Texture = texture;
+            _texture.Texture = ResourceLoader.Load<Texture2D>(Card.TexturePath);
             _texture.Visible = true;
         }
     }
