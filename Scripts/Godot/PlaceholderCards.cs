@@ -8,7 +8,6 @@ namespace TFCardBattle.Godot
     {
         public static IEnumerable<ICard> StartingDeck()
         {
-            var basicCard = new TransitioningBasicCard();
             var mysteriousPills = new SimpleCard
             {
                 Name = "Mysterious Pills",
@@ -18,7 +17,7 @@ namespace TFCardBattle.Godot
 
             for (int i = 0; i < 8; i++)
             {
-                yield return basicCard;
+                yield return new TransitioningBasicCard(i);
             }
 
             yield return mysteriousPills;

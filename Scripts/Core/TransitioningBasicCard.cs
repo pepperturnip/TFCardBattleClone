@@ -1,30 +1,78 @@
+using System;
 using System.Threading.Tasks;
 
 namespace TFCardBattle.Core
 {
     public class TransitioningBasicCard : ICard
     {
-        public string Name => "Basic";
+        public enum State
+        {
+            Brain,
+            Heart,
+            Sub
+        }
+        public State TransitionState = State.Brain;
+        public readonly int TransitionId;
 
-        public string Desc => "";
+        public string Name
+        {
+            get
+            {
+                switch (TransitionState)
+                {
+                    case State.Brain: return "Brainstorm";
+                    case State.Heart: return "Flirt";
+                    case State.Sub: return "Submit";
+                    default: throw new IndexOutOfRangeException();
+                }
+            }
+        }
 
-        public string TexturePath => "res://ApolloSevenImages/cardgame/cards/card8.webp";
+        public string Desc
+        {
+            get
+            {
+                switch (TransitionState)
+                {
+                    case State.Brain: return "Brain: +1";
+                    case State.Heart: return "Heart: + 1";
+                    case State.Sub: return "Sub: +1";
+                    default: throw new IndexOutOfRangeException();
+                }
+            }
+        }
+
+        public string TexturePath
+        {
+            get
+            {
+                const string prefix = "res://ApolloSevenImages/cardgame/cards";
+                switch (TransitionState)
+                {
+                    case State.Brain: return $"{prefix}/card8.webp";
+                    case State.Heart: return $"{prefix}/card9.webp";
+                    case State.Sub: return $"{prefix}/card5.webp";
+                    default: throw new IndexOutOfRangeException();
+                }
+            }
+        }
 
         public CardPurchaseStats PurchaseStats => default;
 
+        public TransitioningBasicCard(int transitionId)
+        {
+            TransitionId = transitionId;
+        }
+
         public Task Activate(BattleController battle)
         {
-            // HACK: Add a different resource depending on how TF'd you are
-            // TODO: Don't transition _all_ basic cards at the same time!
-            // TODO: Update the card's name, too.
-            int tf = battle.State.PlayerTF;
-
-            if (tf < 33)
-                battle.State.Brain++;
-            else if (tf < 66)
-                battle.State.Heart++;
-            else
-                battle.State.Sub++;
+            switch (TransitionState)
+            {
+                case State.Brain: battle.State.Brain++; break;
+                case State.Heart: battle.State.Heart++; break;
+                case State.Sub: battle.State.Sub++; break;
+                default: throw new IndexOutOfRangeException();
+            }
 
             return Task.CompletedTask;
         }
