@@ -12,5 +12,6 @@ namespace TFCardBattle.Core
         Task DiscardHand();
         Task RefreshBuyPile(ICard[] cards);
         Task BuyCard(int buyPileIndex);
+        Task InsertIntoBuyPile(ICard[] newBuyPile, int changedCardIndex);
     }
 }

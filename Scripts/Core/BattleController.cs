@@ -92,9 +92,11 @@ namespace TFCardBattle.Core
             if (!CanAffordCard(buyPileIndex))
                 return;
 
+            bool isPermanentCard = IsPermanentBuyPileCard(buyPileIndex);
+
             var card = State.BuyPile[buyPileIndex];
 
-            if (!IsPermanentBuyPileCard(buyPileIndex))
+            if (!isPermanentCard)
                 State.BuyPile.RemoveAt(buyPileIndex);
 
             State.Discard.Add(card);
@@ -105,6 +107,9 @@ namespace TFCardBattle.Core
             State.Sub -= cost.SubCost;
 
             await _animationPlayer.BuyCard(buyPileIndex);
+
+            if (isPermanentCard)
+                await _animationPlayer.InsertIntoBuyPile(State.BuyPile.ToArray(), buyPileIndex);
         }
 
         public async Task StartTurn()
