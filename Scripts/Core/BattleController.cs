@@ -106,10 +106,7 @@ namespace TFCardBattle.Core
             State.Heart -= cost.HeartCost;
             State.Sub -= cost.SubCost;
 
-            await _animationPlayer.BuyCard(buyPileIndex);
-
-            if (isPermanentCard)
-                await _animationPlayer.InsertIntoBuyPile(State.BuyPile.ToArray(), buyPileIndex);
+            await _animationPlayer.BuyCard(buyPileIndex, isPermanentCard);
         }
 
         public async Task StartTurn()

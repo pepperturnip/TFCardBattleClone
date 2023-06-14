@@ -92,11 +92,15 @@ namespace TFCardBattle.Godot
             }
         }
 
-        public async Task BuyCard(int buyPileIndex)
+        public async Task BuyCard(int buyPileIndex, bool isPermanentBuyPileCard)
         {
             using (SetAnimating())
             {
-                _buyPileDisplay.RemoveCardWithBuyAnimation(buyPileIndex);
+                if (isPermanentBuyPileCard)
+                    _buyPileDisplay.PlayBuyAnimationWithoutRemoving(buyPileIndex);
+                else
+                    _buyPileDisplay.RemoveCardWithBuyAnimation(buyPileIndex);
+
                 await WaitFor.Seconds(0.125);
             }
         }
