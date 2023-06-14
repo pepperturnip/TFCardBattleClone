@@ -65,7 +65,8 @@ namespace TFCardBattle.Godot
         {
             using (SetAnimating())
             {
-                _handDisplay.RemoveCardWithActivateAnimation(handIndexPlayed);
+                _handDisplay.PlayActivateAnimation(handIndexPlayed);
+                _handDisplay.RemoveCard(handIndexPlayed);
                 await WaitFor.Seconds(0.125);
             }
         }
@@ -96,10 +97,10 @@ namespace TFCardBattle.Godot
         {
             using (SetAnimating())
             {
-                if (isPermanentBuyPileCard)
-                    _buyPileDisplay.PlayBuyAnimationWithoutRemoving(buyPileIndex);
-                else
-                    _buyPileDisplay.RemoveCardWithBuyAnimation(buyPileIndex);
+                _buyPileDisplay.PlayBuyAnimation(buyPileIndex);
+
+                if (!isPermanentBuyPileCard)
+                    _buyPileDisplay.RemoveCard(buyPileIndex);
 
                 await WaitFor.Seconds(0.125);
             }

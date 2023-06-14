@@ -67,7 +67,7 @@ namespace TFCardBattle.Godot
             RefreshCardPositioners(_cardHolders.GetChildCount());
         }
 
-        public void RemoveCardWithActivateAnimation(int cardIndex)
+        public void PlayActivateAnimation(int cardIndex)
         {
             // Make a copy of the card being removed, so we can animate it
             // after removing it.
@@ -75,9 +75,6 @@ namespace TFCardBattle.Godot
             CardHolder cloneHolder = CreateCardHolder(originalHolder.Model.Card);
             AddChild(cloneHolder);
             cloneHolder.GlobalPosition = originalHolder.GlobalPosition;
-
-            // Remove the original model
-            RemoveCard(cardIndex);
 
             // Start animating the clone in the background.
             const double stepDuration = 0.1;
@@ -117,39 +114,7 @@ namespace TFCardBattle.Godot
             tween.TweenCallback(new Callable(cloneHolder, "queue_free"));
         }
 
-        public void RemoveCardWithBuyAnimation(int cardIndex)
-        {
-            // Make a copy of the card being removed, so we can animate it
-            // after removing it.
-            var originalHolder = GetCardHolder(cardIndex);
-            CardHolder cloneHolder = CreateCardHolder(originalHolder.Model.Card);
-            AddChild(cloneHolder);
-            cloneHolder.GlobalPosition = originalHolder.GlobalPosition;
-
-            // Remove the original model
-            RemoveCard(cardIndex);
-
-            // Start animating the clone in the background.
-            const double stepDuration = 0.1;
-            var tween = GetTree().CreateTween();
-
-            tween.TweenProperty(
-                cloneHolder,
-                "position",
-                cloneHolder.Position + Vector2.Down * _cardSize.Y,
-                stepDuration
-            );
-            tween.Parallel();
-            tween.TweenProperty(
-                cloneHolder.Scaler,
-                "scale",
-                Vector2.Zero,
-                stepDuration
-            );
-            tween.TweenCallback(new Callable(cloneHolder, "queue_free"));
-        }
-
-        public void PlayBuyAnimationWithoutRemoving(int cardIndex)
+        public void PlayBuyAnimation(int cardIndex)
         {
             // Make a copy of the card being removed, so we can animate it
             // after removing it.
