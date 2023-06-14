@@ -35,6 +35,7 @@ namespace TFCardBattle.Godot
                 new PlayerLoadout
                 {
                     OfferableCards = PlaceholderCards.AutoGenerateCatalog(),
+                    PermanentBuyPile = PlaceholderCards.PermanentBuyPile(),
                     StartingDeck = PlaceholderCards.StartingDeck()
                 },
                 GetNode<BattleAnimationPlayer>("%BattleAnimationPlayer"),
