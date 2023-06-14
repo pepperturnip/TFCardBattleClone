@@ -1,0 +1,22 @@
+{
+    "Cards":
+    [
+        {
+            "Name": "Quick Thinking",
+            "Image": "card10.webp",
+            "Class": "Simple",
+            "BrainCost": 3,
+            "Brain": 1,
+            "Damage": 1,
+            "Shield": 1
+        },
+        {
+            "Name": "Spreadsheet Master",
+            "Image": "card18.webp",
+            "Class": "Simple",
+            "BrainCost": 2,
+            "Brain": 1,
+            "Shield": 1
+        }
+    ]
+}
