@@ -12,7 +12,7 @@ namespace TFCardBattle.Core
     {
         public const int MaxHandSize = 6;
         public const int StartingHandSize = 5;
-        public const int OfferedCardCount = 5;
+        public const int OfferedCardCount = 4;
 
         public const int EnemyMinTFDamage = 0;
         public const int EnemyMaxTFDamage = 5;
@@ -165,7 +165,12 @@ namespace TFCardBattle.Core
 
         public Task RefreshBuyPile()
         {
-            var offerableCards = CardsOfferableAtTf(State.PlayerTF).ToHashSet();
+            // Offer a random set of cards to the player
+            var offerableCards = CardsOfferableAtTf(
+                State.PlayerLoadout.OfferableCards,
+                State.PlayerTF
+            ).ToHashSet();
+
             var buyPile = new HashSet<ICard>();
 
             while(buyPile.Count < OfferedCardCount && offerableCards.Count > 0)
@@ -180,6 +185,14 @@ namespace TFCardBattle.Core
             }
 
             State.BuyPile = buyPile.ToList();
+
+            // Add a non-random, "permanent" card to the buy pile, based on the
+            // player's TF.
+            var permanentCard = CardsOfferableAtTf(
+                State.PlayerLoadout.PermanentBuyPile,
+                State.PlayerTF
+            ).Single();
+            State.BuyPile.Add(permanentCard);
 
             return _animationPlayer.RefreshBuyPile(State.BuyPile.ToArray());
         }
@@ -238,9 +251,9 @@ namespace TFCardBattle.Core
                 throw new Exception("You can't do that after the battle has ended");
         }
 
-        private IEnumerable<ICard> CardsOfferableAtTf(int tf)
+        private IEnumerable<ICard> CardsOfferableAtTf(IEnumerable<ICard> cards, int tf)
         {
-            return State.PlayerLoadout.OfferableCards
+            return cards
                 .Where(c => tf <= c.PurchaseStats.MaxTF)
                 .Where(c => tf >= c.PurchaseStats.MinTF);
         }
