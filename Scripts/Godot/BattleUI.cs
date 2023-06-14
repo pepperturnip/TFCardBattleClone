@@ -32,8 +32,12 @@ namespace TFCardBattle.Godot
         public override async void _Ready()
         {
             Battle = new BattleController(
-                PlaceholderCards.AutoGenerateCatalog(),
-                PlaceholderCards.StartingDeck(),
+                new PlayerLoadout
+                {
+                    OfferableCards = PlaceholderCards.AutoGenerateCatalog(),
+                    PermanentBuyPile = PlaceholderCards.PermanentBuyPile(),
+                    StartingDeck = PlaceholderCards.StartingDeck()
+                },
                 GetNode<BattleAnimationPlayer>("%BattleAnimationPlayer"),
                 new Random((int)DateTimeOffset.Now.ToUnixTimeMilliseconds())
             );

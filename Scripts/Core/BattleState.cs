@@ -9,6 +9,8 @@ namespace TFCardBattle.Core
     /// </summary>
     public class BattleState
     {
+        public PlayerLoadout PlayerLoadout;
+
         public int TurnsElapsed = 0;
 
         public int PlayerTF = 0;
@@ -35,10 +37,10 @@ namespace TFCardBattle.Core
         /// </summary>
         public List<ICard> BuyPile = new List<ICard>();
 
-        /// <summary>
-        /// All of the cards that could be offered to the player on any given
-        /// turn (ignoring TF levels)
-        /// </summary>
-        public ICard[] OfferableCards;
+        public BattleState(PlayerLoadout loadout)
+        {
+            PlayerLoadout = loadout;
+            Deck.AddRange(loadout.StartingDeck);
+        }
     }
 }

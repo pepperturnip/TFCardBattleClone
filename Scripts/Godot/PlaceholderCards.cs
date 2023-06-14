@@ -75,6 +75,16 @@ namespace TFCardBattle.Godot
             yield return SubCard("Branded", "card94.webp", subCost: 5, shield: 5, draw: 1);
         }
 
+        public static IEnumerable<ICard> PermanentBuyPile()
+        {
+            yield return PermanentBuyPileCard("Online Research", "card4.webp", 0, 14, brainCost: 3, brain: 2);
+            yield return PermanentBuyPileCard("Feminine Wiles", "card3.webp", 15, 29, brainCost: 3, heart: 2);
+            yield return PermanentBuyPileCard("Fashion Magazine", "card2.webp", 30, 44, heartCost: 2, heart: 2);
+            yield return PermanentBuyPileCard("Pet Play", "card1.webp", 45, 69, heartCost: 2, sub: 2);
+            yield return PermanentBuyPileCard("Training Session", "card0.webp", 70, int.MaxValue, subCost: 1, sub: 2);
+        }
+
+
         private static ICard BrainCard(
             string name,
             string fileName = "",
@@ -183,6 +193,38 @@ namespace TFCardBattle.Godot
                 ShieldGain = shield,
                 Damage = damage,
                 CardDraw = draw
+            };
+        }
+
+        private static ICard PermanentBuyPileCard(
+            string name,
+            string fileName,
+            int minTf,
+            int maxTf,
+            int brainCost = 0,
+            int heartCost = 0,
+            int subCost = 0,
+            int brain = 0,
+            int heart = 0,
+            int sub = 0
+        )
+        {
+            return new SimpleCard
+            {
+                Name = name,
+                TexturePath = $"res://ApolloSevenImages/cardgame/cards/{fileName}",
+                PurchaseStats = new CardPurchaseStats
+                {
+                    BrainCost = brainCost,
+                    HeartCost = heartCost,
+                    SubCost = subCost,
+                    MinTF = minTf,
+                    MaxTF = maxTf
+                },
+
+                BrainGain = brain,
+                HeartGain = heart,
+                SubGain = sub
             };
         }
     }

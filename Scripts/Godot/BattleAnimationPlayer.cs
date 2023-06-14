@@ -65,7 +65,8 @@ namespace TFCardBattle.Godot
         {
             using (SetAnimating())
             {
-                _handDisplay.RemoveCardWithActivateAnimation(handIndexPlayed);
+                _handDisplay.PlayActivateAnimation(handIndexPlayed);
+                _handDisplay.RemoveCard(handIndexPlayed);
                 await WaitFor.Seconds(0.125);
             }
         }
@@ -92,12 +93,26 @@ namespace TFCardBattle.Godot
             }
         }
 
-        public async Task BuyCard(int buyPileIndex)
+        public async Task BuyCard(int buyPileIndex, bool isPermanentBuyPileCard)
         {
             using (SetAnimating())
             {
-                _buyPileDisplay.RemoveCardWithBuyAnimation(buyPileIndex);
+                _buyPileDisplay.PlayBuyAnimation(buyPileIndex);
+
+                if (!isPermanentBuyPileCard)
+                    _buyPileDisplay.RemoveCard(buyPileIndex);
+
                 await WaitFor.Seconds(0.125);
+            }
+        }
+
+        public async Task InsertIntoBuyPile(ICard[] newBuyPile, int changedCardIndex)
+        {
+            using (SetAnimating())
+            {
+                _buyPileDisplay.AddCard(newBuyPile[changedCardIndex]);
+                await WaitFor.Seconds(0.125);
+                _buyPileDisplay.Refresh(newBuyPile);
             }
         }
 
