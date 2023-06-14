@@ -25,18 +25,14 @@ namespace TFCardBattle.Core
         private readonly Random _rng;
 
         public BattleController(
-            IEnumerable<ICard> offerableCards,
-            IEnumerable<ICard> startingDeck,
+            PlayerLoadout loadout,
             IBattleAnimationPlayer animationPlayer,
             Random rng
         )
         {
+            State = new BattleState(loadout);
             _animationPlayer = animationPlayer;
             _rng = rng;
-
-            State = new BattleState();
-            State.Deck = startingDeck.ToList();
-            State.OfferableCards = offerableCards.ToArray();
         }
 
         public async Task DrawCard()
@@ -244,7 +240,7 @@ namespace TFCardBattle.Core
 
         private IEnumerable<ICard> CardsOfferableAtTf(int tf)
         {
-            return State.OfferableCards
+            return State.PlayerLoadout.OfferableCards
                 .Where(c => tf <= c.PurchaseStats.MaxTF)
                 .Where(c => tf >= c.PurchaseStats.MinTF);
         }
