@@ -93,7 +93,10 @@ namespace TFCardBattle.Core
                 return;
 
             var card = State.BuyPile[buyPileIndex];
-            State.BuyPile.RemoveAt(buyPileIndex);
+
+            if (!IsPermanentBuyPileCard(buyPileIndex))
+                State.BuyPile.RemoveAt(buyPileIndex);
+
             State.Discard.Add(card);
 
             var cost = card.PurchaseStats;
@@ -211,6 +214,11 @@ namespace TFCardBattle.Core
                 return false;
 
             return true;
+        }
+
+        private bool IsPermanentBuyPileCard(int buyPileIndex)
+        {
+            return buyPileIndex == State.BuyPile.Count - 1;
         }
 
         private void TransferAllCards(List<ICard> src, List<ICard> dst)
