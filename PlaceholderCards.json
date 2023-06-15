@@ -131,8 +131,8 @@
         "Class": "Simple",
         "MinTF": 33,
         "MaxTF": 71,
-        "HeartCost": 1.0,
-        "Heart": 2.0
+        "HeartCost": 1,
+        "Heart": 2
     },
     {
         "Name": "Cam Girl",
@@ -140,8 +140,8 @@
         "Class": "Simple",
         "MinTF": 33,
         "MaxTF": 71,
-        "HeartCost": 3.0,
-        "Heart": 2.0,
+        "HeartCost": 3,
+        "Heart": 2,
         "Damage": 1,
         "Shield": 1
     },
@@ -151,7 +151,7 @@
         "Class": "Simple",
         "MinTF": 33,
         "MaxTF": 71,
-        "HeartCost": 2.0,
+        "HeartCost": 2,
         "Shield": 1,
         "Draw": 1
     },
@@ -161,7 +161,7 @@
         "Class": "Simple",
         "MinTF": 33,
         "MaxTF": 71,
-        "HeartCost": 2.0,
+        "HeartCost": 2,
         "Damage": 1,
         "Draw": 1
     },
@@ -171,7 +171,7 @@
         "Class": "Simple",
         "MinTF": 33,
         "MaxTF": 71,
-        "HeartCost": 1.0,
+        "HeartCost": 1,
         "Damage": 2,
         "Draw": 1
     },
@@ -181,8 +181,8 @@
         "Class": "Simple",
         "MinTF": 33,
         "MaxTF": 71,
-        "HeartCost": 3.0,
-        "Heart": 3.0
+        "HeartCost": 3,
+        "Heart": 3
     },
     {
         "Name": "Date Night",
@@ -190,8 +190,8 @@
         "Class": "Simple",
         "MinTF": 33,
         "MaxTF": 71,
-        "HeartCost": 3.0,
-        "Heart": 2.0,
+        "HeartCost": 3,
+        "Heart": 2,
         "Shield": 2
     },
     {
@@ -200,8 +200,8 @@
         "Class": "Simple",
         "MinTF": 33,
         "MaxTF": 71,
-        "HeartCost": 4.0,
-        "Heart": 3.0,
+        "HeartCost": 4,
+        "Heart": 3,
         "Damage": 3
     },
     {
@@ -210,8 +210,8 @@
         "Class": "Simple",
         "MinTF": 33,
         "MaxTF": 71,
-        "HeartCost": 2.0,
-        "Heart": 1.0,
+        "HeartCost": 2,
+        "Heart": 1,
         "Draw": 1
     },
     {
@@ -220,9 +220,9 @@
         "Class": "Simple",
         "MinTF": 33,
         "MaxTF": 71,
-        "HeartCost": 3.0,
+        "HeartCost": 3,
         "Brain": 2,
-        "Heart": 2.0
+        "Heart": 2
     },
     {
         "Name": "Seduce the Cable Guy",
@@ -230,7 +230,7 @@
         "Class": "Simple",
         "MinTF": 33,
         "MaxTF": 71,
-        "HeartCost": 3.0,
+        "HeartCost": 3,
         "Damage": 2,
         "Draw": 1
     },
@@ -240,7 +240,7 @@
         "Class": "Simple",
         "MinTF": 33,
         "MaxTF": 71,
-        "HeartCost": 3.0,
+        "HeartCost": 3,
         "Damage": 2,
         "Shield": 3
     },
@@ -250,7 +250,173 @@
         "Class": "Simple",
         "MinTF": 33,
         "MaxTF": 71,
-        "HeartCost": 2.0,
+        "HeartCost": 2,
         "Shield": 3
     },
+    {
+        "Name": "Bow Down",
+        "Image": "card71.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 1,
+        "Sub": 2,
+        "Damage": 1
+    },
+    {
+        "Name": "Ropeplay",
+        "Image": "card72.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 2,
+        "Sub": 3
+    },
+    {
+        "Name": "Facial",
+        "Image": "card67.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 2,
+        "Heart": 2,
+        "Sub": 2
+    },
+    {
+        "Name": "Anal",
+        "Image": "card77.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 5,
+        "Heart": 3,
+        "Draw": 1
+    },
+    {
+        "Name": "Underfoot",
+        "Image": "card73.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 1,
+        "Damage": 2,
+        "Shield": 1
+    },
+    {
+        "Name": "Blindfolded",
+        "Image": "card74.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 2,
+        "Sub": 1,
+        "Draw": 1
+    },
+    {
+        "Name": "Creampie",
+        "Image": "card80.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 7,
+        "Sub": 5,
+        "Draw": 2
+    },
+    {
+        "Name": "Pounded",
+        "Image": "card89.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 5,
+        "Sub": 2,
+        "Damage": 2,
+        "Draw": 1
+    },
+    {
+        "Name": "At Master's Feet",
+        "Image": "card91.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 2,
+        "Sub": 2,
+        "Draw": 1
+    },
+    {
+        "Name": "Locked Away",
+        "Image": "card76.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 2,
+        "Sub": 1,
+        "Shield": 3
+    },
+    {
+        "Name": "Swallow(sorta)",
+        "Image": "card83.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 8,
+        "Draw": 3
+    },
+    {
+        "Name": "Air Tight",
+        "Image": "card69.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 5,
+        "Sub": 3,
+        "Damage": 3,
+        "Shield": 3
+    },
+    {
+        "Name": "Ride 'em Cowgirl",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 6,
+        "Damage": 6,
+        "Draw": 1
+    },
+    {
+        "Name": "Nipple Clamps",
+        "Image": "card87.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 2,
+        "Heart": 2,
+        "Sub": 3
+    },
+    {
+        "Name": "Lick it Up",
+        "Image": "card95.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 6,
+        "Draw": 3
+    },
+    {
+        "Name": "Blacked",
+        "Image": "card84.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 5,
+        "Draw": 2
+    },
+    {
+        "Name": "Gangbang",
+        "Image": "card93.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 5,
+        "Damage": 10
+    },
+    {
+        "Name": "Inspecti3on",
+        "Image": "card75.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 4,
+        "Draw": 2
+    },
+    {
+        "Name": "Branded",
+        "Image": "card94.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 5,
+        "Shield": 5,
+        "Draw": 1
+    }
 ]
