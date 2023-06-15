@@ -1,0 +1,422 @@
+﻿[
+    {
+        "Name": "Quick Thinking",
+        "Image": "card10.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 42,
+        "BrainCost": 3,
+        "Brain": 1,
+        "Damage": 1,
+        "Shield": 1
+    },
+    {
+        "Name": "Spreadsheet Master",
+        "Image": "card18.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 42,
+        "BrainCost": 2,
+        "Brain": 1,
+        "Shield": 1
+    },
+    {
+        "Name": "Motivational Poster",
+        "Image": "card12.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 42,
+        "BrainCost": 3,
+        "Brain": 1,
+        "Damage": 2
+    },
+    {
+        "Name": "Phone a Friend",
+        "Image": "card17.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 42,
+        "BrainCost": 3,
+        "Brain": 1,
+        "Draw": 1
+    },
+    {
+        "Name": "Firewall",
+        "Image": "card15.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 42,
+        "BrainCost": 3,
+        "Shield": 3
+    },
+    {
+        "Name": "Hypnotic Email",
+        "Image": "card13.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 42,
+        "BrainCost": 5,
+        "Damage": 4
+    },
+    {
+        "Name": "Paranoia",
+        "Image": "card20.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 42,
+        "BrainCost": 3,
+        "Shield": 1,
+        "Draw": 1
+    },
+    {
+        "Name": "L33t Hacker",
+        "Image": "card28.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 42,
+        "BrainCost": 4,
+        "Brain": 2,
+        "Shield": 2
+    },
+    {
+        "Name": "Eureka",
+        "Image": "card33.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 42,
+        "BrainCost": 7,
+        "Brain": 4
+    },
+    {
+        "Name": "Counter Measures",
+        "Image": "card21.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 42,
+        "BrainCost": 4,
+        "Damage": 2,
+        "Shield": 2
+    },
+    {
+        "Name": "Evil Therapist",
+        "Image": "card45.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 42,
+        "BrainCost": 7,
+        "Damage": 3,
+        "Draw": 2
+    },
+    {
+        "Name": "Research Lab(sorta)",
+        "Image": "card51.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 42,
+        "BrainCost": 6,
+        "Draw": 2
+    },
+    {
+        "Name": "All Nighter",
+        "Image": "card19.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 42,
+        "BrainCost": 6,
+        "Draw": 2
+    },
+    {
+        "Name": "Second Base",
+        "Image": "card29.webp",
+        "Class": "Simple",
+        "MinTF": 33,
+        "MaxTF": 71,
+        "HeartCost": 1,
+        "Heart": 2
+    },
+    {
+        "Name": "Cam Girl",
+        "Image": "card61.webp",
+        "Class": "Simple",
+        "MinTF": 33,
+        "MaxTF": 71,
+        "HeartCost": 3,
+        "Heart": 2,
+        "Damage": 1,
+        "Shield": 1
+    },
+    {
+        "Name": "Beauty Regimen",
+        "Image": "card32.webp",
+        "Class": "Simple",
+        "MinTF": 33,
+        "MaxTF": 71,
+        "HeartCost": 2,
+        "Shield": 1,
+        "Draw": 1
+    },
+    {
+        "Name": "Just a Lick",
+        "Image": "card52.webp",
+        "Class": "Simple",
+        "MinTF": 33,
+        "MaxTF": 71,
+        "HeartCost": 2,
+        "Damage": 1,
+        "Draw": 1
+    },
+    {
+        "Name": "Bribe the Intern",
+        "Image": "card30.webp",
+        "Class": "Simple",
+        "MinTF": 33,
+        "MaxTF": 71,
+        "HeartCost": 1,
+        "Damage": 2,
+        "Draw": 1
+    },
+    {
+        "Name": "Crotch Grab",
+        "Image": "card41.webp",
+        "Class": "Simple",
+        "MinTF": 33,
+        "MaxTF": 71,
+        "HeartCost": 3,
+        "Heart": 3
+    },
+    {
+        "Name": "Date Night",
+        "Image": "card40.webp",
+        "Class": "Simple",
+        "MinTF": 33,
+        "MaxTF": 71,
+        "HeartCost": 3,
+        "Heart": 2,
+        "Shield": 2
+    },
+    {
+        "Name": "Sixty-Nine",
+        "Image": "card60.webp",
+        "Class": "Simple",
+        "MinTF": 33,
+        "MaxTF": 71,
+        "HeartCost": 4,
+        "Heart": 3,
+        "Damage": 3
+    },
+    {
+        "Name": "Suggestive Moves",
+        "Image": "card35.webp",
+        "Class": "Simple",
+        "MinTF": 33,
+        "MaxTF": 71,
+        "HeartCost": 2,
+        "Heart": 1,
+        "Draw": 1
+    },
+    {
+        "Name": "Strapon",
+        "Image": "card48.webp",
+        "Class": "Simple",
+        "MinTF": 33,
+        "MaxTF": 71,
+        "HeartCost": 3,
+        "Brain": 2,
+        "Heart": 2
+    },
+    {
+        "Name": "Seduce the Cable Guy",
+        "Image": "card44.webp",
+        "Class": "Simple",
+        "MinTF": 33,
+        "MaxTF": 71,
+        "HeartCost": 3,
+        "Damage": 2,
+        "Draw": 1
+    },
+    {
+        "Name": "Back to His Place",
+        "Image": "card50.webp",
+        "Class": "Simple",
+        "MinTF": 33,
+        "MaxTF": 71,
+        "HeartCost": 3,
+        "Damage": 2,
+        "Shield": 3
+    },
+    {
+        "Name": "Sugar Daddy",
+        "Image": "card57.webp",
+        "Class": "Simple",
+        "MinTF": 33,
+        "MaxTF": 71,
+        "HeartCost": 2,
+        "Shield": 3
+    },
+    {
+        "Name": "Bow Down",
+        "Image": "card71.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 1,
+        "Sub": 2,
+        "Damage": 1
+    },
+    {
+        "Name": "Ropeplay",
+        "Image": "card72.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 2,
+        "Sub": 3
+    },
+    {
+        "Name": "Facial",
+        "Image": "card67.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 2,
+        "Heart": 2,
+        "Sub": 2
+    },
+    {
+        "Name": "Anal",
+        "Image": "card77.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 5,
+        "Heart": 3,
+        "Draw": 1
+    },
+    {
+        "Name": "Underfoot",
+        "Image": "card73.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 1,
+        "Damage": 2,
+        "Shield": 1
+    },
+    {
+        "Name": "Blindfolded",
+        "Image": "card74.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 2,
+        "Sub": 1,
+        "Draw": 1
+    },
+    {
+        "Name": "Creampie",
+        "Image": "card80.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 7,
+        "Sub": 5,
+        "Draw": 2
+    },
+    {
+        "Name": "Pounded",
+        "Image": "card89.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 5,
+        "Sub": 2,
+        "Damage": 2,
+        "Draw": 1
+    },
+    {
+        "Name": "At Master's Feet",
+        "Image": "card91.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 2,
+        "Sub": 2,
+        "Draw": 1
+    },
+    {
+        "Name": "Locked Away",
+        "Image": "card76.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 2,
+        "Sub": 1,
+        "Shield": 3
+    },
+    {
+        "Name": "Swallow(sorta)",
+        "Image": "card83.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 8,
+        "Draw": 3
+    },
+    {
+        "Name": "Air Tight",
+        "Image": "card69.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 5,
+        "Sub": 3,
+        "Damage": 3,
+        "Shield": 3
+    },
+    {
+        "Name": "Ride 'em Cowgirl",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 6,
+        "Damage": 6,
+        "Draw": 1
+    },
+    {
+        "Name": "Nipple Clamps",
+        "Image": "card87.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 2,
+        "Heart": 2,
+        "Sub": 3
+    },
+    {
+        "Name": "Lick it Up",
+        "Image": "card95.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 6,
+        "Draw": 3
+    },
+    {
+        "Name": "Blacked",
+        "Image": "card84.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "HeartCost": 5,
+        "Draw": 2
+    },
+    {
+        "Name": "Gangbang",
+        "Image": "card93.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 5,
+        "Damage": 10
+    },
+    {
+        "Name": "Inspecti3on",
+        "Image": "card75.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 4,
+        "Draw": 2
+    },
+    {
+        "Name": "Branded",
+        "Image": "card94.webp",
+        "MinTF": 66,
+        "MaxTF": 9999,
+        "SubCost": 5,
+        "Shield": 5,
+        "Draw": 1
+    }
+]
