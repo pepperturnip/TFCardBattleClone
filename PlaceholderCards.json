@@ -124,5 +124,133 @@
     "MaxTF": 42,
     "BrainCost": 6,
     "Draw": 2
+  },
+  {
+    "Name": "Second Base",
+    "Image": "card29.webp",
+    "Class": "Simple",
+    "MinTF": 33,
+    "MaxTF": 71,
+    "HeartCost": 1.0,
+    "Heart": 2.0
+  },
+  {
+    "Name": "Cam Girl",
+    "Image": "card61.webp",
+    "Class": "Simple",
+    "MinTF": 33,
+    "MaxTF": 71,
+    "HeartCost": 3.0,
+    "Heart": 2.0,
+    "Damage": 1,
+    "Shield": 1
+  },
+  {
+    "Name": "Beauty Regimen",
+    "Image": "card32.webp",
+    "Class": "Simple",
+    "MinTF": 33,
+    "MaxTF": 71,
+    "HeartCost": 2.0,
+    "Shield": 1,
+    "Draw": 1
+  },
+  {
+    "Name": "Just a Lick",
+    "Image": "card52.webp",
+    "Class": "Simple",
+    "MinTF": 33,
+    "MaxTF": 71,
+    "HeartCost": 2.0,
+    "Damage": 1,
+    "Draw": 1
+  },
+  {
+    "Name": "Bribe the Intern",
+    "Image": "card30.webp",
+    "Class": "Simple",
+    "MinTF": 33,
+    "MaxTF": 71,
+    "HeartCost": 1.0,
+    "Damage": 2,
+    "Draw": 1
+  },
+  {
+    "Name": "Crotch Grab",
+    "Image": "card41.webp",
+    "Class": "Simple",
+    "MinTF": 33,
+    "MaxTF": 71,
+    "HeartCost": 3.0,
+    "Heart": 3.0
+  },
+  {
+    "Name": "Date Night",
+    "Image": "card40.webp",
+    "Class": "Simple",
+    "MinTF": 33,
+    "MaxTF": 71,
+    "HeartCost": 3.0,
+    "Heart": 2.0,
+    "Shield": 2
+  },
+  {
+    "Name": "Sixty-Nine",
+    "Image": "card60.webp",
+    "Class": "Simple",
+    "MinTF": 33,
+    "MaxTF": 71,
+    "HeartCost": 4.0,
+    "Heart": 3.0,
+    "Damage": 3
+  },
+  {
+    "Name": "Suggestive Moves",
+    "Image": "card35.webp",
+    "Class": "Simple",
+    "MinTF": 33,
+    "MaxTF": 71,
+    "HeartCost": 2.0,
+    "Heart": 1.0,
+    "Draw": 1
+  },
+  {
+    "Name": "Strapon",
+    "Image": "card48.webp",
+    "Class": "Simple",
+    "MinTF": 33,
+    "MaxTF": 71,
+    "HeartCost": 3.0,
+    "Brain": 2,
+    "Heart": 2.0
+  },
+  {
+    "Name": "Seduce the Cable Guy",
+    "Image": "card44.webp",
+    "Class": "Simple",
+    "MinTF": 33,
+    "MaxTF": 71,
+    "HeartCost": 3.0,
+    "Damage": 2,
+    "Draw": 1
+  },
+  {
+    "Name": "Back to His Place",
+    "Image": "card50.webp",
+    "Class": "Simple",
+    "MinTF": 33,
+    "MaxTF": 71,
+    "HeartCost": 3.0,
+    "Damage": 2,
+    "Shield": 3
+  },
+  {
+    "Name": "Sugar Daddy",
+    "Image": "card57.webp",
+    "Class": "Simple",
+    "MinTF": 33,
+    "MaxTF": 71,
+    "HeartCost": 2.0,
+    "Shield": 3
   }
 ]
