@@ -1,0 +1,47 @@
+[
+    {
+        "Name": "Online Research",
+        "Image": "card4.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 14,
+        "BrainCost": 3,
+        "Brain": 2
+    },
+    {
+        "Name": "Feminine Wiles",
+        "Image": "card3.webp",
+        "Class": "Simple",
+        "MinTF": 15,
+        "MaxTF": 29,
+        "BrainCost": 3,
+        "Heart": 2
+    },
+    {
+        "Name": "Fashion Magazine",
+        "Image": "card2.webp",
+        "Class": "Simple",
+        "MinTF": 30,
+        "MaxTF": 44,
+        "HeartCost": 2,
+        "Heart": 2
+    },
+    {
+        "Name": "Pet Play",
+        "Image": "card1.webp",
+        "Class": "Simple",
+        "MinTF": 45,
+        "MaxTF": 69,
+        "HeartCost": 2,
+        "Sub": 2
+    },
+    {
+        "Name": "Training Session",
+        "Image": "card0.webp",
+        "Class": "Simple",
+        "MinTF": 70,
+        "MaxTF": 9999,
+        "SubCost": 1,
+        "Sub": 2
+    }
+]
