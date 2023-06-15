@@ -7,11 +7,8 @@
     "MaxTF": 42,
     "BrainCost": 3,
     "Brain": 1,
-    "Heart": 0,
-    "Sub": 0,
     "Damage": 1,
-    "Shield": 1,
-    "Draw": 0
+    "Shield": 1
   },
   {
     "Name": "Spreadsheet Master",
@@ -21,11 +18,7 @@
     "MaxTF": 42,
     "BrainCost": 2,
     "Brain": 1,
-    "Heart": 0,
-    "Sub": 0,
-    "Damage": 0,
-    "Shield": 1,
-    "Draw": 0
+    "Shield": 1
   },
   {
     "Name": "Motivational Poster",
@@ -35,11 +28,7 @@
     "MaxTF": 42,
     "BrainCost": 3,
     "Brain": 1,
-    "Heart": 0,
-    "Sub": 0,
-    "Damage": 2,
-    "Shield": 0,
-    "Draw": 0
+    "Damage": 2
   },
   {
     "Name": "Phone a Friend",
@@ -49,10 +38,6 @@
     "MaxTF": 42,
     "BrainCost": 3,
     "Brain": 1,
-    "Heart": 0,
-    "Sub": 0,
-    "Damage": 0,
-    "Shield": 0,
     "Draw": 1
   },
   {
@@ -62,12 +47,7 @@
     "MinTF": 0,
     "MaxTF": 42,
     "BrainCost": 3,
-    "Brain": 0,
-    "Heart": 0,
-    "Sub": 0,
-    "Damage": 0,
-    "Shield": 3,
-    "Draw": 0
+    "Shield": 3
   },
   {
     "Name": "Hypnotic Email",
@@ -76,12 +56,7 @@
     "MinTF": 0,
     "MaxTF": 42,
     "BrainCost": 5,
-    "Brain": 0,
-    "Heart": 0,
-    "Sub": 0,
-    "Damage": 4,
-    "Shield": 0,
-    "Draw": 0
+    "Damage": 4
   },
   {
     "Name": "Paranoia",
@@ -90,10 +65,6 @@
     "MinTF": 0,
     "MaxTF": 42,
     "BrainCost": 3,
-    "Brain": 0,
-    "Heart": 0,
-    "Sub": 0,
-    "Damage": 0,
     "Shield": 1,
     "Draw": 1
   },
@@ -105,11 +76,7 @@
     "MaxTF": 42,
     "BrainCost": 4,
     "Brain": 2,
-    "Heart": 0,
-    "Sub": 0,
-    "Damage": 0,
-    "Shield": 2,
-    "Draw": 0
+    "Shield": 2
   },
   {
     "Name": "Eureka",
@@ -118,12 +85,7 @@
     "MinTF": 0,
     "MaxTF": 42,
     "BrainCost": 7,
-    "Brain": 4,
-    "Heart": 0,
-    "Sub": 0,
-    "Damage": 0,
-    "Shield": 0,
-    "Draw": 0
+    "Brain": 4
   },
   {
     "Name": "Counter Measures",
@@ -132,12 +94,8 @@
     "MinTF": 0,
     "MaxTF": 42,
     "BrainCost": 4,
-    "Brain": 0,
-    "Heart": 0,
-    "Sub": 0,
     "Damage": 2,
-    "Shield": 2,
-    "Draw": 0
+    "Shield": 2
   },
   {
     "Name": "Evil Therapist",
@@ -146,11 +104,7 @@
     "MinTF": 0,
     "MaxTF": 42,
     "BrainCost": 7,
-    "Brain": 0,
-    "Heart": 0,
-    "Sub": 0,
     "Damage": 3,
-    "Shield": 0,
     "Draw": 2
   },
   {
@@ -160,11 +114,6 @@
     "MinTF": 0,
     "MaxTF": 42,
     "BrainCost": 6,
-    "Brain": 0,
-    "Heart": 0,
-    "Sub": 0,
-    "Damage": 0,
-    "Shield": 0,
     "Draw": 2
   },
   {
@@ -174,11 +123,6 @@
     "MinTF": 0,
     "MaxTF": 42,
     "BrainCost": 6,
-    "Brain": 0,
-    "Heart": 0,
-    "Sub": 0,
-    "Damage": 0,
-    "Shield": 0,
     "Draw": 2
   }
 ]
