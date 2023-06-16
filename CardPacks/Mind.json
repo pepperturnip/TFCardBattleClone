@@ -1,0 +1,44 @@
+[
+    {
+        "Name": "Quick Thinking",
+        "Image": "card10.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 8,
+        "BrainCost": 3,
+        "Brain": 1,
+        "Damage": 1,
+        "Shield": 1
+    },
+    {
+        "Name": "Phone a Friend",
+        "Image": "card17.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 14,
+        "BrainCost": 3,
+        "Brain": 1,
+        "Draw": 1
+    },
+    {
+        "Name": "Paranoia",
+        "Image": "card20.webp",
+        "Class": "Simple",
+        "MinTF": 4,
+        "MaxTF": 20,
+        "BrainCost": 3,
+        "Shield": 1,
+        "Draw": 1
+    },
+    {
+        "Name": "Eureka",
+        "Image": "card33.webp",
+        "Class": "Simple",
+        "MinTF": 10,
+        "MaxTF": 26,
+        "BrainCost": 7,
+        "Brain": 4
+    }
+    // TODO: Mental Masters
+    // TODO: Triumph of the Mind
+]
