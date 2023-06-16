@@ -202,34 +202,21 @@ namespace TFCardBattle.Core
             return _animationPlayer.RefreshBuyPile(State.BuyPile.ToArray());
         }
 
-        public Task ForgetBasicCard()
+        public async Task ForgetBasicCard()
         {
-            if (TryForgetFrom(State.Deck))
-            {
-                // TODO: Play an animation
-                return Task.CompletedTask;
-            }
+            if (await TryForgetFrom(State.Deck))
+            return;
 
-            if (TryForgetFrom(State.Discard))
-            {
-                // TODO: Play an animation
-                return Task.CompletedTask;
-            }
+            if (await TryForgetFrom(State.Discard))
+                return;
 
-            if (TryForgetFrom(State.CardsPlayedThisTurn))
-            {
-                // TODO: Play an animation
-                return Task.CompletedTask;
-            }
+            if (await TryForgetFrom(State.CardsPlayedThisTurn))
+                return;
 
-            if (TryForgetFrom(State.Hand))
-            {
-                // TODO: Play an animation
-                return Task.CompletedTask;
-            }
+            if (await TryForgetFrom(State.Hand))
+                return;
 
             // TODO: Show some message saying no card could be forgotten
-            return Task.CompletedTask;
 
             bool IsBasic(ICard c)
             {
@@ -237,13 +224,16 @@ namespace TFCardBattle.Core
                 return c is TransitioningBasicCard;
             }
 
-            bool TryForgetFrom(List<ICard> cards)
+            async Task<bool> TryForgetFrom(List<ICard> cards)
             {
                 for (int i = 0; i < cards.Count; i++)
                 {
-                    if (IsBasic(cards[i]))
+                    var card = cards[i];
+
+                    if (IsBasic(card))
                     {
                         cards.RemoveAt(i);
+                        await _animationPlayer.ForgetCard(card);
                         return true;
                     }
                 }

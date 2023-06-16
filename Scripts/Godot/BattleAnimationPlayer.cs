@@ -116,6 +116,15 @@ namespace TFCardBattle.Godot
             }
         }
 
+        public async Task ForgetCard(ICard card)
+        {
+            using (SetAnimating())
+            {
+                GetNode<ForgetAnimationPlayer>("%ForgetAnimationPlayer").QueueForget(card);
+                await WaitFor.Seconds(0.25);
+            }
+        }
+
         private async Task DamageAnimation(string animationName, int damageAmount)
         {
             if (damageAmount <= 0)
