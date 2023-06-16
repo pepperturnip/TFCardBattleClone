@@ -28,10 +28,10 @@ namespace TFCardBattle.Godot
         }
 
         public static IEnumerable<ICard> AutoGenerateCatalog()
-            => ParseJson("res://PlaceholderCards.json");
+            => ParseJson("res://CardPacks/PlaceholderCards.json");
 
         public static IEnumerable<ICard> PermanentBuyPile()
-            => ParseJson("res://PlaceholderPermanentBuyPile.json");
+            => ParseJson("res://CardPacks/PlaceholderPermanentBuyPile.json");
 
         private static IEnumerable<ICard> ParseJson(string filePath)
         {
