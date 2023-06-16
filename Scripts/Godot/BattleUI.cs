@@ -34,9 +34,9 @@ namespace TFCardBattle.Godot
             Battle = new BattleController(
                 new PlayerLoadout
                 {
-                    OfferableCards = PlaceholderCards.AutoGenerateCatalog(),
-                    PermanentBuyPile = PlaceholderCards.PermanentBuyPile(),
-                    StartingDeck = PlaceholderCards.StartingDeck()
+                    CardPacks = new[] { CardPacks.Load("PlaceholderCardPack") },
+                    PermanentBuyPile = CardPacks.Load("PlaceholderPermanentBuyPile"),
+                    StartingDeck = PlayerStartingDeck.StartingDeck()
                 },
                 GetNode<BattleAnimationPlayer>("%BattleAnimationPlayer"),
                 new Random((int)DateTimeOffset.Now.ToUnixTimeMilliseconds())
