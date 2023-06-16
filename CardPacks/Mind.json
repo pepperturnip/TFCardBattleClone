@@ -38,7 +38,14 @@
         "MaxTF": 26,
         "BrainCost": 7,
         "Brain": 4
+    },
+    {
+        "Name": "Mental Mastery",
+        "Image": "card70.webp",
+        "Class": "MentalMastery",
+        "MinTF": 49,
+        "MaxTF": 65,
+        "BrainCost": 5
     }
-    // TODO: Mental Masters
     // TODO: Triumph of the Mind
 ]
