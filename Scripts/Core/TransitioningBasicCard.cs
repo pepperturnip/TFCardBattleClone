@@ -31,50 +31,13 @@ namespace TFCardBattle.Core
         public State TransitionState {get; private set;} = State.Brain;
         public readonly int TransitionId;
 
-        public string Name
-        {
-            get
-            {
-                switch (TransitionState)
-                {
-                    case State.Brain: return "Brainstorm";
-                    case State.Heart: return "Flirt";
-                    case State.Sub: return "Submit";
-                    default: throw new IndexOutOfRangeException();
-                }
-            }
-        }
+        public string Name {get; set;}
 
-        public string Desc
-        {
-            get
-            {
-                switch (TransitionState)
-                {
-                    case State.Brain: return "Brain: +1";
-                    case State.Heart: return "Heart: + 1";
-                    case State.Sub: return "Sub: +1";
-                    default: throw new IndexOutOfRangeException();
-                }
-            }
-        }
+        public string Desc {get; private set;}
 
-        public string TexturePath
-        {
-            get
-            {
-                const string prefix = "res://ApolloSevenImages/cardgame/cards";
-                switch (TransitionState)
-                {
-                    case State.Brain: return $"{prefix}/card8.webp";
-                    case State.Heart: return $"{prefix}/card9.webp";
-                    case State.Sub: return $"{prefix}/card5.webp";
-                    default: throw new IndexOutOfRangeException();
-                }
-            }
-        }
+        public string TexturePath {get; set;}
 
-        public CardPurchaseStats PurchaseStats => default;
+        public CardPurchaseStats PurchaseStats {get; set;}
 
         public TransitioningBasicCard(int transitionId)
         {
@@ -135,6 +98,34 @@ namespace TFCardBattle.Core
         public void UpdateTransitionState(int playerTF)
         {
             TransitionState = TransitionStateAtTF(TransitionId, playerTF);
+
+            const string prefix = "res://ApolloSevenImages/cardgame/cards";
+            switch (TransitionState)
+            {
+                case State.Brain:
+                {
+                    Name = "Brainstorm";
+                    Desc = "Brain: +1";
+                    TexturePath = $"{prefix}/card8.webp";
+                    break;
+                }
+
+                case State.Heart:
+                {
+                    Name = "Flirt";
+                    Desc = "Heart: +1";
+                    TexturePath = $"{prefix}/card9.webp";
+                    break;
+                }
+
+                case State.Sub:
+                {
+                    Name = "Submit";
+                    Desc = "Sub: +1";
+                    TexturePath = $"{prefix}/card5.webp";
+                    break;
+                }
+            }
         }
 
         private static State TransitionStateAtTF(int transitionId, int playerTF)

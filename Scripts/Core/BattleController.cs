@@ -112,6 +112,7 @@ namespace TFCardBattle.Core
         public async Task StartTurn()
         {
             AssertBattleRunning();
+            TransitionBasicCards();
 
             await RefreshBuyPile();
 
@@ -159,9 +160,6 @@ namespace TFCardBattle.Core
                 EndBattle();
                 return;
             }
-
-            // Transition the basic cards
-            TransitionBasicCards();
 
             // Start the next turn
             State.TurnsElapsed++;

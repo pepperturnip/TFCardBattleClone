@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
 using TFCardBattle.Core;
@@ -14,31 +15,63 @@ namespace TFCardBattle.Godot
             string filePath = $"res://CardPacks/{name}.json";
             string rawJson = FileAccess.GetFileAsString(filePath);
             var parsedJson = JsonConvert.DeserializeObject<SimpleCardJson[]>(rawJson);
+            return parsedJson.Select(FromCardClass);
+        }
 
-            return parsedJson.Select(c => new SimpleCard
+        private static ICard FromCardClass(SimpleCardJson c)
+        {
+            string texturePath = $"res://ApolloSevenImages/cardgame/cards/{c.Image}";
+            var purchaseStats = new CardPurchaseStats
             {
-                Name = c.Name,
-                TexturePath = $"res://ApolloSevenImages/cardgame/cards/{c.Image}",
+                BrainCost = c.BrainCost,
+                HeartCost = c.HeartCost,
+                SubCost = c.SubCost,
 
-                BrainGain = c.Brain,
-                HeartGain = c.Heart,
-                SubGain = c.Sub,
-                ShieldGain = c.Shield,
-                Damage = c.Damage,
-                CardDraw = c.Draw,
+                MinTF = c.MinTF,
+                MaxTF = c.MaxTF,
 
-                PurchaseStats = new CardPurchaseStats
+                OfferWeight = 1
+            };
+
+            if (c.Class == "Simple")
+            {
+                return new SimpleCard
                 {
-                    BrainCost = c.BrainCost,
-                    HeartCost = c.HeartCost,
-                    SubCost = c.SubCost,
+                    Name = c.Name,
+                    TexturePath = texturePath,
+                    PurchaseStats = purchaseStats,
 
-                    MinTF = c.MinTF,
-                    MaxTF = c.MaxTF,
+                    BrainGain = c.Brain,
+                    HeartGain = c.Heart,
+                    SubGain = c.Sub,
+                    ShieldGain = c.Shield,
+                    Damage = c.Damage,
+                    CardDraw = c.Draw
+                };
+            }
 
-                    OfferWeight = 1
-                }
-            });
+            // Use reflection to create a card of this class
+            Type cardClassType = FindCardClass(c.Class);
+            if (cardClassType == null)
+                throw new NotImplementedException($"No class \"{c.Class}\" class found");
+
+            var card = (ICard)Activator.CreateInstance(cardClassType);
+            card.Name = c.Name;
+            card.TexturePath = texturePath;
+            card.PurchaseStats = purchaseStats;
+
+            return card;
+        }
+
+        private static Type FindCardClass(string cardClass)
+        {
+            // Only search for classes in the CardClasses namespace, for
+            // security.  We don't want nefarious dudes instantiating any C#
+            // class they want!
+            return Assembly.GetExecutingAssembly()
+                .DefinedTypes
+                .Where(t => t.Namespace == "TFCardBattle.Core.CardClasses")
+                .FirstOrDefault(t => t.Name == cardClass);
         }
 
         private class SimpleCardJson

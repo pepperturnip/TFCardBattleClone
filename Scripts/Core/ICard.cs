@@ -4,11 +4,11 @@ namespace TFCardBattle.Core
 {
     public interface ICard
     {
-        string Name {get;}
+        string Name {get; set;}
         string Desc {get;}
-        string TexturePath {get;}
+        string TexturePath {get; set;}
 
-        CardPurchaseStats PurchaseStats {get;}
+        CardPurchaseStats PurchaseStats {get; set;}
 
         Task Activate(BattleController battle);
     }
