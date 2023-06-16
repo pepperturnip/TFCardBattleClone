@@ -29,8 +29,7 @@ namespace TFCardBattle.Godot
 
                 MinTF = c.MinTF,
                 MaxTF = c.MaxTF,
-
-                OfferWeight = 1
+                OfferWeight = c.OfferWeight
             };
 
             if (c.Class == "Simple")
@@ -86,6 +85,7 @@ namespace TFCardBattle.Godot
             public int BrainCost {get; set;}
             public int HeartCost {get; set;}
             public int SubCost {get; set;}
+            public int OfferWeight {get; set;} = 1;
 
             public int Brain {get; set;}
             public int Heart {get; set;}
