@@ -202,6 +202,56 @@ namespace TFCardBattle.Core
             return _animationPlayer.RefreshBuyPile(State.BuyPile.ToArray());
         }
 
+        public Task ForgetBasicCard()
+        {
+            if (TryForgetFrom(State.Deck))
+            {
+                // TODO: Play an animation
+                return Task.CompletedTask;
+            }
+
+            if (TryForgetFrom(State.Discard))
+            {
+                // TODO: Play an animation
+                return Task.CompletedTask;
+            }
+
+            if (TryForgetFrom(State.CardsPlayedThisTurn))
+            {
+                // TODO: Play an animation
+                return Task.CompletedTask;
+            }
+
+            if (TryForgetFrom(State.Hand))
+            {
+                // TODO: Play an animation
+                return Task.CompletedTask;
+            }
+
+            // TODO: Show some message saying no card could be forgotten
+            return Task.CompletedTask;
+
+            bool IsBasic(ICard c)
+            {
+                // TODO: Allow Mysterious Pills to be deleted as well
+                return c is TransitioningBasicCard;
+            }
+
+            bool TryForgetFrom(List<ICard> cards)
+            {
+                for (int i = 0; i < cards.Count; i++)
+                {
+                    if (IsBasic(cards[i]))
+                    {
+                        cards.RemoveAt(i);
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        }
+
         public bool CanAffordCard(int buyPileIndex)
         {
             var card = State.BuyPile[buyPileIndex].PurchaseStats;
