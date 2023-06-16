@@ -1,40 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 using Godot;
+using Newtonsoft.Json;
 using TFCardBattle.Core;
 
 namespace TFCardBattle.Godot
 {
-    public static class PlaceholderCards
+    public static class CardPacks
     {
-        public static IEnumerable<ICard> StartingDeck()
+        public static IEnumerable<ICard> Load(string name)
         {
-            var mysteriousPills = new SimpleCard
-            {
-                Name = "Mysterious Pills",
-                TexturePath = "res://ApolloSevenImages/cardgame/cards/card7.webp",
-                Damage = 1
-            };
-
-            for (int i = 0; i < 8; i++)
-            {
-                yield return new TransitioningBasicCard(i);
-            }
-
-            yield return mysteriousPills;
-            yield return mysteriousPills;
-        }
-
-        public static IEnumerable<ICard> AutoGenerateCatalog()
-            => ParseJson("res://CardPacks/PlaceholderCards.json");
-
-        public static IEnumerable<ICard> PermanentBuyPile()
-            => ParseJson("res://CardPacks/PlaceholderPermanentBuyPile.json");
-
-        private static IEnumerable<ICard> ParseJson(string filePath)
-        {
+            string filePath = $"res://CardPacks/{name}.json";
             string rawJson = FileAccess.GetFileAsString(filePath);
             var parsedJson = JsonConvert.DeserializeObject<SimpleCardJson[]>(rawJson);
 
