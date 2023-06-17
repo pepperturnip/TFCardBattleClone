@@ -13,6 +13,9 @@ namespace TFCardBattle.Godot
 {
     public static class CardPacks
     {
+        private static readonly Dictionary<string, Type> _cardClassCache = new Dictionary<string, Type>();
+        private static readonly Dictionary<string, Type> _consumableClassCache = new Dictionary<string, Type>();
+
         public static IEnumerable<ICard> Load(string name)
         {
             string filePath = $"res://CardPacks/{name}.json";
@@ -44,7 +47,7 @@ namespace TFCardBattle.Godot
                 : Array.Empty<string>();
 
             IConsumable[] consumables = consumableIds
-                .Select(FromConsumableClass)
+                .Select(ParseConsumable)
                 .ToArray();
 
             obj.Remove("Consumables");
@@ -58,11 +61,16 @@ namespace TFCardBattle.Godot
         {
             var header = obj.ToObject<CardHeader>();
 
-            Type cardClassType = FindCardClass(className);
-            if (cardClassType == null)
+            var type = FindClass(
+                className,
+                "TFCardBattle.Core.CardClasses",
+                _cardClassCache
+            );
+
+            if (type == null)
                 throw new NotImplementedException($"No \"{className}\" card class found");
 
-            ICard card = (ICard)obj.ToObject(cardClassType);
+            ICard card = (ICard)obj.ToObject(type);
             card.Name = header.Name;
             card.TexturePath = header.TexturePath;
             card.PurchaseStats = header.PurchaseStats;
@@ -70,31 +78,39 @@ namespace TFCardBattle.Godot
             return card;
         }
 
-        private static Type FindCardClass(string cardClass)
+        private static IConsumable ParseConsumable(string className)
         {
-            // Only search for classes in the CardClasses namespace, for
-            // security.  We don't want nefarious dudes instantiating any C#
-            // class they want!
-            return Assembly.GetExecutingAssembly()
-                .DefinedTypes
-                .Where(t => t.Namespace == "TFCardBattle.Core.CardClasses")
-                .FirstOrDefault(t => t.Name == cardClass);
+            var type = FindClass(
+                className,
+                "TFCardBattle.Core.ConsumableClasses",
+                _consumableClassCache
+            );
+
+            if (type == null)
+                throw new NotImplementedException($"No \"{className}\" consumable class found");
+
+            return (IConsumable)Activator.CreateInstance(type);
         }
 
-        private static IConsumable FromConsumableClass(string consumableClass)
+        private static Type FindClass(
+            string className,
+            string nameSpace,
+            Dictionary<string, Type> cache
+        )
         {
-            // Only search for classes in the ConsumableClasses namespace, for
+            if (cache.TryGetValue(className, out var result))
+                return result;
+
+            // Only search for classes in the the given namespace, for
             // security.  We don't want nefarious dudes instantiating any C#
             // class they want!
             var type = Assembly.GetExecutingAssembly()
                 .DefinedTypes
-                .Where(t => t.Namespace == "TFCardBattle.Core.ConsumableClasses")
-                .FirstOrDefault(t => t.Name == consumableClass);
+                .Where(t => t.Namespace == nameSpace)
+                .FirstOrDefault(t => t.Name == className);
 
-            if (type == null)
-                throw new NotImplementedException($"No \"{consumableClass}\" consumable class found");
-
-            return (IConsumable)Activator.CreateInstance(type);
+            cache[className] = type;
+            return type;
         }
 
         private class CardHeader
