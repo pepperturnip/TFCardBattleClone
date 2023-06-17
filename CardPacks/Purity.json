@@ -1,21 +1,38 @@
 [
     {
         "Name": "Purity of Mind",
-        "Class": "DowngradeIfHeart",
         "MinTF": 0,
         "MaxTF": 13,
         "BrainCost": 4,
 
+        "Class": "DowngradeIfHeart",
         "StrongVersion":
         {
             "Image": "card14a.webp",
             "Brain": 3
         },
-
         "WeakVersion":
         {
             "Image": "card14b.webp",
             "Brain": 1
+        }
+    },
+    {
+        "Name": "Strategic Operation",
+        "MinTF": 3,
+        "MaxTF": 19,
+        "BrainCost": 3,
+
+        "Class": "DowngradeIfHeart",
+        "StrongVersion":
+        {
+            "Image": "card26a.webp",
+            "Damage": 3
+        },
+        "WeakVersion":
+        {
+            "Image": "card26b.webp",
+            "Damage": 1
         }
     }
 ]
