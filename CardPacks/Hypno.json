@@ -23,7 +23,7 @@
         "MinTF": 6,
         "MaxTF": 22,
         "BrainCost": 6,
-        "Damage": 2
+        "DamageMult": 2
     },
     {
         "Name": "Evil Therapist",

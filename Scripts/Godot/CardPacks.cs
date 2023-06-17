@@ -32,14 +32,6 @@ namespace TFCardBattle.Godot
             if (className == "Simple")
                 return ParseSimple(obj);
 
-            if (className == "MultiplyResources")
-                return ParseMultiplyResources(obj);
-
-            if (className == "TransferResources")
-                return ParseTransferResources(obj);
-
-            // We don't have any bespoke way to parse this class, so just use
-            // reflection to look it up and instantiate it.
             return ParseWithReflection(obj);
         }
 
@@ -54,10 +46,10 @@ namespace TFCardBattle.Godot
                 TexturePath = header.TexturePath,
                 PurchaseStats = header.PurchaseStats,
 
-                BrainGain = c.Brain ?? 0,
-                HeartGain = c.Heart ?? 0,
-                SubGain = c.Sub ?? 0,
-                ShieldGain = c.Shield ?? 0,
+                Brain = c.Brain ?? 0,
+                Heart = c.Heart ?? 0,
+                Sub = c.Sub ?? 0,
+                Shield = c.Shield ?? 0,
                 Damage = c.Damage ?? 0,
                 CardDraw = c.Draw ?? 0,
                 SelfHeal = c.SelfHeal ?? 0,
@@ -65,41 +57,6 @@ namespace TFCardBattle.Godot
                 Consumables = c.Consumables == null
                     ? Array.Empty<IConsumable>()
                     : c.Consumables.Select(FromConsumableClass).ToArray()
-            };
-        }
-
-        private static ICard ParseMultiplyResources(JObject obj)
-        {
-            var c = obj.ToObject<MultiplyResourcesJson>();
-            var header = obj.ToObject<CardHeader>();
-
-            return new CardClasses.MultiplyResources
-            {
-                Name = header.Name,
-                TexturePath = header.TexturePath,
-                PurchaseStats = header.PurchaseStats,
-
-                BrainMult = c.Brain ?? 1,
-                HeartMult = c.Heart ?? 1,
-                SubMult = c.Sub ?? 1,
-                ShieldMult = c.Shield ?? 1,
-                DamageMult = c.Damage ?? 1
-            };
-        }
-
-        private static ICard ParseTransferResources(JObject obj)
-        {
-            var c = obj.ToObject<TransferResourcesJson>();
-            var header = obj.ToObject<CardHeader>();
-
-            return new CardClasses.TransferResources
-            {
-                Name = header.Name,
-                TexturePath = header.TexturePath,
-                PurchaseStats = header.PurchaseStats,
-
-                From = c.From,
-                To = c.To
             };
         }
 
@@ -112,7 +69,7 @@ namespace TFCardBattle.Godot
             if (cardClassType == null)
                 throw new NotImplementedException($"No \"{className}\" card class found");
 
-            var card = (ICard)Activator.CreateInstance(cardClassType);
+            ICard card = (ICard)obj.ToObject(cardClassType);
             card.Name = header.Name;
             card.TexturePath = header.TexturePath;
             card.PurchaseStats = header.PurchaseStats;
@@ -185,21 +142,6 @@ namespace TFCardBattle.Godot
             public int? SelfHeal {get; set;}
 
             public string[] Consumables {get; set;}
-        }
-
-        private class MultiplyResourcesJson
-        {
-            public int? Brain {get; set;}
-            public int? Heart {get; set;}
-            public int? Sub {get; set;}
-            public int? Damage {get; set;}
-            public int? Shield {get; set;}
-        }
-
-        private class TransferResourcesJson
-        {
-            public ResourceType From {get; set;}
-            public ResourceType To {get; set;}
         }
     }
 }

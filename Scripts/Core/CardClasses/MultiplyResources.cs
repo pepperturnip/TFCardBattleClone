@@ -12,11 +12,11 @@ namespace TFCardBattle.Core.CardClasses
         public string Desc => GetDescription();
         public string TexturePath {get; set;}
 
-        public int BrainMult {get; set;}
-        public int HeartMult {get; set;}
-        public int SubMult {get; set;}
-        public int ShieldMult {get; set;}
-        public int DamageMult {get; set;}
+        public int BrainMult {get; set;} = 1;
+        public int HeartMult {get; set;} = 1;
+        public int SubMult {get; set;} = 1;
+        public int ShieldMult {get; set;} = 1;
+        public int DamageMult {get; set;} = 1;
 
         public CardPurchaseStats PurchaseStats {get; set;}
 
