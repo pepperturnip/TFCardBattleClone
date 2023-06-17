@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://tm66spq6dn0h"]
+[gd_scene load_steps=16 format=3 uid="uid://tm66spq6dn0h"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/BattleUI.cs" id="1_s1rg7"]
 [ext_resource type="PackedScene" uid="uid://dao0w4slv7603" path="res://Scenes/UIWidgets/CardRowDisplay.tscn" id="3_wgfut"]
 [ext_resource type="Script" path="res://Scripts/Godot/BattleAnimationPlayer.cs" id="4_uf642"]
 [ext_resource type="Theme" uid="uid://ds2nh3axu3wjs" path="res://Themes/TFBarTheme.tres" id="5_24u5e"]
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/TFBar.cs" id="6_02prk"]
+[ext_resource type="PackedScene" uid="uid://pwc8q4s75ea5" path="res://Scenes/UIWidgets/ForgetAnimationPlayer.tscn" id="7_s5ny6"]
 
 [sub_resource type="Animation" id="Animation_dsfeu"]
 resource_name = "DamageEnemy"
@@ -279,6 +280,21 @@ libraries = {
 "": SubResource("AnimationLibrary_4nmwr")
 }
 
+[node name="ForgottenCardPos" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="DamageAnimationLabelLayout" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -379,6 +395,19 @@ grow_vertical = 0
 text = "0 / 100
 "
 horizontal_alignment = 1
+
+[node name="ForgetAnimationPlayerHolder" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ForgetAnimationPlayer" parent="ForgetAnimationPlayerHolder" instance=ExtResource("7_s5ny6")]
+unique_name_in_owner = true
 
 [connection signal="CardClicked" from="HandHolder/HandDisplay" to="." method="OnPlayCardClicked"]
 [connection signal="CardClicked" from="BuyPileHolder/BuyPileDisplay" to="." method="OnBuyCardClicked"]

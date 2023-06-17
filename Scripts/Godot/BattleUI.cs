@@ -34,7 +34,11 @@ namespace TFCardBattle.Godot
             Battle = new BattleController(
                 new PlayerLoadout
                 {
-                    CardPacks = new[] { CardPacks.Load("PlaceholderCardPack") },
+                    CardPacks = new[]
+                    {
+                        CardPacks.Load("PlaceholderCardPack"),
+                        CardPacks.Load("Mind")
+                    },
                     PermanentBuyPile = CardPacks.Load("PlaceholderPermanentBuyPile"),
                     StartingDeck = PlayerStartingDeck.StartingDeck()
                 },

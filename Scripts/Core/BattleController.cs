@@ -70,6 +70,7 @@ namespace TFCardBattle.Core
             var card = _rng.PickFrom(State.Deck);
             State.Deck.Remove(card);
             State.Hand.Add(card);
+            State.DrawCount++;
 
             await _animationPlayer.DrawCard(card);
         }
@@ -112,6 +113,7 @@ namespace TFCardBattle.Core
         public async Task StartTurn()
         {
             AssertBattleRunning();
+            TransitionBasicCards();
 
             await RefreshBuyPile();
 
@@ -133,6 +135,7 @@ namespace TFCardBattle.Core
             {
                 await DrawCard();
             }
+            State.DrawCount = 0;
         }
 
         public async Task EndTurn()
@@ -159,9 +162,6 @@ namespace TFCardBattle.Core
                 EndBattle();
                 return;
             }
-
-            // Transition the basic cards
-            TransitionBasicCards();
 
             // Start the next turn
             State.TurnsElapsed++;
@@ -200,6 +200,83 @@ namespace TFCardBattle.Core
             State.BuyPile.Add(permanentCard);
 
             return _animationPlayer.RefreshBuyPile(State.BuyPile.ToArray());
+        }
+
+        public async Task ForgetBasicCard()
+        {
+            if (await TryForgetFrom(State.Deck))
+            return;
+
+            if (await TryForgetFrom(State.Discard))
+                return;
+
+            if (await TryForgetFrom(State.CardsPlayedThisTurn))
+                return;
+
+            if (await TryForgetFrom(State.Hand))
+                return;
+
+            // TODO: Show some message saying no card could be forgotten
+
+            bool IsBasic(ICard c)
+            {
+                // TODO: Allow Mysterious Pills to be deleted as well
+                return c is TransitioningBasicCard;
+            }
+
+            async Task<bool> TryForgetFrom(List<ICard> cards)
+            {
+                for (int i = 0; i < cards.Count; i++)
+                {
+                    var card = cards[i];
+
+                    if (IsBasic(card))
+                    {
+                        cards.RemoveAt(i);
+                        await _animationPlayer.ForgetCard(card);
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        }
+
+        public async Task TakeExtraTurn()
+        {
+            // For the Triumph of the Mind card.
+            //
+            // What does an "extra turn" mean in this context?
+            // Well, according to the original game's source code, it means
+            // you discard your hand and in-play cards, and then draw a fresh
+            // hand.  It also resets your draw-count to 0.
+            //
+            // Anything else that would normally trigger at the end of a turn,
+            // such as enemy traits, body mods, etc. will not activate.
+            // You also don't lose any of your resources, nor do you deal any
+            // of the TF damage you've built up.  Nor does it reset the buy pile,
+            // either.
+            // It literally just moves cards around and nothing else.
+            //
+            // It also seems to not trigger enemy traits that damage you when
+            // you draw X-many cards in one turn.  That's because the original
+            // game doesn't count this as "drawing" for those purposes.
+            TransferAllCards(State.CardsPlayedThisTurn, State.Discard);
+            TransferAllCards(State.Hand, State.Discard);
+            await _animationPlayer.DiscardHand();
+
+            for (int i = 0; i < StartingHandSize; i++)
+            {
+                await DrawCard();
+            }
+            // Fun fact: the original game shuffles your deck _after_ you draw
+            // 5, instead of before.  In my opinion, that sounds like a bug, so
+            // we're not doing that here.  Instead, we let DrawCard() do the
+            // shuffling when the deck runs out.
+            State.DrawCount = 0;
+
+            // TODO: Maybe find a way to reuse the code from StartTurn()?
+            // Not sure if that's a good idea yet or not.
         }
 
         public bool CanAffordCard(int buyPileIndex)
@@ -241,12 +318,7 @@ namespace TFCardBattle.Core
 
         private void TransitionBasicCards()
         {
-            var allCards = State.Deck
-                .Concat(State.Hand)
-                .Concat(State.Discard)
-                .Concat(State.CardsPlayedThisTurn);
-
-            foreach (var card in allCards)
+            foreach (var card in State.OwnedCards)
             {
                 if (card is TransitioningBasicCard transCard)
                 {

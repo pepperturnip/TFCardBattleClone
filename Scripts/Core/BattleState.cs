@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TFCardBattle.Core
 {
@@ -25,10 +26,28 @@ namespace TFCardBattle.Core
         public int Shield = 0;
         public int Damage = 0;
 
+        /// <summary>
+        /// The number of extra cards drawn this turn.
+        /// Used for cards that have different effects depending on how much
+        /// you've drawn, as well as for enemy traits that penalize you for
+        /// drawing too much.
+        /// </summary>
+        public int DrawCount = 0;
+
         public List<ICard> Deck = new List<ICard>();
         public List<ICard> Hand = new List<ICard>();
         public List<ICard> CardsPlayedThisTurn = new List<ICard>();
         public List<ICard> Discard = new List<ICard>();
+
+        /// <summary>
+        /// All cards that the player owns, whether they're in the deck, hand,
+        /// discard pile, or in-play.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ICard> OwnedCards => Deck
+                .Concat(Hand)
+                .Concat(Discard)
+                .Concat(CardsPlayedThisTurn);
 
         /// <summary>
         /// The cards currently on offer to the player this turn.

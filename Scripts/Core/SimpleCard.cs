@@ -18,6 +18,7 @@ namespace TFCardBattle.Core
         public int ShieldGain {get; set;}
         public int Damage {get; set;}
         public int CardDraw {get; set;}
+        public int SelfHeal {get; set;}
 
         public CardPurchaseStats PurchaseStats {get; set;}
 
@@ -31,6 +32,9 @@ namespace TFCardBattle.Core
             battle.State.Sub += SubGain;
             battle.State.Shield += ShieldGain;
             battle.State.Damage += Damage;
+
+            // TODO: play a self-heal animation
+            battle.State.PlayerTF -= SelfHeal;
 
             for (int i = 0; i < CardDraw; i++)
             {
@@ -57,6 +61,7 @@ namespace TFCardBattle.Core
             LabelFor("Shield", ShieldGain);
             LabelFor("TF", Damage);
             LabelFor("Draw", CardDraw);
+            LabelFor("Self heal", SelfHeal);
 
             _description = builder.ToString();
             _descriptionHash = newHash;
