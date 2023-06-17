@@ -34,5 +34,23 @@
             "Image": "card26b.webp",
             "Damage": 1
         }
+    },
+    {
+        "Name": "Mental Shield",
+        "MinTF": 9,
+        "MaxTF": 25,
+        "BrainCost": 3,
+
+        "Class": "DowngradeIfHeart",
+        "StrongVersion":
+        {
+            "Image": "card43a.webp",
+            "Shield": 5
+        },
+        "WeakVersion":
+        {
+            "Image": "card43b.webp",
+            "Shield": 1
+        }
     }
 ]
