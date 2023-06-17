@@ -1,12 +1,12 @@
 using System;
 using System.Threading.Tasks;
 
-namespace TFCardBattle.Core
+namespace TFCardBattle.Core.CardClasses
 {
     /// <summary>
     /// A card that merely grants resources, without any other special effects.
     /// </summary>
-    public class SimpleCard : ICard
+    public class Simple : ICard
     {
         public string Name {get; set;}
         public string Desc => GetDescription();

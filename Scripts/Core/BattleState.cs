@@ -63,5 +63,31 @@ namespace TFCardBattle.Core
             PlayerLoadout = loadout;
             Deck.AddRange(loadout.StartingDeck);
         }
+
+        public int GetResource(ResourceType resource)
+        {
+            switch (resource)
+            {
+                case ResourceType.Brain: return Brain;
+                case ResourceType.Heart: return Heart;
+                case ResourceType.Sub: return Sub;
+                case ResourceType.Damage: return Damage;
+                case ResourceType.Shield: return Shield;
+                default: throw new NotImplementedException();
+            }
+        }
+
+        public void SetResource(ResourceType resource, int value)
+        {
+            switch (resource)
+            {
+                case ResourceType.Brain: Brain = value; break;
+                case ResourceType.Heart: Heart = value; break;
+                case ResourceType.Sub: Sub = value; break;
+                case ResourceType.Damage: Damage = value; break;
+                case ResourceType.Shield: Shield = value; break;
+                default: throw new NotImplementedException();
+            }
+        }
     }
 }

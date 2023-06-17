@@ -4,7 +4,10 @@ using System.Linq;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using TFCardBattle.Core;
+
+using CardClasses = TFCardBattle.Core.CardClasses;
 
 namespace TFCardBattle.Godot
 {
@@ -14,71 +17,105 @@ namespace TFCardBattle.Godot
         {
             string filePath = $"res://CardPacks/{name}.json";
             string rawJson = FileAccess.GetFileAsString(filePath);
-            var parsedJson = JsonConvert.DeserializeObject<SimpleCardJson[]>(rawJson);
-            return parsedJson.Select(FromCardClass);
+
+            return JArray.Parse(rawJson)
+                .Cast<JObject>()
+                .Select(FromJObject);
         }
 
-        private static ICard FromCardClass(SimpleCardJson c)
+        private static ICard FromJObject(JObject obj)
         {
-            string texturePath = $"res://ApolloSevenImages/cardgame/cards/{c.Image}";
-            var purchaseStats = new CardPurchaseStats
-            {
-                BrainCost = c.BrainCost,
-                HeartCost = c.HeartCost,
-                SubCost = c.SubCost,
+            string className = obj.ContainsKey("Class")
+                ? (string)obj["Class"]
+                : "Simple";
 
-                MinTF = c.MinTF,
-                MaxTF = c.MaxTF,
-                OfferWeight = c.OfferWeight
+            if (className == "Simple")
+                return ParseSimple(obj);
+
+            if (className == "MultiplyResources")
+                return ParseMultiplyResources(obj);
+
+            if (className == "TransferResources")
+                return ParseTransferResources(obj);
+
+            // We don't have any bespoke way to parse this class, so just use
+            // reflection to look it up and instantiate it.
+            return ParseWithReflection(obj);
+        }
+
+        private static ICard ParseSimple(JObject obj)
+        {
+            var c = obj.ToObject<SimpleJson>();
+            var header = obj.ToObject<CardHeader>();
+
+            return new CardClasses.Simple
+            {
+                Name = header.Name,
+                TexturePath = header.TexturePath,
+                PurchaseStats = header.PurchaseStats,
+
+                BrainGain = c.Brain ?? 0,
+                HeartGain = c.Heart ?? 0,
+                SubGain = c.Sub ?? 0,
+                ShieldGain = c.Shield ?? 0,
+                Damage = c.Damage ?? 0,
+                CardDraw = c.Draw ?? 0,
+                SelfHeal = c.SelfHeal ?? 0,
+
+                Consumables = c.Consumables == null
+                    ? Array.Empty<IConsumable>()
+                    : c.Consumables.Select(FromConsumableClass).ToArray()
             };
+        }
 
-            if (c.Class == "Simple")
+        private static ICard ParseMultiplyResources(JObject obj)
+        {
+            var c = obj.ToObject<MultiplyResourcesJson>();
+            var header = obj.ToObject<CardHeader>();
+
+            return new CardClasses.MultiplyResources
             {
-                return new SimpleCard
-                {
-                    Name = c.Name,
-                    TexturePath = texturePath,
-                    PurchaseStats = purchaseStats,
+                Name = header.Name,
+                TexturePath = header.TexturePath,
+                PurchaseStats = header.PurchaseStats,
 
-                    BrainGain = c.Brain ?? 0,
-                    HeartGain = c.Heart ?? 0,
-                    SubGain = c.Sub ?? 0,
-                    ShieldGain = c.Shield ?? 0,
-                    Damage = c.Damage ?? 0,
-                    CardDraw = c.Draw ?? 0,
-                    SelfHeal = c.SelfHeal ?? 0,
+                BrainMult = c.Brain ?? 1,
+                HeartMult = c.Heart ?? 1,
+                SubMult = c.Sub ?? 1,
+                ShieldMult = c.Shield ?? 1,
+                DamageMult = c.Damage ?? 1
+            };
+        }
 
-                    Consumables = c.Consumables == null
-                        ? Array.Empty<IConsumable>()
-                        : c.Consumables.Select(FromConsumableClass).ToArray()
-                };
-            }
+        private static ICard ParseTransferResources(JObject obj)
+        {
+            var c = obj.ToObject<TransferResourcesJson>();
+            var header = obj.ToObject<CardHeader>();
 
-            if (c.Class == "MultiplyResources")
+            return new CardClasses.TransferResources
             {
-                return new TFCardBattle.Core.CardClasses.MultiplyResources
-                {
-                    Name = c.Name,
-                    TexturePath = texturePath,
-                    PurchaseStats = purchaseStats,
+                Name = header.Name,
+                TexturePath = header.TexturePath,
+                PurchaseStats = header.PurchaseStats,
 
-                    BrainMult = c.Brain ?? 1,
-                    HeartMult = c.Heart ?? 1,
-                    SubMult = c.Sub ?? 1,
-                    ShieldMult = c.Shield ?? 1,
-                    DamageMult = c.Damage ?? 1
-                };
-            }
+                From = c.From,
+                To = c.To
+            };
+        }
 
-            // Use reflection to create a card of this class
-            Type cardClassType = FindCardClass(c.Class);
+        private static ICard ParseWithReflection(JObject obj)
+        {
+            var className = (string)obj["Class"];
+            var header = obj.ToObject<CardHeader>();
+
+            Type cardClassType = FindCardClass(className);
             if (cardClassType == null)
-                throw new NotImplementedException($"No \"{c.Class}\" card class found");
+                throw new NotImplementedException($"No \"{className}\" card class found");
 
             var card = (ICard)Activator.CreateInstance(cardClassType);
-            card.Name = c.Name;
-            card.TexturePath = texturePath;
-            card.PurchaseStats = purchaseStats;
+            card.Name = header.Name;
+            card.TexturePath = header.TexturePath;
+            card.PurchaseStats = header.PurchaseStats;
 
             return card;
         }
@@ -110,11 +147,10 @@ namespace TFCardBattle.Godot
             return (IConsumable)Activator.CreateInstance(type);
         }
 
-        private class SimpleCardJson
+        private class CardHeader
         {
             public string Name {get; set;}
             public string Image {get; set;}
-            public string Class {get; set;}
 
             public int MinTF {get; set;}
             public int MaxTF {get; set;}
@@ -124,6 +160,22 @@ namespace TFCardBattle.Godot
             public int SubCost {get; set;}
             public int OfferWeight {get; set;} = 1;
 
+            public string TexturePath => $"res://ApolloSevenImages/cardgame/cards/{Image}";
+
+            public CardPurchaseStats PurchaseStats => new CardPurchaseStats
+            {
+                BrainCost = BrainCost,
+                HeartCost = HeartCost,
+                SubCost = SubCost,
+
+                MinTF = MinTF,
+                MaxTF = MaxTF,
+                OfferWeight = OfferWeight
+            };
+        }
+
+        private class SimpleJson
+        {
             public int? Brain {get; set;}
             public int? Heart {get; set;}
             public int? Sub {get; set;}
@@ -133,6 +185,21 @@ namespace TFCardBattle.Godot
             public int? SelfHeal {get; set;}
 
             public string[] Consumables {get; set;}
+        }
+
+        private class MultiplyResourcesJson
+        {
+            public int? Brain {get; set;}
+            public int? Heart {get; set;}
+            public int? Sub {get; set;}
+            public int? Damage {get; set;}
+            public int? Shield {get; set;}
+        }
+
+        private class TransferResourcesJson
+        {
+            public ResourceType From {get; set;}
+            public ResourceType To {get; set;}
         }
     }
 }

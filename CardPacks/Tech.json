@@ -2,7 +2,6 @@
     {
         "Name": "Spreadsheet Master",
         "Image": "card18.webp",
-        "Class": "Simple",
         "MinTF": 0,
         "MaxTF": 9,
         "BrainCost": 2,
@@ -12,7 +11,6 @@
     {
         "Name": "Firewall",
         "Image": "card15.webp",
-        "Class": "Simple",
         "MinTF": 0,
         "MaxTF": 15,
         "BrainCost": 3,
@@ -21,7 +19,6 @@
     {
         "Name": "L33t Hacker",
         "Image": "card28.webp",
-        "Class": "Simple",
         "MinTF": 5,
         "MaxTF": 21,
         "BrainCost": 4,
@@ -31,7 +28,6 @@
     {
         "Name": "Counter Measures",
         "Image": "card21.webp",
-        "Class": "Simple",
         "MinTF": 13,
         "MaxTF": 29,
         "BrainCost": 4,
