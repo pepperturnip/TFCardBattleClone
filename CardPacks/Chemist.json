@@ -1,0 +1,21 @@
+[
+    {
+        "Name": "Home Chemistry",
+        "Image": "card11.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 11,
+        "BrainCost": 4,
+        "Damage": 1,
+        "Consumables": ["MinorShieldPotion"]
+    },
+    {
+        "Name": "Scientific Advisor",
+        "Image": "card22.webp",
+        "Class": "Simple",
+        "MinTF": 1,
+        "MaxTF": 17,
+        "BrainCost": 3,
+        "Consumables": ["MinorBrainPotion", "MinorBrainPotion"]
+    }
+]
