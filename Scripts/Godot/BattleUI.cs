@@ -38,6 +38,7 @@ namespace TFCardBattle.Godot
                     {
                         CardPacks.Load("PlaceholderCardPack"),
                         CardPacks.Load("Mind"),
+                        CardPacks.Load("Tech"),
                         CardPacks.Load("Hypno")
                     },
                     PermanentBuyPile = CardPacks.Load("PlaceholderPermanentBuyPile"),

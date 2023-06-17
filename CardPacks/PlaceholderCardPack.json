@@ -1,44 +1,5 @@
 ﻿[
     {
-        "Name": "Spreadsheet Master",
-        "Image": "card18.webp",
-        "Class": "Simple",
-        "MinTF": 0,
-        "MaxTF": 42,
-        "BrainCost": 2,
-        "Brain": 1,
-        "Shield": 1
-    },
-    {
-        "Name": "Firewall",
-        "Image": "card15.webp",
-        "Class": "Simple",
-        "MinTF": 0,
-        "MaxTF": 42,
-        "BrainCost": 3,
-        "Shield": 3
-    },
-    {
-        "Name": "L33t Hacker",
-        "Image": "card28.webp",
-        "Class": "Simple",
-        "MinTF": 0,
-        "MaxTF": 42,
-        "BrainCost": 4,
-        "Brain": 2,
-        "Shield": 2
-    },
-    {
-        "Name": "Counter Measures",
-        "Image": "card21.webp",
-        "Class": "Simple",
-        "MinTF": 0,
-        "MaxTF": 42,
-        "BrainCost": 4,
-        "Damage": 2,
-        "Shield": 2
-    },
-    {
         "Name": "Research Lab(sorta)",
         "Image": "card51.webp",
         "Class": "Simple",
