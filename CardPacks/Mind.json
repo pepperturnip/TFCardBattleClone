@@ -46,6 +46,14 @@
         "MinTF": 49,
         "MaxTF": 65,
         "BrainCost": 5
+    },
+    {
+        "Name": "Triumph of the Mind",
+        "Image": "card64a.webp",
+        "Class": "TriumphOfTheMind",
+        "MinTF": 55,
+        "MaxTF": 71,
+        "BrainCost": 8
     }
-    // TODO: Triumph of the Mind
+    // TODO: Corrective Surgery
 ]
