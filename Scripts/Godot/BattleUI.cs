@@ -24,6 +24,7 @@ namespace TFCardBattle.Godot
 
         private CardRowDisplay _handDisplay => GetNode<CardRowDisplay>("%HandDisplay");
         private CardRowDisplay _buyPileDisplay => GetNode<CardRowDisplay>("%BuyPileDisplay");
+        private ConsumablesDisplay _consumablesDisplay => GetNode<ConsumablesDisplay>("%ConsumablesDisplay");
 
 
         private BattleController Battle;
@@ -39,7 +40,8 @@ namespace TFCardBattle.Godot
                         CardPacks.Load("PlaceholderCardPack"),
                         CardPacks.Load("Mind"),
                         CardPacks.Load("Tech"),
-                        CardPacks.Load("Hypno")
+                        CardPacks.Load("Hypno"),
+                        CardPacks.Load("Chemist")
                     },
                     PermanentBuyPile = CardPacks.Load("PlaceholderPermanentBuyPile"),
                     StartingDeck = PlayerStartingDeck.StartingDeck()
@@ -78,6 +80,12 @@ namespace TFCardBattle.Godot
             RefreshDisplay();
         }
 
+        public async void OnUseConsumableClicked(int index)
+        {
+            await Battle.UseConsumable(index);
+            RefreshDisplay();
+        }
+
         private void RefreshDisplay()
         {
             _playerTFBar.MaxValue = Battle.State.PlayerMaxTF;
@@ -96,6 +104,7 @@ namespace TFCardBattle.Godot
 
             _handDisplay.Refresh(Battle.State.Hand.ToArray());
             _buyPileDisplay.Refresh(Battle.State.BuyPile.ToArray());
+            _consumablesDisplay.Refresh(Battle.State.Consumables.ToArray());
         }
 
         private void EnableInput(bool enabled)

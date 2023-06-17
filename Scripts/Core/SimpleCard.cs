@@ -19,6 +19,7 @@ namespace TFCardBattle.Core
         public int Damage {get; set;}
         public int CardDraw {get; set;}
         public int SelfHeal {get; set;}
+        public IConsumable[] Consumables {get; set;} = Array.Empty<IConsumable>();
 
         public CardPurchaseStats PurchaseStats {get; set;}
 
@@ -32,6 +33,11 @@ namespace TFCardBattle.Core
             battle.State.Sub += SubGain;
             battle.State.Shield += ShieldGain;
             battle.State.Damage += Damage;
+
+            foreach (var consumable in Consumables)
+            {
+                await battle.AddConsumable(consumable);
+            }
 
             // TODO: play a self-heal animation
             battle.State.PlayerTF -= SelfHeal;
@@ -63,6 +69,11 @@ namespace TFCardBattle.Core
             LabelFor("Draw", CardDraw);
             LabelFor("Self heal", SelfHeal);
 
+            foreach (var c in Consumables)
+            {
+                builder.AppendLine($"+1 {c.GetType().Name}");
+            }
+
             _description = builder.ToString();
             _descriptionHash = newHash;
             return _description;
@@ -76,6 +87,13 @@ namespace TFCardBattle.Core
                 hash.Add(ShieldGain);
                 hash.Add(Damage);
                 hash.Add(CardDraw);
+
+                global::Godot.GD.Print($"{Name}'s consumables: {Consumables}");
+
+                foreach (var c in Consumables)
+                {
+                    hash.Add(c.GetType().Name);
+                }
 
                 return hash.ToHashCode();
             }

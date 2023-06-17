@@ -46,7 +46,11 @@ namespace TFCardBattle.Godot
                     ShieldGain = c.Shield ?? 0,
                     Damage = c.Damage ?? 0,
                     CardDraw = c.Draw ?? 0,
-                    SelfHeal = c.SelfHeal ?? 0
+                    SelfHeal = c.SelfHeal ?? 0,
+
+                    Consumables = c.Consumables == null
+                        ? Array.Empty<IConsumable>()
+                        : c.Consumables.Select(FromConsumableClass).ToArray()
                 };
             }
 
@@ -69,7 +73,7 @@ namespace TFCardBattle.Godot
             // Use reflection to create a card of this class
             Type cardClassType = FindCardClass(c.Class);
             if (cardClassType == null)
-                throw new NotImplementedException($"No class \"{c.Class}\" class found");
+                throw new NotImplementedException($"No \"{c.Class}\" card class found");
 
             var card = (ICard)Activator.CreateInstance(cardClassType);
             card.Name = c.Name;
@@ -88,6 +92,22 @@ namespace TFCardBattle.Godot
                 .DefinedTypes
                 .Where(t => t.Namespace == "TFCardBattle.Core.CardClasses")
                 .FirstOrDefault(t => t.Name == cardClass);
+        }
+
+        private static IConsumable FromConsumableClass(string consumableClass)
+        {
+            // Only search for classes in the ConsumableClasses namespace, for
+            // security.  We don't want nefarious dudes instantiating any C#
+            // class they want!
+            var type = Assembly.GetExecutingAssembly()
+                .DefinedTypes
+                .Where(t => t.Namespace == "TFCardBattle.Core.ConsumableClasses")
+                .FirstOrDefault(t => t.Name == consumableClass);
+
+            if (type == null)
+                throw new NotImplementedException($"No \"{consumableClass}\" consumable class found");
+
+            return (IConsumable)Activator.CreateInstance(type);
         }
 
         private class SimpleCardJson
@@ -111,6 +131,8 @@ namespace TFCardBattle.Godot
             public int? Shield {get; set;}
             public int? Draw {get; set;}
             public int? SelfHeal {get; set;}
+
+            public string[] Consumables {get; set;}
         }
     }
 }

@@ -1,14 +1,5 @@
 ﻿[
     {
-        "Name": "Research Lab(sorta)",
-        "Image": "card51.webp",
-        "Class": "Simple",
-        "MinTF": 0,
-        "MaxTF": 42,
-        "BrainCost": 6,
-        "Draw": 2
-    },
-    {
         "Name": "All Nighter",
         "Image": "card19.webp",
         "Class": "Simple",

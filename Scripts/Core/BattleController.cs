@@ -13,6 +13,7 @@ namespace TFCardBattle.Core
         public const int MaxHandSize = 6;
         public const int StartingHandSize = 5;
         public const int OfferedCardCount = 4;
+        public const int MaxConsumableSlots = 3;
 
         public const int EnemyMinTFDamage = 0;
         public const int EnemyMaxTFDamage = 5;
@@ -108,6 +109,28 @@ namespace TFCardBattle.Core
             State.Sub -= cost.SubCost;
 
             await _animationPlayer.BuyCard(buyPileIndex, isPermanentCard);
+        }
+
+        public Task AddConsumable(IConsumable consumable)
+        {
+            if (State.Consumables.Count >= MaxConsumableSlots)
+            {
+                // TODO: Show a message saying the consumable slots are full
+                return Task.CompletedTask;
+            }
+            State.Consumables.Add(consumable);
+
+            return Task.CompletedTask;
+        }
+
+        public async Task UseConsumable(int consumableIndex)
+        {
+            var consumable = State.Consumables[consumableIndex];
+
+            State.Consumables.Remove(consumable);
+            // TODO: Play an animation of using the consumable
+
+            await consumable.Activate(this);
         }
 
         public async Task StartTurn()
