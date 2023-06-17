@@ -11,5 +11,7 @@ namespace TFCardBattle.Core
         CardPurchaseStats PurchaseStats {get; set;}
 
         Task Activate(BattleController battle);
+
+        string GetTexturePath(BattleState state);
     }
 }

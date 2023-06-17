@@ -13,5 +13,7 @@ namespace TFCardBattle.Core.CardClasses
         {
             return battle.RefreshBuyPile();
         }
+
+        public string GetTexturePath(BattleState state) => TexturePath;
     }
 }

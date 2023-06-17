@@ -1,0 +1,74 @@
+[
+    {
+        "Name": "Purity of Mind",
+        "MinTF": 0,
+        "MaxTF": 13,
+        "BrainCost": 4,
+
+        "Class": "DowngradeIfHeart",
+        "StrongVersion":
+        {
+            "Image": "card14a.webp",
+            "Brain": 3
+        },
+        "WeakVersion":
+        {
+            "Image": "card14b.webp",
+            "Brain": 1
+        }
+    },
+    {
+        "Name": "Strategic Operation",
+        "MinTF": 3,
+        "MaxTF": 19,
+        "BrainCost": 3,
+
+        "Class": "DowngradeIfHeart",
+        "StrongVersion":
+        {
+            "Image": "card26a.webp",
+            "Damage": 3
+        },
+        "WeakVersion":
+        {
+            "Image": "card26b.webp",
+            "Damage": 1
+        }
+    },
+    {
+        "Name": "Mental Shield",
+        "MinTF": 9,
+        "MaxTF": 25,
+        "BrainCost": 3,
+
+        "Class": "DowngradeIfHeart",
+        "StrongVersion":
+        {
+            "Image": "card43a.webp",
+            "Shield": 5
+        },
+        "WeakVersion":
+        {
+            "Image": "card43b.webp",
+            "Shield": 1
+        }
+    },
+    {
+        "Name": "Online Interview",
+        "MinTF": 26,
+        "MaxTF": 42,
+        "BrainCost": 5,
+
+        "Class": "DowngradeIfHeart",
+        "StrongVersion":
+        {
+            "Image": "card25a.webp",
+            "Draw": 2
+        },
+        "WeakVersion":
+        {
+            "Image": "card25b.webp",
+            "Draw": 1
+        }
+    }
+]

@@ -256,7 +256,7 @@ namespace TFCardBattle.Core
                     if (IsBasic(card))
                     {
                         cards.RemoveAt(i);
-                        await _animationPlayer.ForgetCard(card);
+                        await _animationPlayer.ForgetCard(card, State);
                         return true;
                     }
                 }

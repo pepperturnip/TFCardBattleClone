@@ -57,6 +57,8 @@ namespace TFCardBattle.Core
             return Task.CompletedTask;
         }
 
+        public string GetTexturePath(BattleState state) => TexturePath;
+
         // Where did I get these constants from?  By experimenting with the
         // original TF Card Battle game.  I went into sandbox mode, manipulated
         // my TF, counted the number each basic card, and put it all into a

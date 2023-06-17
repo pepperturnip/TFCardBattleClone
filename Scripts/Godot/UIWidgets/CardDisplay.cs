@@ -8,11 +8,7 @@ namespace TFCardBattle.Godot
     {
         [Signal] public delegate void ClickedEventHandler();
 
-        public ICard Card
-        {
-            get => _model.Card;
-            set => _model.Card = value;
-        }
+        public ICard Card => _model.Card;
 
         private CardModel _model => GetNode<CardModel>("%CardModel");
 

@@ -10,7 +10,8 @@ namespace TFCardBattle.Godot
     {
         [Signal] public delegate void CardClickedEventHandler(int handIndex);
 
-        [Export] public PackedScene CardModelPrefab;
+        [Export] public PackedScene DummyCardModelPrefab;
+        [Export] public CardModelFactory ModelFactory;
         [Export] public float MinCardSeparation = 8;
         [Export] public float CardMoveDecayRate = 10;
         [Export] public float CardHoverGrowSpeed = 1;
@@ -24,7 +25,7 @@ namespace TFCardBattle.Godot
         public override void _Ready()
         {
             // Get the size of a card by measuring a dummy one
-            var dummyCard = CardModelPrefab.Instantiate<CardModel>();
+            var dummyCard = DummyCardModelPrefab.Instantiate<CardModel>();
             _cardSize = dummyCard.Size;
             dummyCard.QueueFree();
             dummyCard = null;
@@ -58,13 +59,13 @@ namespace TFCardBattle.Godot
         public void AddCard(ICard card)
         {
             AddCardModel(card, Vector2.Zero);
-            RefreshCardPositioners(_cardHolders.GetChildCount());
+            RecreateCardPositioners(_cardHolders.GetChildCount());
         }
 
         public void RemoveCard(int removedHandIndex)
         {
             RemoveCardModel(removedHandIndex);
-            RefreshCardPositioners(_cardHolders.GetChildCount());
+            RecreateCardPositioners(_cardHolders.GetChildCount());
         }
 
         public void PlayActivateAnimation(int cardIndex)
@@ -145,23 +146,26 @@ namespace TFCardBattle.Godot
 
         public void Refresh(ICard[] cards)
         {
-            // HACK: Skip refreshing if nothing changed, to prevent the card
+            // HACK: Reuse old models if nothing changed, to prevent the card
             // move animation from being needlessly interrupted.
             var oldCards = _cardHolders
                 .EnumerateChildren<CardHolder>()
                 .Select(h => h.Model.Card);
 
             if (cards.SequenceEqual(oldCards))
+            {
+                RefreshCardModels(cards);
                 return;
+            }
 
             GD.Print($"Forcibly refreshing card row display({_forceRefreshCount++})");
 
-            RefreshCardPositioners(cards.Length);
-            RefreshCardModels(cards);
+            RecreateCardPositioners(cards.Length);
+            RecreateCardModels(cards);
         }
         private int _forceRefreshCount = 0;
 
-        private void RefreshCardPositioners(int cardCount)
+        private void RecreateCardPositioners(int cardCount)
         {
             DeleteAllChildren(_cardPositions);
 
@@ -186,7 +190,7 @@ namespace TFCardBattle.Godot
             }
         }
 
-        private void RefreshCardModels(ICard[] cards)
+        private void RecreateCardModels(ICard[] cards)
         {
             DeleteAllChildren(_cardHolders);
 
@@ -196,10 +200,18 @@ namespace TFCardBattle.Godot
             }
         }
 
+        private void RefreshCardModels(ICard[] cards)
+        {
+            for (int i = 0; i < cards.Length; i++)
+            {
+                var model = _cardHolders.GetChild<CardHolder>(i).Model;
+                model.Refresh();
+            }
+        }
+
         private void AddCardModel(ICard card, Vector2 globalPos)
         {
-            var model = CardModelPrefab.Instantiate<CardModel>();
-            model.Card = card;
+            var model = ModelFactory.Create(card);
 
             var holder = new CardHolder(model);
             _cardHolders.AddChild(holder);
@@ -241,8 +253,7 @@ namespace TFCardBattle.Godot
 
         private CardHolder CreateCardHolder(ICard card)
         {
-            var model = CardModelPrefab.Instantiate<CardModel>();
-            model.Card = card;
+            var model = ModelFactory.Create(card);
 
             var holder = new CardHolder(model);
             holder.Scaler.Position = _cardSize / 2;
