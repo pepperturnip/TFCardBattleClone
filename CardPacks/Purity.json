@@ -1,0 +1,20 @@
+[
+    {
+        "Name": "Purity of Mind",
+        "Class": "DowngradeIfHeart",
+        "MinTF": 0,
+        "MaxTF": 13,//100,
+        "OfferWeight": 100,
+        "BrainCost": 0,//4,
+
+        "StrongVersion":
+        {
+            "Brain": 3
+        },
+
+        "WeakVersion":
+        {
+            "Brain": 1
+        }
+    }
+]
