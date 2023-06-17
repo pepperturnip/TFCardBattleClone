@@ -12,10 +12,10 @@ namespace TFCardBattle.Core.CardClasses
         public string Desc => GetDescription();
         public string TexturePath {get; set;}
 
-        public int BrainGain {get; set;}
-        public int HeartGain {get; set;}
-        public int SubGain {get; set;}
-        public int ShieldGain {get; set;}
+        public int Brain {get; set;}
+        public int Heart {get; set;}
+        public int Sub {get; set;}
+        public int Shield {get; set;}
         public int Damage {get; set;}
         public int CardDraw {get; set;}
         public int SelfHeal {get; set;}
@@ -28,10 +28,10 @@ namespace TFCardBattle.Core.CardClasses
 
         public async Task Activate(BattleController battle)
         {
-            battle.State.Brain += BrainGain;
-            battle.State.Heart += HeartGain;
-            battle.State.Sub += SubGain;
-            battle.State.Shield += ShieldGain;
+            battle.State.Brain += Brain;
+            battle.State.Heart += Heart;
+            battle.State.Sub += Sub;
+            battle.State.Shield += Shield;
             battle.State.Damage += Damage;
 
             foreach (var consumable in Consumables)
@@ -61,10 +61,10 @@ namespace TFCardBattle.Core.CardClasses
             // OK, the description doesn't match the resources.  Re-generate it.
             var builder = new System.Text.StringBuilder();
 
-            LabelFor("Brain", BrainGain);
-            LabelFor("Heart", HeartGain);
-            LabelFor("Sub", SubGain);
-            LabelFor("Shield", ShieldGain);
+            LabelFor("Brain", Brain);
+            LabelFor("Heart", Heart);
+            LabelFor("Sub", Sub);
+            LabelFor("Shield", Shield);
             LabelFor("TF", Damage);
             LabelFor("Draw", CardDraw);
             LabelFor("Self heal", SelfHeal);
@@ -81,10 +81,10 @@ namespace TFCardBattle.Core.CardClasses
             int GetDescriptionHash()
             {
                 var hash = new HashCode();
-                hash.Add(BrainGain);
-                hash.Add(HeartGain);
-                hash.Add(SubGain);
-                hash.Add(ShieldGain);
+                hash.Add(Brain);
+                hash.Add(Heart);
+                hash.Add(Sub);
+                hash.Add(Shield);
                 hash.Add(Damage);
                 hash.Add(CardDraw);
 

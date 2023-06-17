@@ -13,6 +13,9 @@ namespace TFCardBattle.Godot
 {
     public static class CardPacks
     {
+        private static readonly Dictionary<string, Type> _cardClassCache = new Dictionary<string, Type>();
+        private static readonly Dictionary<string, Type> _consumableClassCache = new Dictionary<string, Type>();
+
         public static IEnumerable<ICard> Load(string name)
         {
             string filePath = $"res://CardPacks/{name}.json";
@@ -32,87 +35,42 @@ namespace TFCardBattle.Godot
             if (className == "Simple")
                 return ParseSimple(obj);
 
-            if (className == "MultiplyResources")
-                return ParseMultiplyResources(obj);
-
-            if (className == "TransferResources")
-                return ParseTransferResources(obj);
-
-            // We don't have any bespoke way to parse this class, so just use
-            // reflection to look it up and instantiate it.
-            return ParseWithReflection(obj);
+            return ParseWithReflection(obj, className);
         }
 
         private static ICard ParseSimple(JObject obj)
         {
-            var c = obj.ToObject<SimpleJson>();
-            var header = obj.ToObject<CardHeader>();
+            // HACK: Parse the consumables separately from the rest of the
+            // card, since they're strings and we need IConsumables
+            var consumableIds = obj.ContainsKey("Consumables")
+                ? obj["Consumables"].ToObject<string[]>()
+                : Array.Empty<string>();
 
-            return new CardClasses.Simple
-            {
-                Name = header.Name,
-                TexturePath = header.TexturePath,
-                PurchaseStats = header.PurchaseStats,
+            IConsumable[] consumables = consumableIds
+                .Select(ParseConsumable)
+                .ToArray();
 
-                BrainGain = c.Brain ?? 0,
-                HeartGain = c.Heart ?? 0,
-                SubGain = c.Sub ?? 0,
-                ShieldGain = c.Shield ?? 0,
-                Damage = c.Damage ?? 0,
-                CardDraw = c.Draw ?? 0,
-                SelfHeal = c.SelfHeal ?? 0,
+            obj.Remove("Consumables");
 
-                Consumables = c.Consumables == null
-                    ? Array.Empty<IConsumable>()
-                    : c.Consumables.Select(FromConsumableClass).ToArray()
-            };
+            var card = (CardClasses.Simple)ParseWithReflection(obj, "Simple");
+            card.Consumables = consumables;
+            return card;
         }
 
-        private static ICard ParseMultiplyResources(JObject obj)
+        private static ICard ParseWithReflection(JObject obj, string className)
         {
-            var c = obj.ToObject<MultiplyResourcesJson>();
             var header = obj.ToObject<CardHeader>();
 
-            return new CardClasses.MultiplyResources
-            {
-                Name = header.Name,
-                TexturePath = header.TexturePath,
-                PurchaseStats = header.PurchaseStats,
+            var type = FindClass(
+                className,
+                "TFCardBattle.Core.CardClasses",
+                _cardClassCache
+            );
 
-                BrainMult = c.Brain ?? 1,
-                HeartMult = c.Heart ?? 1,
-                SubMult = c.Sub ?? 1,
-                ShieldMult = c.Shield ?? 1,
-                DamageMult = c.Damage ?? 1
-            };
-        }
-
-        private static ICard ParseTransferResources(JObject obj)
-        {
-            var c = obj.ToObject<TransferResourcesJson>();
-            var header = obj.ToObject<CardHeader>();
-
-            return new CardClasses.TransferResources
-            {
-                Name = header.Name,
-                TexturePath = header.TexturePath,
-                PurchaseStats = header.PurchaseStats,
-
-                From = c.From,
-                To = c.To
-            };
-        }
-
-        private static ICard ParseWithReflection(JObject obj)
-        {
-            var className = (string)obj["Class"];
-            var header = obj.ToObject<CardHeader>();
-
-            Type cardClassType = FindCardClass(className);
-            if (cardClassType == null)
+            if (type == null)
                 throw new NotImplementedException($"No \"{className}\" card class found");
 
-            var card = (ICard)Activator.CreateInstance(cardClassType);
+            ICard card = (ICard)obj.ToObject(type);
             card.Name = header.Name;
             card.TexturePath = header.TexturePath;
             card.PurchaseStats = header.PurchaseStats;
@@ -120,31 +78,39 @@ namespace TFCardBattle.Godot
             return card;
         }
 
-        private static Type FindCardClass(string cardClass)
+        private static IConsumable ParseConsumable(string className)
         {
-            // Only search for classes in the CardClasses namespace, for
-            // security.  We don't want nefarious dudes instantiating any C#
-            // class they want!
-            return Assembly.GetExecutingAssembly()
-                .DefinedTypes
-                .Where(t => t.Namespace == "TFCardBattle.Core.CardClasses")
-                .FirstOrDefault(t => t.Name == cardClass);
+            var type = FindClass(
+                className,
+                "TFCardBattle.Core.ConsumableClasses",
+                _consumableClassCache
+            );
+
+            if (type == null)
+                throw new NotImplementedException($"No \"{className}\" consumable class found");
+
+            return (IConsumable)Activator.CreateInstance(type);
         }
 
-        private static IConsumable FromConsumableClass(string consumableClass)
+        private static Type FindClass(
+            string className,
+            string nameSpace,
+            Dictionary<string, Type> cache
+        )
         {
-            // Only search for classes in the ConsumableClasses namespace, for
+            if (cache.TryGetValue(className, out var result))
+                return result;
+
+            // Only search for classes in the the given namespace, for
             // security.  We don't want nefarious dudes instantiating any C#
             // class they want!
             var type = Assembly.GetExecutingAssembly()
                 .DefinedTypes
-                .Where(t => t.Namespace == "TFCardBattle.Core.ConsumableClasses")
-                .FirstOrDefault(t => t.Name == consumableClass);
+                .Where(t => t.Namespace == nameSpace)
+                .FirstOrDefault(t => t.Name == className);
 
-            if (type == null)
-                throw new NotImplementedException($"No \"{consumableClass}\" consumable class found");
-
-            return (IConsumable)Activator.CreateInstance(type);
+            cache[className] = type;
+            return type;
         }
 
         private class CardHeader
@@ -172,34 +138,6 @@ namespace TFCardBattle.Godot
                 MaxTF = MaxTF,
                 OfferWeight = OfferWeight
             };
-        }
-
-        private class SimpleJson
-        {
-            public int? Brain {get; set;}
-            public int? Heart {get; set;}
-            public int? Sub {get; set;}
-            public int? Damage {get; set;}
-            public int? Shield {get; set;}
-            public int? Draw {get; set;}
-            public int? SelfHeal {get; set;}
-
-            public string[] Consumables {get; set;}
-        }
-
-        private class MultiplyResourcesJson
-        {
-            public int? Brain {get; set;}
-            public int? Heart {get; set;}
-            public int? Sub {get; set;}
-            public int? Damage {get; set;}
-            public int? Shield {get; set;}
-        }
-
-        private class TransferResourcesJson
-        {
-            public ResourceType From {get; set;}
-            public ResourceType To {get; set;}
         }
     }
 }

@@ -24,7 +24,7 @@
         "MaxTF": 24,
         "BrainCost": 6,
         "Class": "MultiplyResources",
-        "Brain": 2
+        "BrainMult": 2
     },
     {
         "Name": "All Nighter",
