@@ -8,15 +8,7 @@ namespace TFCardBattle.Godot
     {
         public Vector2 Size => _panel.Size;
 
-        public ICard Card
-        {
-            get => _card;
-            set
-            {
-                _card = value;
-                Refresh();
-            }
-        }
+        public ICard Card => _card;
         private ICard _card;
 
         private Panel _panel => GetNode<Panel>("%Panel");
@@ -24,6 +16,15 @@ namespace TFCardBattle.Godot
         private Label _descLabel => GetNode<Label>("%DescLabel");
         private CardCostDisplay _costDisplay => GetNode<CardCostDisplay>("%CardCostDisplay");
         private TextureRect _texture => GetNode<TextureRect>("%Texture");
+
+        private BattleState _battleState;
+
+        public void SetCard(ICard card, BattleState state)
+        {
+            _card = card;
+            _battleState = state;
+            Refresh();
+        }
 
         public void Refresh()
         {
@@ -34,14 +35,14 @@ namespace TFCardBattle.Godot
             // Attempt to load the texture.  If it exists, we'll draw that on
             // top of the placeholder stuff.  If it doesn't, we'll hide the
             // texture and use the placeholder stuff.
-            if (!ResourceLoader.Exists(Card.TexturePath))
+            if (!ResourceLoader.Exists(Card.GetTexturePath(_battleState)))
             {
                 _texture.Visible = false;
-                GD.Print($"Could not find texture {Card.TexturePath}");
+                GD.Print($"Could not find texture {Card.GetTexturePath(_battleState)}");
                 return;
             }
 
-            _texture.Texture = ResourceLoader.Load<Texture2D>(Card.TexturePath);
+            _texture.Texture = ResourceLoader.Load<Texture2D>(Card.GetTexturePath(_battleState));
             _texture.Visible = true;
         }
     }

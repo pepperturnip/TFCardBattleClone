@@ -22,5 +22,7 @@ namespace TFCardBattle.Core.CardClasses
 
             return Task.CompletedTask;
         }
+
+        public string GetTexturePath(BattleState state) => TexturePath;
     }
 }

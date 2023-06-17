@@ -25,5 +25,7 @@ namespace TFCardBattle.Core.CardClasses
             if (!anyHeart)
                 await battle.TakeExtraTurn();
         }
+
+        public string GetTexturePath(BattleState state) => TexturePath;
     }
 }

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxkjo1whiydj3"]
+
+[ext_resource type="Script" path="res://Scripts/Godot/CardModelFactory.cs" id="1_ffcg0"]
+[ext_resource type="PackedScene" uid="uid://cs4vf3jnrvk57" path="res://Scenes/Models/CardModel.tscn" id="2_cvc6y"]
+
+[node name="CardModelFactory" type="Node"]
+script = ExtResource("1_ffcg0")
+CardModelPrefab = ExtResource("2_cvc6y")

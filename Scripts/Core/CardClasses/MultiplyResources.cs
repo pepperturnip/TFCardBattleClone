@@ -34,6 +34,8 @@ namespace TFCardBattle.Core.CardClasses
             return Task.CompletedTask;
         }
 
+        public string GetTexturePath(BattleState state) => TexturePath;
+
         private string GetDescription()
         {
             // Since this could get called every frame, don't re-generate the

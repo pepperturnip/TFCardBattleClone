@@ -17,5 +17,7 @@ namespace TFCardBattle.Core.CardClasses
             await battle.ForgetBasicCard();
             await battle.DrawCard();
         }
+
+        public string GetTexturePath(BattleState state) => TexturePath;
     }
 }

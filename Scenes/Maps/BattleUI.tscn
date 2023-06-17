@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://tm66spq6dn0h"]
+[gd_scene load_steps=18 format=3 uid="uid://tm66spq6dn0h"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/BattleUI.cs" id="1_s1rg7"]
+[ext_resource type="PackedScene" uid="uid://bxkjo1whiydj3" path="res://Scenes/CardModelFactory.tscn" id="2_7qx4c"]
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/ConsumablesDisplay.cs" id="3_w7jsv"]
 [ext_resource type="PackedScene" uid="uid://dao0w4slv7603" path="res://Scenes/UIWidgets/CardRowDisplay.tscn" id="3_wgfut"]
 [ext_resource type="Script" path="res://Scripts/Godot/BattleAnimationPlayer.cs" id="4_uf642"]
@@ -187,7 +188,7 @@ oversampling = 4.2
 font = SubResource("SystemFont_hwabp")
 font_color = Color(1, 0.780392, 0.784314, 1)
 
-[node name="BattleUI" type="Control"]
+[node name="BattleUI" type="Control" node_paths=PackedStringArray("CardModelFactory")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -195,6 +196,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s1rg7")
+CardModelFactory = NodePath("CardModelFactory")
+
+[node name="CardModelFactory" parent="." instance=ExtResource("2_7qx4c")]
 
 [node name="HandHolder" type="Control" parent="."]
 layout_mode = 1
@@ -207,7 +211,7 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HandDisplay" parent="HandHolder" instance=ExtResource("3_wgfut")]
+[node name="HandDisplay" parent="HandHolder" node_paths=PackedStringArray("ModelFactory") instance=ExtResource("3_wgfut")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 12
@@ -218,6 +222,7 @@ offset_top = -192.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
+ModelFactory = NodePath("../../CardModelFactory")
 
 [node name="BuyPileHolder" type="Control" parent="."]
 layout_mode = 1
@@ -227,13 +232,14 @@ offset_top = 8.0
 offset_bottom = 200.0
 grow_horizontal = 2
 
-[node name="BuyPileDisplay" parent="BuyPileHolder" instance=ExtResource("3_wgfut")]
+[node name="BuyPileDisplay" parent="BuyPileHolder" node_paths=PackedStringArray("ModelFactory") instance=ExtResource("3_wgfut")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 192.0
 grow_horizontal = 2
+ModelFactory = NodePath("../../CardModelFactory")
 
 [node name="Resources" type="VBoxContainer" parent="."]
 layout_mode = 0

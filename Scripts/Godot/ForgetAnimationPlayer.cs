@@ -11,19 +11,21 @@ namespace TFCardBattle.Godot
         private CardModel _model => GetNode<CardModel>("%CardModel");
 
         private Queue<ICard> _cardsToForget = new Queue<ICard>();
+        private BattleState _battleState;
 
         public override void _Process(double delta)
         {
             if (_cardsToForget.Count > 0 && !_animator.IsPlaying())
             {
-                _model.Card = _cardsToForget.Dequeue();
+                _model.SetCard(_cardsToForget.Dequeue(), _battleState);
                 _animator.ResetAndPlay("Forget");
             }
         }
 
-        public void QueueForget(ICard card)
+        public void QueueForget(ICard card, BattleState state)
         {
             _cardsToForget.Enqueue(card);
+            _battleState = state;
         }
     }
 }

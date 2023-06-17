@@ -116,11 +116,11 @@ namespace TFCardBattle.Godot
             }
         }
 
-        public async Task ForgetCard(ICard card)
+        public async Task ForgetCard(ICard card, BattleState state)
         {
             using (SetAnimating())
             {
-                GetNode<ForgetAnimationPlayer>("%ForgetAnimationPlayer").QueueForget(card);
+                GetNode<ForgetAnimationPlayer>("%ForgetAnimationPlayer").QueueForget(card, state);
                 await WaitFor.Seconds(0.25);
             }
         }

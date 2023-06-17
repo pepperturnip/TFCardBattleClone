@@ -9,6 +9,7 @@ namespace TFCardBattle.Godot
     public partial class BattleUI : Control
     {
         [Export] public PackedScene CardDisplayPrefab;
+        [Export] public CardModelFactory CardModelFactory;
 
         private Label _playerTFLabel => GetNode<Label>("%PlayerTFLabel");
         private TFBar _playerTFBar => GetNode<TFBar>("%PlayerTFBar");
@@ -52,6 +53,8 @@ namespace TFCardBattle.Godot
                 new Random((int)DateTimeOffset.Now.ToUnixTimeMilliseconds())
             );
 
+            this.CardModelFactory.SetBattleState(Battle.State);
+
             await Battle.StartTurn();
             RefreshDisplay();
         }
@@ -90,6 +93,8 @@ namespace TFCardBattle.Godot
 
         private void RefreshDisplay()
         {
+            this.CardModelFactory.SetBattleState(Battle.State);
+
             _playerTFBar.MaxValue = Battle.State.PlayerMaxTF;
             _playerTFBar.Value = Battle.State.PlayerTF;
             _playerTFLabel.Text = $"{Battle.State.PlayerTF} / {Battle.State.PlayerMaxTF}";
