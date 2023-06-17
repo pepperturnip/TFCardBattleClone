@@ -10,16 +10,6 @@
         "Shield": 1
     },
     {
-        "Name": "Motivational Poster",
-        "Image": "card12.webp",
-        "Class": "Simple",
-        "MinTF": 0,
-        "MaxTF": 42,
-        "BrainCost": 3,
-        "Brain": 1,
-        "Damage": 2
-    },
-    {
         "Name": "Firewall",
         "Image": "card15.webp",
         "Class": "Simple",
@@ -27,15 +17,6 @@
         "MaxTF": 42,
         "BrainCost": 3,
         "Shield": 3
-    },
-    {
-        "Name": "Hypnotic Email",
-        "Image": "card13.webp",
-        "Class": "Simple",
-        "MinTF": 0,
-        "MaxTF": 42,
-        "BrainCost": 5,
-        "Damage": 4
     },
     {
         "Name": "L33t Hacker",
@@ -56,16 +37,6 @@
         "BrainCost": 4,
         "Damage": 2,
         "Shield": 2
-    },
-    {
-        "Name": "Evil Therapist",
-        "Image": "card45.webp",
-        "Class": "Simple",
-        "MinTF": 0,
-        "MaxTF": 42,
-        "BrainCost": 7,
-        "Damage": 3,
-        "Draw": 2
     },
     {
         "Name": "Research Lab(sorta)",
