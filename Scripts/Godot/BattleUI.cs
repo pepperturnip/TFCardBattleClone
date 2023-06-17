@@ -40,7 +40,8 @@ namespace TFCardBattle.Godot
                         CardPacks.Load("PlaceholderCardPack"),
                         CardPacks.Load("Mind"),
                         CardPacks.Load("Tech"),
-                        CardPacks.Load("Hypno")
+                        CardPacks.Load("Hypno"),
+                        CardPacks.Load("Chemist")
                     },
                     PermanentBuyPile = CardPacks.Load("PlaceholderPermanentBuyPile"),
                     StartingDeck = PlayerStartingDeck.StartingDeck()
