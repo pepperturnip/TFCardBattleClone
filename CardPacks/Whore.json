@@ -1,0 +1,53 @@
+[
+    {
+        "Name": "Second Base",
+        "Image": "card29.webp",
+        "MinTF": 11,
+        "MaxTF": 27,
+        "HeartCost": 1,
+        "Heart": 2
+    },
+    {
+        "Name": "Bribe the Intern",
+        "Image": "card30.webp",
+        "MinTF": 18,
+        "MaxTF": 34,
+        "HeartCost": 1,
+        "Damage": 2,
+        "Draw": 1
+    },
+    {
+        "Name": "Suggestive Moves",
+        "Image": "card35.webp",
+        "MinTF": 27,
+        "MaxTF": 43,
+        "HeartCost": 2,
+        "Heart": 1,
+        "Draw": 1
+    },
+    {
+        "Name": "Seduce the Cable Guy",
+        "Image": "card44.webp",
+        "MinTF": 37,
+        "MaxTF": 53,
+        "HeartCost": 3,
+        "Damage": 2,
+        "Draw": 1
+    },
+    {
+        "Name": "Sugar Daddy",
+        "Image": "card57.webp",
+        "MinTF": 64,
+        "MaxTF": 80,
+        "HeartCost": 2,
+        "Shield": 3
+    },
+    {
+        "Name": "Blacked",
+        "Image": "card84.webp",
+        "MinTF": 70,
+        "MaxTF": 86,
+        "HeartCost": 5,
+        "Draw": 2
+    }
+]
