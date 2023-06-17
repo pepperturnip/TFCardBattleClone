@@ -35,6 +35,9 @@ namespace TFCardBattle.Godot
             if (className == "MultiplyResources")
                 return ParseMultiplyResources(obj);
 
+            if (className == "TransferResources")
+                return ParseTransferResources(obj);
+
             // We don't have any bespoke way to parse this class, so just use
             // reflection to look it up and instantiate it.
             return ParseWithReflection(obj);
@@ -81,6 +84,22 @@ namespace TFCardBattle.Godot
                 SubMult = c.Sub ?? 1,
                 ShieldMult = c.Shield ?? 1,
                 DamageMult = c.Damage ?? 1
+            };
+        }
+
+        private static ICard ParseTransferResources(JObject obj)
+        {
+            var c = obj.ToObject<TransferResourcesJson>();
+            var header = obj.ToObject<CardHeader>();
+
+            return new CardClasses.TransferResources
+            {
+                Name = header.Name,
+                TexturePath = header.TexturePath,
+                PurchaseStats = header.PurchaseStats,
+
+                From = c.From,
+                To = c.To
             };
         }
 
@@ -175,6 +194,12 @@ namespace TFCardBattle.Godot
             public int? Sub {get; set;}
             public int? Damage {get; set;}
             public int? Shield {get; set;}
+        }
+
+        private class TransferResourcesJson
+        {
+            public ResourceType From {get; set;}
+            public ResourceType To {get; set;}
         }
     }
 }
