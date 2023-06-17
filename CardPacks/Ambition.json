@@ -1,0 +1,37 @@
+[
+    {
+        "Name": "Escape Route",
+        "Image": "card16.webp",
+        "MinTF": 0,
+        "MaxTF": 12,
+        "BrainCost": 5,
+        "Class": "TransferResources",
+        "From": "Brain",
+        "To": "Shield"
+    },
+    {
+        "Name": "Rethink it",
+        "Image": "card24.webp",
+        "MinTF": 2,
+        "MaxTF": 18,
+        "BrainCost": 4,
+        "Class": "RefreshBuyPile"
+    },
+    {
+        "Name": "Double Down",
+        "Image": "card23.webp",
+        "MinTF": 8,
+        "MaxTF": 24,
+        "BrainCost": 6,
+        "Class": "MultiplyResources",
+        "Brain": 2
+    },
+    {
+        "Name": "All Nighter",
+        "Image": "card19.webp",
+        "MinTF": 22,
+        "MaxTF": 38,
+        "BrainCost": 6,
+        "Draw": 2
+    }
+]

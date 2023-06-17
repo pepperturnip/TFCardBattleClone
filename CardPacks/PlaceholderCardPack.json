@@ -1,13 +1,5 @@
 ﻿[
     {
-        "Name": "All Nighter",
-        "Image": "card19.webp",
-        "MinTF": 0,
-        "MaxTF": 42,
-        "BrainCost": 6,
-        "Draw": 2
-    },
-    {
         "Name": "Second Base",
         "Image": "card29.webp",
         "MinTF": 33,
