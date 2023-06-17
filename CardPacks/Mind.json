@@ -54,6 +54,14 @@
         "MinTF": 55,
         "MaxTF": 71,
         "BrainCost": 8
+    },
+    {
+        "Name": "Corrective Surgery",
+        "Image": "card59.webp",
+        "Class": "Simple",
+        "MinTF": 42,
+        "MaxTF": 58,
+        "BrainCost": 7,
+        "SelfHeal": 5
     }
-    // TODO: Corrective Surgery
 ]
