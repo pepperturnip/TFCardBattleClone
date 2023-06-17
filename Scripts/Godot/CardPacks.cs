@@ -40,13 +40,29 @@ namespace TFCardBattle.Godot
                     TexturePath = texturePath,
                     PurchaseStats = purchaseStats,
 
-                    BrainGain = c.Brain,
-                    HeartGain = c.Heart,
-                    SubGain = c.Sub,
-                    ShieldGain = c.Shield,
-                    Damage = c.Damage,
-                    CardDraw = c.Draw,
-                    SelfHeal = c.SelfHeal
+                    BrainGain = c.Brain ?? 0,
+                    HeartGain = c.Heart ?? 0,
+                    SubGain = c.Sub ?? 0,
+                    ShieldGain = c.Shield ?? 0,
+                    Damage = c.Damage ?? 0,
+                    CardDraw = c.Draw ?? 0,
+                    SelfHeal = c.SelfHeal ?? 0
+                };
+            }
+
+            if (c.Class == "MultiplyResources")
+            {
+                return new TFCardBattle.Core.CardClasses.MultiplyResources
+                {
+                    Name = c.Name,
+                    TexturePath = texturePath,
+                    PurchaseStats = purchaseStats,
+
+                    BrainMult = c.Brain ?? 1,
+                    HeartMult = c.Heart ?? 1,
+                    SubMult = c.Sub ?? 1,
+                    ShieldMult = c.Shield ?? 1,
+                    DamageMult = c.Damage ?? 1
                 };
             }
 
@@ -88,13 +104,13 @@ namespace TFCardBattle.Godot
             public int SubCost {get; set;}
             public int OfferWeight {get; set;} = 1;
 
-            public int Brain {get; set;}
-            public int Heart {get; set;}
-            public int Sub {get; set;}
-            public int Damage {get; set;}
-            public int Shield {get; set;}
-            public int Draw {get; set;}
-            public int SelfHeal {get; set;}
+            public int? Brain {get; set;}
+            public int? Heart {get; set;}
+            public int? Sub {get; set;}
+            public int? Damage {get; set;}
+            public int? Shield {get; set;}
+            public int? Draw {get; set;}
+            public int? SelfHeal {get; set;}
         }
     }
 }
