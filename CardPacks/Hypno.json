@@ -1,0 +1,40 @@
+[
+    {
+        "Name": "Motivational Poster",
+        "Image": "card12.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 10,
+        "BrainCost": 3,
+        "Brain": 1,
+        "Damage": 2
+    },
+    {
+        "Name": "Hypnotic Email",
+        "Image": "card13.webp",
+        "Class": "Simple",
+        "MinTF": 0,
+        "MaxTF": 16,
+        "BrainCost": 5,
+        "Damage": 4
+    },
+    {
+        "Name": "Very Targeted Ads",
+        "Image": "card27.webp",
+        "Class": "MultiplyResources",
+        "MinTF": 6,
+        "MaxTF": 22,
+        "BrainCost": 6,
+        "Damage": 2
+    },
+    {
+        "Name": "Evil Therapist",
+        "Image": "card45.webp",
+        "Class": "Simple",
+        "MinTF": 16,
+        "MaxTF": 32,
+        "BrainCost": 7,
+        "Damage": 3,
+        "Draw": 2
+    }
+]
