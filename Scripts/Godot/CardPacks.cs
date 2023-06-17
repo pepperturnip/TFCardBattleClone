@@ -6,6 +6,8 @@ using Godot;
 using Newtonsoft.Json;
 using TFCardBattle.Core;
 
+using CardClasses = TFCardBattle.Core.CardClasses;
+
 namespace TFCardBattle.Godot
 {
     public static class CardPacks
@@ -34,7 +36,7 @@ namespace TFCardBattle.Godot
 
             if (c.Class == "Simple")
             {
-                return new SimpleCard
+                return new CardClasses.Simple
                 {
                     Name = c.Name,
                     TexturePath = texturePath,
@@ -56,7 +58,7 @@ namespace TFCardBattle.Godot
 
             if (c.Class == "MultiplyResources")
             {
-                return new TFCardBattle.Core.CardClasses.MultiplyResources
+                return new CardClasses.MultiplyResources
                 {
                     Name = c.Name,
                     TexturePath = texturePath,

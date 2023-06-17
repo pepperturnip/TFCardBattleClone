@@ -11,7 +11,7 @@ namespace TFCardBattle.Godot
     {
         public static IEnumerable<ICard> StartingDeck()
         {
-            var mysteriousPills = new SimpleCard
+            var mysteriousPills = new TFCardBattle.Core.CardClasses.Simple
             {
                 Name = "Mysterious Pills",
                 TexturePath = "res://ApolloSevenImages/cardgame/cards/card7.webp",
