@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TFCardBattle.Core
 {
@@ -37,6 +38,16 @@ namespace TFCardBattle.Core
         public List<ICard> Hand = new List<ICard>();
         public List<ICard> CardsPlayedThisTurn = new List<ICard>();
         public List<ICard> Discard = new List<ICard>();
+
+        /// <summary>
+        /// All cards that the player owns, whether they're in the deck, hand,
+        /// discard pile, or in-play.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<ICard> OwnedCards => Deck
+                .Concat(Hand)
+                .Concat(Discard)
+                .Concat(CardsPlayedThisTurn);
 
         /// <summary>
         /// The cards currently on offer to the player this turn.

@@ -318,12 +318,7 @@ namespace TFCardBattle.Core
 
         private void TransitionBasicCards()
         {
-            var allCards = State.Deck
-                .Concat(State.Hand)
-                .Concat(State.Discard)
-                .Concat(State.CardsPlayedThisTurn);
-
-            foreach (var card in allCards)
+            foreach (var card in State.OwnedCards)
             {
                 if (card is TransitioningBasicCard transCard)
                 {
