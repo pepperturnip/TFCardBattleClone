@@ -26,6 +26,8 @@ namespace TFCardBattle.Core
         public int Shield = 0;
         public int Damage = 0;
 
+        public List<IConsumable> Consumables = new List<IConsumable>();
+
         /// <summary>
         /// The number of extra cards drawn this turn.
         /// Used for cards that have different effects depending on how much
