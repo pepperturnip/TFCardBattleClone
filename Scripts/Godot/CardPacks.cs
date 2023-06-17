@@ -32,37 +32,30 @@ namespace TFCardBattle.Godot
             if (className == "Simple")
                 return ParseSimple(obj);
 
-            return ParseWithReflection(obj);
+            return ParseWithReflection(obj, className);
         }
 
         private static ICard ParseSimple(JObject obj)
         {
-            var c = obj.ToObject<SimpleJson>();
-            var header = obj.ToObject<CardHeader>();
+            // HACK: Parse the consumables separately from the rest of the
+            // card, since they're strings and we need IConsumables
+            var consumableIds = obj.ContainsKey("Consumables")
+                ? obj["Consumables"].ToObject<string[]>()
+                : Array.Empty<string>();
 
-            return new CardClasses.Simple
-            {
-                Name = header.Name,
-                TexturePath = header.TexturePath,
-                PurchaseStats = header.PurchaseStats,
+            IConsumable[] consumables = consumableIds
+                .Select(FromConsumableClass)
+                .ToArray();
 
-                Brain = c.Brain ?? 0,
-                Heart = c.Heart ?? 0,
-                Sub = c.Sub ?? 0,
-                Shield = c.Shield ?? 0,
-                Damage = c.Damage ?? 0,
-                CardDraw = c.Draw ?? 0,
-                SelfHeal = c.SelfHeal ?? 0,
+            obj.Remove("Consumables");
 
-                Consumables = c.Consumables == null
-                    ? Array.Empty<IConsumable>()
-                    : c.Consumables.Select(FromConsumableClass).ToArray()
-            };
+            var card = (CardClasses.Simple)ParseWithReflection(obj, "Simple");
+            card.Consumables = consumables;
+            return card;
         }
 
-        private static ICard ParseWithReflection(JObject obj)
+        private static ICard ParseWithReflection(JObject obj, string className)
         {
-            var className = (string)obj["Class"];
             var header = obj.ToObject<CardHeader>();
 
             Type cardClassType = FindCardClass(className);
@@ -129,19 +122,6 @@ namespace TFCardBattle.Godot
                 MaxTF = MaxTF,
                 OfferWeight = OfferWeight
             };
-        }
-
-        private class SimpleJson
-        {
-            public int? Brain {get; set;}
-            public int? Heart {get; set;}
-            public int? Sub {get; set;}
-            public int? Damage {get; set;}
-            public int? Shield {get; set;}
-            public int? Draw {get; set;}
-            public int? SelfHeal {get; set;}
-
-            public string[] Consumables {get; set;}
         }
     }
 }
