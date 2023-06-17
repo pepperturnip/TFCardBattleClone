@@ -2,7 +2,6 @@
     {
         "Name": "Home Chemistry",
         "Image": "card11.webp",
-        "Class": "Simple",
         "MinTF": 0,
         "MaxTF": 11,
         "BrainCost": 4,
@@ -12,7 +11,6 @@
     {
         "Name": "Scientific Advisor",
         "Image": "card22.webp",
-        "Class": "Simple",
         "MinTF": 1,
         "MaxTF": 17,
         "BrainCost": 3,
@@ -21,7 +19,6 @@
     {
         "Name": "Brain Booster",
         "Image": "card42.webp",
-        "Class": "Simple",
         "MinTF": 7,
         "MaxTF": 23,
         "BrainCost": 5,
@@ -30,7 +27,6 @@
     {
         "Name": "Research Lab",
         "Image": "card51.webp",
-        "Class": "Simple",
         "MinTF": 19,
         "MaxTF": 35,
         "BrainCost": 6,

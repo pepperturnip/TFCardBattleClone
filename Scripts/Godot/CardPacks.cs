@@ -116,7 +116,7 @@ namespace TFCardBattle.Godot
         {
             public string Name {get; set;}
             public string Image {get; set;}
-            public string Class {get; set;}
+            public string Class {get; set;} = "Simple";
 
             public int MinTF {get; set;}
             public int MaxTF {get; set;}
