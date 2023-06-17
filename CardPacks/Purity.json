@@ -3,9 +3,8 @@
         "Name": "Purity of Mind",
         "Class": "DowngradeIfHeart",
         "MinTF": 0,
-        "MaxTF": 13,//100,
-        "OfferWeight": 100,
-        "BrainCost": 0,//4,
+        "MaxTF": 13,
+        "BrainCost": 4,
 
         "StrongVersion":
         {
