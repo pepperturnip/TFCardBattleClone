@@ -52,5 +52,23 @@
             "Image": "card43b.webp",
             "Shield": 1
         }
+    },
+    {
+        "Name": "Online Interview",
+        "MinTF": 26,
+        "MaxTF": 42,
+        "BrainCost": 5,
+
+        "Class": "DowngradeIfHeart",
+        "StrongVersion":
+        {
+            "Image": "card25a.webp",
+            "Draw": 2
+        },
+        "WeakVersion":
+        {
+            "Image": "card25b.webp",
+            "Draw": 1
+        }
     }
 ]
