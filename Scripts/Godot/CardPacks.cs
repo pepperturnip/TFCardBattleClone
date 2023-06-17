@@ -35,6 +35,9 @@ namespace TFCardBattle.Godot
             if (className == "Simple")
                 return ParseSimple(obj);
 
+            if (className == "DowngradeIfHeart")
+                return ParseDowngradeIfHeart(obj);
+
             return ParseWithReflection(obj, className);
         }
 
@@ -55,6 +58,20 @@ namespace TFCardBattle.Godot
             var card = (CardClasses.Simple)ParseWithReflection(obj, "Simple");
             card.Consumables = consumables;
             return card;
+        }
+
+        private static ICard ParseDowngradeIfHeart(JObject obj)
+        {
+            var header = obj.ToObject<CardHeader>();
+            return new CardClasses.DowngradeIfHeart
+            {
+                Name = header.Name,
+                TexturePath = header.TexturePath,
+                PurchaseStats = header.PurchaseStats,
+
+                StrongVersion = (CardClasses.Simple)ParseSimple((JObject)obj["StrongVersion"]),
+                WeakVersion = (CardClasses.Simple)ParseSimple((JObject)obj["WeakVersion"]),
+            };
         }
 
         private static ICard ParseWithReflection(JObject obj, string className)

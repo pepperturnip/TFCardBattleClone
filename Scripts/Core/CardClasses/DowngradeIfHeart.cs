@@ -16,13 +16,23 @@ namespace TFCardBattle.Core.CardClasses
 
         public Task Activate(BattleController battle)
         {
-            bool anyHeart = battle.State
+            return IsStrong(battle.State)
+                ? StrongVersion.Activate(battle)
+                : WeakVersion.Activate(battle);
+        }
+
+        public string GetTexturePath(BattleState state)
+        {
+            return IsStrong(state)
+                ? StrongVersion.GetTexturePath(state)
+                : WeakVersion.GetTexturePath(state);
+        }
+
+        private bool IsStrong(BattleState state)
+        {
+            return !state
                 .OwnedCards
                 .Any(c => c.PurchaseStats.HeartCost > 0);
-
-            return anyHeart
-                ? WeakVersion.Activate(battle)
-                : StrongVersion.Activate(battle);
         }
     }
 }
