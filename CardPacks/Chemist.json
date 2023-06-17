@@ -17,5 +17,14 @@
         "MaxTF": 17,
         "BrainCost": 3,
         "Consumables": ["MinorBrainPotion", "MinorBrainPotion"]
+    },
+    {
+        "Name": "Brain Booster",
+        "Image": "card42.webp",
+        "Class": "Simple",
+        "MinTF": 7,
+        "MaxTF": 23,
+        "BrainCost": 5,
+        "Consumables": ["BrainPotion"]
     }
 ]
