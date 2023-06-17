@@ -45,7 +45,8 @@ namespace TFCardBattle.Godot
                     SubGain = c.Sub,
                     ShieldGain = c.Shield,
                     Damage = c.Damage,
-                    CardDraw = c.Draw
+                    CardDraw = c.Draw,
+                    SelfHeal = c.SelfHeal
                 };
             }
 
@@ -93,6 +94,7 @@ namespace TFCardBattle.Godot
             public int Damage {get; set;}
             public int Shield {get; set;}
             public int Draw {get; set;}
+            public int SelfHeal {get; set;}
         }
     }
 }
