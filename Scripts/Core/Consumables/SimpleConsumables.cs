@@ -50,4 +50,9 @@ namespace TFCardBattle.Core.ConsumableClasses
     {
         public override int BrainGain => 3;
     }
+
+    public class MinorDrawPotion : SimpleConsumable
+    {
+        public override int CardDraw => 1;
+    }
 }
