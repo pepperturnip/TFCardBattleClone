@@ -1,13 +1,5 @@
 ﻿[
     {
-        "Name": "Second Base",
-        "Image": "card29.webp",
-        "MinTF": 33,
-        "MaxTF": 71,
-        "HeartCost": 1,
-        "Heart": 2
-    },
-    {
         "Name": "Cam Girl",
         "Image": "card61.webp",
         "MinTF": 33,
@@ -33,15 +25,6 @@
         "MaxTF": 71,
         "HeartCost": 2,
         "Damage": 1,
-        "Draw": 1
-    },
-    {
-        "Name": "Bribe the Intern",
-        "Image": "card30.webp",
-        "MinTF": 33,
-        "MaxTF": 71,
-        "HeartCost": 1,
-        "Damage": 2,
         "Draw": 1
     },
     {
@@ -71,15 +54,6 @@
         "Damage": 3
     },
     {
-        "Name": "Suggestive Moves",
-        "Image": "card35.webp",
-        "MinTF": 33,
-        "MaxTF": 71,
-        "HeartCost": 2,
-        "Heart": 1,
-        "Draw": 1
-    },
-    {
         "Name": "Strapon",
         "Image": "card48.webp",
         "MinTF": 33,
@@ -89,29 +63,12 @@
         "Heart": 2
     },
     {
-        "Name": "Seduce the Cable Guy",
-        "Image": "card44.webp",
-        "MinTF": 33,
-        "MaxTF": 71,
-        "HeartCost": 3,
-        "Damage": 2,
-        "Draw": 1
-    },
-    {
         "Name": "Back to His Place",
         "Image": "card50.webp",
         "MinTF": 33,
         "MaxTF": 71,
         "HeartCost": 3,
         "Damage": 2,
-        "Shield": 3
-    },
-    {
-        "Name": "Sugar Daddy",
-        "Image": "card57.webp",
-        "MinTF": 33,
-        "MaxTF": 71,
-        "HeartCost": 2,
         "Shield": 3
     },
     {
@@ -247,14 +204,6 @@
         "MaxTF": 9999,
         "SubCost": 6,
         "Draw": 3
-    },
-    {
-        "Name": "Blacked",
-        "Image": "card84.webp",
-        "MinTF": 66,
-        "MaxTF": 9999,
-        "HeartCost": 5,
-        "Draw": 2
     },
     {
         "Name": "Gangbang",
