@@ -9,11 +9,13 @@
 
         "StrongVersion":
         {
+            "Image": "card14a.webp",
             "Brain": 3
         },
 
         "WeakVersion":
         {
+            "Image": "card14b.webp",
             "Brain": 1
         }
     }
