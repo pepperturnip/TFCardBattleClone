@@ -16,11 +16,11 @@ namespace TFCardBattle.Godot
 
         private Label _enemyDamageRangeLabel => GetNode<Label>("%EnemyDamageRangeLabel");
 
-        private Label _brain => GetNode<Label>("%BrainLabel");
-        private Label _heart => GetNode<Label>("%HeartLabel");
-        private Label _sub => GetNode<Label>("%SubLabel");
-        private Label _shield => GetNode<Label>("%ShieldLabel");
-        private Label _damage => GetNode<Label>("%DamageResourceLabel");
+        private AccumulatingLabel _brain => GetNode<AccumulatingLabel>("%BrainLabel");
+        private AccumulatingLabel _heart => GetNode<AccumulatingLabel>("%HeartLabel");
+        private AccumulatingLabel _sub => GetNode<AccumulatingLabel>("%SubLabel");
+        private AccumulatingLabel _shield => GetNode<AccumulatingLabel>("%ShieldLabel");
+        private AccumulatingLabel _damage => GetNode<AccumulatingLabel>("%DamageResourceLabel");
 
         private CardRowDisplay _handDisplay => GetNode<CardRowDisplay>("%HandDisplay");
         private CardRowDisplay _buyPileDisplay => GetNode<CardRowDisplay>("%BuyPileDisplay");
@@ -103,11 +103,11 @@ namespace TFCardBattle.Godot
             _enemyTFBar.MaxValue = Battle.State.EnemyMaxTF;
             _enemyTFBar.Value = Battle.State.EnemyTF;
 
-            _brain.Text = Battle.State.Brain.ToString();
-            _heart.Text = Battle.State.Heart.ToString();
-            _sub.Text = Battle.State.Sub.ToString();
-            _shield.Text = Battle.State.Shield.ToString();
-            _damage.Text = Battle.State.Damage.ToString();
+            _brain.Value = Battle.State.Brain;
+            _heart.Value = Battle.State.Heart;
+            _sub.Value = Battle.State.Sub;
+            _shield.Value = Battle.State.Shield;
+            _damage.Value = Battle.State.Damage;
 
             _handDisplay.Refresh(Battle.State.Hand.ToArray());
             _buyPileDisplay.Refresh(Battle.State.BuyPile.ToArray());

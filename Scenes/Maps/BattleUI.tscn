@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://tm66spq6dn0h"]
+[gd_scene load_steps=18 format=3 uid="uid://tm66spq6dn0h"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/BattleUI.cs" id="1_s1rg7"]
 [ext_resource type="PackedScene" uid="uid://bxkjo1whiydj3" path="res://Scenes/CardModelFactory.tscn" id="2_7qx4c"]
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/ConsumablesDisplay.cs" id="3_w7jsv"]
 [ext_resource type="PackedScene" uid="uid://dao0w4slv7603" path="res://Scenes/UIWidgets/CardRowDisplay.tscn" id="3_wgfut"]
+[ext_resource type="PackedScene" uid="uid://bk2uhlq3oxck" path="res://Scenes/UIWidgets/AccumlatingLabel.tscn" id="4_8iyx1"]
 [ext_resource type="Script" path="res://Scripts/Godot/BattleAnimationPlayer.cs" id="4_uf642"]
 [ext_resource type="PackedScene" uid="uid://pwc8q4s75ea5" path="res://Scenes/UIWidgets/ForgetAnimationPlayer.tscn" id="7_s5ny6"]
 [ext_resource type="PackedScene" uid="uid://doy8c42dvds45" path="res://Scenes/UIWidgets/TFBar.tscn" id="8_knmsm"]
@@ -264,11 +265,9 @@ text = "Brain"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="BrainLabel" type="Label" parent="Resources/Brain"]
+[node name="BrainLabel" parent="Resources/Brain" instance=ExtResource("4_8iyx1")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "0"
-horizontal_alignment = 1
 
 [node name="Heart" type="VBoxContainer" parent="Resources"]
 custom_minimum_size = Vector2(48, 0)
@@ -280,11 +279,9 @@ text = "Heart"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="HeartLabel" type="Label" parent="Resources/Heart"]
+[node name="HeartLabel" parent="Resources/Heart" instance=ExtResource("4_8iyx1")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "0"
-horizontal_alignment = 1
 
 [node name="Sub" type="VBoxContainer" parent="Resources"]
 custom_minimum_size = Vector2(48, 0)
@@ -296,11 +293,9 @@ text = "Sub"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="SubLabel" type="Label" parent="Resources/Sub"]
+[node name="SubLabel" parent="Resources/Sub" instance=ExtResource("4_8iyx1")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "0"
-horizontal_alignment = 1
 
 [node name="Shield" type="VBoxContainer" parent="Resources"]
 custom_minimum_size = Vector2(48, 0)
@@ -312,11 +307,9 @@ text = "Shield"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="ShieldLabel" type="Label" parent="Resources/Shield"]
+[node name="ShieldLabel" parent="Resources/Shield" instance=ExtResource("4_8iyx1")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "0"
-horizontal_alignment = 1
 
 [node name="Damage" type="VBoxContainer" parent="Resources"]
 custom_minimum_size = Vector2(48, 0)
@@ -328,11 +321,9 @@ text = "TF"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="DamageResourceLabel" type="Label" parent="Resources/Damage"]
+[node name="DamageResourceLabel" parent="Resources/Damage" instance=ExtResource("4_8iyx1")]
 unique_name_in_owner = true
 layout_mode = 2
-text = "0"
-horizontal_alignment = 1
 
 [node name="ConsumablesDisplay" type="VBoxContainer" parent="Resources"]
 unique_name_in_owner = true
