@@ -17,6 +17,8 @@ namespace TFCardBattle.Godot
         private Label _enemyTFLabel => GetNode<Label>("%EnemyTFLabel");
         private TFBar _enemyTFBar => GetNode<TFBar>("%EnemyTFBar");
 
+        private Label _enemyDamageRangeLabel => GetNode<Label>("%EnemyDamageRangeLabel");
+
         private Label _brain => GetNode<Label>("%BrainLabel");
         private Label _heart => GetNode<Label>("%HeartLabel");
         private Label _sub => GetNode<Label>("%SubLabel");
@@ -95,6 +97,8 @@ namespace TFCardBattle.Godot
         private void RefreshDisplay()
         {
             this.CardModelFactory.SetBattleState(Battle.State);
+
+            _enemyDamageRangeLabel.Text = $"{Battle.EnemyMinTFDamage} - {Battle.EnemyMaxTFDamage}";
 
             _playerTFBar.MaxValue = Battle.State.PlayerMaxTF;
             _playerTFBar.Value = Battle.State.PlayerTF;
