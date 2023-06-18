@@ -17,7 +17,7 @@ namespace TFCardBattle.Core.CardClasses
         public int Sub {get; set;}
         public int Shield {get; set;}
         public int Damage {get; set;}
-        public int CardDraw {get; set;}
+        public int Draw {get; set;}
         public int SelfHeal {get; set;}
         public IConsumable[] Consumables {get; set;} = Array.Empty<IConsumable>();
 
@@ -42,7 +42,7 @@ namespace TFCardBattle.Core.CardClasses
             // TODO: play a self-heal animation
             battle.State.PlayerTF -= SelfHeal;
 
-            for (int i = 0; i < CardDraw; i++)
+            for (int i = 0; i < Draw; i++)
             {
                 await battle.DrawCard();
             }
@@ -68,7 +68,7 @@ namespace TFCardBattle.Core.CardClasses
             LabelFor("Sub", Sub);
             LabelFor("Shield", Shield);
             LabelFor("TF", Damage);
-            LabelFor("Draw", CardDraw);
+            LabelFor("Draw", Draw);
             LabelFor("Self heal", SelfHeal);
 
             foreach (var c in Consumables)
@@ -88,7 +88,7 @@ namespace TFCardBattle.Core.CardClasses
                 hash.Add(Sub);
                 hash.Add(Shield);
                 hash.Add(Damage);
-                hash.Add(CardDraw);
+                hash.Add(Draw);
 
                 foreach (var c in Consumables)
                 {
