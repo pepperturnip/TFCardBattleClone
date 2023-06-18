@@ -47,6 +47,18 @@ namespace TFCardBattle.Godot
 
         private void UpdateState(double delta)
         {
+            // HACK: Skip the animation if the value _decreased_, so there won't
+            // be a tick-down at the end of the turn.
+            // TODO: Prevent an end-of-turn tick-down in a _non_ hacky way
+            if (Value < _displayedValue)
+            {
+                _currentState = State.Idle;
+                _accumulatedValue = Value;
+                _displayedValue = Value;
+
+                return;
+            }
+
             switch (_currentState)
             {
                 case State.Idle:
