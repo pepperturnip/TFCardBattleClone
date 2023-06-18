@@ -18,6 +18,7 @@ namespace TFCardBattle.Godot
 
         private int _displayedValue;
         private int _accumulatedValue;
+        private int _tickingStartValue;
 
         private double _accumulateTimer;
         private double _tickTimer;
@@ -26,6 +27,25 @@ namespace TFCardBattle.Godot
         private Label _accumLabel => GetNode<Label>("%Accumulator");
 
         public override void _Process(double delta)
+        {
+            UpdateState(delta);
+            UpdateLabels();
+        }
+
+        private void UpdateLabels()
+        {
+            _displayedValueLabel.Text = _displayedValue.ToString();
+
+            int deltaValue = _accumulatedValue - _displayedValue;
+            if (deltaValue == 0)
+                _accumLabel.Text = "";
+            else if (deltaValue > 0)
+                _accumLabel.Text = $"+{deltaValue}";
+            else
+                _accumLabel.Text = deltaValue.ToString();
+        }
+
+        private void UpdateState(double delta)
         {
             switch (_currentState)
             {
@@ -44,8 +64,6 @@ namespace TFCardBattle.Godot
 
                 case State.Accumulating:
                 {
-                    _accumLabel.Text = $"+{Value - _displayedValue}";
-
                     // Reset the timer if the value changed again while we're
                     // accumulating
                     if (Value != _accumulatedValue)
@@ -60,6 +78,7 @@ namespace TFCardBattle.Godot
                     if (_accumulateTimer <= 0)
                     {
                         _tickTimer = TickingTimeSeconds;
+                        _tickingStartValue = _displayedValue;
                         _currentState = State.Ticking;
                     }
 
@@ -71,17 +90,12 @@ namespace TFCardBattle.Godot
                     _tickTimer -= delta;
                     double t = 1.0 - (_tickTimer / TickingTimeSeconds);
 
-                    int labelValue = (int)(Mathf.Lerp(_accumulatedValue, _displayedValue, t));
-
-                    _accumLabel.Text = $"+{_accumulatedValue - labelValue}";
-                    _displayedValueLabel.Text = labelValue.ToString();
+                    _displayedValue = (int)(Mathf.Lerp(_accumulatedValue, _tickingStartValue, t));
 
                     if (_tickTimer <= 0)
                     {
                         _currentState = State.Idle;
                         _displayedValue = _accumulatedValue;
-                        _displayedValueLabel.Text = _displayedValue.ToString();
-                        _accumLabel.Text = "";
                     }
 
                     break;
