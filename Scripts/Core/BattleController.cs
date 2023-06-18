@@ -15,8 +15,8 @@ namespace TFCardBattle.Core
         public const int OfferedCardCount = 4;
         public const int MaxConsumableSlots = 3;
 
-        public const int EnemyMinTFDamage = 0;
-        public const int EnemyMaxTFDamage = 5;
+        public int EnemyMinTFDamage => MinEnemyDamageOnTurn(State.TurnsElapsed);
+        public int EnemyMaxTFDamage => MaxEnemyDamageOnTurn(State.TurnsElapsed);
 
         public readonly BattleState State;
 
@@ -316,6 +316,16 @@ namespace TFCardBattle.Core
                 return false;
 
             return true;
+        }
+
+        public int MinEnemyDamageOnTurn(int turnZeroBased)
+        {
+            return ((turnZeroBased - 1) / 12) + 2;
+        }
+
+        public int MaxEnemyDamageOnTurn(int turnZeroBased)
+        {
+            return ((turnZeroBased - 1)) / 6 + 3;
         }
 
         private bool IsPermanentBuyPileCard(int buyPileIndex)
