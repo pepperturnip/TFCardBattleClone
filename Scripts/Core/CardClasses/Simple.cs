@@ -90,8 +90,6 @@ namespace TFCardBattle.Core.CardClasses
                 hash.Add(Damage);
                 hash.Add(CardDraw);
 
-                global::Godot.GD.Print($"{Name}'s consumables: {Consumables}");
-
                 foreach (var c in Consumables)
                 {
                     hash.Add(c.GetType().Name);
