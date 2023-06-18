@@ -1,13 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://tm66spq6dn0h"]
+[gd_scene load_steps=17 format=3 uid="uid://tm66spq6dn0h"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/BattleUI.cs" id="1_s1rg7"]
 [ext_resource type="PackedScene" uid="uid://bxkjo1whiydj3" path="res://Scenes/CardModelFactory.tscn" id="2_7qx4c"]
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/ConsumablesDisplay.cs" id="3_w7jsv"]
 [ext_resource type="PackedScene" uid="uid://dao0w4slv7603" path="res://Scenes/UIWidgets/CardRowDisplay.tscn" id="3_wgfut"]
 [ext_resource type="Script" path="res://Scripts/Godot/BattleAnimationPlayer.cs" id="4_uf642"]
-[ext_resource type="Theme" uid="uid://ds2nh3axu3wjs" path="res://Themes/TFBarTheme.tres" id="5_24u5e"]
-[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/TFBar.cs" id="6_02prk"]
 [ext_resource type="PackedScene" uid="uid://pwc8q4s75ea5" path="res://Scenes/UIWidgets/ForgetAnimationPlayer.tscn" id="7_s5ny6"]
+[ext_resource type="PackedScene" uid="uid://doy8c42dvds45" path="res://Scenes/UIWidgets/TFBar.tscn" id="8_knmsm"]
 
 [sub_resource type="Animation" id="Animation_dsfeu"]
 resource_name = "DamageEnemy"
@@ -241,51 +240,117 @@ offset_bottom = 192.0
 grow_horizontal = 2
 ModelFactory = NodePath("../../CardModelFactory")
 
-[node name="Resources" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Resources" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -28.0
+offset_right = 130.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="BrainLabel" type="Label" parent="Resources"]
+[node name="Brain" type="VBoxContainer" parent="Resources"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Resources/Brain"]
+layout_mode = 2
+text = "Brain"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BrainLabel" type="Label" parent="Resources/Brain"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Brain:"
+text = "0"
+horizontal_alignment = 1
 
-[node name="HeartLabel" type="Label" parent="Resources"]
+[node name="Heart" type="VBoxContainer" parent="Resources"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Resources/Heart"]
+layout_mode = 2
+text = "Heart"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HeartLabel" type="Label" parent="Resources/Heart"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Heart:"
+text = "0"
+horizontal_alignment = 1
 
-[node name="SubLabel" type="Label" parent="Resources"]
+[node name="Sub" type="VBoxContainer" parent="Resources"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Resources/Sub"]
+layout_mode = 2
+text = "Sub"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="SubLabel" type="Label" parent="Resources/Sub"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Sub:"
+text = "0"
+horizontal_alignment = 1
 
-[node name="ShieldLabel" type="Label" parent="Resources"]
+[node name="Shield" type="VBoxContainer" parent="Resources"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Resources/Shield"]
+layout_mode = 2
+text = "Shield"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ShieldLabel" type="Label" parent="Resources/Shield"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Shield:"
+text = "0"
+horizontal_alignment = 1
 
-[node name="DamageResourceLabel" type="Label" parent="Resources"]
+[node name="Damage" type="VBoxContainer" parent="Resources"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Resources/Damage"]
+layout_mode = 2
+text = "TF"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="DamageResourceLabel" type="Label" parent="Resources/Damage"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "TF:"
+text = "0"
+horizontal_alignment = 1
 
-[node name="EndTurnButton" type="Button" parent="Resources"]
+[node name="ConsumablesDisplay" type="VBoxContainer" parent="Resources"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "End Turn"
+script = ExtResource("3_w7jsv")
 
-[node name="ConsumablesDisplay" type="VBoxContainer" parent="."]
+[node name="EndTurnButton" type="Button" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -88.0
-offset_bottom = 128.0
-grow_horizontal = 0
-script = ExtResource("3_w7jsv")
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 144.0
+offset_top = -15.0
+offset_right = 256.0
+offset_bottom = 16.0
+grow_vertical = 2
+text = "End Turn"
 
 [node name="BattleAnimationPlayer" type="Node" parent="."]
 unique_name_in_owner = true
@@ -351,67 +416,88 @@ label_settings = SubResource("LabelSettings_dc5cw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerTFBar" type="ProgressBar" parent="."]
-unique_name_in_owner = true
+[node name="PlayerSideBar" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = 192.0
-offset_right = 56.0
-offset_bottom = -56.0
+offset_right = 128.0
 grow_vertical = 2
-theme = ExtResource("5_24u5e")
-fill_mode = 3
-script = ExtResource("6_02prk")
 
-[node name="PlayerTFLabel" type="Label" parent="."]
-unique_name_in_owner = true
+[node name="Label" type="Label" parent="PlayerSideBar"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = -48.0
-offset_right = 80.0
-offset_bottom = -16.0
-grow_vertical = 0
-text = "0 / 100"
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = 24.0
+offset_right = 64.0
+offset_bottom = 50.0
+grow_horizontal = 2
+text = "Player"
 horizontal_alignment = 1
 
-[node name="EnemyTFBar" type="ProgressBar" parent="."]
+[node name="PlayerTFBar" parent="PlayerSideBar" instance=ExtResource("8_knmsm")]
 unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 192.0
+offset_right = 0.0
+offset_bottom = -24.0
+grow_vertical = 2
+
+[node name="EnemySideBar" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -56.0
-offset_top = 192.0
-offset_right = -40.0
-offset_bottom = -56.0
+offset_left = -128.0
 grow_horizontal = 0
 grow_vertical = 2
-theme = ExtResource("5_24u5e")
-fill_mode = 3
-script = ExtResource("6_02prk")
 
-[node name="EnemyTFLabel" type="Label" parent="."]
+[node name="RangeLabel" type="VBoxContainer" parent="EnemySideBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 120.0
+offset_bottom = 176.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="EnemySideBar/RangeLabel"]
+layout_mode = 2
+text = "Damage range:"
+horizontal_alignment = 1
+
+[node name="EnemyDamageRangeLabel" type="Label" parent="EnemySideBar/RangeLabel"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0 - 0"
+horizontal_alignment = 1
+
+[node name="EnemyTFBar" parent="EnemySideBar" instance=ExtResource("8_knmsm")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -80.0
-offset_top = -48.0
-offset_right = -16.0
-offset_bottom = -16.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "0 / 100
-"
+offset_top = 192.0
+offset_right = 0.0
+offset_bottom = -24.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="EnemySideBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = 24.0
+offset_right = 64.0
+offset_bottom = 50.0
+grow_horizontal = 2
+text = "Enemy"
 horizontal_alignment = 1
 
 [node name="ForgetAnimationPlayerHolder" type="Control" parent="."]
@@ -427,26 +513,8 @@ grow_vertical = 2
 [node name="ForgetAnimationPlayer" parent="ForgetAnimationPlayerHolder" instance=ExtResource("7_s5ny6")]
 unique_name_in_owner = true
 
-[node name="RangeLabel" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_top = 120.0
-grow_horizontal = 0
-
-[node name="Label" type="Label" parent="RangeLabel"]
-layout_mode = 2
-text = "Damage range:"
-
-[node name="EnemyDamageRangeLabel" type="Label" parent="RangeLabel"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0 - 0"
-horizontal_alignment = 1
-
 [connection signal="CardClicked" from="HandHolder/HandDisplay" to="." method="OnPlayCardClicked"]
 [connection signal="CardClicked" from="BuyPileHolder/BuyPileDisplay" to="." method="OnBuyCardClicked"]
-[connection signal="pressed" from="Resources/EndTurnButton" to="." method="OnEndTurnClicked"]
-[connection signal="ConsumableClicked" from="ConsumablesDisplay" to="." method="OnUseConsumableClicked"]
+[connection signal="ConsumableClicked" from="Resources/ConsumablesDisplay" to="." method="OnUseConsumableClicked"]
+[connection signal="pressed" from="EndTurnButton" to="." method="OnEndTurnClicked"]
 [connection signal="IsAnimatingChanged" from="BattleAnimationPlayer" to="." method="OnIsAnimatingChanged"]

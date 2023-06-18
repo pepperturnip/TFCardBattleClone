@@ -23,7 +23,8 @@ namespace TFCardBattle.Godot
 
             return JArray.Parse(rawJson)
                 .Cast<JObject>()
-                .Select(FromJObject);
+                .Select(FromJObject)
+                .ToArray();
         }
 
         private static ICard FromJObject(JObject obj)
