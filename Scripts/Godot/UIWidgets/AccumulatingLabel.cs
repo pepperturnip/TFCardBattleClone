@@ -60,6 +60,7 @@ namespace TFCardBattle.Godot
                     {
                         // TODO: Start ticking instead of going back to idle
                         _accumLabel.Text = "";
+                        _displayedValue = Value;
                         _displayedValueLabel.Text = Value.ToString();
                         _currentState = State.Idle;
                     }
