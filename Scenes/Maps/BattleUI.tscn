@@ -241,9 +241,15 @@ grow_horizontal = 2
 ModelFactory = NodePath("../../CardModelFactory")
 
 [node name="Resources" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = -90.0
+offset_right = 208.0
+offset_bottom = 91.0
+grow_vertical = 2
 
 [node name="BrainLabel" type="Label" parent="Resources"]
 unique_name_in_owner = true
@@ -278,12 +284,14 @@ text = "End Turn"
 [node name="ConsumablesDisplay" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -88.0
-offset_bottom = 128.0
-grow_horizontal = 0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 256.0
+offset_top = -64.0
+offset_right = 384.0
+offset_bottom = 64.0
+grow_vertical = 2
 script = ExtResource("3_w7jsv")
 
 [node name="BattleAnimationPlayer" type="Node" parent="."]
@@ -350,28 +358,89 @@ label_settings = SubResource("LabelSettings_dc5cw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerTFBar" parent="." instance=ExtResource("8_knmsm")]
-unique_name_in_owner = true
+[node name="PlayerSideBar" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 9
 anchor_bottom = 1.0
-offset_top = 192.0
-offset_right = 96.0
-offset_bottom = -24.0
+offset_right = 128.0
 grow_vertical = 2
 
-[node name="EnemyTFBar" parent="." instance=ExtResource("8_knmsm")]
+[node name="Label" type="Label" parent="PlayerSideBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = 24.0
+offset_right = 64.0
+offset_bottom = 50.0
+grow_horizontal = 2
+text = "Player"
+horizontal_alignment = 1
+
+[node name="PlayerTFBar" parent="PlayerSideBar" instance=ExtResource("8_knmsm")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -96.0
 offset_top = 192.0
 offset_right = 0.0
 offset_bottom = -24.0
 grow_vertical = 2
+
+[node name="EnemySideBar" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="RangeLabel" type="VBoxContainer" parent="EnemySideBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 120.0
+offset_bottom = 176.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="EnemySideBar/RangeLabel"]
+layout_mode = 2
+text = "Damage range:"
+horizontal_alignment = 1
+
+[node name="EnemyDamageRangeLabel" type="Label" parent="EnemySideBar/RangeLabel"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0 - 0"
+horizontal_alignment = 1
+
+[node name="EnemyTFBar" parent="EnemySideBar" instance=ExtResource("8_knmsm")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 192.0
+offset_right = 0.0
+offset_bottom = -24.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="EnemySideBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = 24.0
+offset_right = 64.0
+offset_bottom = 50.0
+grow_horizontal = 2
+text = "Enemy"
+horizontal_alignment = 1
 
 [node name="ForgetAnimationPlayerHolder" type="Control" parent="."]
 layout_mode = 1
@@ -385,24 +454,6 @@ grow_vertical = 2
 
 [node name="ForgetAnimationPlayer" parent="ForgetAnimationPlayerHolder" instance=ExtResource("7_s5ny6")]
 unique_name_in_owner = true
-
-[node name="RangeLabel" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_top = 120.0
-grow_horizontal = 0
-
-[node name="Label" type="Label" parent="RangeLabel"]
-layout_mode = 2
-text = "Damage range:"
-
-[node name="EnemyDamageRangeLabel" type="Label" parent="RangeLabel"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "0 - 0"
-horizontal_alignment = 1
 
 [connection signal="CardClicked" from="HandHolder/HandDisplay" to="." method="OnPlayCardClicked"]
 [connection signal="CardClicked" from="BuyPileHolder/BuyPileDisplay" to="." method="OnBuyCardClicked"]
