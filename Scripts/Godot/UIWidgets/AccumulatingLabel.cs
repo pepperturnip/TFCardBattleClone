@@ -6,7 +6,7 @@ namespace TFCardBattle.Godot
     {
         [Export] public int Value;
         [Export] public double AccumulationTimeSeconds = 1;
-        [Export] public double TickingTimeSeconds = 1;
+        [Export] public double TickingTimeSeconds = 0.1;
 
         private enum State
         {
@@ -20,6 +20,7 @@ namespace TFCardBattle.Godot
         private int _accumulatedValue;
 
         private double _accumulateTimer;
+        private double _tickTimer;
 
         private Label _displayedValueLabel => GetNode<Label>("%DisplayedValue");
         private Label _accumLabel => GetNode<Label>("%Accumulator");
@@ -58,11 +59,29 @@ namespace TFCardBattle.Godot
                     _accumulateTimer -= delta;
                     if (_accumulateTimer <= 0)
                     {
-                        // TODO: Start ticking instead of going back to idle
-                        _accumLabel.Text = "";
-                        _displayedValue = Value;
-                        _displayedValueLabel.Text = Value.ToString();
+                        _tickTimer = TickingTimeSeconds;
+                        _currentState = State.Ticking;
+                    }
+
+                    break;
+                }
+
+                case State.Ticking:
+                {
+                    _tickTimer -= delta;
+                    double t = 1.0 - (_tickTimer / TickingTimeSeconds);
+
+                    int labelValue = (int)(Mathf.Lerp(_accumulatedValue, _displayedValue, t));
+
+                    _accumLabel.Text = $"+{_accumulatedValue - labelValue}";
+                    _displayedValueLabel.Text = labelValue.ToString();
+
+                    if (_tickTimer <= 0)
+                    {
                         _currentState = State.Idle;
+                        _displayedValue = _accumulatedValue;
+                        _displayedValueLabel.Text = _displayedValue.ToString();
+                        _accumLabel.Text = "";
                     }
 
                     break;
