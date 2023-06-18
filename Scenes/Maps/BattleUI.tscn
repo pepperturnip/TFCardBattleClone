@@ -1,13 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://tm66spq6dn0h"]
+[gd_scene load_steps=17 format=3 uid="uid://tm66spq6dn0h"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/BattleUI.cs" id="1_s1rg7"]
 [ext_resource type="PackedScene" uid="uid://bxkjo1whiydj3" path="res://Scenes/CardModelFactory.tscn" id="2_7qx4c"]
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/ConsumablesDisplay.cs" id="3_w7jsv"]
 [ext_resource type="PackedScene" uid="uid://dao0w4slv7603" path="res://Scenes/UIWidgets/CardRowDisplay.tscn" id="3_wgfut"]
 [ext_resource type="Script" path="res://Scripts/Godot/BattleAnimationPlayer.cs" id="4_uf642"]
-[ext_resource type="Theme" uid="uid://ds2nh3axu3wjs" path="res://Themes/TFBarTheme.tres" id="5_24u5e"]
-[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/TFBar.cs" id="6_02prk"]
 [ext_resource type="PackedScene" uid="uid://pwc8q4s75ea5" path="res://Scenes/UIWidgets/ForgetAnimationPlayer.tscn" id="7_s5ny6"]
+[ext_resource type="PackedScene" uid="uid://doy8c42dvds45" path="res://Scenes/UIWidgets/TFBar.tscn" id="8_knmsm"]
 
 [sub_resource type="Animation" id="Animation_dsfeu"]
 resource_name = "DamageEnemy"
@@ -351,68 +350,28 @@ label_settings = SubResource("LabelSettings_dc5cw")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayerTFBar" type="ProgressBar" parent="."]
+[node name="PlayerTFBar" parent="." instance=ExtResource("8_knmsm")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 9
+anchors_preset = -1
 anchor_bottom = 1.0
-offset_left = 40.0
 offset_top = 192.0
-offset_right = 56.0
-offset_bottom = -56.0
+offset_right = 96.0
+offset_bottom = -24.0
 grow_vertical = 2
-theme = ExtResource("5_24u5e")
-fill_mode = 3
-script = ExtResource("6_02prk")
 
-[node name="PlayerTFLabel" type="Label" parent="."]
+[node name="EnemyTFBar" parent="." instance=ExtResource("8_knmsm")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = -48.0
-offset_right = 80.0
-offset_bottom = -16.0
-grow_vertical = 0
-text = "0 / 100"
-horizontal_alignment = 1
-
-[node name="EnemyTFBar" type="ProgressBar" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 11
+anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -56.0
+offset_left = -96.0
 offset_top = 192.0
-offset_right = -40.0
-offset_bottom = -56.0
-grow_horizontal = 0
+offset_right = 0.0
+offset_bottom = -24.0
 grow_vertical = 2
-theme = ExtResource("5_24u5e")
-fill_mode = 3
-script = ExtResource("6_02prk")
-
-[node name="EnemyTFLabel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -80.0
-offset_top = -48.0
-offset_right = -16.0
-offset_bottom = -16.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "0 / 100
-"
-horizontal_alignment = 1
 
 [node name="ForgetAnimationPlayerHolder" type="Control" parent="."]
 layout_mode = 1
