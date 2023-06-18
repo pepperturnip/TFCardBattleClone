@@ -103,11 +103,11 @@ namespace TFCardBattle.Godot
             _enemyTFBar.MaxValue = Battle.State.EnemyMaxTF;
             _enemyTFBar.Value = Battle.State.EnemyTF;
 
-            _brain.Text = $"Brain: {Battle.State.Brain}";
-            _heart.Text = $"Heart: {Battle.State.Heart}";
-            _sub.Text = $"Sub: {Battle.State.Sub}";
-            _shield.Text = $"Shield: {Battle.State.Shield}";
-            _damage.Text = $"Damage: {Battle.State.Damage}";
+            _brain.Text = Battle.State.Brain.ToString();
+            _heart.Text = Battle.State.Heart.ToString();
+            _sub.Text = Battle.State.Sub.ToString();
+            _shield.Text = Battle.State.Shield.ToString();
+            _damage.Text = Battle.State.Damage.ToString();
 
             _handDisplay.Refresh(Battle.State.Hand.ToArray());
             _buyPileDisplay.Refresh(Battle.State.BuyPile.ToArray());

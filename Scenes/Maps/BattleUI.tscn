@@ -251,30 +251,88 @@ offset_right = 208.0
 offset_bottom = 91.0
 grow_vertical = 2
 
-[node name="BrainLabel" type="Label" parent="Resources"]
-unique_name_in_owner = true
+[node name="HBoxContainer" type="HBoxContainer" parent="Resources"]
 layout_mode = 2
-text = "Brain:"
 
-[node name="HeartLabel" type="Label" parent="Resources"]
-unique_name_in_owner = true
+[node name="Brain" type="VBoxContainer" parent="Resources/HBoxContainer"]
+custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
-text = "Heart:"
 
-[node name="SubLabel" type="Label" parent="Resources"]
-unique_name_in_owner = true
+[node name="Label" type="Label" parent="Resources/HBoxContainer/Brain"]
 layout_mode = 2
-text = "Sub:"
+text = "Brain"
+horizontal_alignment = 1
+vertical_alignment = 2
 
-[node name="ShieldLabel" type="Label" parent="Resources"]
+[node name="BrainLabel" type="Label" parent="Resources/HBoxContainer/Brain"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Shield:"
+text = "0"
+horizontal_alignment = 1
 
-[node name="DamageResourceLabel" type="Label" parent="Resources"]
+[node name="Heart" type="VBoxContainer" parent="Resources/HBoxContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Resources/HBoxContainer/Heart"]
+layout_mode = 2
+text = "Heart"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HeartLabel" type="Label" parent="Resources/HBoxContainer/Heart"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "TF:"
+text = "0"
+horizontal_alignment = 1
+
+[node name="Sub" type="VBoxContainer" parent="Resources/HBoxContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Resources/HBoxContainer/Sub"]
+layout_mode = 2
+text = "Sub"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="SubLabel" type="Label" parent="Resources/HBoxContainer/Sub"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Shield" type="VBoxContainer" parent="Resources/HBoxContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Resources/HBoxContainer/Shield"]
+layout_mode = 2
+text = "Shield"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ShieldLabel" type="Label" parent="Resources/HBoxContainer/Shield"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Damage" type="VBoxContainer" parent="Resources/HBoxContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Resources/HBoxContainer/Damage"]
+layout_mode = 2
+text = "TF"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="DamageResourceLabel" type="Label" parent="Resources/HBoxContainer/Damage"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
 
 [node name="EndTurnButton" type="Button" parent="Resources"]
 unique_name_in_owner = true
@@ -287,10 +345,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 256.0
-offset_top = -64.0
-offset_right = 384.0
-offset_bottom = 64.0
+offset_left = 384.0
+offset_top = -68.0
+offset_right = 512.0
+offset_bottom = 60.0
 grow_vertical = 2
 script = ExtResource("3_w7jsv")
 
