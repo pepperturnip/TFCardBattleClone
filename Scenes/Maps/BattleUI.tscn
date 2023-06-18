@@ -240,117 +240,117 @@ offset_bottom = 192.0
 grow_horizontal = 2
 ModelFactory = NodePath("../../CardModelFactory")
 
-[node name="Resources" type="VBoxContainer" parent="."]
+[node name="Resources" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 128.0
-offset_top = -90.0
-offset_right = 208.0
-offset_bottom = 91.0
+offset_left = -130.0
+offset_top = -28.0
+offset_right = 130.0
+offset_bottom = 28.0
+grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Resources"]
-layout_mode = 2
-
-[node name="Brain" type="VBoxContainer" parent="Resources/HBoxContainer"]
+[node name="Brain" type="VBoxContainer" parent="Resources"]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Resources/HBoxContainer/Brain"]
+[node name="Label" type="Label" parent="Resources/Brain"]
 layout_mode = 2
 text = "Brain"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="BrainLabel" type="Label" parent="Resources/HBoxContainer/Brain"]
+[node name="BrainLabel" type="Label" parent="Resources/Brain"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
-[node name="Heart" type="VBoxContainer" parent="Resources/HBoxContainer"]
+[node name="Heart" type="VBoxContainer" parent="Resources"]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Resources/HBoxContainer/Heart"]
+[node name="Label" type="Label" parent="Resources/Heart"]
 layout_mode = 2
 text = "Heart"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="HeartLabel" type="Label" parent="Resources/HBoxContainer/Heart"]
+[node name="HeartLabel" type="Label" parent="Resources/Heart"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
-[node name="Sub" type="VBoxContainer" parent="Resources/HBoxContainer"]
+[node name="Sub" type="VBoxContainer" parent="Resources"]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Resources/HBoxContainer/Sub"]
+[node name="Label" type="Label" parent="Resources/Sub"]
 layout_mode = 2
 text = "Sub"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="SubLabel" type="Label" parent="Resources/HBoxContainer/Sub"]
+[node name="SubLabel" type="Label" parent="Resources/Sub"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
-[node name="Shield" type="VBoxContainer" parent="Resources/HBoxContainer"]
+[node name="Shield" type="VBoxContainer" parent="Resources"]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Resources/HBoxContainer/Shield"]
+[node name="Label" type="Label" parent="Resources/Shield"]
 layout_mode = 2
 text = "Shield"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="ShieldLabel" type="Label" parent="Resources/HBoxContainer/Shield"]
+[node name="ShieldLabel" type="Label" parent="Resources/Shield"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
-[node name="Damage" type="VBoxContainer" parent="Resources/HBoxContainer"]
+[node name="Damage" type="VBoxContainer" parent="Resources"]
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Resources/HBoxContainer/Damage"]
+[node name="Label" type="Label" parent="Resources/Damage"]
 layout_mode = 2
 text = "TF"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="DamageResourceLabel" type="Label" parent="Resources/HBoxContainer/Damage"]
+[node name="DamageResourceLabel" type="Label" parent="Resources/Damage"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
-[node name="EndTurnButton" type="Button" parent="Resources"]
+[node name="ConsumablesDisplay" type="VBoxContainer" parent="Resources"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "End Turn"
+script = ExtResource("3_w7jsv")
 
-[node name="ConsumablesDisplay" type="VBoxContainer" parent="."]
+[node name="EndTurnButton" type="Button" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 384.0
-offset_top = -68.0
-offset_right = 512.0
-offset_bottom = 60.0
+offset_left = 144.0
+offset_top = -15.0
+offset_right = 256.0
+offset_bottom = 16.0
 grow_vertical = 2
-script = ExtResource("3_w7jsv")
+text = "End Turn"
 
 [node name="BattleAnimationPlayer" type="Node" parent="."]
 unique_name_in_owner = true
@@ -515,6 +515,6 @@ unique_name_in_owner = true
 
 [connection signal="CardClicked" from="HandHolder/HandDisplay" to="." method="OnPlayCardClicked"]
 [connection signal="CardClicked" from="BuyPileHolder/BuyPileDisplay" to="." method="OnBuyCardClicked"]
-[connection signal="pressed" from="Resources/EndTurnButton" to="." method="OnEndTurnClicked"]
-[connection signal="ConsumableClicked" from="ConsumablesDisplay" to="." method="OnUseConsumableClicked"]
+[connection signal="ConsumableClicked" from="Resources/ConsumablesDisplay" to="." method="OnUseConsumableClicked"]
+[connection signal="pressed" from="EndTurnButton" to="." method="OnEndTurnClicked"]
 [connection signal="IsAnimatingChanged" from="BattleAnimationPlayer" to="." method="OnIsAnimatingChanged"]
