@@ -19,16 +19,6 @@
         "Draw": 1
     },
     {
-        "Name": "Air Tight",
-        "Image": "card69.webp",
-        "MinTF": 66,
-        "MaxTF": 9999,
-        "SubCost": 5,
-        "Sub": 3,
-        "Damage": 3,
-        "Shield": 3
-    },
-    {
         "Name": "Ride 'em Cowgirl",
         "Image": "card63.webp",
         "MinTF": 66,
@@ -36,13 +26,5 @@
         "HeartCost": 6,
         "Damage": 6,
         "Draw": 1
-    },
-    {
-        "Name": "Gangbang",
-        "Image": "card93.webp",
-        "MinTF": 66,
-        "MaxTF": 9999,
-        "SubCost": 5,
-        "Damage": 10
-    },
+    }
 ]

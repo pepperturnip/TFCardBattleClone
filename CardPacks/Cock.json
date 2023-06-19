@@ -1,0 +1,38 @@
+[
+    {
+        "Name": "So Big!",
+        "Image": "card54.webp",
+        "MinTF": 39,
+        "MaxTF": 55,
+        "SubCost": 3,
+        "Class": "TransferResources",
+        "From": "Sub",
+        "To": "Damage"
+    },
+    {
+        "Name": "Just the Tip",
+        "Image": "Card62.webp",
+        "MinTF": 51,
+        "MaxTF": 67,
+        "SubCost": 1,
+        "Class": "JustTheTip"
+    },
+    {
+        "Name": "Air Tight",
+        "Image": "card69.webp",
+        "MinTF": 60,
+        "MaxTF": 76,
+        "SubCost": 5,
+        "Sub": 3,
+        "Damage": 3,
+        "Shield": 3
+    },
+    {
+        "Name": "Gangbang",
+        "Image": "card93.webp",
+        "MinTF": 71,
+        "MaxTF": 87,
+        "SubCost": 5,
+        "Damage": 10
+    }
+]
