@@ -21,9 +21,9 @@ namespace TFCardBattle.Core
         public readonly BattleState State;
 
         public bool BattleEnded {get; private set;} = false;
+        public Random Rng {get; private set;}
 
         private readonly IBattleAnimationPlayer _animationPlayer;
-        private readonly Random _rng;
 
         public BattleController(
             PlayerLoadout loadout,
@@ -33,7 +33,7 @@ namespace TFCardBattle.Core
         {
             State = new BattleState(loadout);
             _animationPlayer = animationPlayer;
-            _rng = rng;
+            Rng = rng;
         }
 
         public async Task DrawCard()
@@ -68,7 +68,7 @@ namespace TFCardBattle.Core
                 return;
             }
 
-            var card = _rng.PickFrom(State.Deck);
+            var card = Rng.PickFrom(State.Deck);
             State.Deck.Remove(card);
             State.Hand.Add(card);
             State.DrawCount++;
@@ -197,7 +197,7 @@ namespace TFCardBattle.Core
                     .Select(c => (c, c.PurchaseStats.OfferWeight))
                     .ToArray();
 
-                var card = _rng.PickFromWeighted(weights);
+                var card = Rng.PickFromWeighted(weights);
                 offerableCards.Remove(card);
                 buyPile.Add(card);
             }
@@ -337,7 +337,7 @@ namespace TFCardBattle.Core
 
         private int RollEnemyDamage()
         {
-            return _rng.Next(EnemyMinTFDamage, EnemyMaxTFDamage + 1);
+            return Rng.Next(EnemyMinTFDamage, EnemyMaxTFDamage + 1);
         }
 
         private void TransitionBasicCards()
