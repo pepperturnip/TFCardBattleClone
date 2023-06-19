@@ -25,5 +25,14 @@
         "HeartCost": 3,
         "Class": "DrawMostExpensive",
         "Resource": "Heart"
+    },
+    {
+        "Name": "Cock Tease",
+        "Image": "card49.webp",
+        "MinTF": 48,
+        "MaxTF": 64,
+        "HeartCost": 5,
+        "Class": "MultiplyResources",
+        "HeartMult": 2
     }
 ]
