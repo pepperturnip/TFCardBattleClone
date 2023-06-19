@@ -49,5 +49,23 @@
         "MaxTF": 86,
         "HeartCost": 5,
         "Draw": 2
+    },
+    {
+        "Name": "Purity of Lust",
+        "MinTF": 62,
+        "MaxTF": 78,
+        "HeartCost": 6,
+
+        "Class": "DowngradeIfSub",
+        "StrongVersion":
+        {
+            "Image": "card79a.webp",
+            "Draw": 3
+        },
+        "WeakVersion":
+        {
+            "Image": "card79b.webp",
+            "Draw": 1
+        }
     }
 ]
