@@ -1,13 +1,5 @@
 ﻿[
     {
-        "Name": "Ropeplay",
-        "Image": "card72.webp",
-        "MinTF": 66,
-        "MaxTF": 9999,
-        "HeartCost": 2,
-        "Sub": 3
-    },
-    {
         "Name": "Facial",
         "Image": "card67.webp",
         "MinTF": 66,
@@ -23,15 +15,6 @@
         "MaxTF": 9999,
         "HeartCost": 5,
         "Heart": 3,
-        "Draw": 1
-    },
-    {
-        "Name": "Blindfolded",
-        "Image": "card74.webp",
-        "MinTF": 66,
-        "MaxTF": 9999,
-        "HeartCost": 2,
-        "Sub": 1,
         "Draw": 1
     },
     {
@@ -52,15 +35,6 @@
         "Sub": 2,
         "Damage": 2,
         "Draw": 1
-    },
-    {
-        "Name": "Locked Away",
-        "Image": "card76.webp",
-        "MinTF": 66,
-        "MaxTF": 9999,
-        "SubCost": 2,
-        "Sub": 1,
-        "Shield": 3
     },
     {
         "Name": "Swallow(sorta)",
