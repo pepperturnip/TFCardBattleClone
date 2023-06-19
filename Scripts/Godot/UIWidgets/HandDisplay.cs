@@ -21,21 +21,21 @@ namespace TFCardBattle.Godot
         }
 
         private CardRowDisplay _cardRow => GetNode<CardRowDisplay>("%CardRow");
-        private BattleController _battle;
+        private BattleState _battleState;
 
         public override void _Ready()
         {
             _cardRow.CardClicked += i => EmitSignal(SignalName.CardActivated, i);
         }
 
-        public void SetBattle(BattleController battle)
+        public void SetBattleState(BattleState state)
         {
-            _battle = battle;
+            _battleState = state;
         }
 
         public void Refresh()
         {
-            _cardRow.Refresh(_battle.State.Hand.ToArray());
+            _cardRow.Refresh(_battleState.Hand.ToArray());
         }
 
         public void PlayActivateAnimation(int cardIndex)

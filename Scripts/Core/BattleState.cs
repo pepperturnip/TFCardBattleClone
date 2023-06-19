@@ -89,5 +89,21 @@ namespace TFCardBattle.Core
                 default: throw new NotImplementedException();
             }
         }
+
+        public bool CanAffordCard(int buyPileIndex)
+        {
+            var card = BuyPile[buyPileIndex].PurchaseStats;
+
+            if (Brain < card.BrainCost)
+                return false;
+
+            if (Heart < card.HeartCost)
+                return false;
+
+            if (Sub < card.SubCost)
+                return false;
+
+            return true;
+        }
     }
 }

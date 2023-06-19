@@ -8,7 +8,6 @@ namespace TFCardBattle.Godot
 {
     public partial class BattleUI : Control
     {
-        [Export] public PackedScene CardDisplayPrefab;
         [Export] public CardModelFactory CardModelFactory;
 
         private TFBar _playerTFBar => GetNode<TFBar>("%PlayerTFBar");
@@ -50,8 +49,8 @@ namespace TFCardBattle.Godot
             );
 
             this.CardModelFactory.SetBattleState(Battle.State);
-            _buyPileDisplay.SetBattle(Battle);
-            _handDisplay.SetBattle(Battle);
+            _buyPileDisplay.SetBattleState(Battle.State);
+            _handDisplay.SetBattleState(Battle.State);
 
             await Battle.StartTurn();
             RefreshDisplay();
