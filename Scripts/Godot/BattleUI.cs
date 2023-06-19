@@ -8,7 +8,6 @@ namespace TFCardBattle.Godot
 {
     public partial class BattleUI : Control
     {
-        [Export] public PackedScene CardDisplayPrefab;
         [Export] public CardModelFactory CardModelFactory;
 
         private TFBar _playerTFBar => GetNode<TFBar>("%PlayerTFBar");
