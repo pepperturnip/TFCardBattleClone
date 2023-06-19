@@ -113,16 +113,6 @@ namespace TFCardBattle.Godot
             }
         }
 
-        public async Task InsertIntoBuyPile(ICard[] newBuyPile, int changedCardIndex)
-        {
-            using (SetAnimating())
-            {
-                _buyPileDisplay.AddCard(newBuyPile[changedCardIndex]);
-                await WaitFor.Seconds(0.125);
-                _buyPileDisplay.Refresh(newBuyPile);
-            }
-        }
-
         public async Task ForgetCard(ICard card, BattleState state)
         {
             using (SetAnimating())
