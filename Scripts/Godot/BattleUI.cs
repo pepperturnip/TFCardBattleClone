@@ -16,14 +16,10 @@ namespace TFCardBattle.Godot
 
         private Label _enemyDamageRangeLabel => GetNode<Label>("%EnemyDamageRangeLabel");
 
-        private AccumulatingLabel _brain => GetNode<AccumulatingLabel>("%BrainLabel");
-        private AccumulatingLabel _heart => GetNode<AccumulatingLabel>("%HeartLabel");
-        private AccumulatingLabel _sub => GetNode<AccumulatingLabel>("%SubLabel");
-        private AccumulatingLabel _shield => GetNode<AccumulatingLabel>("%ShieldLabel");
-        private AccumulatingLabel _damage => GetNode<AccumulatingLabel>("%DamageResourceLabel");
-
         private CardRowDisplay _handDisplay => GetNode<CardRowDisplay>("%HandDisplay");
         private CardRowDisplay _buyPileDisplay => GetNode<CardRowDisplay>("%BuyPileDisplay");
+
+        private ResourcesDisplay _resourcesDisplay => GetNode<ResourcesDisplay>("%ResourcesDisplay");
         private ConsumablesDisplay _consumablesDisplay => GetNode<ConsumablesDisplay>("%ConsumablesDisplay");
 
 
@@ -103,14 +99,10 @@ namespace TFCardBattle.Godot
             _enemyTFBar.MaxValue = Battle.State.EnemyMaxTF;
             _enemyTFBar.Value = Battle.State.EnemyTF;
 
-            _brain.Value = Battle.State.Brain;
-            _heart.Value = Battle.State.Heart;
-            _sub.Value = Battle.State.Sub;
-            _shield.Value = Battle.State.Shield;
-            _damage.Value = Battle.State.Damage;
-
             _handDisplay.Refresh(Battle.State.Hand.ToArray());
             _buyPileDisplay.Refresh(Battle.State.BuyPile.ToArray());
+
+            _resourcesDisplay.UpdateResources(Battle.State);
             _consumablesDisplay.Refresh(Battle.State.Consumables.ToArray());
         }
 
