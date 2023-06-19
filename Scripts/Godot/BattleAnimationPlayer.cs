@@ -22,7 +22,7 @@ namespace TFCardBattle.Godot
 
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
         private CardRowDisplay _handDisplay => GetNode<CardRowDisplay>("%HandDisplay");
-        private CardRowDisplay _buyPileDisplay => GetNode<CardRowDisplay>("%BuyPileDisplay");
+        private BuyPileDisplay _buyPileDisplay => GetNode<BuyPileDisplay>("%BuyPileDisplay");
         private ResourcesDisplay _resourcesDisplay => GetNode<ResourcesDisplay>("%ResourcesDisplay");
 
         public async Task DamageEnemy(int damageAmount)
@@ -95,7 +95,7 @@ namespace TFCardBattle.Godot
             using (SetAnimating())
             {
                 await TweenPos(_buyPileDisplay, Vector2.Up * 208, moveTime);
-                _buyPileDisplay.Refresh(cards);
+                _buyPileDisplay.Refresh();
                 await TweenPos(_buyPileDisplay, Vector2.Zero, moveTime);
             }
         }
