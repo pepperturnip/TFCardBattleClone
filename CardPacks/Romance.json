@@ -1,0 +1,37 @@
+[
+    {
+        "Name": "Beauty Regimen",
+        "Image": "card32.webp",
+        "MinTF": 15,
+        "MaxTF": 31,
+        "HeartCost": 2,
+        "Shield": 1,
+        "Draw": 1
+    },
+    {
+        "Name": "Date Night",
+        "Image": "card40.webp",
+        "MinTF": 23,
+        "MaxTF": 39,
+        "HeartCost": 3,
+        "Heart": 2,
+        "Shield": 2
+    },
+    {
+        "Name": "Womans' Intuition",
+        "Image": "card46.webp",
+        "MinTF": 31,
+        "MaxTF": 47,
+        "HeartCost": 3,
+        "Class": "RefreshBuyPile"
+    },
+    {
+        "Name": "Back to His Place",
+        "Image": "card50.webp",
+        "MinTF": 56,
+        "MaxTF": 72,
+        "HeartCost": 3,
+        "Damage": 2,
+        "Shield": 3
+    }
+]

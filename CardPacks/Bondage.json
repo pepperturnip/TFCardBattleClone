@@ -1,0 +1,37 @@
+[
+    {
+        "Name": "Ropeplay",
+        "Image": "card72.webp",
+        "MinTF": 35,
+        "MaxTF": 51,
+        "HeartCost": 2,
+        "Sub": 3
+    },
+    {
+        "Name": "Blindfolded",
+        "Image": "card74.webp",
+        "MinTF": 46,
+        "MaxTF": 62,
+        "HeartCost": 2,
+        "Sub": 1,
+        "Draw": 1
+    },
+    {
+        "Name": "Locked Away",
+        "Image": "card76.webp",
+        "MinTF": 57,
+        "MaxTF": 73,
+        "SubCost": 2,
+        "Sub": 1,
+        "Shield": 3
+    },
+    {
+        "Name": "Collared",
+        "Image": "card85.webp",
+        "MinTF": 67,
+        "MaxTF": 83,
+        "SubCost": 2,
+        "Class": "MultiplyResources",
+        "SubMult": 2
+    }
+]

@@ -1,0 +1,38 @@
+[
+    {
+        "Name": "Anal",
+        "Image": "card77.webp",
+        "MinTF": 41,
+        "MaxTF": 57,
+        "HeartCost": 5,
+        "Heart": 3,
+        "Draw": 1
+    },
+    {
+        "Name": "Pounded",
+        "Image": "card89.webp",
+        "MinTF": 52,
+        "MaxTF": 68,
+        "HeartCost": 5,
+        "Sub": 2,
+        "Damage": 2,
+        "Draw": 1
+    },
+    {
+        "Name": "Ride 'em Cowgirl",
+        "Image": "card63.webp",
+        "MinTF": 63,
+        "MaxTF": 79,
+        "HeartCost": 6,
+        "Damage": 6,
+        "Draw": 1
+    },
+    {
+        "Name": "Doggy Style",
+        "Image": "card96.webp",
+        "MinTF": 72,
+        "MaxTF": 88,
+        "HeartCost": 9,
+        "Draw": 4
+    }
+]

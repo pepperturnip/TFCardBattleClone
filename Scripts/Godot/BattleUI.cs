@@ -32,7 +32,6 @@ namespace TFCardBattle.Godot
                 {
                     CardPacks = new[]
                     {
-                        CardPacks.Load("PlaceholderCardPack"),
                         CardPacks.Load("Mind"),
                         CardPacks.Load("Tech"),
                         CardPacks.Load("Hypno"),
@@ -41,7 +40,14 @@ namespace TFCardBattle.Godot
                         CardPacks.Load("Purity"),
                         CardPacks.Load("Whore"),
                         CardPacks.Load("FemmeFatale"),
-                        CardPacks.Load("Tease")
+                        CardPacks.Load("Tease"),
+                        CardPacks.Load("Romance"),
+                        CardPacks.Load("Blowjob"),
+                        CardPacks.Load("Submissive"),
+                        CardPacks.Load("Bondage"),
+                        CardPacks.Load("Cum"),
+                        CardPacks.Load("Cock"),
+                        CardPacks.Load("Sex")
                     },
                     PermanentBuyPile = CardPacks.Load("PlaceholderPermanentBuyPile"),
                     StartingDeck = PlayerStartingDeck.StartingDeck()
