@@ -1,23 +1,5 @@
 ﻿[
     {
-        "Name": "Just a Lick",
-        "Image": "card52.webp",
-        "MinTF": 33,
-        "MaxTF": 71,
-        "HeartCost": 2,
-        "Damage": 1,
-        "Draw": 1
-    },
-    {
-        "Name": "Sixty-Nine",
-        "Image": "card60.webp",
-        "MinTF": 33,
-        "MaxTF": 71,
-        "HeartCost": 4,
-        "Heart": 3,
-        "Damage": 3
-    },
-    {
         "Name": "Bow Down",
         "Image": "card71.webp",
         "MinTF": 66,
