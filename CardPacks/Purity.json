@@ -57,7 +57,7 @@
         "Name": "Online Interview",
         "MinTF": 26,
         "MaxTF": 42,
-        "BrainCost": 5,
+        "BrainCost": 4,
 
         "Class": "DowngradeIfHeart",
         "StrongVersion":
