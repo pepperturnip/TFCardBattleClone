@@ -21,9 +21,8 @@ namespace TFCardBattle.Core
         public readonly BattleState State;
 
         public bool BattleEnded {get; private set;} = false;
-
-        private readonly IBattleAnimationPlayer _animationPlayer;
-        private readonly Random _rng;
+        public Random Rng {get; private set;}
+        public IBattleAnimationPlayer AnimationPlayer {get; private set;}
 
         public BattleController(
             PlayerLoadout loadout,
@@ -32,8 +31,8 @@ namespace TFCardBattle.Core
         )
         {
             State = new BattleState(loadout);
-            _animationPlayer = animationPlayer;
-            _rng = rng;
+            AnimationPlayer = animationPlayer;
+            Rng = rng;
         }
 
         public async Task DrawCard()
@@ -68,12 +67,12 @@ namespace TFCardBattle.Core
                 return;
             }
 
-            var card = _rng.PickFrom(State.Deck);
+            var card = Rng.PickFrom(State.Deck);
             State.Deck.Remove(card);
             State.Hand.Add(card);
             State.DrawCount++;
 
-            await _animationPlayer.DrawCard(card);
+            await AnimationPlayer.DrawCard(card);
         }
 
         public async Task PlayCard(int handIndex)
@@ -82,7 +81,7 @@ namespace TFCardBattle.Core
 
             State.Hand.Remove(card);
             State.CardsPlayedThisTurn.Add(card);
-            await _animationPlayer.PlayCard(handIndex, State);
+            await AnimationPlayer.PlayCard(handIndex, State);
 
             await card.Activate(this);
         }
@@ -108,7 +107,7 @@ namespace TFCardBattle.Core
             State.Heart -= cost.HeartCost;
             State.Sub -= cost.SubCost;
 
-            await _animationPlayer.BuyCard(buyPileIndex, isPermanentCard);
+            await AnimationPlayer.BuyCard(buyPileIndex, isPermanentCard);
         }
 
         public Task AddConsumable(IConsumable consumable)
@@ -155,7 +154,7 @@ namespace TFCardBattle.Core
 
             // Allow the player to attack
             State.EnemyTF += State.Damage;
-            await _animationPlayer.DamageEnemy(State.Damage);
+            await AnimationPlayer.DamageEnemy(State.Damage);
 
             if (State.EnemyTF >= State.EnemyMaxTF)
             {
@@ -168,7 +167,7 @@ namespace TFCardBattle.Core
             enemyTfDamage = Math.Clamp(enemyTfDamage, 0, int.MaxValue);
 
             State.PlayerTF += enemyTfDamage;
-            await _animationPlayer.DamagePlayer(enemyTfDamage);
+            await AnimationPlayer.DamagePlayer(enemyTfDamage);
 
             if (State.PlayerTF >= State.PlayerMaxTF)
             {
@@ -197,7 +196,7 @@ namespace TFCardBattle.Core
                     .Select(c => (c, c.PurchaseStats.OfferWeight))
                     .ToArray();
 
-                var card = _rng.PickFromWeighted(weights);
+                var card = Rng.PickFromWeighted(weights);
                 offerableCards.Remove(card);
                 buyPile.Add(card);
             }
@@ -212,14 +211,14 @@ namespace TFCardBattle.Core
             ).Single();
             State.BuyPile.Add(permanentCard);
 
-            return _animationPlayer.RefreshBuyPile(State.BuyPile.ToArray());
+            return AnimationPlayer.RefreshBuyPile(State.BuyPile.ToArray());
         }
 
         public async Task DiscardHand()
         {
             TransferAllCards(State.CardsPlayedThisTurn, State.Discard);
             TransferAllCards(State.Hand, State.Discard);
-            await _animationPlayer.DiscardHand();
+            await AnimationPlayer.DiscardHand();
         }
 
         public async Task DiscardResources()
@@ -229,7 +228,7 @@ namespace TFCardBattle.Core
             State.Sub = 0;
             State.Shield = 0;
             State.Damage = 0;
-            await _animationPlayer.DiscardResources();
+            await AnimationPlayer.DiscardResources();
         }
 
         public async Task ForgetBasicCard()
@@ -263,7 +262,7 @@ namespace TFCardBattle.Core
                     if (IsBasic(card))
                     {
                         cards.RemoveAt(i);
-                        await _animationPlayer.ForgetCard(card, State);
+                        await AnimationPlayer.ForgetCard(card, State);
                         return true;
                     }
                 }
@@ -293,7 +292,7 @@ namespace TFCardBattle.Core
             // game doesn't count this as "drawing" for those purposes.
             TransferAllCards(State.CardsPlayedThisTurn, State.Discard);
             TransferAllCards(State.Hand, State.Discard);
-            await _animationPlayer.DiscardHand();
+            await AnimationPlayer.DiscardHand();
 
             for (int i = 0; i < StartingHandSize; i++)
             {
@@ -337,7 +336,7 @@ namespace TFCardBattle.Core
 
         private int RollEnemyDamage()
         {
-            return _rng.Next(EnemyMinTFDamage, EnemyMaxTFDamage + 1);
+            return Rng.Next(EnemyMinTFDamage, EnemyMaxTFDamage + 1);
         }
 
         private void TransitionBasicCards()
