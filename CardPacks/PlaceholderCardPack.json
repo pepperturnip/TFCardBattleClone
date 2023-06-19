@@ -1,15 +1,5 @@
 ﻿[
     {
-        "Name": "Cam Girl",
-        "Image": "card61.webp",
-        "MinTF": 33,
-        "MaxTF": 71,
-        "HeartCost": 3,
-        "Heart": 2,
-        "Damage": 1,
-        "Shield": 1
-    },
-    {
         "Name": "Beauty Regimen",
         "Image": "card32.webp",
         "MinTF": 33,
@@ -26,14 +16,6 @@
         "HeartCost": 2,
         "Damage": 1,
         "Draw": 1
-    },
-    {
-        "Name": "Crotch Grab",
-        "Image": "card41.webp",
-        "MinTF": 33,
-        "MaxTF": 71,
-        "HeartCost": 3,
-        "Heart": 3
     },
     {
         "Name": "Date Night",
