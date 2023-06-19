@@ -49,12 +49,22 @@ namespace TFCardBattle.Godot
                 holder.GlobalPosition = holder.GlobalPosition.MoveToward(targetPos, deltaPos);
 
                 // Make cards bigger when being hovered over
-                var targetScale = (_cardPositions.GetChild<CardPositioner>(i).IsMouseOver && EnableInput)
+                bool isBig =
+                    EnableInput &&
+                    holder.Model.Enabled &&
+                    _cardPositions.GetChild<CardPositioner>(i).IsMouseOver;
+
+                var targetScale = isBig
                     ? Vector2.One * CardHoverScale
                     : Vector2.One;
 
                 holder.Scaler.Scale = holder.Scaler.Scale.MoveToward(targetScale, CardHoverGrowSpeed * delta);
             }
+        }
+
+        public CardModel GetCardModel(int cardIndex)
+        {
+            return GetCardHolder(cardIndex).Model;
         }
 
         public void AddCard(ICard card)
