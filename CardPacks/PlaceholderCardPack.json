@@ -1,14 +1,5 @@
 ﻿[
     {
-        "Name": "Beauty Regimen",
-        "Image": "card32.webp",
-        "MinTF": 33,
-        "MaxTF": 71,
-        "HeartCost": 2,
-        "Shield": 1,
-        "Draw": 1
-    },
-    {
         "Name": "Just a Lick",
         "Image": "card52.webp",
         "MinTF": 33,
@@ -18,15 +9,6 @@
         "Draw": 1
     },
     {
-        "Name": "Date Night",
-        "Image": "card40.webp",
-        "MinTF": 33,
-        "MaxTF": 71,
-        "HeartCost": 3,
-        "Heart": 2,
-        "Shield": 2
-    },
-    {
         "Name": "Sixty-Nine",
         "Image": "card60.webp",
         "MinTF": 33,
@@ -34,15 +16,6 @@
         "HeartCost": 4,
         "Heart": 3,
         "Damage": 3
-    },
-    {
-        "Name": "Back to His Place",
-        "Image": "card50.webp",
-        "MinTF": 33,
-        "MaxTF": 71,
-        "HeartCost": 3,
-        "Damage": 2,
-        "Shield": 3
     },
     {
         "Name": "Bow Down",
