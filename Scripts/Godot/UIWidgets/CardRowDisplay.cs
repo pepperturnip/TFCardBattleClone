@@ -68,14 +68,21 @@ namespace TFCardBattle.Godot
             RecreateCardPositioners(_cardHolders.GetChildCount());
         }
 
-        public void PlayActivateAnimation(int cardIndex)
+        public CardHolder CloneCardForAnimation(int cardIndex)
         {
-            // Make a copy of the card being removed, so we can animate it
-            // after removing it.
             var originalHolder = GetCardHolder(cardIndex);
             CardHolder cloneHolder = CreateCardHolder(originalHolder.Model.Card);
             AddChild(cloneHolder);
             cloneHolder.GlobalPosition = originalHolder.GlobalPosition;
+
+            return cloneHolder;
+        }
+
+        public void PlayActivateAnimation(int cardIndex)
+        {
+            // Make a copy of the card being removed, so we can animate it
+            // after removing it.
+            CardHolder cloneHolder = CloneCardForAnimation(cardIndex);
 
             // Start animating the clone in the background.
             const double stepDuration = 0.1;
@@ -119,10 +126,7 @@ namespace TFCardBattle.Godot
         {
             // Make a copy of the card being removed, so we can animate it
             // after removing it.
-            var originalHolder = GetCardHolder(cardIndex);
-            CardHolder cloneHolder = CreateCardHolder(originalHolder.Model.Card);
-            AddChild(cloneHolder);
-            cloneHolder.GlobalPosition = originalHolder.GlobalPosition;
+            CardHolder cloneHolder = CloneCardForAnimation(cardIndex);
 
             // Start animating the clone in the background.
             const double stepDuration = 0.1;
@@ -288,7 +292,7 @@ namespace TFCardBattle.Godot
             }
         }
 
-        private partial class CardHolder : Node2D
+        public partial class CardHolder : Node2D
         {
             public Node2D Scaler {get; private set;}
             public CardModel Model {get; private set;}
