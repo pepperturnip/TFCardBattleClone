@@ -1,14 +1,5 @@
 ﻿[
     {
-        "Name": "Facial",
-        "Image": "card67.webp",
-        "MinTF": 66,
-        "MaxTF": 9999,
-        "HeartCost": 2,
-        "Heart": 2,
-        "Sub": 2
-    },
-    {
         "Name": "Anal",
         "Image": "card77.webp",
         "MinTF": 66,
@@ -16,15 +7,6 @@
         "HeartCost": 5,
         "Heart": 3,
         "Draw": 1
-    },
-    {
-        "Name": "Creampie",
-        "Image": "card80.webp",
-        "MinTF": 66,
-        "MaxTF": 9999,
-        "HeartCost": 7,
-        "Sub": 5,
-        "Draw": 2
     },
     {
         "Name": "Pounded",
@@ -35,14 +17,6 @@
         "Sub": 2,
         "Damage": 2,
         "Draw": 1
-    },
-    {
-        "Name": "Swallow(sorta)",
-        "Image": "card83.webp",
-        "MinTF": 66,
-        "MaxTF": 9999,
-        "HeartCost": 8,
-        "Draw": 3
     },
     {
         "Name": "Air Tight",
@@ -62,14 +36,6 @@
         "HeartCost": 6,
         "Damage": 6,
         "Draw": 1
-    },
-    {
-        "Name": "Lick it Up",
-        "Image": "card95.webp",
-        "MinTF": 66,
-        "MaxTF": 9999,
-        "SubCost": 6,
-        "Draw": 3
     },
     {
         "Name": "Gangbang",
