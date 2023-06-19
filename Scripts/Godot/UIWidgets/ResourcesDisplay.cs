@@ -32,7 +32,11 @@ namespace TFCardBattle.Godot
         /// <param name="state"></param>
         public void RefreshResources(BattleState state)
         {
-            throw new NotImplementedException();
+            _brain.RefreshValue(state.Brain);
+            _heart.RefreshValue(state.Heart);
+            _sub.RefreshValue(state.Sub);
+            _shield.RefreshValue(state.Shield);
+            _damage.RefreshValue(state.Damage);
         }
     }
 }

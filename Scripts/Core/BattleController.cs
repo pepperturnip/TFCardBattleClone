@@ -149,6 +149,7 @@ namespace TFCardBattle.Core
             State.Sub = 0;
             State.Shield = 0;
             State.Damage = 0;
+            await _animationPlayer.DiscardResources(State);
 
             TransferAllCards(State.CardsPlayedThisTurn, State.Discard);
             TransferAllCards(State.Hand, State.Discard);
