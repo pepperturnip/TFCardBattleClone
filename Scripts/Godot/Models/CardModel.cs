@@ -6,6 +6,10 @@ namespace TFCardBattle.Godot
 {
     public partial class CardModel : Node2D
     {
+        [Export] public bool Enabled = true;
+        [Export] public Color EnabledModulate = Colors.White;
+        [Export] public Color DisabledModulate = Color.FromHsv(0, 0, 0.5f);
+
         public Vector2 Size => _panel.Size;
 
         public ICard Card => _card;
@@ -18,6 +22,13 @@ namespace TFCardBattle.Godot
         private TextureRect _texture => GetNode<TextureRect>("%Texture");
 
         private BattleState _battleState;
+
+        public override void _Process(double delta)
+        {
+            _panel.Modulate = Enabled
+                ? EnabledModulate
+                : DisabledModulate;
+        }
 
         public void SetCard(ICard card, BattleState state)
         {

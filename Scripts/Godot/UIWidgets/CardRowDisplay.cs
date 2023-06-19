@@ -18,15 +18,16 @@ namespace TFCardBattle.Godot
         [Export] public float CardHoverScale = 1.1f;
         [Export] public bool EnableInput = true;
 
+        public Vector2 CardSize {get; private set;}
+
         private Control _cardPositions => GetNode<Control>("%CardPositions");
         private Node2D _cardHolders => GetNode<Node2D>("%CardModels");
-        private Vector2 _cardSize;
 
         public override void _Ready()
         {
             // Get the size of a card by measuring a dummy one
             var dummyCard = DummyCardModelPrefab.Instantiate<CardModel>();
-            _cardSize = dummyCard.Size;
+            CardSize = dummyCard.Size;
             dummyCard.QueueFree();
             dummyCard = null;
         }
@@ -48,12 +49,22 @@ namespace TFCardBattle.Godot
                 holder.GlobalPosition = holder.GlobalPosition.MoveToward(targetPos, deltaPos);
 
                 // Make cards bigger when being hovered over
-                var targetScale = (_cardPositions.GetChild<CardPositioner>(i).IsMouseOver && EnableInput)
+                bool isBig =
+                    EnableInput &&
+                    holder.Model.Enabled &&
+                    _cardPositions.GetChild<CardPositioner>(i).IsMouseOver;
+
+                var targetScale = isBig
                     ? Vector2.One * CardHoverScale
                     : Vector2.One;
 
                 holder.Scaler.Scale = holder.Scaler.Scale.MoveToward(targetScale, CardHoverGrowSpeed * delta);
             }
+        }
+
+        public CardModel GetCardModel(int cardIndex)
+        {
+            return GetCardHolder(cardIndex).Model;
         }
 
         public void AddCard(ICard card)
@@ -68,14 +79,21 @@ namespace TFCardBattle.Godot
             RecreateCardPositioners(_cardHolders.GetChildCount());
         }
 
-        public void PlayActivateAnimation(int cardIndex)
+        public CardHolder CloneCardForAnimation(int cardIndex)
         {
-            // Make a copy of the card being removed, so we can animate it
-            // after removing it.
             var originalHolder = GetCardHolder(cardIndex);
             CardHolder cloneHolder = CreateCardHolder(originalHolder.Model.Card);
             AddChild(cloneHolder);
             cloneHolder.GlobalPosition = originalHolder.GlobalPosition;
+
+            return cloneHolder;
+        }
+
+        public void PlayActivateAnimation(int cardIndex)
+        {
+            // Make a copy of the card being removed, so we can animate it
+            // after removing it.
+            CardHolder cloneHolder = CloneCardForAnimation(cardIndex);
 
             // Start animating the clone in the background.
             const double stepDuration = 0.1;
@@ -84,7 +102,7 @@ namespace TFCardBattle.Godot
             tween.TweenProperty(
                 cloneHolder,
                 "position",
-                cloneHolder.Position + Vector2.Up * _cardSize.Y,
+                cloneHolder.Position + Vector2.Up * CardSize.Y,
                 stepDuration
             );
             tween.Parallel();
@@ -112,35 +130,6 @@ namespace TFCardBattle.Godot
                 "modulate",
                 Colors.Transparent,
                 stepDuration);
-            tween.TweenCallback(new Callable(cloneHolder, "queue_free"));
-        }
-
-        public void PlayBuyAnimation(int cardIndex)
-        {
-            // Make a copy of the card being removed, so we can animate it
-            // after removing it.
-            var originalHolder = GetCardHolder(cardIndex);
-            CardHolder cloneHolder = CreateCardHolder(originalHolder.Model.Card);
-            AddChild(cloneHolder);
-            cloneHolder.GlobalPosition = originalHolder.GlobalPosition;
-
-            // Start animating the clone in the background.
-            const double stepDuration = 0.1;
-            var tween = GetTree().CreateTween();
-
-            tween.TweenProperty(
-                cloneHolder,
-                "position",
-                cloneHolder.Position + Vector2.Down * _cardSize.Y,
-                stepDuration
-            );
-            tween.Parallel();
-            tween.TweenProperty(
-                cloneHolder.Scaler,
-                "scale",
-                Vector2.Zero,
-                stepDuration
-            );
             tween.TweenCallback(new Callable(cloneHolder, "queue_free"));
         }
 
@@ -172,8 +161,8 @@ namespace TFCardBattle.Godot
             for(int i = 0; i < cardCount; i++)
             {
                 var cardPositioner = new CardPositioner();
-                cardPositioner.Size = _cardSize;
-                cardPositioner.CustomMinimumSize = _cardSize;
+                cardPositioner.Size = CardSize;
+                cardPositioner.CustomMinimumSize = CardSize;
                 _cardPositions.AddChild(cardPositioner);
 
                 cardPositioner.GlobalPosition = TargetGlobalPosition(i, cardCount);
@@ -217,8 +206,8 @@ namespace TFCardBattle.Godot
             _cardHolders.AddChild(holder);
 
             holder.GlobalPosition = globalPos;
-            holder.Scaler.Position = _cardSize / 2;
-            holder.Model.Position = -_cardSize / 2;
+            holder.Scaler.Position = CardSize / 2;
+            holder.Model.Position = -CardSize / 2;
         }
 
         private void RemoveCardModel(int index)
@@ -241,11 +230,11 @@ namespace TFCardBattle.Godot
         private Vector2 TargetGlobalPosition(int handIndex, int handCount)
         {
             var totalSize = new Vector2(
-                (_cardSize.X + MinCardSeparation) * handCount,
-                _cardSize.Y
+                (CardSize.X + MinCardSeparation) * handCount,
+                CardSize.Y
             );
 
-            float x = (_cardSize.X + MinCardSeparation) * handIndex;
+            float x = (CardSize.X + MinCardSeparation) * handIndex;
             x -= totalSize.X / 2;
 
             return _cardPositions.GlobalPosition + Vector2.Right * x;
@@ -256,8 +245,8 @@ namespace TFCardBattle.Godot
             var model = ModelFactory.Create(card);
 
             var holder = new CardHolder(model);
-            holder.Scaler.Position = _cardSize / 2;
-            holder.Model.Position = -_cardSize / 2;
+            holder.Scaler.Position = CardSize / 2;
+            holder.Model.Position = -CardSize / 2;
 
             return holder;
         }
@@ -288,7 +277,7 @@ namespace TFCardBattle.Godot
             }
         }
 
-        private partial class CardHolder : Node2D
+        public partial class CardHolder : Node2D
         {
             public Node2D Scaler {get; private set;}
             public CardModel Model {get; private set;}

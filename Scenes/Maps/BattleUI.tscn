@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://tm66spq6dn0h"]
+[gd_scene load_steps=19 format=3 uid="uid://tm66spq6dn0h"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/BattleUI.cs" id="1_s1rg7"]
 [ext_resource type="PackedScene" uid="uid://bxkjo1whiydj3" path="res://Scenes/CardModelFactory.tscn" id="2_7qx4c"]
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/ConsumablesDisplay.cs" id="3_w7jsv"]
 [ext_resource type="PackedScene" uid="uid://dao0w4slv7603" path="res://Scenes/UIWidgets/CardRowDisplay.tscn" id="3_wgfut"]
 [ext_resource type="PackedScene" uid="uid://bnu088vlpj25r" path="res://Scenes/UIWidgets/ResourcesDisplay.tscn" id="4_36rf5"]
+[ext_resource type="PackedScene" uid="uid://b1ox1ej1baxb1" path="res://Scenes/UIWidgets/BuyPileDisplay.tscn" id="4_bxu7y"]
 [ext_resource type="Script" path="res://Scripts/Godot/BattleAnimationPlayer.cs" id="4_uf642"]
 [ext_resource type="PackedScene" uid="uid://pwc8q4s75ea5" path="res://Scenes/UIWidgets/ForgetAnimationPlayer.tscn" id="7_s5ny6"]
 [ext_resource type="PackedScene" uid="uid://doy8c42dvds45" path="res://Scenes/UIWidgets/TFBar.tscn" id="8_knmsm"]
@@ -232,13 +233,9 @@ offset_top = 8.0
 offset_bottom = 200.0
 grow_horizontal = 2
 
-[node name="BuyPileDisplay" parent="BuyPileHolder" node_paths=PackedStringArray("ModelFactory") instance=ExtResource("3_wgfut")]
+[node name="BuyPileDisplay" parent="BuyPileHolder" node_paths=PackedStringArray("ModelFactory") instance=ExtResource("4_bxu7y")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 192.0
-grow_horizontal = 2
 ModelFactory = NodePath("../../CardModelFactory")
 
 [node name="Resources" type="HBoxContainer" parent="."]
@@ -439,7 +436,7 @@ grow_vertical = 2
 unique_name_in_owner = true
 
 [connection signal="CardClicked" from="HandHolder/HandDisplay" to="." method="OnPlayCardClicked"]
-[connection signal="CardClicked" from="BuyPileHolder/BuyPileDisplay" to="." method="OnBuyCardClicked"]
+[connection signal="CardBought" from="BuyPileHolder/BuyPileDisplay" to="." method="OnBuyCardClicked"]
 [connection signal="ConsumableClicked" from="Resources/ConsumablesDisplay" to="." method="OnUseConsumableClicked"]
 [connection signal="pressed" from="EndTurnButton" to="." method="OnEndTurnClicked"]
 [connection signal="IsAnimatingChanged" from="BattleAnimationPlayer" to="." method="OnIsAnimatingChanged"]

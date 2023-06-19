@@ -17,7 +17,7 @@ namespace TFCardBattle.Godot
         private Label _enemyDamageRangeLabel => GetNode<Label>("%EnemyDamageRangeLabel");
 
         private CardRowDisplay _handDisplay => GetNode<CardRowDisplay>("%HandDisplay");
-        private CardRowDisplay _buyPileDisplay => GetNode<CardRowDisplay>("%BuyPileDisplay");
+        private BuyPileDisplay _buyPileDisplay => GetNode<BuyPileDisplay>("%BuyPileDisplay");
 
         private ResourcesDisplay _resourcesDisplay => GetNode<ResourcesDisplay>("%ResourcesDisplay");
         private ConsumablesDisplay _consumablesDisplay => GetNode<ConsumablesDisplay>("%ConsumablesDisplay");
@@ -50,6 +50,7 @@ namespace TFCardBattle.Godot
             );
 
             this.CardModelFactory.SetBattleState(Battle.State);
+            _buyPileDisplay.SetBattle(Battle);
 
             await Battle.StartTurn();
             RefreshDisplay();
@@ -100,7 +101,7 @@ namespace TFCardBattle.Godot
             _enemyTFBar.Value = Battle.State.EnemyTF;
 
             _handDisplay.Refresh(Battle.State.Hand.ToArray());
-            _buyPileDisplay.Refresh(Battle.State.BuyPile.ToArray());
+            _buyPileDisplay.Refresh();
 
             _resourcesDisplay.UpdateResources(Battle.State);
             _consumablesDisplay.Refresh(Battle.State.Consumables.ToArray());
