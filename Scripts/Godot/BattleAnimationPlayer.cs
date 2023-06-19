@@ -21,7 +21,7 @@ namespace TFCardBattle.Godot
         private bool _isAnimating;
 
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
-        private CardRowDisplay _handDisplay => GetNode<CardRowDisplay>("%HandDisplay");
+        private HandDisplay _handDisplay => GetNode<HandDisplay>("%HandDisplay");
         private BuyPileDisplay _buyPileDisplay => GetNode<BuyPileDisplay>("%BuyPileDisplay");
         private ResourcesDisplay _resourcesDisplay => GetNode<ResourcesDisplay>("%ResourcesDisplay");
 
@@ -83,7 +83,7 @@ namespace TFCardBattle.Godot
             using (SetAnimating())
             {
                 await TweenPos(_handDisplay, Vector2.Down * 208, 0.1);
-                _handDisplay.Refresh(Array.Empty<ICard>());
+                _handDisplay.ClearCards();
                 _handDisplay.Position = Vector2.Zero;
             }
         }

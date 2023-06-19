@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/Godot/BattleUI.cs" id="1_s1rg7"]
 [ext_resource type="PackedScene" uid="uid://bxkjo1whiydj3" path="res://Scenes/CardModelFactory.tscn" id="2_7qx4c"]
+[ext_resource type="PackedScene" uid="uid://banf0dyorxitu" path="res://Scenes/UIWidgets/HandDisplay.tscn" id="3_423r0"]
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/ConsumablesDisplay.cs" id="3_w7jsv"]
-[ext_resource type="PackedScene" uid="uid://dao0w4slv7603" path="res://Scenes/UIWidgets/CardRowDisplay.tscn" id="3_wgfut"]
 [ext_resource type="PackedScene" uid="uid://bnu088vlpj25r" path="res://Scenes/UIWidgets/ResourcesDisplay.tscn" id="4_36rf5"]
 [ext_resource type="PackedScene" uid="uid://b1ox1ej1baxb1" path="res://Scenes/UIWidgets/BuyPileDisplay.tscn" id="4_bxu7y"]
 [ext_resource type="Script" path="res://Scripts/Godot/BattleAnimationPlayer.cs" id="4_uf642"]
@@ -212,18 +212,11 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HandDisplay" parent="HandHolder" node_paths=PackedStringArray("ModelFactory") instance=ExtResource("3_wgfut")]
+[node name="HandDisplay" parent="HandHolder" node_paths=PackedStringArray("ModelFactory") instance=ExtResource("3_423r0")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -192.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 0
 ModelFactory = NodePath("../../CardModelFactory")
+EnableInput = true
 
 [node name="BuyPileHolder" type="Control" parent="."]
 layout_mode = 1
@@ -237,6 +230,7 @@ grow_horizontal = 2
 unique_name_in_owner = true
 layout_mode = 1
 ModelFactory = NodePath("../../CardModelFactory")
+EnableInput = true
 
 [node name="Resources" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -435,7 +429,7 @@ grow_vertical = 2
 [node name="ForgetAnimationPlayer" parent="ForgetAnimationPlayerHolder" instance=ExtResource("7_s5ny6")]
 unique_name_in_owner = true
 
-[connection signal="CardClicked" from="HandHolder/HandDisplay" to="." method="OnPlayCardClicked"]
+[connection signal="CardActivated" from="HandHolder/HandDisplay" to="." method="OnPlayCardClicked"]
 [connection signal="CardBought" from="BuyPileHolder/BuyPileDisplay" to="." method="OnBuyCardClicked"]
 [connection signal="ConsumableClicked" from="Resources/ConsumablesDisplay" to="." method="OnUseConsumableClicked"]
 [connection signal="pressed" from="EndTurnButton" to="." method="OnEndTurnClicked"]
