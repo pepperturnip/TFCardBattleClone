@@ -38,9 +38,28 @@ namespace TFCardBattle.Godot
             _cardRow.Refresh(_battle.State.BuyPile.ToArray());
         }
 
-        public void PlayBuyAnimation(int buyPileIndex)
+        public void PlayBuyAnimation(int cardIndex)
         {
-            _cardRow.PlayBuyAnimation(buyPileIndex);
+            CardRowDisplay.CardHolder cloneHolder = _cardRow.CloneCardForAnimation(cardIndex);
+
+            // Start animating the clone in the background.
+            const double stepDuration = 0.1;
+            var tween = GetTree().CreateTween();
+
+            tween.TweenProperty(
+                cloneHolder,
+                "position",
+                cloneHolder.Position + Vector2.Down * _cardRow.CardSize,
+                stepDuration
+            );
+            tween.Parallel();
+            tween.TweenProperty(
+                cloneHolder.Scaler,
+                "scale",
+                Vector2.Zero,
+                stepDuration
+            );
+            tween.TweenCallback(new Callable(cloneHolder, "queue_free"));
         }
 
         public void RemoveCard(int index)

@@ -123,32 +123,6 @@ namespace TFCardBattle.Godot
             tween.TweenCallback(new Callable(cloneHolder, "queue_free"));
         }
 
-        public void PlayBuyAnimation(int cardIndex)
-        {
-            // Make a copy of the card being removed, so we can animate it
-            // after removing it.
-            CardHolder cloneHolder = CloneCardForAnimation(cardIndex);
-
-            // Start animating the clone in the background.
-            const double stepDuration = 0.1;
-            var tween = GetTree().CreateTween();
-
-            tween.TweenProperty(
-                cloneHolder,
-                "position",
-                cloneHolder.Position + Vector2.Down * CardSize.Y,
-                stepDuration
-            );
-            tween.Parallel();
-            tween.TweenProperty(
-                cloneHolder.Scaler,
-                "scale",
-                Vector2.Zero,
-                stepDuration
-            );
-            tween.TweenCallback(new Callable(cloneHolder, "queue_free"));
-        }
-
         public void Refresh(ICard[] cards)
         {
             // HACK: Reuse old models if nothing changed, to prevent the card
