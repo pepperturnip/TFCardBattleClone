@@ -16,5 +16,14 @@
         "MaxTF": 37,
         "HeartCost": 3,
         "Heart": 3
+    },
+    {
+        "Name": "Free Entry",
+        "Image": "card38.webp",
+        "MinTF": 30,
+        "MaxTF": 46,
+        "HeartCost": 3,
+        "Class": "DrawMostExpensive",
+        "Resource": "Heart"
     }
 ]
