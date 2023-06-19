@@ -157,7 +157,7 @@ namespace TFCardBattle.Core
             State.Sub = 0;
             State.Shield = 0;
             State.Damage = 0;
-            await _animationPlayer.DiscardResources(State);
+            await _animationPlayer.DiscardResources();
 
             TransferAllCards(State.CardsPlayedThisTurn, State.Discard);
             TransferAllCards(State.Hand, State.Discard);
@@ -180,7 +180,6 @@ namespace TFCardBattle.Core
             State.PlayerTF += enemyTfDamage;
             await _animationPlayer.DamagePlayer(enemyTfDamage);
 
-            // End the battle if either the player or the enemy has lost
             if (State.PlayerTF >= State.PlayerMaxTF)
             {
                 EndBattle();
