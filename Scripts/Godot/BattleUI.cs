@@ -43,7 +43,8 @@ namespace TFCardBattle.Godot
                         CardPacks.Load("FemmeFatale"),
                         CardPacks.Load("Tease"),
                         CardPacks.Load("Romance"),
-                        CardPacks.Load("Blowjob")
+                        CardPacks.Load("Blowjob"),
+                        CardPacks.Load("Submissive")
                     },
                     PermanentBuyPile = CardPacks.Load("PlaceholderPermanentBuyPile"),
                     StartingDeck = PlayerStartingDeck.StartingDeck()
