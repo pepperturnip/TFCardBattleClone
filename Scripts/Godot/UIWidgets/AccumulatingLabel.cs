@@ -1,34 +1,67 @@
+using System;
 using Godot;
 
 namespace TFCardBattle.Godot
 {
     public partial class AccumulatingLabel : Control
     {
-        [Export] public int Value;
         [Export] public double AccumulationTimeSeconds = 1;
-        [Export] public double TickingTimeSeconds = 0.1;
-
-        private enum State
-        {
-            Idle,
-            Accumulating,
-            Ticking
-        }
-        private State _currentState = State.Idle;
-
-        private int _displayedValue;
-        private int _accumulatedValue;
-        private int _tickingStartValue;
-
-        private double _accumulateTimer;
-        private double _tickTimer;
 
         private Label _displayedValueLabel => GetNode<Label>("%DisplayedValue");
         private Label _accumLabel => GetNode<Label>("%Accumulator");
 
-        public override void _Process(double delta)
+        private bool _isTicking => _accumulateTimer <= 0;
+
+        private int _displayedValue;
+        private int _accumulatedDelta;
+        private double _accumulateTimer;
+
+        public void AccumulateToValue(int newValue)
         {
-            UpdateState(delta);
+            // Skip the animation if we're already ticking
+            if (_isTicking)
+            {
+                SkipCurrentAnimation();
+            }
+
+            // Skip the animation if we've changed directions while accumulating.
+            // That way, the player won't see the accumulator go from "+5" to
+            // "+4" if they spend a resource really fast; instead, it'll display
+            // "-1" as you'd expect.
+            int newDelta = newValue - _displayedValue;
+            if (ChangedDirection(_accumulatedDelta, newDelta))
+            {
+                SkipCurrentAnimation();
+            }
+
+            _accumulatedDelta = newValue - _displayedValue;
+            _accumulateTimer = AccumulationTimeSeconds;
+        }
+
+        /// <summary>
+        /// Immediately sets the displayed value, skipping any animations
+        /// </summary>
+        /// <param name="newValue"></param>
+        public void RefreshValue(int newValue)
+        {
+            _displayedValue = newValue;
+            _accumulatedDelta = 0;
+            _accumulateTimer = 0;
+        }
+
+        public override void _PhysicsProcess(double delta)
+        {
+            if (_accumulateTimer > 0)
+            {
+                _accumulateTimer -= delta;
+            }
+            else
+            {
+                int sign = Math.Sign(_accumulatedDelta);
+                _accumulatedDelta -= sign;
+                _displayedValue += sign;
+            }
+
             UpdateLabels();
         }
 
@@ -36,83 +69,29 @@ namespace TFCardBattle.Godot
         {
             _displayedValueLabel.Text = _displayedValue.ToString();
 
-            int deltaValue = _accumulatedValue - _displayedValue;
-            if (deltaValue == 0)
+            if (_accumulatedDelta == 0)
                 _accumLabel.Text = "";
-            else if (deltaValue > 0)
-                _accumLabel.Text = $"+{deltaValue}";
+            else if (_accumulatedDelta > 0)
+                _accumLabel.Text = $"+{_accumulatedDelta}";
             else
-                _accumLabel.Text = deltaValue.ToString();
+                _accumLabel.Text = _accumulatedDelta.ToString();
         }
 
-        private void UpdateState(double delta)
+        private void SkipCurrentAnimation()
         {
-            // HACK: Skip the animation if the value _decreased_, so there won't
-            // be a tick-down at the end of the turn.
-            // TODO: Prevent an end-of-turn tick-down in a _non_ hacky way
-            if (Value < _displayedValue)
-            {
-                _currentState = State.Idle;
-                _accumulatedValue = Value;
-                _displayedValue = Value;
+            _displayedValue += _accumulatedDelta;
+            _accumulatedDelta = 0;
+            _accumulateTimer = 0;
+        }
 
-                return;
-            }
-
-            switch (_currentState)
-            {
-                case State.Idle:
-                {
-                    // Start accumulating if the value has changed
-                    if (Value != _displayedValue)
-                    {
-                        _currentState = State.Accumulating;
-                        _accumulateTimer = AccumulationTimeSeconds;
-                        _accumulatedValue = Value;
-                    }
-
-                    break;
-                }
-
-                case State.Accumulating:
-                {
-                    // Reset the timer if the value changed again while we're
-                    // accumulating
-                    if (Value != _accumulatedValue)
-                    {
-                        _accumulatedValue = Value;
-                        _accumulateTimer = AccumulationTimeSeconds;
-                    }
-
-                    // Start moving the displayed value toward the real value
-                    // when the timer runs out
-                    _accumulateTimer -= delta;
-                    if (_accumulateTimer <= 0)
-                    {
-                        _tickTimer = TickingTimeSeconds;
-                        _tickingStartValue = _displayedValue;
-                        _currentState = State.Ticking;
-                    }
-
-                    break;
-                }
-
-                case State.Ticking:
-                {
-                    _tickTimer -= delta;
-                    double t = 1.0 - (_tickTimer / TickingTimeSeconds);
-
-                    _displayedValue = (int)(Mathf.Lerp(_accumulatedValue, _tickingStartValue, t));
-
-                    if (_tickTimer <= 0)
-                    {
-                        _currentState = State.Idle;
-                        _displayedValue = _accumulatedValue;
-                    }
-
-                    break;
-                }
-            }
+        private static bool ChangedDirection(int oldDelta, int newDelta)
+        {
+            if (oldDelta > 0)
+                return newDelta < oldDelta;
+            else if (oldDelta < 0)
+                return newDelta > oldDelta;
+            else // if (oldDelta == 0)
+                return newDelta != oldDelta;
         }
     }
 }

@@ -23,6 +23,7 @@ namespace TFCardBattle.Godot
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
         private CardRowDisplay _handDisplay => GetNode<CardRowDisplay>("%HandDisplay");
         private CardRowDisplay _buyPileDisplay => GetNode<CardRowDisplay>("%BuyPileDisplay");
+        private ResourcesDisplay _resourcesDisplay => GetNode<ResourcesDisplay>("%ResourcesDisplay");
 
         public async Task DamageEnemy(int damageAmount)
         {
@@ -69,6 +70,12 @@ namespace TFCardBattle.Godot
                 _handDisplay.RemoveCard(handIndexPlayed);
                 await WaitFor.Seconds(0.125);
             }
+        }
+
+        public Task DiscardResources(BattleState state)
+        {
+            _resourcesDisplay.RefreshResources(state);
+            return Task.CompletedTask;
         }
 
         public async Task DiscardHand()

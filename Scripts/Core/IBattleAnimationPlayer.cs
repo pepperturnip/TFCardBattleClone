@@ -9,6 +9,7 @@ namespace TFCardBattle.Core
         Task DamageEnemy(int damageAmount);
         Task DrawCard(ICard card);
         Task PlayCard(int handIndexPlayed, BattleState newState);
+        Task DiscardResources(BattleState state);
         Task DiscardHand();
         Task RefreshBuyPile(ICard[] cards);
         Task BuyCard(int buyPileIndex, bool isPermanentBuyPileCard);
