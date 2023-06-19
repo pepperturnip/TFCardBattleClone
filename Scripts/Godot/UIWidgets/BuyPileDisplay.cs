@@ -36,6 +36,12 @@ namespace TFCardBattle.Godot
         public void Refresh()
         {
             _cardRow.Refresh(_battle.State.BuyPile.ToArray());
+
+            // Disable cards that the player can't afford
+            for (int i = 0; i < _battle.State.BuyPile.Count; i++)
+            {
+                _cardRow.GetCardModel(i).Enabled = _battle.CanAffordCard(i);
+            }
         }
 
         public void PlayBuyAnimation(int cardIndex)
