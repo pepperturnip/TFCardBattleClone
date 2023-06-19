@@ -50,8 +50,8 @@ namespace TFCardBattle.Godot
             );
 
             this.CardModelFactory.SetBattleState(Battle.State);
-            _buyPileDisplay.SetBattle(Battle);
-            _handDisplay.SetBattle(Battle);
+            _buyPileDisplay.SetBattleState(Battle.State);
+            _handDisplay.SetBattleState(Battle.State);
 
             await Battle.StartTurn();
             RefreshDisplay();

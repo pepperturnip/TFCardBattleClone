@@ -21,26 +21,26 @@ namespace TFCardBattle.Godot
         }
 
         private CardRowDisplay _cardRow => GetNode<CardRowDisplay>("%CardRow");
-        private BattleController _battle;
+        private BattleState _battleState;
 
         public override void _Ready()
         {
             _cardRow.CardClicked += i => EmitSignal(SignalName.CardBought, i);
         }
 
-        public void SetBattle(BattleController battle)
+        public void SetBattleState(BattleState state)
         {
-            _battle = battle;
+            _battleState = state;
         }
 
         public void Refresh()
         {
-            _cardRow.Refresh(_battle.State.BuyPile.ToArray());
+            _cardRow.Refresh(_battleState.BuyPile.ToArray());
 
             // Disable cards that the player can't afford
-            for (int i = 0; i < _battle.State.BuyPile.Count; i++)
+            for (int i = 0; i < _battleState.BuyPile.Count; i++)
             {
-                _cardRow.GetCardModel(i).Enabled = _battle.State.CanAffordCard(i);
+                _cardRow.GetCardModel(i).Enabled = _battleState.CanAffordCard(i);
             }
         }
 
