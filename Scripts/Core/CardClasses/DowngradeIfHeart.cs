@@ -10,6 +10,7 @@ namespace TFCardBattle.Core.CardClasses
         public string Desc => "TODO: How do I toggle this?";
         public string TexturePath {get; set;}
         public CardPurchaseStats PurchaseStats {get; set;}
+        public bool DestroyOnActivate {get; set;}
 
         public Simple StrongVersion {get; set;}
         public Simple WeakVersion {get; set;}

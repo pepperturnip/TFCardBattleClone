@@ -8,6 +8,7 @@ namespace TFCardBattle.Core.CardClasses
         public string Desc => "Reset the buy piles";
         public string TexturePath {get; set;}
         public CardPurchaseStats PurchaseStats {get; set;}
+        public bool DestroyOnActivate {get; set;}
 
         public Task Activate(BattleController battle)
         {

@@ -32,11 +32,9 @@ namespace TFCardBattle.Core
         public readonly int TransitionId;
 
         public string Name {get; set;}
-
         public string Desc {get; private set;}
-
         public string TexturePath {get; set;}
-
+        public bool DestroyOnActivate => false;
         public CardPurchaseStats PurchaseStats {get; set;}
 
         public TransitioningBasicCard(int transitionId)

@@ -11,6 +11,8 @@ namespace TFCardBattle.Core.CardClasses
         public string Name {get; set;}
         public string Desc => GetDescription();
         public string TexturePath {get; set;}
+        public CardPurchaseStats PurchaseStats {get; set;}
+        public bool DestroyOnActivate {get; set;}
 
         public int Brain {get; set;}
         public int Heart {get; set;}
@@ -21,7 +23,7 @@ namespace TFCardBattle.Core.CardClasses
         public int SelfHeal {get; set;}
         public IConsumable[] Consumables {get; set;} = Array.Empty<IConsumable>();
 
-        public CardPurchaseStats PurchaseStats {get; set;}
+
 
         private string _description;
         private int _descriptionHash;

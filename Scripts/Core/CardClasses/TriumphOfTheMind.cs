@@ -7,11 +7,10 @@ namespace TFCardBattle.Core.CardClasses
     public class TriumphOfTheMind : ICard
     {
         public string Name { get; set; }
-
         public string Desc => "Take an extra turn, if you own no heart cards.";
-
         public string TexturePath { get; set; }
         public CardPurchaseStats PurchaseStats { get; set; }
+        public bool DestroyOnActivate {get; set;}
 
         public async Task Activate(BattleController battle)
         {
