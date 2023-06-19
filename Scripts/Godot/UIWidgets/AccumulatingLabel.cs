@@ -10,23 +10,32 @@ namespace TFCardBattle.Godot
         private Label _displayedValueLabel => GetNode<Label>("%DisplayedValue");
         private Label _accumLabel => GetNode<Label>("%Accumulator");
 
+        private bool _isTicking => _accumulateTimer <= 0;
+
         private int _displayedValue;
         private int _accumulatedDelta;
         private double _accumulateTimer;
 
         public void AccumulateToValue(int newValue)
         {
-            bool isTicking = _accumulateTimer <= 0;
-
-            // Skip the ticking animation if it's already in progress
-            if (isTicking)
+            // Skip the animation if we're already ticking
+            if (_isTicking)
             {
-                _displayedValue += _accumulatedDelta;
-                _accumulatedDelta = 0;
+                SkipCurrentAnimation();
             }
 
-            _accumulateTimer = AccumulationTimeSeconds;
+            // Skip the animation if we've changed directions while accumulating.
+            // That way, the player won't see the accumulator go from "+5" to
+            // "+4" if they spend a resource really fast; instead, it'll display
+            // "-1" as you'd expect.
+            int newDelta = newValue - _displayedValue;
+            if (ChangedDirection(_accumulatedDelta, newDelta))
+            {
+                SkipCurrentAnimation();
+            }
+
             _accumulatedDelta = newValue - _displayedValue;
+            _accumulateTimer = AccumulationTimeSeconds;
         }
 
         /// <summary>
@@ -66,6 +75,23 @@ namespace TFCardBattle.Godot
                 _accumLabel.Text = $"+{_accumulatedDelta}";
             else
                 _accumLabel.Text = _accumulatedDelta.ToString();
+        }
+
+        private void SkipCurrentAnimation()
+        {
+            _displayedValue += _accumulatedDelta;
+            _accumulatedDelta = 0;
+            _accumulateTimer = 0;
+        }
+
+        private static bool ChangedDirection(int oldDelta, int newDelta)
+        {
+            if (oldDelta > 0)
+                return newDelta < oldDelta;
+            else if (oldDelta < 0)
+                return newDelta > oldDelta;
+            else // if (oldDelta == 0)
+                return newDelta != oldDelta;
         }
     }
 }
