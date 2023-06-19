@@ -138,6 +138,7 @@ namespace TFCardBattle.Core
             AssertBattleRunning();
             TransitionBasicCards();
 
+            await DiscardResources();
             await RefreshBuyPile();
 
             // Draw a fresh hand of cards
@@ -150,18 +151,7 @@ namespace TFCardBattle.Core
 
         public async Task EndTurn()
         {
-            // Throw out the player's unused cards and resources.
-            // Sorry, but this is one of those use-it-or-lose-it card games.
-            State.Brain = 0;
-            State.Heart = 0;
-            State.Sub = 0;
-            State.Shield = 0;
-            State.Damage = 0;
-            await _animationPlayer.DiscardResources();
-
-            TransferAllCards(State.CardsPlayedThisTurn, State.Discard);
-            TransferAllCards(State.Hand, State.Discard);
-            await _animationPlayer.DiscardHand();
+            await DiscardHand();
 
             // Allow the player to attack
             State.EnemyTF += State.Damage;
@@ -223,6 +213,23 @@ namespace TFCardBattle.Core
             State.BuyPile.Add(permanentCard);
 
             return _animationPlayer.RefreshBuyPile(State.BuyPile.ToArray());
+        }
+
+        public async Task DiscardHand()
+        {
+            TransferAllCards(State.CardsPlayedThisTurn, State.Discard);
+            TransferAllCards(State.Hand, State.Discard);
+            await _animationPlayer.DiscardHand();
+        }
+
+        public async Task DiscardResources()
+        {
+            State.Brain = 0;
+            State.Heart = 0;
+            State.Sub = 0;
+            State.Shield = 0;
+            State.Damage = 0;
+            await _animationPlayer.DiscardResources();
         }
 
         public async Task ForgetBasicCard()
