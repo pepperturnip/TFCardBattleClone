@@ -72,9 +72,9 @@ namespace TFCardBattle.Godot
             }
         }
 
-        public Task DiscardResources(BattleState state)
+        public Task DiscardResources()
         {
-            _resourcesDisplay.RefreshResources(state);
+            _resourcesDisplay.DiscardResources();
             return Task.CompletedTask;
         }
 

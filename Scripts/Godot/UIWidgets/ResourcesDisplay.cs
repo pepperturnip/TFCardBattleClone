@@ -27,16 +27,16 @@ namespace TFCardBattle.Godot
         }
 
         /// <summary>
-        /// Forcibly sets the resource counters, skipping any kind of animation
+        /// Forcibly sets the counters to 0, skipping any kind of animation
         /// </summary>
         /// <param name="state"></param>
-        public void RefreshResources(BattleState state)
+        public void DiscardResources()
         {
-            _brain.RefreshValue(state.Brain);
-            _heart.RefreshValue(state.Heart);
-            _sub.RefreshValue(state.Sub);
-            _shield.RefreshValue(state.Shield);
-            _damage.RefreshValue(state.Damage);
+            _brain.RefreshValue(0);
+            _heart.RefreshValue(0);
+            _sub.RefreshValue(0);
+            _shield.RefreshValue(0);
+            _damage.RefreshValue(0);
         }
     }
 }
