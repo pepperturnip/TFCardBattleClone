@@ -140,9 +140,17 @@ namespace TFCardBattle.Core
 
             await RefreshBuyPile();
 
-            // Throw out the player's unused cards and resources from the last
-            // turn, and draw a new hand.
-            //
+            // Draw a fresh hand of cards
+            for (int i = 0; i < StartingHandSize; i++)
+            {
+                await DrawCard();
+            }
+            State.DrawCount = 0;
+        }
+
+        public async Task EndTurn()
+        {
+            // Throw out the player's unused cards and resources.
             // Sorry, but this is one of those use-it-or-lose-it card games.
             State.Brain = 0;
             State.Heart = 0;
@@ -155,15 +163,6 @@ namespace TFCardBattle.Core
             TransferAllCards(State.Hand, State.Discard);
             await _animationPlayer.DiscardHand();
 
-            for (int i = 0; i < StartingHandSize; i++)
-            {
-                await DrawCard();
-            }
-            State.DrawCount = 0;
-        }
-
-        public async Task EndTurn()
-        {
             // Allow the player to attack
             State.EnemyTF += State.Damage;
             await _animationPlayer.DamageEnemy(State.Damage);
@@ -181,6 +180,7 @@ namespace TFCardBattle.Core
             State.PlayerTF += enemyTfDamage;
             await _animationPlayer.DamagePlayer(enemyTfDamage);
 
+            // End the battle if either the player or the enemy has lost
             if (State.PlayerTF >= State.PlayerMaxTF)
             {
                 EndBattle();
