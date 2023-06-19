@@ -14,6 +14,8 @@ namespace TFCardBattle.Core.CardClasses
 
         public ResourceType Resource {get; set;}
 
+        private ICard _consolationPrize = null;
+
         public Task Activate(BattleController battle)
         {
             battle.State.DrawCount++;
@@ -25,10 +27,10 @@ namespace TFCardBattle.Core.CardClasses
 
             if (card == null)
             {
-                // TODO: give the player "consolation prize" instead of adding 1
-                // heart
-                battle.State.Heart++;
-                return Task.CompletedTask;
+                if (_consolationPrize == null)
+                    _consolationPrize = new ConsolationPrize(Resource);
+
+                card = _consolationPrize;
             }
 
             battle.State.Hand.Add(card);
@@ -37,5 +39,47 @@ namespace TFCardBattle.Core.CardClasses
         }
 
         public string GetTexturePath(BattleState state) => TexturePath;
+
+        private class ConsolationPrize : ICard
+        {
+            public string Name {get; set;} = "Consolation Prize";
+            public string Desc => $"{Resource}: +1(disposable)";
+            public string TexturePath {get; set;}
+            public CardPurchaseStats PurchaseStats {get; set;}
+            public bool DestroyOnActivate => true;
+
+            public readonly ResourceType Resource;
+
+            public ConsolationPrize(ResourceType resource)
+            {
+                Resource = resource;
+            }
+
+            public Task Activate(BattleController battle)
+            {
+                int value = battle.State.GetResource(Resource);
+                value++;
+                battle.State.SetResource(Resource, value);
+
+                return Task.CompletedTask;
+            }
+
+            public string GetTexturePath(BattleState state)
+                => $"res://ApolloSevenImages/cardgame/cards/{GetFileName()}";
+
+            private string GetFileName()
+            {
+                switch (Resource)
+                {
+                    case ResourceType.Brain: return "card146.webp";
+                    case ResourceType.Heart: return "card39.webp";
+                    case ResourceType.Sub: return "card164.webp";
+
+                    default: throw new InvalidOperationException(
+                        $"There is no consolation prize for {Resource}"
+                    );
+                }
+            }
+        }
     }
 }
