@@ -54,15 +54,6 @@
         "Damage": 3
     },
     {
-        "Name": "Strapon",
-        "Image": "card48.webp",
-        "MinTF": 33,
-        "MaxTF": 71,
-        "HeartCost": 3,
-        "Brain": 2,
-        "Heart": 2
-    },
-    {
         "Name": "Back to His Place",
         "Image": "card50.webp",
         "MinTF": 33,

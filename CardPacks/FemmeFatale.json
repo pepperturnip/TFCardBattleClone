@@ -1,0 +1,39 @@
+[
+    {
+        "Name": "Seduction",
+        "Image": "card31.webp",
+        "MinTF": 12,
+        "MaxTF": 28,
+        "BrainCost": 5,
+        "Class": "TransferResources",
+        "From": "Brain",
+        "To": "Heart"
+    },
+    {
+        "Name": "Infiltration Mission",
+        "Image": "card36.webp",
+        "MinTF": 20,
+        "MaxTF": 36,
+        "BrainCost": 4,
+        "Brain": 1,
+        "Heart": 1,
+        "Draw": 1
+    },
+    {
+        "Name": "Strapon",
+        "Image": "card48.webp",
+        "MinTF": 29,
+        "MaxTF": 45,
+        "HeartCost": 3,
+        "Brain": 2,
+        "Heart": 2
+    },
+    {
+        "Name": "Outwit",
+        "Image": "card55.webp",
+        "MinTF": 43,
+        "MaxTF": 59,
+        "HeartCost": 4,
+        "Class": "Outwit"
+    }
+]
