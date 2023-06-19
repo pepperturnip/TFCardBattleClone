@@ -91,7 +91,7 @@ namespace TFCardBattle.Core
         {
             // Fail to buy the card if the player can't afford it.
             // TODO: Show some kind of message
-            if (!CanAffordCard(buyPileIndex))
+            if (!State.CanAffordCard(buyPileIndex))
                 return;
 
             bool isPermanentCard = IsPermanentBuyPileCard(buyPileIndex);
@@ -307,22 +307,6 @@ namespace TFCardBattle.Core
 
             // TODO: Maybe find a way to reuse the code from StartTurn()?
             // Not sure if that's a good idea yet or not.
-        }
-
-        public bool CanAffordCard(int buyPileIndex)
-        {
-            var card = State.BuyPile[buyPileIndex].PurchaseStats;
-
-            if (State.Brain < card.BrainCost)
-                return false;
-
-            if (State.Heart < card.HeartCost)
-                return false;
-
-            if (State.Sub < card.SubCost)
-                return false;
-
-            return true;
         }
 
         public int MinEnemyDamageOnTurn(int turnZeroBased)
