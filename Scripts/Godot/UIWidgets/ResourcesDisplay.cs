@@ -19,11 +19,20 @@ namespace TFCardBattle.Godot
         /// <param name="state"></param>
         public void UpdateResources(BattleState state)
         {
-            _brain.Value = state.Brain;
-            _heart.Value = state.Heart;
-            _sub.Value = state.Sub;
-            _shield.Value = state.Shield;
-            _damage.Value = state.Damage;
+            _brain.AccumulateToValue(state.Brain);
+            _heart.AccumulateToValue(state.Heart);
+            _sub.AccumulateToValue(state.Sub);
+            _shield.AccumulateToValue(state.Shield);
+            _damage.AccumulateToValue(state.Damage);
+        }
+
+        /// <summary>
+        /// Forcibly sets the resource counters, skipping any kind of animation
+        /// </summary>
+        /// <param name="state"></param>
+        public void RefreshResources(BattleState state)
+        {
+            throw new NotImplementedException();
         }
     }
 }
