@@ -84,6 +84,12 @@ namespace TFCardBattle.Core
             await AnimationPlayer.PlayCard(handIndex, State);
 
             await card.Activate(this);
+
+            if (card.DestroyOnActivate)
+            {
+                State.CardsPlayedThisTurn.Remove(card);
+                await AnimationPlayer.ForgetCard(card, State);
+            }
         }
 
         public async Task BuyCard(int buyPileIndex)
@@ -234,7 +240,7 @@ namespace TFCardBattle.Core
         public async Task ForgetBasicCard()
         {
             if (await TryForgetFrom(State.Deck))
-            return;
+                return;
 
             if (await TryForgetFrom(State.Discard))
                 return;

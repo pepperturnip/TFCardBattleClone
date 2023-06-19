@@ -7,12 +7,10 @@ namespace TFCardBattle.Core.CardClasses
     public class Outwit : ICard
     {
         public string Name {get; set;}
-
         public string Desc => "Change the buy piles to random brain cards";
-
         public string TexturePath {get; set;}
-
         public CardPurchaseStats PurchaseStats {get; set;}
+        public bool DestroyOnActivate {get; set;}
 
         public Task Activate(BattleController battle)
         {

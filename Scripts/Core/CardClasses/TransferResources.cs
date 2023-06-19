@@ -8,6 +8,7 @@ namespace TFCardBattle.Core.CardClasses
         public string Name {get; set;}
         public string Desc => $"{From} => {To}";
         public string TexturePath {get; set;}
+        public bool DestroyOnActivate {get; set;}
 
         public ResourceType From;
         public ResourceType To;

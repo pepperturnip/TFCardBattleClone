@@ -7,8 +7,9 @@ namespace TFCardBattle.Core
         string Name {get; set;}
         string Desc {get;}
         string TexturePath {get; set;}
-
         CardPurchaseStats PurchaseStats {get; set;}
+        bool DestroyOnActivate {get;}
+
 
         Task Activate(BattleController battle);
 
