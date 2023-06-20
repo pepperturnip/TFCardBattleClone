@@ -49,7 +49,7 @@ namespace TFCardBattle.Godot
                         CardPacks.Load("Cock"),
                         CardPacks.Load("Sex")
                     },
-                    PermanentBuyPile = CardPacks.Load("PlaceholderPermanentBuyPile"),
+                    PermanentBuyPile = CardPacks.Load("StandardPermanentBuyPile"),
                     StartingDeck = PlayerStartingDeck.StartingDeck()
                 },
                 GetNode<BattleAnimationPlayer>("%BattleAnimationPlayer"),
