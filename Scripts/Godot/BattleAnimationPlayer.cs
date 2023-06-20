@@ -20,7 +20,7 @@ namespace TFCardBattle.Godot
         }
         private bool _isAnimating;
 
-        private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
+        private DamageAnimationPlayer _damageAnimator => GetNode<DamageAnimationPlayer>("%DamageAnimationPlayer");
         private HandDisplay _handDisplay => GetNode<HandDisplay>("%HandDisplay");
         private BuyPileDisplay _buyPileDisplay => GetNode<BuyPileDisplay>("%BuyPileDisplay");
         private ResourcesDisplay _resourcesDisplay => GetNode<ResourcesDisplay>("%ResourcesDisplay");
@@ -29,7 +29,7 @@ namespace TFCardBattle.Godot
         {
             using (SetAnimating())
             {
-                await DamageAnimation("DamageEnemy", damageAmount);
+                await _damageAnimator.DamageEnemy(damageAmount);
 
                 var tfBar = GetNode<TFBar>("%EnemyTFBar");
                 var tween = GetTree().CreateTween();
@@ -42,7 +42,7 @@ namespace TFCardBattle.Godot
         {
             using (SetAnimating())
             {
-                await DamageAnimation("DamagePlayer", damageAmount);
+                await _damageAnimator.DamagePlayer(damageAmount);
 
                 // Don't wait for the bar to finish moving.
                 // This ain't Pokemon Diamond.
@@ -120,16 +120,6 @@ namespace TFCardBattle.Godot
                 GetNode<ForgetAnimationPlayer>("%ForgetAnimationPlayer").QueueForget(card, state);
                 await WaitFor.Seconds(0.25);
             }
-        }
-
-        private async Task DamageAnimation(string animationName, int damageAmount)
-        {
-            if (damageAmount <= 0)
-                return;
-
-            GetNode<Label>("%DamageAnimationLabel").Text = $"+{damageAmount}";
-            _animator.ResetAndPlay(animationName);
-            await ToSignal(_animator, AnimationPlayer.SignalName.AnimationFinished);
         }
 
         private async Task TweenPos(GodotObject node, Vector2 destination, double duration)
