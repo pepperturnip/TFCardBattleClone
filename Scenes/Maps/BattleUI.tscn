@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://tm66spq6dn0h"]
+[gd_scene load_steps=20 format=3 uid="uid://tm66spq6dn0h"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/BattleUI.cs" id="1_s1rg7"]
 [ext_resource type="PackedScene" uid="uid://bxkjo1whiydj3" path="res://Scenes/CardModelFactory.tscn" id="2_7qx4c"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b1ox1ej1baxb1" path="res://Scenes/UIWidgets/BuyPileDisplay.tscn" id="4_bxu7y"]
 [ext_resource type="Script" path="res://Scripts/Godot/BattleAnimationPlayer.cs" id="4_uf642"]
 [ext_resource type="PackedScene" uid="uid://pwc8q4s75ea5" path="res://Scenes/UIWidgets/ForgetAnimationPlayer.tscn" id="7_s5ny6"]
+[ext_resource type="PackedScene" uid="uid://cwoeadm07txvd" path="res://Scenes/UIWidgets/DamageAnimationPlayer.tscn" id="8_6si6n"]
 [ext_resource type="PackedScene" uid="uid://doy8c42dvds45" path="res://Scenes/UIWidgets/TFBar.tscn" id="8_knmsm"]
 
 [sub_resource type="Animation" id="Animation_dsfeu"]
@@ -16,7 +17,7 @@ step = 0.01
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("DamageAnimationLabelLayout/DamageLabelAnimator")
+tracks/0/path = NodePath("DamageAnimationPlayer/DamageAnimationLabelLayout/DamageLabelAnimator")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -26,7 +27,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("DamageAnimationLabelLayout/DamageAnimationLabelSlider:position")
+tracks/1/path = NodePath("DamageAnimationPlayer/DamageAnimationLabelLayout/DamageAnimationLabelSlider:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -42,7 +43,7 @@ step = 0.01
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("DamageAnimationLabelLayout/DamageLabelAnimator")
+tracks/0/path = NodePath("DamageAnimationPlayer/DamageAnimationLabelLayout/DamageLabelAnimator")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -52,7 +53,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("DamageAnimationLabelLayout/DamageAnimationLabelSlider:position")
+tracks/1/path = NodePath("DamageAnimationPlayer/DamageAnimationLabelLayout/DamageAnimationLabelSlider:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -181,12 +182,12 @@ _data = {
 "RESET": SubResource("Animation_1tqjv")
 }
 
-[sub_resource type="SystemFont" id="SystemFont_hwabp"]
+[sub_resource type="SystemFont" id="SystemFont_kusxx"]
 font_names = PackedStringArray("sans-serif")
 oversampling = 4.2
 
 [sub_resource type="LabelSettings" id="LabelSettings_dc5cw"]
-font = SubResource("SystemFont_hwabp")
+font = SubResource("SystemFont_kusxx")
 font_color = Color(1, 0.780392, 0.784314, 1)
 
 [node name="BattleUI" type="Control" node_paths=PackedStringArray("CardModelFactory")]
@@ -294,7 +295,12 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="DamageAnimationPlayer" parent="." instance=ExtResource("8_6si6n")]
+unique_name_in_owner = true
+layout_mode = 1
+
 [node name="DamageAnimationLabelLayout" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
