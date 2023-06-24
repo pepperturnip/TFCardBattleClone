@@ -1,7 +1,0 @@
-For whatever reason, Godot keeps trying to re-import this folder every time I
-alt-tab out of the editor, causing the Godot window to pop up in front of the
-window I just switched to.  This is very annoying, especially since it starts
-an infinite loop of re-importing >.<
-
-So, I'm just ignoring this folder.  Why is it only _this_ folder that triggers
-it?  Hell if I know!
