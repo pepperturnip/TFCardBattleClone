@@ -46,14 +46,14 @@ namespace TFCardBattle.Godot
             // Attempt to load the texture.  If it exists, we'll draw that on
             // top of the placeholder stuff.  If it doesn't, we'll hide the
             // texture and use the placeholder stuff.
-            if (!ResourceLoader.Exists(Card.GetTexturePath(_battleState)))
+            if (!ResourceLoader.Exists(Card.GetImage(_battleState)))
             {
                 _texture.Visible = false;
-                GD.Print($"Could not find texture {Card.GetTexturePath(_battleState)}");
+                GD.Print($"Could not find texture {Card.GetImage(_battleState)}");
                 return;
             }
 
-            _texture.Texture = ResourceLoader.Load<Texture2D>(Card.GetTexturePath(_battleState));
+            _texture.Texture = ResourceLoader.Load<Texture2D>(Card.GetImage(_battleState));
             _texture.Visible = true;
         }
     }

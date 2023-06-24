@@ -8,7 +8,7 @@ namespace TFCardBattle.Core.CardClasses
     {
         public string Name { get; set; }
         public string Desc => "Take an extra turn, if you own no heart cards.";
-        public string TexturePath { get; set; }
+        public string Image { get; set; }
         public CardPurchaseStats PurchaseStats { get; set; }
         public bool DestroyOnActivate {get; set;}
 
@@ -25,6 +25,6 @@ namespace TFCardBattle.Core.CardClasses
                 await battle.TakeExtraTurn();
         }
 
-        public string GetTexturePath(BattleState state) => TexturePath;
+        public string GetImage(BattleState state) => Image;
     }
 }

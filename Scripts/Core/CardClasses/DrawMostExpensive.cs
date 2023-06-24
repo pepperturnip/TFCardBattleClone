@@ -8,7 +8,7 @@ namespace TFCardBattle.Core.CardClasses
     {
         public string Name {get; set;}
         public string Desc => $"Draw the highest-cost {Resource} card from your deck";
-        public string TexturePath {get; set;}
+        public string Image {get; set;}
         public CardPurchaseStats PurchaseStats {get; set;}
         public bool DestroyOnActivate {get; set;}
 
@@ -38,13 +38,13 @@ namespace TFCardBattle.Core.CardClasses
             return battle.AnimationPlayer.DrawCard(card);
         }
 
-        public string GetTexturePath(BattleState state) => TexturePath;
+        public string GetImage(BattleState state) => Image;
 
         private class ConsolationPrize : ICard
         {
             public string Name {get; set;} = "Consolation Prize";
             public string Desc => $"{Resource}: +1(disposable)";
-            public string TexturePath {get; set;}
+            public string Image {get; set;}
             public CardPurchaseStats PurchaseStats {get; set;}
             public bool DestroyOnActivate => true;
 
@@ -64,7 +64,7 @@ namespace TFCardBattle.Core.CardClasses
                 return Task.CompletedTask;
             }
 
-            public string GetTexturePath(BattleState state)
+            public string GetImage(BattleState state)
                 => $"res://Media/Cards/{GetFileName()}";
 
             private string GetFileName()

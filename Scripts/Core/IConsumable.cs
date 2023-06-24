@@ -4,7 +4,7 @@ namespace TFCardBattle.Core
 {
     public interface IConsumable
     {
-        string TexturePath {get;}
+        string Image {get;}
         Task Activate(BattleController battle);
     }
 }

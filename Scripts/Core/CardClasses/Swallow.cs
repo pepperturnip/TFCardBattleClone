@@ -6,7 +6,7 @@ namespace TFCardBattle.Core.CardClasses
     {
         public string Name {get; set;}
         public string Desc => "Draw 3, and reset the buy piles";
-        public string TexturePath {get; set;}
+        public string Image {get; set;}
         public CardPurchaseStats PurchaseStats {get; set;}
         public bool DestroyOnActivate {get; set;}
 
@@ -18,6 +18,6 @@ namespace TFCardBattle.Core.CardClasses
                 await battle.DrawCard();
         }
 
-        public string GetTexturePath(BattleState state) => TexturePath;
+        public string GetImage(BattleState state) => Image;
     }
 }

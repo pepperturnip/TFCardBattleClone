@@ -6,7 +6,7 @@ namespace TFCardBattle.Core.CardClasses
     {
         public string Name {get; set;}
         public string Desc => "Shield: -3\nTF: x2";
-        public string TexturePath {get; set;}
+        public string Image {get; set;}
         public CardPurchaseStats PurchaseStats {get; set;}
         public bool DestroyOnActivate {get; set;}
 
@@ -17,6 +17,6 @@ namespace TFCardBattle.Core.CardClasses
             return Task.CompletedTask;
         }
 
-        public string GetTexturePath(BattleState state) => TexturePath;
+        public string GetImage(BattleState state) => Image;
     }
 }
