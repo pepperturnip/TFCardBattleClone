@@ -14,7 +14,7 @@ namespace TFCardBattle.Godot
             var mysteriousPills = new TFCardBattle.Core.CardClasses.Simple
             {
                 Name = "Mysterious Pills",
-                TexturePath = "res://ApolloSevenImages/cardgame/cards/card7.webp",
+                Image = "res://Media/Cards/card7.webp",
                 Damage = 1
             };
 

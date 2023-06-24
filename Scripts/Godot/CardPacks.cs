@@ -67,7 +67,7 @@ namespace TFCardBattle.Godot
             return new CardClasses.DowngradeIfHeart
             {
                 Name = header.Name,
-                TexturePath = header.TexturePath,
+                Image = header.Image,
                 PurchaseStats = header.PurchaseStats,
 
                 StrongVersion = (CardClasses.Simple)ParseSimple((JObject)obj["StrongVersion"]),
@@ -90,7 +90,7 @@ namespace TFCardBattle.Godot
 
             ICard card = (ICard)obj.ToObject(type);
             card.Name = header.Name;
-            card.TexturePath = header.TexturePath;
+            card.Image = header.Image;
             card.PurchaseStats = header.PurchaseStats;
 
             return card;
@@ -143,8 +143,6 @@ namespace TFCardBattle.Godot
             public int HeartCost {get; set;}
             public int SubCost {get; set;}
             public int OfferWeight {get; set;} = 1;
-
-            public string TexturePath => $"res://ApolloSevenImages/cardgame/cards/{Image}";
 
             public CardPurchaseStats PurchaseStats => new CardPurchaseStats
             {

@@ -8,7 +8,7 @@ namespace TFCardBattle.Core.ConsumableClasses
     /// </summary>
     public abstract class SimpleConsumable : IConsumable
     {
-        public virtual string TexturePath => null;
+        public virtual string Image => null;
 
         public virtual int BrainGain => 0;
         public virtual int HeartGain => 0;

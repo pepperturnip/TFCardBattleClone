@@ -8,7 +8,7 @@ namespace TFCardBattle.Core.CardClasses
     {
         public string Name {get; set;}
         public string Desc => "TODO: How do I toggle this?";
-        public string TexturePath {get; set;}
+        public string Image {get; set;}
         public CardPurchaseStats PurchaseStats {get; set;}
         public bool DestroyOnActivate {get; set;}
 
@@ -22,11 +22,11 @@ namespace TFCardBattle.Core.CardClasses
                 : WeakVersion.Activate(battle);
         }
 
-        public string GetTexturePath(BattleState state)
+        public string GetImage(BattleState state)
         {
             return IsStrong(state)
-                ? StrongVersion.GetTexturePath(state)
-                : WeakVersion.GetTexturePath(state);
+                ? StrongVersion.GetImage(state)
+                : WeakVersion.GetImage(state);
         }
 
         private bool IsStrong(BattleState state)

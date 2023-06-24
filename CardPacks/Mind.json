@@ -1,7 +1,7 @@
 [
     {
         "Name": "Quick Thinking",
-        "Image": "card10.webp",
+        "Image": "res://Media/Cards/card10.webp",
         "MinTF": 0,
         "MaxTF": 8,
         "BrainCost": 3,
@@ -11,7 +11,7 @@
     },
     {
         "Name": "Phone a Friend",
-        "Image": "card17.webp",
+        "Image": "res://Media/Cards/card17.webp",
         "MinTF": 0,
         "MaxTF": 14,
         "BrainCost": 3,
@@ -20,7 +20,7 @@
     },
     {
         "Name": "Paranoia",
-        "Image": "card20.webp",
+        "Image": "res://Media/Cards/card20.webp",
         "MinTF": 4,
         "MaxTF": 20,
         "BrainCost": 3,
@@ -29,7 +29,7 @@
     },
     {
         "Name": "Eureka",
-        "Image": "card33.webp",
+        "Image": "res://Media/Cards/card33.webp",
         "MinTF": 10,
         "MaxTF": 26,
         "BrainCost": 7,
@@ -37,7 +37,7 @@
     },
     {
         "Name": "Mental Mastery",
-        "Image": "card70.webp",
+        "Image": "res://Media/Cards/card70.webp",
         "Class": "MentalMastery",
         "MinTF": 49,
         "MaxTF": 65,
@@ -45,7 +45,7 @@
     },
     {
         "Name": "Triumph of the Mind",
-        "Image": "card64a.webp",
+        "Image": "res://Media/Cards/card64a.webp",
         "Class": "TriumphOfTheMind",
         "MinTF": 55,
         "MaxTF": 71,
@@ -53,7 +53,7 @@
     },
     {
         "Name": "Corrective Surgery",
-        "Image": "card59.webp",
+        "Image": "res://Media/Cards/card59.webp",
         "MinTF": 42,
         "MaxTF": 58,
         "BrainCost": 7,

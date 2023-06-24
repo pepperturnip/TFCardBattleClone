@@ -1,7 +1,7 @@
 [
     {
         "Name": "Escape Route",
-        "Image": "card16.webp",
+        "Image": "res://Media/Cards/card16.webp",
         "MinTF": 0,
         "MaxTF": 12,
         "BrainCost": 5,
@@ -11,7 +11,7 @@
     },
     {
         "Name": "Rethink it",
-        "Image": "card24.webp",
+        "Image": "res://Media/Cards/card24.webp",
         "MinTF": 2,
         "MaxTF": 18,
         "BrainCost": 4,
@@ -19,7 +19,7 @@
     },
     {
         "Name": "Double Down",
-        "Image": "card23.webp",
+        "Image": "res://Media/Cards/card23.webp",
         "MinTF": 8,
         "MaxTF": 24,
         "BrainCost": 6,
@@ -28,7 +28,7 @@
     },
     {
         "Name": "All Nighter",
-        "Image": "card19.webp",
+        "Image": "res://Media/Cards/card19.webp",
         "MinTF": 22,
         "MaxTF": 38,
         "BrainCost": 6,

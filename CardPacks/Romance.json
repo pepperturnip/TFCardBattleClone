@@ -1,7 +1,7 @@
 [
     {
         "Name": "Beauty Regimen",
-        "Image": "card32.webp",
+        "Image": "res://Media/Cards/card32.webp",
         "MinTF": 15,
         "MaxTF": 31,
         "HeartCost": 2,
@@ -10,7 +10,7 @@
     },
     {
         "Name": "Date Night",
-        "Image": "card40.webp",
+        "Image": "res://Media/Cards/card40.webp",
         "MinTF": 23,
         "MaxTF": 39,
         "HeartCost": 3,
@@ -19,7 +19,7 @@
     },
     {
         "Name": "Womans' Intuition",
-        "Image": "card46.webp",
+        "Image": "res://Media/Cards/card46.webp",
         "MinTF": 31,
         "MaxTF": 47,
         "HeartCost": 3,
@@ -27,7 +27,7 @@
     },
     {
         "Name": "Back to His Place",
-        "Image": "card50.webp",
+        "Image": "res://Media/Cards/card50.webp",
         "MinTF": 56,
         "MaxTF": 72,
         "HeartCost": 3,

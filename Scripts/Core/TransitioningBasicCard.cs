@@ -33,7 +33,7 @@ namespace TFCardBattle.Core
 
         public string Name {get; set;}
         public string Desc {get; private set;}
-        public string TexturePath {get; set;}
+        public string Image {get; set;}
         public bool DestroyOnActivate => false;
         public CardPurchaseStats PurchaseStats {get; set;}
 
@@ -55,7 +55,7 @@ namespace TFCardBattle.Core
             return Task.CompletedTask;
         }
 
-        public string GetTexturePath(BattleState state) => TexturePath;
+        public string GetImage(BattleState state) => Image;
 
         // Where did I get these constants from?  By experimenting with the
         // original TF Card Battle game.  I went into sandbox mode, manipulated
@@ -99,14 +99,14 @@ namespace TFCardBattle.Core
         {
             TransitionState = TransitionStateAtTF(TransitionId, playerTF);
 
-            const string prefix = "res://ApolloSevenImages/cardgame/cards";
+            const string prefix = "res://Media/Cards";
             switch (TransitionState)
             {
                 case State.Brain:
                 {
                     Name = "Brainstorm";
                     Desc = "Brain: +1";
-                    TexturePath = $"{prefix}/card8.webp";
+                    Image = $"{prefix}/card8.webp";
                     break;
                 }
 
@@ -114,7 +114,7 @@ namespace TFCardBattle.Core
                 {
                     Name = "Flirt";
                     Desc = "Heart: +1";
-                    TexturePath = $"{prefix}/card9.webp";
+                    Image = $"{prefix}/card9.webp";
                     break;
                 }
 
@@ -122,7 +122,7 @@ namespace TFCardBattle.Core
                 {
                     Name = "Submit";
                     Desc = "Sub: +1";
-                    TexturePath = $"{prefix}/card5.webp";
+                    Image = $"{prefix}/card5.webp";
                     break;
                 }
             }

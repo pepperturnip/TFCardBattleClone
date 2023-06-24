@@ -1,7 +1,7 @@
 [
     {
         "Name": "Bow Down",
-        "Image": "card71.webp",
+        "Image": "res://Media/Cards/card71.webp",
         "MinTF": 34,
         "MaxTF": 50,
         "SubCost": 1,
@@ -10,7 +10,7 @@
     },
     {
         "Name": "Underfoot",
-        "Image": "card73.webp",
+        "Image": "res://Media/Cards/card73.webp",
         "MinTF": 44,
         "MaxTF": 60,
         "SubCost": 1,
@@ -19,7 +19,7 @@
     },
     {
         "Name": "At Master's Feet",
-        "Image": "card91.webp",
+        "Image": "res://Media/Cards/card91.webp",
         "MinTF": 53,
         "MaxTF": 69,
         "SubCost": 2,
@@ -28,7 +28,7 @@
     },
     {
         "Name": "Nipple Clamps",
-        "Image": "card87.webp",
+        "Image": "res://Media/Cards/card87.webp",
         "MinTF": 66,
         "MaxTF": 82,
         "SubCost": 2,
@@ -37,7 +37,7 @@
     },
     {
         "Name": "Inspection",
-        "Image": "card75.webp",
+        "Image": "res://Media/Cards/card75.webp",
         "MinTF": 75,
         "MaxTF": 91,
         "SubCost": 4,
@@ -45,7 +45,7 @@
     },
     {
         "Name": "Branded",
-        "Image": "card94.webp",
+        "Image": "res://Media/Cards/card94.webp",
         "MinTF": 76,
         "MaxTF": 92,
         "SubCost": 5,
