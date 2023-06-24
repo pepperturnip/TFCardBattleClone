@@ -2,25 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Godot;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using TFCardBattle.Core;
 
-using CardClasses = TFCardBattle.Core.CardClasses;
-
-namespace TFCardBattle.Godot
+namespace TFCardBattle.Core.Parsing
 {
     public static class CardPacks
     {
         private static readonly Dictionary<string, Type> _cardClassCache = new Dictionary<string, Type>();
         private static readonly Dictionary<string, Type> _consumableClassCache = new Dictionary<string, Type>();
 
-        public static IEnumerable<ICard> Load(string name)
+        public static IEnumerable<ICard> Parse(string rawJson)
         {
-            string filePath = $"res://CardPacks/{name}.json";
-            string rawJson = FileAccess.GetFileAsString(filePath);
-
             return JArray.Parse(rawJson)
                 .Cast<JObject>()
                 .Select(FromJObject)
