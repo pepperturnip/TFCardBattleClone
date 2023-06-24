@@ -99,7 +99,7 @@ namespace TFCardBattle.Core
         {
             TransitionState = TransitionStateAtTF(TransitionId, playerTF);
 
-            const string prefix = "res://ApolloSevenImages/cardgame/cards";
+            const string prefix = "res://Media/Cards";
             switch (TransitionState)
             {
                 case State.Brain:
