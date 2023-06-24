@@ -1,7 +1,7 @@
 [
     {
         "Name": "Ropeplay",
-        "Image": "card72.webp",
+        "Image": "res://Media/Cards/card72.webp",
         "MinTF": 35,
         "MaxTF": 51,
         "HeartCost": 2,
@@ -9,7 +9,7 @@
     },
     {
         "Name": "Blindfolded",
-        "Image": "card74.webp",
+        "Image": "res://Media/Cards/card74.webp",
         "MinTF": 46,
         "MaxTF": 62,
         "HeartCost": 2,
@@ -18,7 +18,7 @@
     },
     {
         "Name": "Locked Away",
-        "Image": "card76.webp",
+        "Image": "res://Media/Cards/card76.webp",
         "MinTF": 57,
         "MaxTF": 73,
         "SubCost": 2,
@@ -27,7 +27,7 @@
     },
     {
         "Name": "Collared",
-        "Image": "card85.webp",
+        "Image": "res://Media/Cards/card85.webp",
         "MinTF": 67,
         "MaxTF": 83,
         "SubCost": 2,

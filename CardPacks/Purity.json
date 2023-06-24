@@ -8,12 +8,12 @@
         "Class": "DowngradeIfHeart",
         "StrongVersion":
         {
-            "Image": "card14a.webp",
+            "Image": "res://Media/Cards/card14a.webp",
             "Brain": 3
         },
         "WeakVersion":
         {
-            "Image": "card14b.webp",
+            "Image": "res://Media/Cards/card14b.webp",
             "Brain": 1
         }
     },
@@ -26,12 +26,12 @@
         "Class": "DowngradeIfHeart",
         "StrongVersion":
         {
-            "Image": "card26a.webp",
+            "Image": "res://Media/Cards/card26a.webp",
             "Damage": 3
         },
         "WeakVersion":
         {
-            "Image": "card26b.webp",
+            "Image": "res://Media/Cards/card26b.webp",
             "Damage": 1
         }
     },
@@ -44,12 +44,12 @@
         "Class": "DowngradeIfHeart",
         "StrongVersion":
         {
-            "Image": "card43a.webp",
+            "Image": "res://Media/Cards/card43a.webp",
             "Shield": 5
         },
         "WeakVersion":
         {
-            "Image": "card43b.webp",
+            "Image": "res://Media/Cards/card43b.webp",
             "Shield": 1
         }
     },
@@ -62,12 +62,12 @@
         "Class": "DowngradeIfHeart",
         "StrongVersion":
         {
-            "Image": "card25a.webp",
+            "Image": "res://Media/Cards/card25a.webp",
             "Draw": 2
         },
         "WeakVersion":
         {
-            "Image": "card25b.webp",
+            "Image": "res://Media/Cards/card25b.webp",
             "Draw": 1
         }
     }

@@ -1,7 +1,7 @@
 [
     {
         "Name": "Online Research",
-        "Image": "card4.webp",
+        "Image": "res://Media/Cards/card4.webp",
         "MinTF": 0,
         "MaxTF": 14,
         "BrainCost": 3,
@@ -9,7 +9,7 @@
     },
     {
         "Name": "Feminine Wiles",
-        "Image": "card3.webp",
+        "Image": "res://Media/Cards/card3.webp",
         "MinTF": 15,
         "MaxTF": 29,
         "BrainCost": 3,
@@ -17,7 +17,7 @@
     },
     {
         "Name": "Fashion Magazine",
-        "Image": "card2.webp",
+        "Image": "res://Media/Cards/card2.webp",
         "MinTF": 30,
         "MaxTF": 44,
         "HeartCost": 2,
@@ -25,7 +25,7 @@
     },
     {
         "Name": "Pet Play",
-        "Image": "card1.webp",
+        "Image": "res://Media/Cards/card1.webp",
         "MinTF": 45,
         "MaxTF": 69,
         "HeartCost": 2,
@@ -33,7 +33,7 @@
     },
     {
         "Name": "Training Session",
-        "Image": "card0.webp",
+        "Image": "res://Media/Cards/card0.webp",
         "MinTF": 70,
         "MaxTF": 9999,
         "SubCost": 1,

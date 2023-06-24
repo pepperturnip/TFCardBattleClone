@@ -1,7 +1,7 @@
 [
     {
         "Name": "Facial",
-        "Image": "card67.webp",
+        "Image": "res://Media/Cards/card67.webp",
         "MinTF": 38,
         "MaxTF": 54,
         "HeartCost": 2,
@@ -10,7 +10,7 @@
     },
     {
         "Name": "Creampie",
-        "Image": "card80.webp",
+        "Image": "res://Media/Cards/card80.webp",
         "MinTF": 47,
         "MaxTF": 63,
         "HeartCost": 7,
@@ -19,7 +19,7 @@
     },
     {
         "Name": "Swallow",
-        "Image": "card83.webp",
+        "Image": "res://Media/Cards/card83.webp",
         "MinTF": 58,
         "MaxTF": 74,
         "HeartCost": 8,
@@ -27,7 +27,7 @@
     },
     {
         "Name": "Lick it Up",
-        "Image": "card95.webp",
+        "Image": "res://Media/Cards/card95.webp",
         "MinTF": 68,
         "MaxTF": 84,
         "SubCost": 6,

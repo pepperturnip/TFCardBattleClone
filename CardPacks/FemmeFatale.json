@@ -1,7 +1,7 @@
 [
     {
         "Name": "Seduction",
-        "Image": "card31.webp",
+        "Image": "res://Media/Cards/card31.webp",
         "MinTF": 12,
         "MaxTF": 28,
         "BrainCost": 5,
@@ -11,7 +11,7 @@
     },
     {
         "Name": "Infiltration Mission",
-        "Image": "card36.webp",
+        "Image": "res://Media/Cards/card36.webp",
         "MinTF": 20,
         "MaxTF": 36,
         "BrainCost": 4,
@@ -21,7 +21,7 @@
     },
     {
         "Name": "Strapon",
-        "Image": "card48.webp",
+        "Image": "res://Media/Cards/card48.webp",
         "MinTF": 29,
         "MaxTF": 45,
         "HeartCost": 3,
@@ -30,7 +30,7 @@
     },
     {
         "Name": "Outwit",
-        "Image": "card55.webp",
+        "Image": "res://Media/Cards/card55.webp",
         "MinTF": 43,
         "MaxTF": 59,
         "HeartCost": 4,

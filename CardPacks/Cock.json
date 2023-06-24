@@ -1,7 +1,7 @@
 [
     {
         "Name": "So Big!",
-        "Image": "card54.webp",
+        "Image": "res://Media/Cards/card54.webp",
         "MinTF": 39,
         "MaxTF": 55,
         "SubCost": 3,
@@ -11,7 +11,7 @@
     },
     {
         "Name": "Just the Tip",
-        "Image": "Card62.webp",
+        "Image": "res://Media/Cards/Card62.webp",
         "MinTF": 51,
         "MaxTF": 67,
         "SubCost": 1,
@@ -19,7 +19,7 @@
     },
     {
         "Name": "Air Tight",
-        "Image": "card69.webp",
+        "Image": "res://Media/Cards/card69.webp",
         "MinTF": 60,
         "MaxTF": 76,
         "SubCost": 5,
@@ -29,7 +29,7 @@
     },
     {
         "Name": "Gangbang",
-        "Image": "card93.webp",
+        "Image": "res://Media/Cards/card93.webp",
         "MinTF": 71,
         "MaxTF": 87,
         "SubCost": 5,

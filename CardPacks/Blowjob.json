@@ -1,7 +1,7 @@
 [
     {
         "Name": "Just a Lick",
-        "Image": "card52.webp",
+        "Image": "res://Media/Cards/card52.webp",
         "MinTF": 17,
         "MaxTF": 33,
         "HeartCost": 2,
@@ -10,7 +10,7 @@
     },
     {
         "Name": "Sixty-Nine",
-        "Image": "card60.webp",
+        "Image": "res://Media/Cards/card60.webp",
         "MinTF": 25,
         "MaxTF": 41,
         "HeartCost": 4,
@@ -19,7 +19,7 @@
     },
     {
         "Name": "Blowjob",
-        "Image": "card56.webp",
+        "Image": "res://Media/Cards/card56.webp",
         "MinTF": 33,
         "MaxTF": 49,
         "HeartCost": 5,
@@ -29,7 +29,7 @@
     },
     {
         "Name": "Take it Deep",
-        "Image": "card86.webp",
+        "Image": "res://Media/Cards/card86.webp",
         "MinTF": 61,
         "MaxTF": 77,
         "HeartCost": 4,

@@ -1,7 +1,7 @@
 [
     {
         "Name": "Cam Girl",
-        "Image": "card61.webp",
+        "Image": "res://Media/Cards/card61.webp",
         "MinTF": 14,
         "MaxTF": 30,
         "HeartCost": 3,
@@ -11,7 +11,7 @@
     },
     {
         "Name": "Crotch Grab",
-        "Image": "card41.webp",
+        "Image": "res://Media/Cards/card41.webp",
         "MinTF": 21,
         "MaxTF": 37,
         "HeartCost": 3,
@@ -19,7 +19,7 @@
     },
     {
         "Name": "Free Entry",
-        "Image": "card38.webp",
+        "Image": "res://Media/Cards/card38.webp",
         "MinTF": 30,
         "MaxTF": 46,
         "HeartCost": 3,
@@ -28,7 +28,7 @@
     },
     {
         "Name": "Cock Tease",
-        "Image": "card49.webp",
+        "Image": "res://Media/Cards/card49.webp",
         "MinTF": 48,
         "MaxTF": 64,
         "HeartCost": 5,
