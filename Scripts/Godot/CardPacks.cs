@@ -144,7 +144,7 @@ namespace TFCardBattle.Godot
             public int SubCost {get; set;}
             public int OfferWeight {get; set;} = 1;
 
-            public string TexturePath => $"res://Media/Cards/{Image}";
+            public string TexturePath => Image;
 
             public CardPurchaseStats PurchaseStats => new CardPurchaseStats
             {
