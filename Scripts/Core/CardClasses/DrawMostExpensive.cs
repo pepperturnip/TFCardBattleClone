@@ -65,7 +65,7 @@ namespace TFCardBattle.Core.CardClasses
             }
 
             public string GetTexturePath(BattleState state)
-                => $"res://ApolloSevenImages/cardgame/cards/{GetFileName()}";
+                => $"res://Media/Cards/{GetFileName()}";
 
             private string GetFileName()
             {

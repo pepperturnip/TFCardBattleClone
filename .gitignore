@@ -5,6 +5,7 @@
 # fan of me using them.  That way I can easily replace them with custom ones
 # if it comes to that.
 ApolloSevenImages/**/*
+Media/**/*
 
 # For whatever reason, Godot keeps trying to reimport the "mods" folder, even
 # though nothing changes in it.  This is very annoying, because every time it
