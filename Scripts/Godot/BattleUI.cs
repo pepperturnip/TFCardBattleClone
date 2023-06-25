@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 using TFCardBattle.Core;
@@ -32,24 +33,24 @@ namespace TFCardBattle.Godot
                 {
                     CardPacks = new[]
                     {
-                        CardPacks.Load("Mind"),
-                        CardPacks.Load("Tech"),
-                        CardPacks.Load("Hypno"),
-                        CardPacks.Load("Chemist"),
-                        CardPacks.Load("Ambition"),
-                        CardPacks.Load("Purity"),
-                        CardPacks.Load("Whore"),
-                        CardPacks.Load("FemmeFatale"),
-                        CardPacks.Load("Tease"),
-                        CardPacks.Load("Romance"),
-                        CardPacks.Load("Blowjob"),
-                        CardPacks.Load("Submissive"),
-                        CardPacks.Load("Bondage"),
-                        CardPacks.Load("Cum"),
-                        CardPacks.Load("Cock"),
-                        CardPacks.Load("Sex")
+                        LoadCardPack("Mind"),
+                        LoadCardPack("Tech"),
+                        LoadCardPack("Hypno"),
+                        LoadCardPack("Chemist"),
+                        LoadCardPack("Ambition"),
+                        LoadCardPack("Purity"),
+                        LoadCardPack("Whore"),
+                        LoadCardPack("FemmeFatale"),
+                        LoadCardPack("Tease"),
+                        LoadCardPack("Romance"),
+                        LoadCardPack("Blowjob"),
+                        LoadCardPack("Submissive"),
+                        LoadCardPack("Bondage"),
+                        LoadCardPack("Cum"),
+                        LoadCardPack("Cock"),
+                        LoadCardPack("Sex")
                     },
-                    PermanentBuyPile = CardPacks.Load("StandardPermanentBuyPile"),
+                    PermanentBuyPile = LoadCardPack("StandardPermanentBuyPile"),
                     StartingDeck = PlayerStartingDeck.StartingDeck()
                 },
                 GetNode<BattleAnimationPlayer>("%BattleAnimationPlayer"),
@@ -120,6 +121,12 @@ namespace TFCardBattle.Godot
             _handDisplay.EnableInput = enabled;
             _buyPileDisplay.EnableInput = enabled;
             GetNode<Button>("%EndTurnButton").Disabled = !enabled;
+        }
+
+        private IEnumerable<ICard> LoadCardPack(string name)
+        {
+            string path = $"res://CardPacks/{name}.json";
+            return Core.Parsing.CardPacks.Parse(FileAccess.GetFileAsString(path));
         }
     }
 }
