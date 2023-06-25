@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using TFCardBattle.Core;
 
@@ -106,21 +107,53 @@ namespace TFCardBattle.Godot
 
         private partial class GifPlayer : Node2D
         {
-            private readonly VideoStreamPlayer _player = new VideoStreamPlayer();
+            private static readonly Dictionary<string, double> _fileDurations =
+                new Dictionary<string, double>();
+
+            private readonly VideoStreamPlayer _player;
+            private readonly string _filePath;
+
+            private double _durationTimer = 0;
+
             public GifPlayer(string filePath)
             {
+                _filePath = filePath;
+                _player = new VideoStreamPlayer();
+
                 AddChild(_player);
                 _player.Stream = ResourceLoader.Load<VideoStream>(filePath);
-                _player.Finished += () =>
-                {
-                    GetParent().RemoveChild(this);
-                    QueueFree();
-                };
+                _player.Finished += OnFinished;
             }
 
             public void Play()
             {
                 _player.Play();
+            }
+
+            public override void _Process(double delta)
+            {
+                _durationTimer += delta;
+
+                // Fade out as the video plays
+                if (_fileDurations.ContainsKey(_filePath))
+                {
+                    double duration = _fileDurations[_filePath];
+                    double t = _durationTimer / duration;
+                    Modulate = Colors.White.Lerp(Colors.Transparent, (float)t);
+                }
+            }
+
+            private void OnFinished()
+            {
+                // HACK: Record the duration of this video, since Godot does not
+                // yet support getting the lengths of videos.
+                // Fucking hell.
+                if (!_fileDurations.ContainsKey(_filePath))
+                    _fileDurations[_filePath] = _durationTimer;
+
+                // Non-hack: delete the node now that it's done
+                GetParent().RemoveChild(this);
+                QueueFree();
             }
         }
     }
