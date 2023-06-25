@@ -110,6 +110,9 @@ namespace TFCardBattle.Godot
 
         private partial class GifPlayer : Node2D
         {
+            private const double GrowDuration = 0.1;
+            private const double FadeDuration = 0.5;
+
             private static readonly Dictionary<string, double> _fileDurations =
                 new Dictionary<string, double>();
 
@@ -117,6 +120,7 @@ namespace TFCardBattle.Godot
             private readonly string _filePath;
 
             private double _durationTimer = 0;
+            private bool _durationKnown => _fileDurations.ContainsKey(_filePath);
 
             public GifPlayer(string filePath)
             {
@@ -131,19 +135,32 @@ namespace TFCardBattle.Godot
             public void Play()
             {
                 _player.Play();
+
+                var tween = GetTree().CreateTween();
+                AddGrowAnimation(tween);
+                AddFadeAnimation(tween);
             }
 
             public override void _Process(double delta)
             {
                 _durationTimer += delta;
+            }
 
-                // Fade out as the video plays
-                if (_fileDurations.ContainsKey(_filePath))
-                {
-                    double duration = _fileDurations[_filePath];
-                    double t = _durationTimer / duration;
-                    Modulate = Colors.White.Lerp(Colors.Transparent, (float)t);
-                }
+            private void AddGrowAnimation(Tween tween)
+            {
+                Scale = Vector2.Zero;
+                tween.TweenProperty(this, "scale", Vector2.One, GrowDuration);
+            }
+
+            private void AddFadeAnimation(Tween tween)
+            {
+                if (!_durationKnown)
+                    return;
+
+                double gifDuration = _fileDurations[_filePath];
+                double pauseDuration = gifDuration - GrowDuration - FadeDuration;
+                tween.TweenInterval(pauseDuration);
+                tween.TweenProperty(this, "modulate", Colors.Transparent, FadeDuration);
             }
 
             private void OnFinished()
@@ -151,7 +168,7 @@ namespace TFCardBattle.Godot
                 // HACK: Record the duration of this video, since Godot does not
                 // yet support getting the lengths of videos.
                 // Fucking hell.
-                if (!_fileDurations.ContainsKey(_filePath))
+                if (!_durationKnown)
                     _fileDurations[_filePath] = _durationTimer;
 
                 // Non-hack: delete the node now that it's done
