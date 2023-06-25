@@ -39,7 +39,7 @@ namespace TFCardBattle.Godot
             _cardRow.Refresh(_battleState.Hand.ToArray());
         }
 
-        public void PlayActivateAnimation(int cardIndex)
+        public async void PlayActivateAnimation(int cardIndex)
         {
             // Make a copy of the card being removed, so we can animate it
             // after removing it.
@@ -83,7 +83,10 @@ namespace TFCardBattle.Godot
                 stepDuration);
             tween.TweenCallback(new Callable(cloneHolder, "queue_free"));
 
-            // DEBUG: Can we play a gif at all?
+            // Play a gif for the card
+            // TODO: Pick from one of the gifs specified by the card data
+            await ToSignal(tween,  Tween.SignalName.Finished);
+
             var gifPlayer = new GifPlayer("res://Media/CardGifs/17d.ogv");
             AddChild(gifPlayer);
             gifPlayer.Position = endPos;
