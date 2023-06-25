@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://banf0dyorxitu"]
+[gd_scene load_steps=4 format=3 uid="uid://banf0dyorxitu"]
 
 [ext_resource type="PackedScene" uid="uid://dao0w4slv7603" path="res://Scenes/UIWidgets/CardRowDisplay.tscn" id="1_a2f2b"]
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/HandDisplay.cs" id="1_cbqbs"]
+[ext_resource type="PackedScene" uid="uid://b8a5hgsrx58v3" path="res://Scenes/UIWidgets/GifPlayer.tscn" id="2_kcg8q"]
 
 [node name="HandDisplay" type="Control"]
 layout_mode = 3
@@ -11,6 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cbqbs")
+GifPlayerPrefab = ExtResource("2_kcg8q")
 
 [node name="CardRow" parent="." instance=ExtResource("1_a2f2b")]
 unique_name_in_owner = true

@@ -15,6 +15,8 @@ namespace TFCardBattle.Godot
             set => _cardRow.ModelFactory = value;
         }
 
+        [Export] public PackedScene GifPlayerPrefab;
+
         [Export] public bool EnableInput
         {
             get => _cardRow.EnableInput;
@@ -87,10 +89,10 @@ namespace TFCardBattle.Godot
             // TODO: Pick from one of the gifs specified by the card data
             await ToSignal(tween,  Tween.SignalName.Finished);
 
-            var gifPlayer = new GifPlayer("res://Media/CardGifs/17d.ogv");
+            var gifPlayer = GifPlayerPrefab.Instantiate<GifPlayer>();
             AddChild(gifPlayer);
             gifPlayer.Position = endPos;
-            gifPlayer.Play();
+            gifPlayer.Play("res://Media/CardGifs/17d.ogv");
         }
 
         public void AddCard(ICard card)
@@ -106,75 +108,6 @@ namespace TFCardBattle.Godot
         public void ClearCards()
         {
             _cardRow.Refresh(Array.Empty<ICard>());
-        }
-
-        private partial class GifPlayer : Node2D
-        {
-            private const double GrowDuration = 0.1;
-            private const double FadeDuration = 0.5;
-
-            private static readonly Dictionary<string, double> _fileDurations =
-                new Dictionary<string, double>();
-
-            private readonly VideoStreamPlayer _player;
-            private readonly string _filePath;
-
-            private double _durationTimer = 0;
-            private bool _durationKnown => _fileDurations.ContainsKey(_filePath);
-
-            public GifPlayer(string filePath)
-            {
-                _filePath = filePath;
-                _player = new VideoStreamPlayer();
-
-                AddChild(_player);
-                _player.Stream = ResourceLoader.Load<VideoStream>(filePath);
-                _player.Finished += OnFinished;
-            }
-
-            public void Play()
-            {
-                _player.Play();
-
-                var tween = GetTree().CreateTween();
-                AddGrowAnimation(tween);
-                AddFadeAnimation(tween);
-            }
-
-            public override void _Process(double delta)
-            {
-                _durationTimer += delta;
-            }
-
-            private void AddGrowAnimation(Tween tween)
-            {
-                Scale = Vector2.Zero;
-                tween.TweenProperty(this, "scale", Vector2.One, GrowDuration);
-            }
-
-            private void AddFadeAnimation(Tween tween)
-            {
-                if (!_durationKnown)
-                    return;
-
-                double gifDuration = _fileDurations[_filePath];
-                double pauseDuration = gifDuration - GrowDuration - FadeDuration;
-                tween.TweenInterval(pauseDuration);
-                tween.TweenProperty(this, "modulate", Colors.Transparent, FadeDuration);
-            }
-
-            private void OnFinished()
-            {
-                // HACK: Record the duration of this video, since Godot does not
-                // yet support getting the lengths of videos.
-                // Fucking hell.
-                if (!_durationKnown)
-                    _fileDurations[_filePath] = _durationTimer;
-
-                // Non-hack: delete the node now that it's done
-                GetParent().RemoveChild(this);
-                QueueFree();
-            }
         }
     }
 }

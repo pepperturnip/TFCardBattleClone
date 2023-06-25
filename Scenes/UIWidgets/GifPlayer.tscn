@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8a5hgsrx58v3"]
+
+[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/GifPlayer.cs" id="1_sxmtv"]
+
+[node name="GifPlayer" type="Node2D"]
+script = ExtResource("1_sxmtv")
+
+[node name="VideoPlayer" type="VideoStreamPlayer" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="finished" from="VideoPlayer" to="." method="OnVideoFinished"]
