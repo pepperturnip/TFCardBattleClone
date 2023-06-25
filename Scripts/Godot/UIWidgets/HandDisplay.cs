@@ -46,12 +46,13 @@ namespace TFCardBattle.Godot
 
             // Start animating the clone in the background.
             const double stepDuration = 0.1;
+            Vector2 endPos = cloneHolder.Position + Vector2.Up * _cardRow.CardSize.Y;
             var tween = GetTree().CreateTween();
 
             tween.TweenProperty(
                 cloneHolder,
                 "position",
-                cloneHolder.Position + Vector2.Up * _cardRow.CardSize.Y,
+                endPos,
                 stepDuration
             );
             tween.Parallel();
@@ -80,6 +81,12 @@ namespace TFCardBattle.Godot
                 Colors.Transparent,
                 stepDuration);
             tween.TweenCallback(new Callable(cloneHolder, "queue_free"));
+
+            // DEBUG: Can we play a gif at all?
+            var gifPlayer = new GifPlayer("res://Media/CardGifs/17d.ogv");
+            AddChild(gifPlayer);
+            gifPlayer.Position = endPos;
+            gifPlayer.Play();
         }
 
         public void AddCard(ICard card)
@@ -95,6 +102,26 @@ namespace TFCardBattle.Godot
         public void ClearCards()
         {
             _cardRow.Refresh(Array.Empty<ICard>());
+        }
+
+        private partial class GifPlayer : Node2D
+        {
+            private readonly VideoStreamPlayer _player = new VideoStreamPlayer();
+            public GifPlayer(string filePath)
+            {
+                AddChild(_player);
+                _player.Stream = ResourceLoader.Load<VideoStream>(filePath);
+                _player.Finished += () =>
+                {
+                    GetParent().RemoveChild(this);
+                    QueueFree();
+                };
+            }
+
+            public void Play()
+            {
+                _player.Play();
+            }
         }
     }
 }
