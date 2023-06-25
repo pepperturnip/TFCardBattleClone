@@ -11,7 +11,7 @@
     },
     {
         "Name": "Just the Tip",
-        "Image": "res://Media/Cards/Card62.webp",
+        "Image": "res://Media/Cards/card62.webp",
         "MinTF": 51,
         "MaxTF": 67,
         "SubCost": 1,
