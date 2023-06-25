@@ -33,13 +33,17 @@ namespace TFCardBattle.Godot
 
         public override void _Process(double delta)
         {
+            _videoPlayer.PivotOffset = _videoPlayer.Size / 2;
+
+            // HACK: Measure how long this gif lasts, because Godot doesn't
+            // provide a way for us to get that from the file >.<
             _durationTimer += delta;
         }
 
         private void AddGrowAnimation(Tween tween)
         {
-            Scale = Vector2.Zero;
-            tween.TweenProperty(this, "scale", Vector2.One, GrowDuration);
+            _videoPlayer.Scale = Vector2.Zero;
+            tween.TweenProperty(_videoPlayer, "scale", Vector2.One, GrowDuration);
         }
 
         private void AddFadeAnimation(Tween tween)
