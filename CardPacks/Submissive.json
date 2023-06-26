@@ -6,7 +6,8 @@
         "MaxTF": 50,
         "SubCost": 1,
         "Sub": 2,
-        "Damage": 1
+        "Damage": 1,
+        "Gifs": ["res://Media/CardGifs/71.ogv"]
     },
     {
         "Name": "Underfoot",
@@ -15,7 +16,8 @@
         "MaxTF": 60,
         "SubCost": 1,
         "Damage": 2,
-        "Shield": 1
+        "Shield": 1,
+        "Gifs": ["res://Media/CardGifs/73.ogv"]
     },
     {
         "Name": "At Master's Feet",
@@ -24,7 +26,19 @@
         "MaxTF": 69,
         "SubCost": 2,
         "Sub": 2,
-        "Draw": 1
+        "Draw": 1,
+        "Gifs":
+        [
+            "res://Media/CardGifs/91a.ogv",
+            "res://Media/CardGifs/91b.ogv",
+            "res://Media/CardGifs/91c.ogv",
+            "res://Media/CardGifs/91d.ogv",
+            "res://Media/CardGifs/91e.ogv",
+            "res://Media/CardGifs/91f.ogv",
+            "res://Media/CardGifs/91g.ogv",
+            "res://Media/CardGifs/91h.ogv",
+            "res://Media/CardGifs/91i.ogv"
+        ]
     },
     {
         "Name": "Nipple Clamps",
@@ -33,7 +47,15 @@
         "MaxTF": 82,
         "SubCost": 2,
         "Heart": 2,
-        "Sub": 3
+        "Sub": 3,
+        "Gifs":
+        [
+            "res://Media/CardGifs/87a.ogv",
+            "res://Media/CardGifs/87b.ogv",
+            "res://Media/CardGifs/87c.ogv",
+            "res://Media/CardGifs/87d.ogv",
+            "res://Media/CardGifs/87e.ogv"
+        ]
     },
     {
         "Name": "Inspection",
@@ -41,7 +63,17 @@
         "MinTF": 75,
         "MaxTF": 91,
         "SubCost": 4,
-        "Draw": 2
+        "Draw": 2,
+        "Gifs":
+        [
+            "res://Media/CardGifs/75a.ogv",
+            "res://Media/CardGifs/75b.ogv",
+            "res://Media/CardGifs/75c.ogv",
+            "res://Media/CardGifs/75d.ogv",
+            "res://Media/CardGifs/75e.ogv",
+            "res://Media/CardGifs/75f.ogv",
+            "res://Media/CardGifs/75g.ogv"
+        ]
     },
     {
         "Name": "Branded",

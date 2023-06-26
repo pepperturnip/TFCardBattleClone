@@ -6,7 +6,16 @@
         "MaxTF": 33,
         "HeartCost": 2,
         "Damage": 1,
-        "Draw": 1
+        "Draw": 1,
+        "Gifs":
+        [
+            "res://Media/CardGifs/52a.ogv",
+            "res://Media/CardGifs/52b.ogv",
+            "res://Media/CardGifs/52c.ogv",
+            "res://Media/CardGifs/52d.ogv",
+            "res://Media/CardGifs/52e.ogv",
+            "res://Media/CardGifs/52f.ogv"
+        ]
     },
     {
         "Name": "Sixty-Nine",
@@ -15,7 +24,16 @@
         "MaxTF": 41,
         "HeartCost": 4,
         "Heart": 3,
-        "Damage": 3
+        "Damage": 3,
+        "Gifs":
+        [
+            "res://Media/CardGifs/60a.ogv",
+            "res://Media/CardGifs/60b.ogv",
+            "res://Media/CardGifs/60c.ogv",
+            "res://Media/CardGifs/60d.ogv",
+            "res://Media/CardGifs/60e.ogv",
+            "res://Media/CardGifs/60f.ogv"
+        ]
     },
     {
         "Name": "Blowjob",
@@ -25,7 +43,20 @@
         "HeartCost": 5,
         "Class": "TransferResources",
         "From": "Heart",
-        "To": "Damage"
+        "To": "Damage",
+        "Gifs":
+        [
+            "res://Media/CardGifs/56a.ogv",
+            "res://Media/CardGifs/56b.ogv",
+            "res://Media/CardGifs/56c.ogv",
+            "res://Media/CardGifs/56d.ogv",
+            "res://Media/CardGifs/56e.ogv",
+            "res://Media/CardGifs/56f.ogv",
+            "res://Media/CardGifs/56g.ogv",
+            "res://Media/CardGifs/56h.ogv",
+            "res://Media/CardGifs/56i.ogv",
+            "res://Media/CardGifs/56j.ogv"
+        ]
     },
     {
         "Name": "Take it Deep",
@@ -35,6 +66,17 @@
         "HeartCost": 4,
         "Class": "TransferResources",
         "From": "Heart",
-        "To": "Shield"
+        "To": "Shield",
+        "Gifs":
+        [
+            "res://Media/CardGifs/86a.ogv",
+            "res://Media/CardGifs/86b.ogv",
+            "res://Media/CardGifs/86c.ogv",
+            "res://Media/CardGifs/86d.ogv",
+            "res://Media/CardGifs/86e.ogv",
+            "res://Media/CardGifs/86f.ogv",
+            "res://Media/CardGifs/86g.ogv",
+            "res://Media/CardGifs/86h.ogv"
+        ]
     }
 ]

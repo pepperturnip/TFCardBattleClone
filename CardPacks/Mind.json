@@ -16,7 +16,17 @@
         "MaxTF": 14,
         "BrainCost": 3,
         "Brain": 1,
-        "Draw": 1
+        "Draw": 1,
+        "Gifs":
+        [
+            "res://Media/CardGifs/17a.ogv",
+            "res://Media/CardGifs/17b.ogv",
+            "res://Media/CardGifs/17c.ogv",
+            "res://Media/CardGifs/17d.ogv",
+            "res://Media/CardGifs/17e.ogv",
+            "res://Media/CardGifs/17f.ogv",
+            "res://Media/CardGifs/17g.ogv"
+        ]
     },
     {
         "Name": "Paranoia",
