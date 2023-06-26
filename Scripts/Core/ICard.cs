@@ -7,6 +7,7 @@ namespace TFCardBattle.Core
         string Name {get; set;}
         string Desc {get;}
         string Image {get; set;}
+        string[] Gifs {get; set;}
         CardPurchaseStats PurchaseStats {get; set;}
         bool DestroyOnActivate {get;}
 

@@ -7,6 +7,7 @@ namespace TFCardBattle.Core.CardClasses
         public string Name {get; set;}
         public string Desc => "Draw 3, and reset the buy piles";
         public string Image {get; set;}
+        public string[] Gifs {get; set;}
         public CardPurchaseStats PurchaseStats {get; set;}
         public bool DestroyOnActivate {get; set;}
 
