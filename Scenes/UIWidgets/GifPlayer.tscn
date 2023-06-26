@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/GifPlayer.cs" id="1_sxmtv"]
 
 [node name="GifPlayer" type="Node2D"]
+z_index = -1
 script = ExtResource("1_sxmtv")
 
 [node name="VideoPlayer" type="VideoStreamPlayer" parent="."]
