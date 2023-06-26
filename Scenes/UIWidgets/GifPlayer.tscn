@@ -7,7 +7,8 @@ script = ExtResource("1_sxmtv")
 
 [node name="VideoPlayer" type="VideoStreamPlayer" parent="."]
 unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 320.0
+offset_bottom = 192.0
+expand = true
 
 [connection signal="finished" from="VideoPlayer" to="." method="OnVideoFinished"]
