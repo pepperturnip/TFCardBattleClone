@@ -25,6 +25,7 @@ namespace TFCardBattle.Godot
 
         private CardRowDisplay _cardRow => GetNode<CardRowDisplay>("%CardRow");
         private BattleState _battleState;
+        private readonly Random _rng = new Random();
 
         public override void _Ready()
         {
@@ -46,6 +47,7 @@ namespace TFCardBattle.Godot
             // Make a copy of the card being removed, so we can animate it
             // after removing it.
             CardRowDisplay.CardHolder cloneHolder = _cardRow.CloneCardForAnimation(cardIndex);
+            ICard card = cloneHolder.Model.Card;
 
             // Start animating the clone in the background.
             const double stepDuration = 0.1;
@@ -86,13 +88,19 @@ namespace TFCardBattle.Godot
             tween.TweenCallback(new Callable(cloneHolder, "queue_free"));
 
             // Play a gif for the card
-            // TODO: Pick from one of the gifs specified by the card data
-            await ToSignal(tween,  Tween.SignalName.Finished);
+            await ToSignal(tween, Tween.SignalName.Finished);
+            PlayCardGif(card, endPos);
+        }
+
+        private void PlayCardGif(ICard card, Vector2 pos)
+        {
+            if (card.Gifs == null || card.Gifs.Length <= 0)
+                return;
 
             var gifPlayer = GifPlayerPrefab.Instantiate<GifPlayer>();
             AddChild(gifPlayer);
-            gifPlayer.Position = endPos;
-            gifPlayer.Play("res://Media/CardGifs/17d.ogv");
+            gifPlayer.Position = pos;
+            gifPlayer.Play(_rng.PickFrom(card.Gifs));
         }
 
         public void AddCard(ICard card)
