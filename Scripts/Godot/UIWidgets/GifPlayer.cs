@@ -10,7 +10,7 @@ namespace TFCardBattle.Godot
         private const double GrowDuration = 0.1;
         private const double FadeDuration = 0.5;
 
-        [Export] public Vector2 Size = new Vector2(320, 320);
+        [Export] public Vector2 Size = new Vector2(320, 160);
 
         private VideoStreamPlayer _videoPlayer => GetNode<VideoStreamPlayer>("%VideoPlayer");
 
