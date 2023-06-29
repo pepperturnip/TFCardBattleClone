@@ -29,7 +29,9 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -200.0
+offset_left = 128.0
+offset_top = -224.0
+offset_right = -128.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -44,8 +46,10 @@ EnableInput = true
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_left = 128.0
 offset_top = 8.0
-offset_bottom = 200.0
+offset_right = -128.0
+offset_bottom = 224.0
 grow_horizontal = 2
 
 [node name="BuyPileDisplay" parent="BuyPileHolder" node_paths=PackedStringArray("ModelFactory") instance=ExtResource("4_bxu7y")]

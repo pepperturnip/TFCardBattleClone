@@ -46,26 +46,26 @@ namespace TFCardBattle.Godot
 
         public void PlayBuyAnimation(int cardIndex)
         {
-            CardRowDisplay.CardHolder cloneHolder = _cardRow.CloneCardForAnimation(cardIndex);
+            CardModel clone = _cardRow.CloneCardForAnimation(cardIndex);
 
             // Start animating the clone in the background.
             const double stepDuration = 0.1;
             var tween = GetTree().CreateTween();
 
             tween.TweenProperty(
-                cloneHolder,
+                clone,
                 "position",
-                cloneHolder.Position + Vector2.Down * _cardRow.CardSize,
+                clone.Position + Vector2.Down * _cardRow.CardSize,
                 stepDuration
             );
             tween.Parallel();
             tween.TweenProperty(
-                cloneHolder.Scaler,
+                clone,
                 "scale",
                 Vector2.Zero,
                 stepDuration
             );
-            tween.TweenCallback(new Callable(cloneHolder, "queue_free"));
+            tween.TweenCallback(new Callable(clone, "queue_free"));
         }
 
         public void RemoveCard(int index)

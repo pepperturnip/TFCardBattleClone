@@ -4,6 +4,7 @@ using TFCardBattle.Core;
 
 namespace TFCardBattle.Godot
 {
+    [Tool]
     public partial class CardModel : Node2D
     {
         [Export] public bool Enabled = true;
