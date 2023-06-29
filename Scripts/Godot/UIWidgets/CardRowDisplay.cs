@@ -213,14 +213,10 @@ namespace TFCardBattle.Godot
 
             float x = (CardSize.X + MinCardSeparation) * handIndex;
             x -= totalSize.X / 2;
+            x += MinCardSeparation / 2;
 
             var pos = _cardPositions.GlobalPosition + Vector2.Right * x;
             return pos + (CardSize / 2);
-        }
-
-        private CardModel CreateCardHolder(ICard card)
-        {
-            return ModelFactory.Create(card);
         }
 
         private partial class CardPositioner : Control
