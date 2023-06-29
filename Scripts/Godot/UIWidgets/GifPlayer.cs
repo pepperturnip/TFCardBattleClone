@@ -18,6 +18,7 @@ namespace TFCardBattle.Godot
             _videoPlayer.Play();
 
             var tween = GetTree().CreateTween();
+            _videoPlayer.Scale = Vector2.Zero;
             tween.TweenProperty(_videoPlayer, "scale", Vector2.One, GrowDuration);
             tween.TweenInterval(TotalDuration - GrowDuration - FadeDuration);
             tween.TweenProperty(this, "modulate", Colors.Transparent, FadeDuration);
