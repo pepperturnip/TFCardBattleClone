@@ -10,6 +10,8 @@ namespace TFCardBattle.Godot
         private const double GrowDuration = 0.1;
         private const double FadeDuration = 0.5;
 
+        [Export] public Vector2 Size = new Vector2(320, 320);
+
         private VideoStreamPlayer _videoPlayer => GetNode<VideoStreamPlayer>("%VideoPlayer");
 
         public void Play(string filePath)
@@ -28,6 +30,14 @@ namespace TFCardBattle.Godot
         public override void _Process(double delta)
         {
             _videoPlayer.PivotOffset = _videoPlayer.Size / 2;
+
+            // Stretch the video such that it fits within Size, while keeping
+            // its original aspect ratio.
+            float s = Size.X < _videoPlayer.Size.Y
+                ? Size.Y / _videoPlayer.Size.Y
+                : Size.X / _videoPlayer.Size.X;
+
+            Scale = s * Vector2.One;
         }
 
         private void OnVideoFinished()
