@@ -49,6 +49,10 @@ namespace TFCardBattle.Godot
             CardRowDisplay.CardHolder cloneHolder = _cardRow.CloneCardForAnimation(cardIndex);
             ICard card = cloneHolder.Model.Card;
 
+            // Detatch the clone so it doesn't shift if the "discard hand"
+            // animation starts playing while the clone is still alive
+            DetatchParent(cloneHolder);
+
             // Start animating the clone in the background.
             const double stepDuration = 0.1;
             Vector2 endPos = cloneHolder.Position + Vector2.Up * _cardRow.CardSize.Y;
@@ -101,6 +105,18 @@ namespace TFCardBattle.Godot
             AddChild(gifPlayer);
             gifPlayer.Position = pos;
             gifPlayer.Play(_rng.PickFrom(card.Gifs));
+
+            DetatchParent(gifPlayer);
+        }
+
+        private void DetatchParent(Node2D node)
+        {
+            var globalPos = node.GlobalPosition;
+
+            node.GetParent().RemoveChild(node);
+            GetParent().AddChild(node);
+
+            node.GlobalPosition = globalPos;
         }
 
         public void AddCard(ICard card)
