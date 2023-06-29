@@ -143,7 +143,6 @@ visible = false
 
 [node name="CardModel" parent="Holder" instance=ExtResource("1_d3gx3")]
 unique_name_in_owner = true
-position = Vector2(-75, -96)
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
