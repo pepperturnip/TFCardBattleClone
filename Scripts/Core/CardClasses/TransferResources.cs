@@ -8,6 +8,7 @@ namespace TFCardBattle.Core.CardClasses
         public string Name {get; set;}
         public string Desc => $"{From} => {To}";
         public string Image {get; set;}
+        public string[] Gifs {get; set;}
         public bool DestroyOnActivate {get; set;}
 
         public ResourceType From;

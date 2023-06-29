@@ -9,6 +9,7 @@ namespace TFCardBattle.Core.CardClasses
         public string Name { get; set; }
         public string Desc => "Take an extra turn, if you own no heart cards.";
         public string Image { get; set; }
+        public string[] Gifs {get; set;}
         public CardPurchaseStats PurchaseStats { get; set; }
         public bool DestroyOnActivate {get; set;}
 

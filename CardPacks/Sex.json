@@ -6,7 +6,20 @@
         "MaxTF": 57,
         "HeartCost": 5,
         "Heart": 3,
-        "Draw": 1
+        "Draw": 1,
+        "Gifs":
+        [
+            "res://Media/CardGifs/77a.ogv",
+            "res://Media/CardGifs/77b.ogv",
+            "res://Media/CardGifs/77c.ogv",
+            "res://Media/CardGifs/77d.ogv",
+            "res://Media/CardGifs/77e.ogv",
+            "res://Media/CardGifs/77f.ogv",
+            "res://Media/CardGifs/77g.ogv",
+            "res://Media/CardGifs/77h.ogv",
+            "res://Media/CardGifs/77i.ogv",
+            "res://Media/CardGifs/77j.ogv"
+        ]
     },
     {
         "Name": "Pounded",
@@ -16,7 +29,20 @@
         "HeartCost": 5,
         "Sub": 2,
         "Damage": 2,
-        "Draw": 1
+        "Draw": 1,
+        "Gifs":
+        [
+            "res://Media/CardGifs/89a.ogv",
+            "res://Media/CardGifs/89b.ogv",
+            "res://Media/CardGifs/89c.ogv",
+            "res://Media/CardGifs/89d.ogv",
+            "res://Media/CardGifs/89e.ogv",
+            "res://Media/CardGifs/89f.ogv",
+            "res://Media/CardGifs/89g.ogv",
+            "res://Media/CardGifs/89h.ogv",
+            "res://Media/CardGifs/89i.ogv",
+            "res://Media/CardGifs/89j.ogv"
+        ]
     },
     {
         "Name": "Ride 'em Cowgirl",
@@ -25,7 +51,18 @@
         "MaxTF": 79,
         "HeartCost": 6,
         "Damage": 6,
-        "Draw": 1
+        "Draw": 1,
+        "Gifs":
+        [
+            "res://Media/CardGifs/63a.ogv",
+            "res://Media/CardGifs/63b.ogv",
+            "res://Media/CardGifs/63c.ogv",
+            "res://Media/CardGifs/63d.ogv",
+            "res://Media/CardGifs/63e.ogv",
+            "res://Media/CardGifs/63f.ogv",
+            "res://Media/CardGifs/63g.ogv",
+            "res://Media/CardGifs/63h.ogv"
+        ]
     },
     {
         "Name": "Doggy Style",
@@ -33,6 +70,19 @@
         "MinTF": 72,
         "MaxTF": 88,
         "HeartCost": 9,
-        "Draw": 4
+        "Draw": 4,
+        "Gifs":
+        [
+            "res://Media/CardGifs/96a.ogv",
+            "res://Media/CardGifs/96b.ogv",
+            "res://Media/CardGifs/96c.ogv",
+            "res://Media/CardGifs/96d.ogv",
+            "res://Media/CardGifs/96e.ogv",
+            "res://Media/CardGifs/96f.ogv",
+            "res://Media/CardGifs/96g.ogv",
+            "res://Media/CardGifs/96h.ogv",
+            "res://Media/CardGifs/96i.ogv",
+            "res://Media/CardGifs/96j.ogv"
+        ]
     }
 ]

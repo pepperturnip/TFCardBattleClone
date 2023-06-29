@@ -5,7 +5,16 @@
         "MinTF": 35,
         "MaxTF": 51,
         "HeartCost": 2,
-        "Sub": 3
+        "Sub": 3,
+        "Gifs":
+        [
+            "res://Media/CardGifs/72a.ogv",
+            "res://Media/CardGifs/72b.ogv",
+            "res://Media/CardGifs/72c.ogv",
+            "res://Media/CardGifs/72d.ogv",
+            "res://Media/CardGifs/72e.ogv",
+            "res://Media/CardGifs/72f.ogv"
+        ]
     },
     {
         "Name": "Blindfolded",
@@ -14,7 +23,15 @@
         "MaxTF": 62,
         "HeartCost": 2,
         "Sub": 1,
-        "Draw": 1
+        "Draw": 1,
+        "Gifs":
+        [
+            "res://Media/CardGifs/74a.ogv",
+            "res://Media/CardGifs/74b.ogv",
+            "res://Media/CardGifs/74c.ogv",
+            "res://Media/CardGifs/74d.ogv",
+            "res://Media/CardGifs/74e.ogv"
+        ]
     },
     {
         "Name": "Locked Away",
@@ -23,7 +40,15 @@
         "MaxTF": 73,
         "SubCost": 2,
         "Sub": 1,
-        "Shield": 3
+        "Shield": 3,
+        "Gifs":
+        [
+            "res://Media/CardGifs/76a.ogv",
+            "res://Media/CardGifs/76b.ogv",
+            "res://Media/CardGifs/76c.ogv",
+            "res://Media/CardGifs/76d.ogv",
+            "res://Media/CardGifs/76e.ogv"
+        ]
     },
     {
         "Name": "Collared",
@@ -32,6 +57,14 @@
         "MaxTF": 83,
         "SubCost": 2,
         "Class": "MultiplyResources",
-        "SubMult": 2
+        "SubMult": 2,
+        "Gifs":
+        [
+            "res://Media/CardGifs/85a.ogv",
+            "res://Media/CardGifs/85b.ogv",
+            "res://Media/CardGifs/85c.ogv",
+            "res://Media/CardGifs/85d.ogv",
+            "res://Media/CardGifs/85e.ogv"
+        ]
     }
 ]

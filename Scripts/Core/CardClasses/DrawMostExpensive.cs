@@ -9,6 +9,7 @@ namespace TFCardBattle.Core.CardClasses
         public string Name {get; set;}
         public string Desc => $"Draw the highest-cost {Resource} card from your deck";
         public string Image {get; set;}
+        public string[] Gifs {get; set;}
         public CardPurchaseStats PurchaseStats {get; set;}
         public bool DestroyOnActivate {get; set;}
 
@@ -45,6 +46,7 @@ namespace TFCardBattle.Core.CardClasses
             public string Name {get; set;} = "Consolation Prize";
             public string Desc => $"{Resource}: +1(disposable)";
             public string Image {get; set;}
+            public string[] Gifs {get; set;} = Array.Empty<string>();
             public CardPurchaseStats PurchaseStats {get; set;}
             public bool DestroyOnActivate => true;
 

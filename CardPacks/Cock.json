@@ -7,15 +7,31 @@
         "SubCost": 3,
         "Class": "TransferResources",
         "From": "Sub",
-        "To": "Damage"
+        "To": "Damage",
+        "Gifs":
+        [
+            "res://Media/CardGifs/54a.ogv",
+            "res://Media/CardGifs/54b.ogv",
+            "res://Media/CardGifs/54c.ogv",
+            "res://Media/CardGifs/54d.ogv",
+            "res://Media/CardGifs/54e.ogv"
+        ]
     },
     {
         "Name": "Just the Tip",
-        "Image": "res://Media/Cards/Card62.webp",
+        "Image": "res://Media/Cards/card62.webp",
         "MinTF": 51,
         "MaxTF": 67,
         "SubCost": 1,
-        "Class": "JustTheTip"
+        "Class": "JustTheTip",
+        "Gifs":
+        [
+            "res://Media/CardGifs/62a.ogv",
+            "res://Media/CardGifs/62b.ogv",
+            "res://Media/CardGifs/62c.ogv",
+            "res://Media/CardGifs/62d.ogv",
+            "res://Media/CardGifs/62e.ogv"
+        ]
     },
     {
         "Name": "Air Tight",
@@ -25,7 +41,18 @@
         "SubCost": 5,
         "Sub": 3,
         "Damage": 3,
-        "Shield": 3
+        "Shield": 3,
+        "Gifs":
+        [
+            "res://Media/CardGifs/69a.ogv",
+            "res://Media/CardGifs/69b.ogv",
+            "res://Media/CardGifs/69c.ogv",
+            "res://Media/CardGifs/69d.ogv",
+            "res://Media/CardGifs/69e.ogv",
+            "res://Media/CardGifs/69f.ogv",
+            "res://Media/CardGifs/69g.ogv",
+            "res://Media/CardGifs/69h.ogv"
+        ]
     },
     {
         "Name": "Gangbang",
@@ -33,6 +60,16 @@
         "MinTF": 71,
         "MaxTF": 87,
         "SubCost": 5,
-        "Damage": 10
+        "Damage": 10,
+        "Gifs":
+        [
+            "res://Media/CardGifs/93a.ogv",
+            "res://Media/CardGifs/93b.ogv",
+            "res://Media/CardGifs/93c.ogv",
+            "res://Media/CardGifs/93d.ogv",
+            "res://Media/CardGifs/93e.ogv",
+            "res://Media/CardGifs/93f.ogv",
+            "res://Media/CardGifs/93g.ogv"
+        ]
     }
 ]

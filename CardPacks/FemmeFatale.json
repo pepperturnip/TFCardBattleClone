@@ -26,7 +26,15 @@
         "MaxTF": 45,
         "HeartCost": 3,
         "Brain": 2,
-        "Heart": 2
+        "Heart": 2,
+        "Gifs":
+        [
+            "res://Media/CardGifs/48a.ogv",
+            "res://Media/CardGifs/48b.ogv",
+            "res://Media/CardGifs/48c.ogv",
+            "res://Media/CardGifs/48d.ogv",
+            "res://Media/CardGifs/48e.ogv"
+        ]
     },
     {
         "Name": "Outwit",

@@ -32,6 +32,7 @@
         "MaxTF": 32,
         "BrainCost": 7,
         "Damage": 3,
-        "Draw": 2
+        "Draw": 2,
+        "Gifs": ["res://Media/CardGifs/45.ogv"]
     }
 ]

@@ -34,6 +34,8 @@ namespace TFCardBattle.Core
         public string Name {get; set;}
         public string Desc {get; private set;}
         public string Image {get; set;}
+        public string[] Gifs {get; set;} = Array.Empty<string>();
+
         public bool DestroyOnActivate => false;
         public CardPurchaseStats PurchaseStats {get; set;}
 

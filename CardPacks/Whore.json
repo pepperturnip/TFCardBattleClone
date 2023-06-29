@@ -5,7 +5,18 @@
         "MinTF": 11,
         "MaxTF": 27,
         "HeartCost": 1,
-        "Heart": 2
+        "Heart": 2,
+        "Gifs":
+        [
+            "res://Media/CardGifs/29a.ogv",
+            "res://Media/CardGifs/29b.ogv",
+            "res://Media/CardGifs/29c.ogv",
+            "res://Media/CardGifs/29d.ogv",
+            "res://Media/CardGifs/29e.ogv",
+            "res://Media/CardGifs/29f.ogv",
+            "res://Media/CardGifs/29g.ogv",
+            "res://Media/CardGifs/29h.ogv"
+        ]
     },
     {
         "Name": "Bribe the Intern",
@@ -14,7 +25,13 @@
         "MaxTF": 34,
         "HeartCost": 1,
         "Damage": 2,
-        "Draw": 1
+        "Draw": 1,
+        "Gifs":
+        [
+            "res://Media/CardGifs/30a.ogv",
+            "res://Media/CardGifs/30b.ogv",
+            "res://Media/CardGifs/30c.ogv"
+        ]
     },
     {
         "Name": "Suggestive Moves",
@@ -23,7 +40,15 @@
         "MaxTF": 43,
         "HeartCost": 2,
         "Heart": 1,
-        "Draw": 1
+        "Draw": 1,
+        "Gifs":
+        [
+            "res://Media/CardGifs/35a.ogv",
+            "res://Media/CardGifs/35b.ogv",
+            "res://Media/CardGifs/35c.ogv",
+            "res://Media/CardGifs/35d.ogv",
+            "res://Media/CardGifs/35e.ogv"
+        ]
     },
     {
         "Name": "Seduce the Cable Guy",
@@ -48,7 +73,18 @@
         "MinTF": 70,
         "MaxTF": 86,
         "HeartCost": 5,
-        "Draw": 2
+        "Draw": 2,
+        "Gifs":
+        [
+            "res://Media/CardGifs/84a.ogv",
+            "res://Media/CardGifs/84b.ogv",
+            "res://Media/CardGifs/84c.ogv",
+            "res://Media/CardGifs/84d.ogv",
+            "res://Media/CardGifs/84e.ogv",
+            "res://Media/CardGifs/84f.ogv",
+            "res://Media/CardGifs/84g.ogv",
+            "res://Media/CardGifs/84h.ogv"
+        ]
     },
     {
         "Name": "Purity of Lust",

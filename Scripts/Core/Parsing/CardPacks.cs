@@ -83,6 +83,7 @@ namespace TFCardBattle.Core.Parsing
             ICard card = (ICard)obj.ToObject(type);
             card.Name = header.Name;
             card.Image = header.Image;
+            card.Gifs = header.Gifs;
             card.PurchaseStats = header.PurchaseStats;
 
             return card;
@@ -127,6 +128,7 @@ namespace TFCardBattle.Core.Parsing
         {
             public string Name {get; set;}
             public string Image {get; set;}
+            public string[] Gifs {get; set;} = Array.Empty<string>();
 
             public int MinTF {get; set;}
             public int MaxTF {get; set;}

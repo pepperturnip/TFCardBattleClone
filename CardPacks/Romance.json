@@ -6,7 +6,15 @@
         "MaxTF": 31,
         "HeartCost": 2,
         "Shield": 1,
-        "Draw": 1
+        "Draw": 1,
+        "Gifs":
+        [
+            "res://Media/CardGifs/32a.ogv",
+            "res://Media/CardGifs/32b.ogv",
+            "res://Media/CardGifs/32c.ogv",
+            "res://Media/CardGifs/32d.ogv",
+            "res://Media/CardGifs/32e.ogv"
+        ]
     },
     {
         "Name": "Date Night",
@@ -15,7 +23,15 @@
         "MaxTF": 39,
         "HeartCost": 3,
         "Heart": 2,
-        "Shield": 2
+        "Shield": 2,
+        "Gifs":
+        [
+            "res://Media/CardGifs/40a.ogv",
+            "res://Media/CardGifs/40b.ogv",
+            "res://Media/CardGifs/40c.ogv",
+            "res://Media/CardGifs/40d.ogv",
+            "res://Media/CardGifs/40e.ogv"
+        ]
     },
     {
         "Name": "Womans' Intuition",
@@ -32,6 +48,14 @@
         "MaxTF": 72,
         "HeartCost": 3,
         "Damage": 2,
-        "Shield": 3
+        "Shield": 3,
+        "Gifs":
+        [
+            "res://Media/CardGifs/50a.ogv",
+            "res://Media/CardGifs/50b.ogv",
+            "res://Media/CardGifs/50c.ogv",
+            "res://Media/CardGifs/50d.ogv",
+            "res://Media/CardGifs/50e.ogv"
+        ]
     }
 ]
