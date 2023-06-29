@@ -46,50 +46,50 @@ namespace TFCardBattle.Godot
         {
             // Make a copy of the card being removed, so we can animate it
             // after removing it.
-            CardRowDisplay.CardHolder cloneHolder = _cardRow.CloneCardForAnimation(cardIndex);
-            ICard card = cloneHolder.Model.Card;
+            CardModel clone = _cardRow.CloneCardForAnimation(cardIndex);
+            ICard card = clone.Card;
 
             // Detatch the clone so it doesn't shift if the "discard hand"
             // animation starts playing while the clone is still alive
-            DetatchParent(cloneHolder);
+            DetatchParent(clone);
 
             // Start animating the clone in the background.
             const double stepDuration = 0.1;
-            Vector2 endPos = cloneHolder.Position + Vector2.Up * _cardRow.CardSize.Y;
+            Vector2 endPos = clone.Position + Vector2.Up * _cardRow.CardSize.Y;
             var tween = GetTree().CreateTween();
 
             tween.TweenProperty(
-                cloneHolder,
+                clone,
                 "position",
                 endPos,
                 stepDuration
             );
             tween.Parallel();
             tween.TweenProperty(
-                cloneHolder.Scaler,
+                clone,
                 "scale",
                 Vector2.One * 1.1f,
                 stepDuration
             );
 
             tween.TweenProperty(
-                cloneHolder.Scaler,
+                clone,
                 "scale",
                 Vector2.One * 0.95f,
                 stepDuration
             );
             tween.TweenProperty(
-                cloneHolder.Scaler,
+                clone,
                 "scale",
                 Vector2.One,
                 stepDuration
             );
             tween.TweenProperty(
-                cloneHolder,
+                clone,
                 "modulate",
                 Colors.Transparent,
                 stepDuration);
-            tween.TweenCallback(new Callable(cloneHolder, "queue_free"));
+            tween.TweenCallback(new Callable(clone, "queue_free"));
 
             // Play a gif for the card
             await ToSignal(tween, Tween.SignalName.Finished);

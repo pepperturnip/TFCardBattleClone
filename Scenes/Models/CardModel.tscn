@@ -22,8 +22,10 @@ script = ExtResource("1_65srg")
 [node name="Panel" type="Panel" parent="."]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 192)
-offset_right = 152.0
-offset_bottom = 216.0
+offset_left = -76.0
+offset_top = -108.0
+offset_right = 76.0
+offset_bottom = 108.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_obthe")
 

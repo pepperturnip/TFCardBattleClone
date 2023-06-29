@@ -24,7 +24,7 @@ namespace TFCardBattle.Godot
         public Vector2 CardSize {get; private set;}
 
         private Control _cardPositions => GetNode<Control>("%CardPositions");
-        private Node2D _cardHolders => GetNode<Node2D>("%CardModels");
+        private Node2D _cardModels => GetNode<Node2D>("%CardModels");
 
         public override void _Draw()
         {
@@ -34,11 +34,14 @@ namespace TFCardBattle.Godot
             for (int i = 0; i < EditorPreviewCardCount; i++)
             {
                 var globalPos = TargetGlobalPosition(i, EditorPreviewCardCount);
-                var localPos = _cardHolders.ToLocal(globalPos);
+                var localPos = _cardModels.ToLocal(globalPos);
+
                 DrawRect(
-                    rect: new Rect2(localPos, CardSize),
+                    rect: new Rect2(localPos - (CardSize / 2), CardSize),
                     color: Colors.Red
                 );
+
+                DrawCircle(localPos, 8, Colors.Blue);
             }
         }
 
@@ -58,66 +61,66 @@ namespace TFCardBattle.Godot
             if (Engine.IsEditorHint())
                 return;
 
-            for (int i = 0; i < _cardHolders.GetChildCount(); i++)
+            for (int i = 0; i < _cardModels.GetChildCount(); i++)
             {
                 // Exponentially decay all card models to their target positions
-                var holder = _cardHolders.GetChild<CardHolder>(i);
-                var targetPos = TargetGlobalPosition(i, _cardHolders.GetChildCount());
+                var model = _cardModels.GetChild<CardModel>(i);
+                var targetPos = TargetGlobalPosition(i, _cardModels.GetChildCount());
 
-                float dist = holder.GlobalPosition.DistanceTo(targetPos);
+                float dist = model.GlobalPosition.DistanceTo(targetPos);
                 float newDist = dist * Mathf.Pow(Mathf.E, -CardMoveDecayRate * delta);
                 float deltaPos = Mathf.Abs(dist - newDist);
 
-                holder.GlobalPosition = holder.GlobalPosition.MoveToward(targetPos, deltaPos);
+                model.GlobalPosition = model.GlobalPosition.MoveToward(targetPos, deltaPos);
 
                 // Make cards bigger when being hovered over
                 bool isBig =
                     EnableInput &&
-                    holder.Model.Enabled &&
+                    model.Enabled &&
                     _cardPositions.GetChild<CardPositioner>(i).IsMouseOver;
 
                 var targetScale = isBig
                     ? Vector2.One * CardHoverScale
                     : Vector2.One;
 
-                holder.Scaler.Scale = holder.Scaler.Scale.MoveToward(targetScale, CardHoverGrowSpeed * delta);
+                model.Scale = model.Scale.MoveToward(targetScale, CardHoverGrowSpeed * delta);
             }
         }
 
         public CardModel GetCardModel(int cardIndex)
         {
-            return GetCardHolder(cardIndex).Model;
+            return _cardModels.GetChild<CardModel>(cardIndex);
         }
 
         public void AddCard(ICard card)
         {
             AddCardModel(card, Vector2.Zero);
-            RecreateCardPositioners(_cardHolders.GetChildCount());
+            RecreateCardPositioners(_cardModels.GetChildCount());
         }
 
         public void RemoveCard(int removedHandIndex)
         {
             RemoveCardModel(removedHandIndex);
-            RecreateCardPositioners(_cardHolders.GetChildCount());
+            RecreateCardPositioners(_cardModels.GetChildCount());
         }
 
-        public CardHolder CloneCardForAnimation(int cardIndex)
+        public CardModel CloneCardForAnimation(int cardIndex)
         {
-            var originalHolder = GetCardHolder(cardIndex);
-            CardHolder cloneHolder = CreateCardHolder(originalHolder.Model.Card);
-            AddChild(cloneHolder);
-            cloneHolder.GlobalPosition = originalHolder.GlobalPosition;
+            var originalModel = GetCardModel(cardIndex);
+            CardModel clone = ModelFactory.Create(originalModel.Card);
+            AddChild(clone);
+            clone.GlobalPosition = originalModel.GlobalPosition;
 
-            return cloneHolder;
+            return clone;
         }
 
         public void Refresh(ICard[] cards)
         {
             // HACK: Reuse old models if nothing changed, to prevent the card
             // move animation from being needlessly interrupted.
-            var oldCards = _cardHolders
-                .EnumerateChildren<CardHolder>()
-                .Select(h => h.Model.Card);
+            var oldCards = _cardModels
+                .EnumerateChildren<CardModel>()
+                .Select(m => m.Card);
 
             if (cards.SequenceEqual(oldCards))
             {
@@ -144,6 +147,7 @@ namespace TFCardBattle.Godot
                 _cardPositions.AddChild(cardPositioner);
 
                 cardPositioner.GlobalPosition = TargetGlobalPosition(i, cardCount);
+                cardPositioner.GlobalPosition -= CardSize / 2;
 
                 // We need to make a copy of this value so it can be used within
                 // the closure.  This is because "i" will have changed by the
@@ -159,7 +163,7 @@ namespace TFCardBattle.Godot
 
         private void RecreateCardModels(ICard[] cards)
         {
-            DeleteAllChildren(_cardHolders);
+            DeleteAllChildren(_cardModels);
 
             for (int i = 0; i < cards.Length; i++)
             {
@@ -171,7 +175,7 @@ namespace TFCardBattle.Godot
         {
             for (int i = 0; i < cards.Length; i++)
             {
-                var model = _cardHolders.GetChild<CardHolder>(i).Model;
+                var model = _cardModels.GetChild<CardModel>(i);
                 model.Refresh();
             }
         }
@@ -179,19 +183,14 @@ namespace TFCardBattle.Godot
         private void AddCardModel(ICard card, Vector2 globalPos)
         {
             var model = ModelFactory.Create(card);
-
-            var holder = new CardHolder(model);
-            _cardHolders.AddChild(holder);
-
-            holder.GlobalPosition = globalPos;
-            holder.Scaler.Position = CardSize / 2;
-            holder.Model.Position = -CardSize / 2;
+            _cardModels.AddChild(model);
+            model.GlobalPosition = globalPos;
         }
 
         private void RemoveCardModel(int index)
         {
-            var holder = _cardHolders.GetChild(index);
-            _cardHolders.RemoveChild(holder);
+            var holder = _cardModels.GetChild(index);
+            _cardModels.RemoveChild(holder);
             holder.QueueFree();
         }
 
@@ -215,23 +214,13 @@ namespace TFCardBattle.Godot
             float x = (CardSize.X + MinCardSeparation) * handIndex;
             x -= totalSize.X / 2;
 
-            return _cardPositions.GlobalPosition + Vector2.Right * x;
+            var pos = _cardPositions.GlobalPosition + Vector2.Right * x;
+            return pos + (CardSize / 2);
         }
 
-        private CardHolder CreateCardHolder(ICard card)
+        private CardModel CreateCardHolder(ICard card)
         {
-            var model = ModelFactory.Create(card);
-
-            var holder = new CardHolder(model);
-            holder.Scaler.Position = CardSize / 2;
-            holder.Model.Position = -CardSize / 2;
-
-            return holder;
-        }
-
-        private CardHolder GetCardHolder(int cardIndex)
-        {
-            return _cardHolders.GetChild<CardHolder>(cardIndex);
+            return ModelFactory.Create(card);
         }
 
         private partial class CardPositioner : Control
@@ -252,21 +241,6 @@ namespace TFCardBattle.Godot
             {
                 if (ev is InputEventMouseButton clickEvent)
                     EmitSignal(SignalName.Clicked);
-            }
-        }
-
-        public partial class CardHolder : Node2D
-        {
-            public Node2D Scaler {get; private set;}
-            public CardModel Model {get; private set;}
-
-            public CardHolder(CardModel model)
-            {
-                Model = model;
-                Scaler = new Node2D();
-
-                AddChild(Scaler);
-                Scaler.AddChild(Model);
             }
         }
     }
