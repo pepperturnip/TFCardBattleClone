@@ -6,6 +6,7 @@ using TFCardBattle.Core;
 
 namespace TFCardBattle.Godot
 {
+    [Tool]
     public partial class CardRowDisplay : Control
     {
         [Signal] public delegate void CardClickedEventHandler(int handIndex);
@@ -18,10 +19,28 @@ namespace TFCardBattle.Godot
         [Export] public float CardHoverScale = 1.1f;
         [Export] public bool EnableInput = true;
 
+        [Export] public int EditorPreviewCardCount = 6;
+
         public Vector2 CardSize {get; private set;}
 
         private Control _cardPositions => GetNode<Control>("%CardPositions");
         private Node2D _cardHolders => GetNode<Node2D>("%CardModels");
+
+        public override void _Draw()
+        {
+            if (!Engine.IsEditorHint())
+                return;
+
+            for (int i = 0; i < EditorPreviewCardCount; i++)
+            {
+                var globalPos = TargetGlobalPosition(i, EditorPreviewCardCount);
+                var localPos = _cardHolders.ToLocal(globalPos);
+                DrawRect(
+                    rect: new Rect2(localPos, CardSize),
+                    color: Colors.Red
+                );
+            }
+        }
 
         public override void _Ready()
         {
@@ -35,6 +54,9 @@ namespace TFCardBattle.Godot
         public override void _Process(double deltaD)
         {
             float delta = (float)deltaD;
+
+            if (Engine.IsEditorHint())
+                return;
 
             for (int i = 0; i < _cardHolders.GetChildCount(); i++)
             {
