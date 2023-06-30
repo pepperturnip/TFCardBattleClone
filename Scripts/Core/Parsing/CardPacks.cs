@@ -2,16 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace TFCardBattle.Core.Parsing
 {
     public static class CardPacks
     {
-        private static readonly Dictionary<string, Type> _cardClassCache = new Dictionary<string, Type>();
+        private static readonly Dictionary<string, Type> _effectClassCache = new Dictionary<string, Type>();
         private static readonly Dictionary<string, Type> _consumableClassCache = new Dictionary<string, Type>();
 
-        public static IEnumerable<ICard> Parse(string rawJson)
+        public static IEnumerable<Card> Parse(string rawJson)
         {
             return JArray.Parse(rawJson)
                 .Cast<JObject>()
@@ -19,22 +20,22 @@ namespace TFCardBattle.Core.Parsing
                 .ToArray();
         }
 
-        private static ICard FromJObject(JObject obj)
+        private static Card FromJObject(JObject obj)
         {
-            string className = obj.ContainsKey("Class")
-                ? (string)obj["Class"]
-                : "Simple";
+            var card = obj.ToObject<Card>();
 
-            if (className == "Simple")
-                return ParseSimple(obj);
+            dynamic dynamicCard = obj;
+            string effectClass = dynamicCard.Effect.Class ?? "Simple";
 
-            if (className == "DowngradeIfHeart")
-                return ParseDowngradeIfHeart(obj);
+            if (effectClass == "Simple")
+                card.Effect = ParseSimple((JObject)obj["Effect"]);
+            else
+                card.Effect = ParseWithReflection((JObject)obj["Effect"], effectClass);
 
-            return ParseWithReflection(obj, className);
+            return card;
         }
 
-        private static ICard ParseSimple(JObject obj)
+        private static ICardEffect ParseSimple(JObject obj)
         {
             // HACK: Parse the consumables separately from the rest of the
             // card, since they're strings and we need IConsumables
@@ -48,45 +49,23 @@ namespace TFCardBattle.Core.Parsing
 
             obj.Remove("Consumables");
 
-            var card = (CardClasses.Simple)ParseWithReflection(obj, "Simple");
+            var card = (CardEffects.Simple)ParseWithReflection(obj, "Simple");
             card.Consumables = consumables;
             return card;
         }
 
-        private static ICard ParseDowngradeIfHeart(JObject obj)
+        private static ICardEffect ParseWithReflection(JObject obj, string className)
         {
-            var header = obj.ToObject<CardHeader>();
-            return new CardClasses.DowngradeIfHeart
-            {
-                Name = header.Name,
-                Image = header.Image,
-                PurchaseStats = header.PurchaseStats,
-
-                StrongVersion = (CardClasses.Simple)ParseSimple((JObject)obj["StrongVersion"]),
-                WeakVersion = (CardClasses.Simple)ParseSimple((JObject)obj["WeakVersion"]),
-            };
-        }
-
-        private static ICard ParseWithReflection(JObject obj, string className)
-        {
-            var header = obj.ToObject<CardHeader>();
-
             var type = FindClass(
                 className,
-                "TFCardBattle.Core.CardClasses",
-                _cardClassCache
+                "TFCardBattle.Core.CardEffects",
+                _effectClassCache
             );
 
             if (type == null)
                 throw new NotImplementedException($"No \"{className}\" card class found");
 
-            ICard card = (ICard)obj.ToObject(type);
-            card.Name = header.Name;
-            card.Image = header.Image;
-            card.Gifs = header.Gifs;
-            card.PurchaseStats = header.PurchaseStats;
-
-            return card;
+            return (ICardEffect)obj.ToObject(type);
         }
 
         private static IConsumable ParseConsumable(string className)
@@ -122,32 +101,6 @@ namespace TFCardBattle.Core.Parsing
 
             cache[className] = type;
             return type;
-        }
-
-        private class CardHeader
-        {
-            public string Name {get; set;}
-            public string Image {get; set;}
-            public string[] Gifs {get; set;} = Array.Empty<string>();
-
-            public int MinTF {get; set;}
-            public int MaxTF {get; set;}
-
-            public int BrainCost {get; set;}
-            public int HeartCost {get; set;}
-            public int SubCost {get; set;}
-            public int OfferWeight {get; set;} = 1;
-
-            public CardPurchaseStats PurchaseStats => new CardPurchaseStats
-            {
-                BrainCost = BrainCost,
-                HeartCost = HeartCost,
-                SubCost = SubCost,
-
-                MinTF = MinTF,
-                MaxTF = MaxTF,
-                OfferWeight = OfferWeight
-            };
         }
     }
 }

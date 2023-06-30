@@ -83,7 +83,7 @@ namespace TFCardBattle.Core
             State.CardsPlayedThisTurn.Add(card);
             await AnimationPlayer.PlayCard(handIndex, State);
 
-            await card.Activate(this);
+            await card.Effect.Activate(this);
 
             if (card.DestroyOnActivate)
             {
@@ -108,10 +108,9 @@ namespace TFCardBattle.Core
 
             State.Discard.Add(card);
 
-            var cost = card.PurchaseStats;
-            State.Brain -= cost.BrainCost;
-            State.Heart -= cost.HeartCost;
-            State.Sub -= cost.SubCost;
+            State.Brain -= card.BrainCost;
+            State.Heart -= card.HeartCost;
+            State.Sub -= card.SubCost;
 
             await AnimationPlayer.BuyCard(buyPileIndex, isPermanentCard);
         }
@@ -141,7 +140,6 @@ namespace TFCardBattle.Core
         public async Task StartTurn()
         {
             AssertBattleRunning();
-            TransitionBasicCards();
 
             await DiscardResources();
             await RefreshBuyPile();
@@ -194,12 +192,12 @@ namespace TFCardBattle.Core
                 State.PlayerTF
             ).ToHashSet();
 
-            var buyPile = new HashSet<ICard>();
+            var buyPile = new HashSet<Card>();
 
             while(buyPile.Count < OfferedCardCount && offerableCards.Count > 0)
             {
                 var weights = offerableCards
-                    .Select(c => (c, c.PurchaseStats.OfferWeight))
+                    .Select(c => (c, c.OfferWeight))
                     .ToArray();
 
                 var card = Rng.PickFromWeighted(weights);
@@ -253,13 +251,13 @@ namespace TFCardBattle.Core
 
             // TODO: Show some message saying no card could be forgotten
 
-            bool IsBasic(ICard c)
+            bool IsBasic(Card c)
             {
                 // TODO: Allow Mysterious Pills to be deleted as well
-                return c is TransitioningBasicCard;
+                return c.Effect is CardEffects.TransitioningBasicCard;
             }
 
-            async Task<bool> TryForgetFrom(List<ICard> cards)
+            async Task<bool> TryForgetFrom(List<Card> cards)
             {
                 for (int i = 0; i < cards.Count; i++)
                 {
@@ -329,7 +327,7 @@ namespace TFCardBattle.Core
             return buyPileIndex == State.BuyPile.Count - 1;
         }
 
-        private void TransferAllCards(List<ICard> src, List<ICard> dst)
+        private void TransferAllCards(List<Card> src, List<Card> dst)
         {
             dst.AddRange(src);
             src.Clear();
@@ -345,28 +343,17 @@ namespace TFCardBattle.Core
             return Rng.Next(EnemyMinTFDamage, EnemyMaxTFDamage + 1);
         }
 
-        private void TransitionBasicCards()
-        {
-            foreach (var card in State.OwnedCards)
-            {
-                if (card is TransitioningBasicCard transCard)
-                {
-                    transCard.UpdateTransitionState(State.PlayerTF);
-                }
-            }
-        }
-
         private void AssertBattleRunning()
         {
             if (BattleEnded)
                 throw new Exception("You can't do that after the battle has ended");
         }
 
-        private IEnumerable<ICard> CardsOfferableAtTf(IEnumerable<ICard> cards, int tf)
+        private IEnumerable<Card> CardsOfferableAtTf(IEnumerable<Card> cards, int tf)
         {
             return cards
-                .Where(c => tf <= c.PurchaseStats.MaxTF)
-                .Where(c => tf >= c.PurchaseStats.MinTF);
+                .Where(c => tf <= c.MaxTF)
+                .Where(c => tf >= c.MinTF);
         }
     }
 }

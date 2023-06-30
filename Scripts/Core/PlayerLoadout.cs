@@ -6,10 +6,10 @@ namespace TFCardBattle.Core
 {
     public class PlayerLoadout
     {
-        public IEnumerable<IEnumerable<ICard>> CardPacks;
-        public IEnumerable<ICard> PermanentBuyPile;
-        public IEnumerable<ICard> StartingDeck;
+        public IEnumerable<IEnumerable<Card>> CardPacks;
+        public IEnumerable<Card> PermanentBuyPile;
+        public IEnumerable<Card> StartingDeck;
 
-        public IEnumerable<ICard> OfferableCards => CardPacks.SelectMany(p => p);
+        public IEnumerable<Card> OfferableCards => CardPacks.SelectMany(p => p);
     }
 }

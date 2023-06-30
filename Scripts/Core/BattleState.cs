@@ -36,17 +36,17 @@ namespace TFCardBattle.Core
         /// </summary>
         public int DrawCount = 0;
 
-        public List<ICard> Deck = new List<ICard>();
-        public List<ICard> Hand = new List<ICard>();
-        public List<ICard> CardsPlayedThisTurn = new List<ICard>();
-        public List<ICard> Discard = new List<ICard>();
+        public List<Card> Deck = new List<Card>();
+        public List<Card> Hand = new List<Card>();
+        public List<Card> CardsPlayedThisTurn = new List<Card>();
+        public List<Card> Discard = new List<Card>();
 
         /// <summary>
         /// All cards that the player owns, whether they're in the deck, hand,
         /// discard pile, or in-play.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<ICard> OwnedCards => Deck
+        public IEnumerable<Card> OwnedCards => Deck
                 .Concat(Hand)
                 .Concat(Discard)
                 .Concat(CardsPlayedThisTurn);
@@ -56,7 +56,7 @@ namespace TFCardBattle.Core
         /// Gets repopulated with random cards from
         /// <see cref="BattleState.OfferableCards"/> at the start of each turn.
         /// </summary>
-        public List<ICard> BuyPile = new List<ICard>();
+        public List<Card> BuyPile = new List<Card>();
 
         public BattleState(PlayerLoadout loadout)
         {
@@ -92,7 +92,7 @@ namespace TFCardBattle.Core
 
         public bool CanAffordCard(int buyPileIndex)
         {
-            var card = BuyPile[buyPileIndex].PurchaseStats;
+            var card = BuyPile[buyPileIndex];
 
             if (Brain < card.BrainCost)
                 return false;

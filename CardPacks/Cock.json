@@ -5,9 +5,6 @@
         "MinTF": 39,
         "MaxTF": 55,
         "SubCost": 3,
-        "Class": "TransferResources",
-        "From": "Sub",
-        "To": "Damage",
         "Gifs":
         [
             "res://Media/CardGifs/54a.ogv",
@@ -15,7 +12,13 @@
             "res://Media/CardGifs/54c.ogv",
             "res://Media/CardGifs/54d.ogv",
             "res://Media/CardGifs/54e.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Class": "TransferResources",
+            "From": "Sub",
+            "To": "Damage"
+        }
     },
     {
         "Name": "Just the Tip",
@@ -23,7 +26,6 @@
         "MinTF": 51,
         "MaxTF": 67,
         "SubCost": 1,
-        "Class": "JustTheTip",
         "Gifs":
         [
             "res://Media/CardGifs/62a.ogv",
@@ -31,7 +33,8 @@
             "res://Media/CardGifs/62c.ogv",
             "res://Media/CardGifs/62d.ogv",
             "res://Media/CardGifs/62e.ogv"
-        ]
+        ],
+        "Effect": {"Class": "JustTheTip"}
     },
     {
         "Name": "Air Tight",
@@ -39,9 +42,6 @@
         "MinTF": 60,
         "MaxTF": 76,
         "SubCost": 5,
-        "Sub": 3,
-        "Damage": 3,
-        "Shield": 3,
         "Gifs":
         [
             "res://Media/CardGifs/69a.ogv",
@@ -52,7 +52,13 @@
             "res://Media/CardGifs/69f.ogv",
             "res://Media/CardGifs/69g.ogv",
             "res://Media/CardGifs/69h.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Sub": 3,
+            "Damage": 3,
+            "Shield": 3
+        }
     },
     {
         "Name": "Gangbang",
@@ -60,7 +66,6 @@
         "MinTF": 71,
         "MaxTF": 87,
         "SubCost": 5,
-        "Damage": 10,
         "Gifs":
         [
             "res://Media/CardGifs/93a.ogv",
@@ -70,6 +75,7 @@
             "res://Media/CardGifs/93e.ogv",
             "res://Media/CardGifs/93f.ogv",
             "res://Media/CardGifs/93g.ogv"
-        ]
+        ],
+        "Effect": {"Damage": 10}
     }
 ]

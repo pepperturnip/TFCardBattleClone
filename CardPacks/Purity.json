@@ -4,17 +4,19 @@
         "MinTF": 0,
         "MaxTF": 13,
         "BrainCost": 4,
-
-        "Class": "DowngradeIfHeart",
-        "StrongVersion":
+        "Effect":
         {
-            "Image": "res://Media/Cards/card14a.webp",
-            "Brain": 3
-        },
-        "WeakVersion":
-        {
-            "Image": "res://Media/Cards/card14b.webp",
-            "Brain": 1
+            "Class": "DowngradeIfHeart",
+            "StrongVersion":
+            {
+                "Image": "res://Media/Cards/card14a.webp",
+                "Brain": 3
+            },
+            "WeakVersion":
+            {
+                "Image": "res://Media/Cards/card14b.webp",
+                "Brain": 1
+            }
         }
     },
     {
@@ -22,17 +24,19 @@
         "MinTF": 3,
         "MaxTF": 19,
         "BrainCost": 3,
-
-        "Class": "DowngradeIfHeart",
-        "StrongVersion":
+        "Effect":
         {
-            "Image": "res://Media/Cards/card26a.webp",
-            "Damage": 3
-        },
-        "WeakVersion":
-        {
-            "Image": "res://Media/Cards/card26b.webp",
-            "Damage": 1
+            "Class": "DowngradeIfHeart",
+            "StrongVersion":
+            {
+                "Image": "res://Media/Cards/card26a.webp",
+                "Damage": 3
+            },
+            "WeakVersion":
+            {
+                "Image": "res://Media/Cards/card26b.webp",
+                "Damage": 1
+            }
         }
     },
     {
@@ -40,17 +44,19 @@
         "MinTF": 9,
         "MaxTF": 25,
         "BrainCost": 3,
-
-        "Class": "DowngradeIfHeart",
-        "StrongVersion":
+        "Effect":
         {
-            "Image": "res://Media/Cards/card43a.webp",
-            "Shield": 5
-        },
-        "WeakVersion":
-        {
-            "Image": "res://Media/Cards/card43b.webp",
-            "Shield": 1
+            "Class": "DowngradeIfHeart",
+            "StrongVersion":
+            {
+                "Image": "res://Media/Cards/card43a.webp",
+                "Shield": 5
+            },
+            "WeakVersion":
+            {
+                "Image": "res://Media/Cards/card43b.webp",
+                "Shield": 1
+            }
         }
     },
     {
@@ -58,17 +64,19 @@
         "MinTF": 26,
         "MaxTF": 42,
         "BrainCost": 4,
-
-        "Class": "DowngradeIfHeart",
-        "StrongVersion":
+        "Effect":
         {
-            "Image": "res://Media/Cards/card25a.webp",
-            "Draw": 2
-        },
-        "WeakVersion":
-        {
-            "Image": "res://Media/Cards/card25b.webp",
-            "Draw": 1
+            "Class": "DowngradeIfHeart",
+            "StrongVersion":
+            {
+                "Image": "res://Media/Cards/card25a.webp",
+                "Draw": 2
+            },
+            "WeakVersion":
+            {
+                "Image": "res://Media/Cards/card25b.webp",
+                "Draw": 1
+            }
         }
     }
 ]

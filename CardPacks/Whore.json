@@ -5,7 +5,6 @@
         "MinTF": 11,
         "MaxTF": 27,
         "HeartCost": 1,
-        "Heart": 2,
         "Gifs":
         [
             "res://Media/CardGifs/29a.ogv",
@@ -16,7 +15,8 @@
             "res://Media/CardGifs/29f.ogv",
             "res://Media/CardGifs/29g.ogv",
             "res://Media/CardGifs/29h.ogv"
-        ]
+        ],
+        "Effect": {"Heart": 2}
     },
     {
         "Name": "Bribe the Intern",
@@ -24,14 +24,17 @@
         "MinTF": 18,
         "MaxTF": 34,
         "HeartCost": 1,
-        "Damage": 2,
-        "Draw": 1,
         "Gifs":
         [
             "res://Media/CardGifs/30a.ogv",
             "res://Media/CardGifs/30b.ogv",
             "res://Media/CardGifs/30c.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Damage": 2,
+            "Draw": 1
+        }
     },
     {
         "Name": "Suggestive Moves",
@@ -39,8 +42,6 @@
         "MinTF": 27,
         "MaxTF": 43,
         "HeartCost": 2,
-        "Heart": 1,
-        "Draw": 1,
         "Gifs":
         [
             "res://Media/CardGifs/35a.ogv",
@@ -48,7 +49,12 @@
             "res://Media/CardGifs/35c.ogv",
             "res://Media/CardGifs/35d.ogv",
             "res://Media/CardGifs/35e.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Heart": 1,
+            "Draw": 1
+        }
     },
     {
         "Name": "Seduce the Cable Guy",
@@ -56,8 +62,11 @@
         "MinTF": 37,
         "MaxTF": 53,
         "HeartCost": 3,
-        "Damage": 2,
-        "Draw": 1
+        "Effect":
+        {
+            "Damage": 2,
+            "Draw": 1
+        }
     },
     {
         "Name": "Sugar Daddy",
@@ -65,7 +74,7 @@
         "MinTF": 64,
         "MaxTF": 80,
         "HeartCost": 2,
-        "Shield": 3
+        "Effect": {"Shield": 3}
     },
     {
         "Name": "Blacked",
@@ -73,7 +82,6 @@
         "MinTF": 70,
         "MaxTF": 86,
         "HeartCost": 5,
-        "Draw": 2,
         "Gifs":
         [
             "res://Media/CardGifs/84a.ogv",
@@ -84,24 +92,27 @@
             "res://Media/CardGifs/84f.ogv",
             "res://Media/CardGifs/84g.ogv",
             "res://Media/CardGifs/84h.ogv"
-        ]
+        ],
+        "Effect": {"Draw": 2}
     },
     {
         "Name": "Purity of Lust",
         "MinTF": 62,
         "MaxTF": 78,
         "HeartCost": 6,
-
-        "Class": "DowngradeIfSub",
-        "StrongVersion":
+        "Effect":
         {
-            "Image": "res://Media/Cards/card79a.webp",
-            "Draw": 3
-        },
-        "WeakVersion":
-        {
-            "Image": "res://Media/Cards/card79b.webp",
-            "Draw": 1
+            "Class": "DowngradeIfSub",
+            "StrongVersion":
+            {
+                "Image": "res://Media/Cards/card79a.webp",
+                "Draw": 3
+            },
+            "WeakVersion":
+            {
+                "Image": "res://Media/Cards/card79b.webp",
+                "Draw": 1
+            }
         }
     }
 ]

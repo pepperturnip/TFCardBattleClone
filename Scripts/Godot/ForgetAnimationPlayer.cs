@@ -10,7 +10,7 @@ namespace TFCardBattle.Godot
         private AnimationPlayer _animator => GetNode<AnimationPlayer>("%Animator");
         private CardModel _model => GetNode<CardModel>("%CardModel");
 
-        private Queue<ICard> _cardsToForget = new Queue<ICard>();
+        private Queue<Card> _cardsToForget = new Queue<Card>();
         private BattleState _battleState;
 
         public override void _Process(double delta)
@@ -22,7 +22,7 @@ namespace TFCardBattle.Godot
             }
         }
 
-        public void QueueForget(ICard card, BattleState state)
+        public void QueueForget(Card card, BattleState state)
         {
             _cardsToForget.Enqueue(card);
             _battleState = state;

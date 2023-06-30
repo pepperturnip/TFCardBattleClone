@@ -5,8 +5,6 @@
         "MinTF": 41,
         "MaxTF": 57,
         "HeartCost": 5,
-        "Heart": 3,
-        "Draw": 1,
         "Gifs":
         [
             "res://Media/CardGifs/77a.ogv",
@@ -19,7 +17,12 @@
             "res://Media/CardGifs/77h.ogv",
             "res://Media/CardGifs/77i.ogv",
             "res://Media/CardGifs/77j.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Heart": 3,
+            "Draw": 1
+        }
     },
     {
         "Name": "Pounded",
@@ -27,9 +30,6 @@
         "MinTF": 52,
         "MaxTF": 68,
         "HeartCost": 5,
-        "Sub": 2,
-        "Damage": 2,
-        "Draw": 1,
         "Gifs":
         [
             "res://Media/CardGifs/89a.ogv",
@@ -42,7 +42,13 @@
             "res://Media/CardGifs/89h.ogv",
             "res://Media/CardGifs/89i.ogv",
             "res://Media/CardGifs/89j.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Sub": 2,
+            "Damage": 2,
+            "Draw": 1
+        }
     },
     {
         "Name": "Ride 'em Cowgirl",
@@ -50,8 +56,6 @@
         "MinTF": 63,
         "MaxTF": 79,
         "HeartCost": 6,
-        "Damage": 6,
-        "Draw": 1,
         "Gifs":
         [
             "res://Media/CardGifs/63a.ogv",
@@ -62,7 +66,12 @@
             "res://Media/CardGifs/63f.ogv",
             "res://Media/CardGifs/63g.ogv",
             "res://Media/CardGifs/63h.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Damage": 6,
+            "Draw": 1
+        }
     },
     {
         "Name": "Doggy Style",
@@ -70,7 +79,6 @@
         "MinTF": 72,
         "MaxTF": 88,
         "HeartCost": 9,
-        "Draw": 4,
         "Gifs":
         [
             "res://Media/CardGifs/96a.ogv",
@@ -83,6 +91,7 @@
             "res://Media/CardGifs/96h.ogv",
             "res://Media/CardGifs/96i.ogv",
             "res://Media/CardGifs/96j.ogv"
-        ]
+        ],
+        "Effect": {"Draw": 4}
     }
 ]

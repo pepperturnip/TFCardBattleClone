@@ -5,9 +5,6 @@
         "MinTF": 14,
         "MaxTF": 30,
         "HeartCost": 3,
-        "Heart": 2,
-        "Damage": 1,
-        "Shield": 1,
         "Gifs":
         [
             "res://Media/CardGifs/61a.ogv",
@@ -16,7 +13,13 @@
             "res://Media/CardGifs/61d.ogv",
             "res://Media/CardGifs/61e.ogv",
             "res://Media/CardGifs/61f.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Heart": 2,
+            "Damage": 1,
+            "Shield": 1
+        }
     },
     {
         "Name": "Crotch Grab",
@@ -24,7 +27,6 @@
         "MinTF": 21,
         "MaxTF": 37,
         "HeartCost": 3,
-        "Heart": 3,
         "Gifs":
         [
             "res://Media/CardGifs/41a.ogv",
@@ -32,7 +34,8 @@
             "res://Media/CardGifs/41c.ogv",
             "res://Media/CardGifs/41d.ogv",
             "res://Media/CardGifs/41e.ogv"
-        ]
+        ],
+        "Effect": {"Heart": 3}
     },
     {
         "Name": "Free Entry",
@@ -40,9 +43,12 @@
         "MinTF": 30,
         "MaxTF": 46,
         "HeartCost": 3,
-        "Class": "DrawMostExpensive",
-        "Resource": "Heart",
-        "Gifs": ["res://Media/CardGifs/38.ogv"]
+        "Gifs": ["res://Media/CardGifs/38.ogv"],
+        "Effect":
+        {
+            "Class": "DrawMostExpensive",
+            "Resource": "Heart"
+        }
     },
     {
         "Name": "Cock Tease",
@@ -50,8 +56,6 @@
         "MinTF": 48,
         "MaxTF": 64,
         "HeartCost": 5,
-        "Class": "MultiplyResources",
-        "HeartMult": 2,
         "Gifs":
         [
             "res://Media/CardGifs/49a.ogv",
@@ -59,6 +63,11 @@
             "res://Media/CardGifs/49c.ogv",
             "res://Media/CardGifs/49d.ogv",
             "res://Media/CardGifs/49e.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Class": "MultiplyResources",
+            "Heart": 2
+        }
     }
 ]

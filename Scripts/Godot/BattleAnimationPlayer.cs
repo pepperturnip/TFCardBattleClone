@@ -53,7 +53,7 @@ namespace TFCardBattle.Godot
             }
         }
 
-        public async Task DrawCard(ICard card)
+        public async Task DrawCard(Card card)
         {
             using (SetAnimating())
             {
@@ -88,7 +88,7 @@ namespace TFCardBattle.Godot
             }
         }
 
-        public async Task RefreshBuyPile(ICard[] cards)
+        public async Task RefreshBuyPile(Card[] cards)
         {
             const double moveTime = 0.1;
 
@@ -113,7 +113,7 @@ namespace TFCardBattle.Godot
             }
         }
 
-        public async Task ForgetCard(ICard card, BattleState state)
+        public async Task ForgetCard(Card card, BattleState state)
         {
             using (SetAnimating())
             {

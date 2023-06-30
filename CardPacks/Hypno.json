@@ -5,8 +5,11 @@
         "MinTF": 0,
         "MaxTF": 10,
         "BrainCost": 3,
-        "Brain": 1,
-        "Damage": 2
+        "Effect":
+        {
+            "Brain": 1,
+            "Damage": 2
+        }
     },
     {
         "Name": "Hypnotic Email",
@@ -14,16 +17,19 @@
         "MinTF": 0,
         "MaxTF": 16,
         "BrainCost": 5,
-        "Damage": 4
+        "Effect": {"Damage": 4}
     },
     {
         "Name": "Very Targeted Ads",
         "Image": "res://Media/Cards/card27.webp",
-        "Class": "MultiplyResources",
         "MinTF": 6,
         "MaxTF": 22,
         "BrainCost": 6,
-        "DamageMult": 2
+        "Effect":
+        {
+            "Class": "MultiplyResources",
+            "Damage": 2
+        }
     },
     {
         "Name": "Evil Therapist",
@@ -31,8 +37,11 @@
         "MinTF": 16,
         "MaxTF": 32,
         "BrainCost": 7,
-        "Damage": 3,
-        "Draw": 2,
-        "Gifs": ["res://Media/CardGifs/45.ogv"]
+        "Gifs": ["res://Media/CardGifs/45.ogv"],
+        "Effect":
+        {
+            "Damage": 3,
+            "Draw": 2
+        }
     }
 ]

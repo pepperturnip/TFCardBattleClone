@@ -5,7 +5,7 @@ namespace TFCardBattle.Godot
 {
     public partial class CardCostDisplay : Node2D
     {
-        public ICard Card;
+        public Card Card;
 
         private Label _brainLabel => GetNode<Label>("%BrainLabel");
         private Label _heartLabel => GetNode<Label>("%HeartLabel");
@@ -13,11 +13,9 @@ namespace TFCardBattle.Godot
 
         public override void _Process(double delta)
         {
-            var cost = Card?.PurchaseStats;
-
-            SetLabel(_brainLabel, cost?.BrainCost);
-            SetLabel(_heartLabel, cost?.HeartCost);
-            SetLabel(_subLabel, cost?.SubCost);
+            SetLabel(_brainLabel, Card?.BrainCost);
+            SetLabel(_heartLabel, Card?.HeartCost);
+            SetLabel(_subLabel, Card?.SubCost);
 
             void SetLabel(Label label, int? cost)
             {

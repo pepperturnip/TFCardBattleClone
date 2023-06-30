@@ -5,9 +5,12 @@
         "MinTF": 34,
         "MaxTF": 50,
         "SubCost": 1,
-        "Sub": 2,
-        "Damage": 1,
-        "Gifs": ["res://Media/CardGifs/71.ogv"]
+        "Gifs": ["res://Media/CardGifs/71.ogv"],
+        "Effect":
+        {
+            "Sub": 2,
+            "Damage": 1
+        }
     },
     {
         "Name": "Underfoot",
@@ -15,9 +18,12 @@
         "MinTF": 44,
         "MaxTF": 60,
         "SubCost": 1,
-        "Damage": 2,
-        "Shield": 1,
-        "Gifs": ["res://Media/CardGifs/73.ogv"]
+        "Gifs": ["res://Media/CardGifs/73.ogv"],
+        "Effect":
+        {
+            "Damage": 2,
+            "Shield": 1
+        }
     },
     {
         "Name": "At Master's Feet",
@@ -25,8 +31,6 @@
         "MinTF": 53,
         "MaxTF": 69,
         "SubCost": 2,
-        "Sub": 2,
-        "Draw": 1,
         "Gifs":
         [
             "res://Media/CardGifs/91a.ogv",
@@ -38,7 +42,12 @@
             "res://Media/CardGifs/91g.ogv",
             "res://Media/CardGifs/91h.ogv",
             "res://Media/CardGifs/91i.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Sub": 2,
+            "Draw": 1
+        }
     },
     {
         "Name": "Nipple Clamps",
@@ -46,8 +55,6 @@
         "MinTF": 66,
         "MaxTF": 82,
         "SubCost": 2,
-        "Heart": 2,
-        "Sub": 3,
         "Gifs":
         [
             "res://Media/CardGifs/87a.ogv",
@@ -55,7 +62,12 @@
             "res://Media/CardGifs/87c.ogv",
             "res://Media/CardGifs/87d.ogv",
             "res://Media/CardGifs/87e.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Heart": 2,
+            "Sub": 3
+        }
     },
     {
         "Name": "Inspection",
@@ -63,7 +75,6 @@
         "MinTF": 75,
         "MaxTF": 91,
         "SubCost": 4,
-        "Draw": 2,
         "Gifs":
         [
             "res://Media/CardGifs/75a.ogv",
@@ -73,7 +84,8 @@
             "res://Media/CardGifs/75e.ogv",
             "res://Media/CardGifs/75f.ogv",
             "res://Media/CardGifs/75g.ogv"
-        ]
+        ],
+        "Effect": {"Draw": 2}
     },
     {
         "Name": "Branded",
@@ -81,7 +93,10 @@
         "MinTF": 76,
         "MaxTF": 92,
         "SubCost": 5,
-        "Shield": 5,
-        "Draw": 1
+        "Effect":
+        {
+            "Shield": 5,
+            "Draw": 1
+        }
     }
 ]

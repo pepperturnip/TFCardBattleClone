@@ -5,8 +5,11 @@
         "MinTF": 0,
         "MaxTF": 11,
         "BrainCost": 4,
-        "Damage": 1,
-        "Consumables": ["MinorShieldPotion"]
+        "Effect":
+        {
+            "Damage": 1,
+            "Consumables": ["MinorShieldPotion"]
+        }
     },
     {
         "Name": "Scientific Advisor",
@@ -14,7 +17,10 @@
         "MinTF": 1,
         "MaxTF": 17,
         "BrainCost": 3,
-        "Consumables": ["MinorBrainPotion", "MinorBrainPotion"]
+        "Effect":
+        {
+            "Consumables": ["MinorBrainPotion", "MinorBrainPotion"]
+        }
     },
     {
         "Name": "Brain Booster",
@@ -22,7 +28,10 @@
         "MinTF": 7,
         "MaxTF": 23,
         "BrainCost": 5,
-        "Consumables": ["BrainPotion"]
+        "Effect":
+        {
+            "Consumables": ["BrainPotion"]
+        }
     },
     {
         "Name": "Research Lab",
@@ -30,7 +39,10 @@
         "MinTF": 19,
         "MaxTF": 35,
         "BrainCost": 6,
-        "Draw": 1,
-        "Consumables": ["MinorDrawPotion"]
+        "Effect":
+        {
+            "Draw": 1,
+            "Consumables": ["MinorDrawPotion"]
+        }
     }
 ]

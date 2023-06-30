@@ -47,7 +47,7 @@ namespace TFCardBattle.Godot
             // Make a copy of the card being removed, so we can animate it
             // after removing it.
             CardModel clone = _cardRow.CloneCardForAnimation(cardIndex);
-            ICard card = clone.Card;
+            Card card = clone.Card;
 
             // Detatch the clone so it doesn't shift if the "discard hand"
             // animation starts playing while the clone is still alive
@@ -96,7 +96,7 @@ namespace TFCardBattle.Godot
             PlayCardGif(card, endPos);
         }
 
-        private void PlayCardGif(ICard card, Vector2 pos)
+        private void PlayCardGif(Card card, Vector2 pos)
         {
             if (card.Gifs == null || card.Gifs.Length <= 0)
                 return;
@@ -119,7 +119,7 @@ namespace TFCardBattle.Godot
             node.GlobalPosition = globalPos;
         }
 
-        public void AddCard(ICard card)
+        public void AddCard(Card card)
         {
             _cardRow.AddCard(card);
         }
@@ -131,7 +131,7 @@ namespace TFCardBattle.Godot
 
         public void ClearCards()
         {
-            _cardRow.Refresh(Array.Empty<ICard>());
+            _cardRow.Refresh(Array.Empty<Card>());
         }
     }
 }

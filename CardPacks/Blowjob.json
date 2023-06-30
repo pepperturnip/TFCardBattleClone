@@ -5,8 +5,6 @@
         "MinTF": 17,
         "MaxTF": 33,
         "HeartCost": 2,
-        "Damage": 1,
-        "Draw": 1,
         "Gifs":
         [
             "res://Media/CardGifs/52a.ogv",
@@ -15,7 +13,12 @@
             "res://Media/CardGifs/52d.ogv",
             "res://Media/CardGifs/52e.ogv",
             "res://Media/CardGifs/52f.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Damage": 1,
+            "Draw": 1
+        }
     },
     {
         "Name": "Sixty-Nine",
@@ -23,8 +26,6 @@
         "MinTF": 25,
         "MaxTF": 41,
         "HeartCost": 4,
-        "Heart": 3,
-        "Damage": 3,
         "Gifs":
         [
             "res://Media/CardGifs/60a.ogv",
@@ -33,7 +34,12 @@
             "res://Media/CardGifs/60d.ogv",
             "res://Media/CardGifs/60e.ogv",
             "res://Media/CardGifs/60f.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Heart": 3,
+            "Damage": 3
+        }
     },
     {
         "Name": "Blowjob",
@@ -41,9 +47,6 @@
         "MinTF": 33,
         "MaxTF": 49,
         "HeartCost": 5,
-        "Class": "TransferResources",
-        "From": "Heart",
-        "To": "Damage",
         "Gifs":
         [
             "res://Media/CardGifs/56a.ogv",
@@ -56,7 +59,13 @@
             "res://Media/CardGifs/56h.ogv",
             "res://Media/CardGifs/56i.ogv",
             "res://Media/CardGifs/56j.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Class": "TransferResources",
+            "From": "Heart",
+            "To": "Damage"
+        }
     },
     {
         "Name": "Take it Deep",
@@ -64,9 +73,6 @@
         "MinTF": 61,
         "MaxTF": 77,
         "HeartCost": 4,
-        "Class": "TransferResources",
-        "From": "Heart",
-        "To": "Shield",
         "Gifs":
         [
             "res://Media/CardGifs/86a.ogv",
@@ -77,6 +83,12 @@
             "res://Media/CardGifs/86f.ogv",
             "res://Media/CardGifs/86g.ogv",
             "res://Media/CardGifs/86h.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Class": "TransferResources",
+            "From": "Heart",
+            "To": "Shield"
+        }
     }
 ]
