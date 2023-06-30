@@ -14,7 +14,7 @@ namespace TFCardBattle.Godot
             _battleState = state;
         }
 
-        public CardModel Create(ICard card)
+        public CardModel Create(Card card)
         {
             var model = CardModelPrefab.Instantiate<CardModel>();
             model.SetCard(card, _battleState);

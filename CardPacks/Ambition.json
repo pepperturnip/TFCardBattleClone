@@ -5,9 +5,12 @@
         "MinTF": 0,
         "MaxTF": 12,
         "BrainCost": 5,
-        "Class": "TransferResources",
-        "From": "Brain",
-        "To": "Shield"
+        "Effect":
+        {
+            "Class": "TransferResources",
+            "From": "Brain",
+            "To": "Shield"
+        }
     },
     {
         "Name": "Rethink it",
@@ -15,7 +18,7 @@
         "MinTF": 2,
         "MaxTF": 18,
         "BrainCost": 4,
-        "Class": "RefreshBuyPile"
+        "Effect": { "Class": "RefreshBuyPile" }
     },
     {
         "Name": "Double Down",
@@ -23,8 +26,11 @@
         "MinTF": 8,
         "MaxTF": 24,
         "BrainCost": 6,
-        "Class": "MultiplyResources",
-        "BrainMult": 2
+        "Effect":
+        {
+            "Class": "MultiplyResources",
+            "Brain": 2
+        }
     },
     {
         "Name": "All Nighter",
@@ -32,6 +38,9 @@
         "MinTF": 22,
         "MaxTF": 38,
         "BrainCost": 6,
-        "Draw": 2
+        "Effect":
+        {
+            "Draw": 12
+        }
     }
 ]

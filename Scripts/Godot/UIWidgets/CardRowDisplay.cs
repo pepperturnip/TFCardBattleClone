@@ -92,7 +92,7 @@ namespace TFCardBattle.Godot
             return _cardModels.GetChild<CardModel>(cardIndex);
         }
 
-        public void AddCard(ICard card)
+        public void AddCard(Card card)
         {
             AddCardModel(card, Vector2.Zero);
             RecreateCardPositioners(_cardModels.GetChildCount());
@@ -114,7 +114,7 @@ namespace TFCardBattle.Godot
             return clone;
         }
 
-        public void Refresh(ICard[] cards)
+        public void Refresh(Card[] cards)
         {
             // HACK: Reuse old models if nothing changed, to prevent the card
             // move animation from being needlessly interrupted.
@@ -161,7 +161,7 @@ namespace TFCardBattle.Godot
             }
         }
 
-        private void RecreateCardModels(ICard[] cards)
+        private void RecreateCardModels(Card[] cards)
         {
             DeleteAllChildren(_cardModels);
 
@@ -171,7 +171,7 @@ namespace TFCardBattle.Godot
             }
         }
 
-        private void RefreshCardModels(ICard[] cards)
+        private void RefreshCardModels(Card[] cards)
         {
             for (int i = 0; i < cards.Length; i++)
             {
@@ -180,7 +180,7 @@ namespace TFCardBattle.Godot
             }
         }
 
-        private void AddCardModel(ICard card, Vector2 globalPos)
+        private void AddCardModel(Card card, Vector2 globalPos)
         {
             var model = ModelFactory.Create(card);
             _cardModels.AddChild(model);

@@ -9,18 +9,25 @@ namespace TFCardBattle.Godot
 {
     public static class PlayerStartingDeck
     {
-        public static IEnumerable<ICard> StartingDeck()
+        public static IEnumerable<Card> StartingDeck()
         {
-            var mysteriousPills = new TFCardBattle.Core.CardClasses.Simple
+            var mysteriousPills = new Card
             {
                 Name = "Mysterious Pills",
                 Image = "res://Media/Cards/card7.webp",
-                Damage = 1
+                Effect = new Core.CardEffects.Simple
+                {
+                    Damage = 1
+                }
             };
 
             for (int i = 0; i < 8; i++)
             {
-                yield return new TransitioningBasicCard(i);
+                yield return new Card
+                {
+                    Name = "Basic Card",
+                    Effect = new Core.CardEffects.TransitioningBasicCard(i)
+                };
             }
 
             yield return mysteriousPills;

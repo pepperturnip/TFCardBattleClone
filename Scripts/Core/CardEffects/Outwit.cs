@@ -2,17 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TFCardBattle.Core.CardClasses
+namespace TFCardBattle.Core.CardEffects
 {
-    public class Outwit : ICard
+    public class Outwit : ICardEffect
     {
-        public string Name {get; set;}
-        public string Desc => "Change the buy piles to random brain cards";
-        public string Image {get; set;}
-        public string[] Gifs {get; set;}
-        public CardPurchaseStats PurchaseStats {get; set;}
-        public bool DestroyOnActivate {get; set;}
-
         public Task Activate(BattleController battle)
         {
             var oldBuyPile = battle.State.BuyPile;
@@ -20,12 +13,12 @@ namespace TFCardBattle.Core.CardClasses
 
             // Offer a bunch of brain cards
             var offerableCards = OfferableCards(battle.State).ToHashSet();
-            var buyPile = new HashSet<ICard>();
+            var buyPile = new HashSet<Card>();
 
             while(buyPile.Count < BattleController.OfferedCardCount && offerableCards.Count > 0)
             {
                 var weights = offerableCards
-                    .Select(c => (c, c.PurchaseStats.OfferWeight))
+                    .Select(c => (c, c.OfferWeight))
                     .ToArray();
 
                 var card = battle.Rng.PickFromWeighted(weights);
@@ -42,15 +35,18 @@ namespace TFCardBattle.Core.CardClasses
             return battle.AnimationPlayer.RefreshBuyPile(battle.State.BuyPile.ToArray());
         }
 
-        public string GetImage(BattleState state) => Image;
+        public string GetDescription(BattleState state)
+            => "Change the buy piles to random brain cards";
 
-        private IEnumerable<ICard> OfferableCards(BattleState state)
+        public string GetOverriddenImage(BattleState state) => null;
+
+        private IEnumerable<Card> OfferableCards(BattleState state)
         {
             return state.PlayerLoadout
                 .OfferableCards
-                .Where(c => c.PurchaseStats.BrainCost > 0)
-                .Where(c => c.PurchaseStats.HeartCost <= 0)
-                .Where(c => c.PurchaseStats.SubCost <= 0);
+                .Where(c => c.BrainCost > 0)
+                .Where(c => c.HeartCost <= 0)
+                .Where(c => c.SubCost <= 0);
         }
     }
 }

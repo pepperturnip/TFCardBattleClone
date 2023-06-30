@@ -13,8 +13,8 @@ namespace TFCardBattle.Godot
 
         public Vector2 Size => _panel.Size;
 
-        public ICard Card => _card;
-        private ICard _card;
+        public Card Card => _card;
+        private Card _card;
 
         private Panel _panel => GetNode<Panel>("%Panel");
         private Label _nameLabel => GetNode<Label>("%NameLabel");
@@ -31,7 +31,7 @@ namespace TFCardBattle.Godot
                 : DisabledModulate;
         }
 
-        public void SetCard(ICard card, BattleState state)
+        public void SetCard(Card card, BattleState state)
         {
             _card = card;
             _battleState = state;
@@ -41,7 +41,7 @@ namespace TFCardBattle.Godot
         public void Refresh()
         {
             _nameLabel.Text = Card?.Name ?? "null";
-            _descLabel.Text = Card?.Desc ?? "";
+            _descLabel.Text = Card?.GetDescription(_battleState) ?? "";
             _costDisplay.Card = Card;
 
             // Attempt to load the texture.  If it exists, we'll draw that on

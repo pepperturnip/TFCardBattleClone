@@ -1,26 +1,9 @@
 using System;
 using System.Threading.Tasks;
 
-namespace TFCardBattle.Core
+namespace TFCardBattle.Core.CardEffects
 {
-    /// <summary>
-    /// For the most part, ICards are supposed to be immutable.
-    /// This card, however, is the one hacky exception.  When basic cards
-    /// transition, the TransitionState is mutated in-place.
-    ///
-    /// Ideally, we'd implement card transitioning by removing the old card
-    /// from the player's deck and adding a new one.  But I'm lazy, and this
-    /// was easier in the short term.
-    ///
-    /// I'm not sure what the consequences of this hack are.  But whatever they
-    /// are, they're mitigated by the fact that the basic cards are instantiated
-    /// brand-new at the start of each game.  If the same ICards were reused
-    /// between batlles, then this statefulness would be a concern, because then
-    /// we'd need to ensure we reset each card between battles.
-    ///
-    /// Tl;dr: Assume all ICards are immutable, except this one.
-    /// </summary>
-    public class TransitioningBasicCard : ICard
+    public class TransitioningBasicCard : ICardEffect
     {
         public enum State
         {
@@ -28,16 +11,7 @@ namespace TFCardBattle.Core
             Heart,
             Sub
         }
-        public State TransitionState {get; private set;} = State.Brain;
-        public readonly int TransitionId;
-
-        public string Name {get; set;}
-        public string Desc {get; private set;}
-        public string Image {get; set;}
-        public string[] Gifs {get; set;} = Array.Empty<string>();
-
-        public bool DestroyOnActivate => false;
-        public CardPurchaseStats PurchaseStats {get; set;}
+        private readonly int TransitionId;
 
         public TransitioningBasicCard(int transitionId)
         {
@@ -46,7 +20,7 @@ namespace TFCardBattle.Core
 
         public Task Activate(BattleController battle)
         {
-            switch (TransitionState)
+            switch (TransitionStateAtTF(TransitionId, battle.State.PlayerTF))
             {
                 case State.Brain: battle.State.Brain++; break;
                 case State.Heart: battle.State.Heart++; break;
@@ -57,7 +31,28 @@ namespace TFCardBattle.Core
             return Task.CompletedTask;
         }
 
-        public string GetImage(BattleState state) => Image;
+        public string GetDescription(BattleState state)
+        {
+            switch (TransitionStateAtTF(TransitionId, state.PlayerTF))
+            {
+                case State.Brain: return "Brain: +1";
+                case State.Heart: return "Heart: +1";
+                case State.Sub: return "Sub: +1";
+                default: return "";
+            }
+        }
+
+        public string GetOverriddenImage(BattleState state)
+        {
+            const string prefix = "res://Media/Cards";
+            switch (TransitionStateAtTF(TransitionId, state.PlayerTF))
+            {
+                case State.Brain: return $"{prefix}/card8.webp";
+                case State.Heart: return $"{prefix}/card9.webp";
+                case State.Sub: return $"{prefix}/card5.webp";
+                default: return null;
+            }
+        }
 
         // Where did I get these constants from?  By experimenting with the
         // original TF Card Battle game.  I went into sandbox mode, manipulated
@@ -96,39 +91,6 @@ namespace TFCardBattle.Core
         private const int SubmitBeginTF = 45;
         private const int SubmitHoldTF = 85;
         private const int TotalBasicCards = 8;
-
-        public void UpdateTransitionState(int playerTF)
-        {
-            TransitionState = TransitionStateAtTF(TransitionId, playerTF);
-
-            const string prefix = "res://Media/Cards";
-            switch (TransitionState)
-            {
-                case State.Brain:
-                {
-                    Name = "Brainstorm";
-                    Desc = "Brain: +1";
-                    Image = $"{prefix}/card8.webp";
-                    break;
-                }
-
-                case State.Heart:
-                {
-                    Name = "Flirt";
-                    Desc = "Heart: +1";
-                    Image = $"{prefix}/card9.webp";
-                    break;
-                }
-
-                case State.Sub:
-                {
-                    Name = "Submit";
-                    Desc = "Sub: +1";
-                    Image = $"{prefix}/card5.webp";
-                    break;
-                }
-            }
-        }
 
         private static State TransitionStateAtTF(int transitionId, int playerTF)
         {

@@ -5,8 +5,6 @@
         "MinTF": 38,
         "MaxTF": 54,
         "HeartCost": 2,
-        "Heart": 2,
-        "Sub": 2,
         "Gifs":
         [
             "res://Media/CardGifs/67a.ogv",
@@ -14,7 +12,12 @@
             "res://Media/CardGifs/67c.ogv",
             "res://Media/CardGifs/67d.ogv",
             "res://Media/CardGifs/67e.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Heart": 2,
+            "Sub": 2
+        }
     },
     {
         "Name": "Creampie",
@@ -22,8 +25,6 @@
         "MinTF": 47,
         "MaxTF": 63,
         "HeartCost": 7,
-        "Sub": 5,
-        "Draw": 2,
         "Gifs":
         [
             "res://Media/CardGifs/80a.ogv",
@@ -36,7 +37,12 @@
             "res://Media/CardGifs/80h.ogv",
             "res://Media/CardGifs/80i.ogv",
             "res://Media/CardGifs/80j.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Sub": 5,
+            "Draw": 2
+        }
     },
     {
         "Name": "Swallow",
@@ -44,7 +50,6 @@
         "MinTF": 58,
         "MaxTF": 74,
         "HeartCost": 8,
-        "Class": "Swallow",
         "Gifs":
         [
             "res://Media/CardGifs/83a.ogv",
@@ -53,7 +58,8 @@
             "res://Media/CardGifs/83d.ogv",
             "res://Media/CardGifs/83e.ogv",
             "res://Media/CardGifs/83f.ogv"
-        ]
+        ],
+        "Effect": {"Class": "Swallow"}
     },
     {
         "Name": "Lick it Up",
@@ -61,11 +67,11 @@
         "MinTF": 68,
         "MaxTF": 84,
         "SubCost": 6,
-        "Draw": 3,
         "Gifs":
         [
             "res://Media/CardGifs/95a.ogv",
             "res://Media/CardGifs/95b.ogv"
-        ]
+        ],
+        "Effect": {"Draw": 3}
     }
 ]

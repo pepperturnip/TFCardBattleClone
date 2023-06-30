@@ -5,7 +5,6 @@
         "MinTF": 35,
         "MaxTF": 51,
         "HeartCost": 2,
-        "Sub": 3,
         "Gifs":
         [
             "res://Media/CardGifs/72a.ogv",
@@ -14,7 +13,8 @@
             "res://Media/CardGifs/72d.ogv",
             "res://Media/CardGifs/72e.ogv",
             "res://Media/CardGifs/72f.ogv"
-        ]
+        ],
+        "Effect": {"Sub": 3}
     },
     {
         "Name": "Blindfolded",
@@ -22,8 +22,6 @@
         "MinTF": 46,
         "MaxTF": 62,
         "HeartCost": 2,
-        "Sub": 1,
-        "Draw": 1,
         "Gifs":
         [
             "res://Media/CardGifs/74a.ogv",
@@ -31,7 +29,12 @@
             "res://Media/CardGifs/74c.ogv",
             "res://Media/CardGifs/74d.ogv",
             "res://Media/CardGifs/74e.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Sub": 1,
+            "Draw": 1
+        }
     },
     {
         "Name": "Locked Away",
@@ -39,8 +42,6 @@
         "MinTF": 57,
         "MaxTF": 73,
         "SubCost": 2,
-        "Sub": 1,
-        "Shield": 3,
         "Gifs":
         [
             "res://Media/CardGifs/76a.ogv",
@@ -48,7 +49,12 @@
             "res://Media/CardGifs/76c.ogv",
             "res://Media/CardGifs/76d.ogv",
             "res://Media/CardGifs/76e.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Sub": 1,
+            "Shield": 3
+        }
     },
     {
         "Name": "Collared",
@@ -56,7 +62,6 @@
         "MinTF": 67,
         "MaxTF": 83,
         "SubCost": 2,
-        "Class": "MultiplyResources",
         "SubMult": 2,
         "Gifs":
         [
@@ -65,6 +70,7 @@
             "res://Media/CardGifs/85c.ogv",
             "res://Media/CardGifs/85d.ogv",
             "res://Media/CardGifs/85e.ogv"
-        ]
+        ],
+        "Effect": {"Class": "MultiplyResources"}
     }
 ]

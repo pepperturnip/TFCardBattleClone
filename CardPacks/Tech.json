@@ -5,8 +5,11 @@
         "MinTF": 0,
         "MaxTF": 9,
         "BrainCost": 2,
-        "Brain": 1,
-        "Shield": 1
+        "Effect":
+        {
+            "Brain": 1,
+            "Shield": 1
+        }
     },
     {
         "Name": "Firewall",
@@ -14,7 +17,7 @@
         "MinTF": 0,
         "MaxTF": 15,
         "BrainCost": 3,
-        "Shield": 3
+        "Effect": {"Shield": 3}
     },
     {
         "Name": "L33t Hacker",
@@ -22,8 +25,11 @@
         "MinTF": 5,
         "MaxTF": 21,
         "BrainCost": 4,
-        "Brain": 2,
-        "Shield": 2
+        "Effect":
+        {
+            "Brain": 2,
+            "Shield": 2
+        }
     },
     {
         "Name": "Counter Measures",
@@ -31,7 +37,10 @@
         "MinTF": 13,
         "MaxTF": 29,
         "BrainCost": 4,
-        "Damage": 2,
-        "Shield": 2
+        "Effect":
+        {
+            "Damage": 2,
+            "Shield": 2
+        }
     }
 ]

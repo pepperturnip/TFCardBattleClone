@@ -123,7 +123,7 @@ namespace TFCardBattle.Godot
             GetNode<Button>("%EndTurnButton").Disabled = !enabled;
         }
 
-        private IEnumerable<ICard> LoadCardPack(string name)
+        private IEnumerable<Card> LoadCardPack(string name)
         {
             string path = $"res://CardPacks/{name}.json";
             return Core.Parsing.CardPacks.Parse(FileAccess.GetFileAsString(path));
