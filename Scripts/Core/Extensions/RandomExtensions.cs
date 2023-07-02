@@ -16,21 +16,23 @@ namespace TFCardBattle.Core
             params (T value, int weight)[] weights
         )
         {
-            int maxRoll = weights
+            var nonZeroWeights = weights.Where(w => w.weight != 0);
+
+            int maxRoll = nonZeroWeights
                 .Select(w => w.weight)
                 .Sum();
 
             int roll = rng.Next(maxRoll);
 
             int sum = 0;
-            foreach (var w in weights)
+            foreach (var w in nonZeroWeights)
             {
                 sum += w.weight;
                 if (roll < sum)
                     return w.value;
             }
 
-            throw new Exception("Uhh...I didn't think this through, apparently");
+            throw new Exception("Cannot choose if all of the weights are zero");
         }
     }
 }
