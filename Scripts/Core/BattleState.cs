@@ -10,6 +10,8 @@ namespace TFCardBattle.Core
     /// </summary>
     public class BattleState
     {
+        public readonly CardRegistry CardRegistry;
+
         public PlayerLoadout PlayerLoadout;
 
         public int TurnsElapsed = 0;
@@ -58,9 +60,14 @@ namespace TFCardBattle.Core
         /// </summary>
         public List<Card> BuyPile = new List<Card>();
 
-        public BattleState(PlayerLoadout loadout)
+        public BattleState(
+            PlayerLoadout loadout,
+            CardRegistry cardRegistry
+        )
         {
             PlayerLoadout = loadout;
+            CardRegistry = cardRegistry;
+
             Deck.AddRange(loadout.StartingDeck);
         }
 

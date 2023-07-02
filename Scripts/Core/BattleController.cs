@@ -20,7 +20,6 @@ namespace TFCardBattle.Core
 
         public readonly BattleState State;
         public readonly Random Rng;
-        public readonly CardRegistry CardRegistry;
         public readonly IBattleAnimationPlayer AnimationPlayer;
 
         public bool BattleEnded {get; private set;} = false;
@@ -32,10 +31,12 @@ namespace TFCardBattle.Core
             IBattleAnimationPlayer animationPlayer
         )
         {
-            State = new BattleState(loadout);
+            State = new BattleState(
+                loadout: loadout,
+                cardRegistry: cardRegistry
+            );
 
             Rng = rng;
-            CardRegistry = cardRegistry;
             AnimationPlayer = animationPlayer;
         }
 
