@@ -31,6 +31,17 @@ namespace TFCardBattle.Core
         {
             return Effect.GetOverriddenImage(state) ?? Image;
         }
+
+        public int GetCost(ResourceType resource)
+        {
+            switch (resource)
+            {
+                case ResourceType.Brain: return BrainCost;
+                case ResourceType.Heart: return HeartCost;
+                case ResourceType.Sub: return SubCost;
+                default: throw new ArgumentException("Only brain, heart, and sub are accepted");
+            }
+        }
     }
 
     public interface ICardEffect
