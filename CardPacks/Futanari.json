@@ -1,4 +1,194 @@
 {
+    "card123":
+    {
+        "Name": "Piledriver",
+        "MinTF": 22,
+        "MaxTF": 38,
+        "HeartCost": 1,
+        "Effect":
+        {
+            "Class": "DowngradeIfResource",
+            "Resource": "Sub",
+            "StrongVersion":
+            {
+                "Image": "res://Media/Cards/card123a.webp",
+                "Mind": 3
+            },
+            "WeakVersion":
+            {
+                "Image": "res://Media/Cards/card123b.webp",
+                "Mind": 1
+            }
+        }
+    },
+    "card124":
+    {
+        "Name": "Dick Flash",
+        "MinTF": 25,
+        "MaxTF": 41,
+        "HeartCost": 2,
+        "Effect":
+        {
+            "Class": "DowngradeIfResource",
+            "Resource": "Sub",
+            "StrongVersion":
+            {
+                "Image": "res://Media/Cards/card124a.webp",
+                "Heart": 3
+            },
+            "WeakVersion":
+            {
+                "Image": "res://Media/Cards/card124b.webp",
+                "Heart": 1
+            }
+        }
+    },
+    "card128":
+    {
+        "Name": "Cock Slap",
+        "Image": "res://Media/Cards/card128.webp",
+        "MinTF": 28,
+        "MaxTF": 44,
+        "HeartCost": 2,
+        "DestroyOnActivate": true,
+        "Effect": { "Class": "ForgetBasic" }
+    },
+    "card126":
+    {
+        "Name": "Ram it Down",
+        "MinTF": 31,
+        "MaxTF": 47,
+        "HeartCost": 4,
+        "Effect":
+        {
+            "Class": "DowngradeIfResource",
+            "Resource": "Sub",
+            "StrongVersion":
+            {
+                "Image": "res://Media/Cards/card126a.webp",
+                "Draw": 2
+            },
+            "WeakVersion":
+            {
+                "Image": "res://Media/Cards/card126b.webp",
+                "Draw": 1
+            }
+        }
+    },
+    "card127":
+    {
+        "Name": "Choke Hold",
+        "Image": "res://Media/Cards/card127.webp",
+        "MinTF": 34,
+        "MaxTF": 50,
+        "BrainCost": 5,
+        "Effect":
+        {
+            "Class": "MultiplyResources",
+            "Shield": 2
+        }
+    },
+    "card125":
+    {
+        "Name": "Workout Session",
+        "Image": "res://Media/Cards/card125.webp",
+        "MinTF": 37,
+        "MaxTF": 53,
+        "HeartCost": 4,
+        "DestroyOnActivate": true,
+        "Effect": { "Draw": 4 }
+    },
+    "card129":
+    {
+        "Name": "Cock Bulge",
+        "Image": "res://Media/Cards/card129.webp",
+        "MinTF": 40,
+        "MaxTF": 56,
+        "BrainCost": 3,
+        "DestroyOnActivate": true,
+        "Effect": { "Damage": 10 }
+    },
+    "card130":
+    {
+        "Name": "Up The Ass",
+        "Image": "res://Media/Cards/card130.webp",
+        "MinTF": 44,
+        "MaxTF": 60,
+        "HeartCost": 5,
+        "Effect":
+        {
+            "Class": "TransferResources",
+            "From": "Shield",
+            "To": "Damage"
+        }
+    },
+    "card131":
+    {
+        "Name": "Full Nelson",
+        "MinTF": 47,
+        "MaxTF": 63,
+        "HeartCost": 4,
+        "Effect":
+        {
+            "Class": "DowngradeIfResource",
+            "Resource": "Sub",
+            "StrongVersion":
+            {
+                "Image": "res://Media/Cards/card131a.webp",
+                "Damage": 6
+            },
+            "WeakVersion":
+            {
+                "Image": "res://Media/Cards/card131b.webp",
+                "Damage": 1
+            }
+        }
+    },
+    "card132":
+    {
+        "Name": "Pegging",
+        "Image": "res://Media/Cards/card132.webp",
+        "MinTF": 51,
+        "MaxTF": 67,
+        "HeartCost": 4,
+        "Effect":
+        {
+            "Brain": 2,
+            "Heart": 2,
+            "Damage": 2
+        }
+    },
+    "card138":
+    {
+        "Name": "Flex",
+        "Image": "res://Media/Cards/card138.webp",
+        "MinTF": 58,
+        "MaxTF": 74,
+        "BrainCost": 7,
+        "Effect": { "Class": "ReflectDamage" }
+    },
+    "card139":
+    {
+        "Name": "Pin Down",
+        "MinTF": 61,
+        "MaxTF": 77,
+        "HeartCost": 5,
+        "Effect":
+        {
+            "Class": "DowngradeIfResource",
+            "Resource": "Sub",
+            "StrongVersion":
+            {
+                "Image": "res://Media/Cards/card139a.webp",
+                "Shield": 8
+            },
+            "WeakVersion":
+            {
+                "Image": "res://Media/Cards/card139b.webp",
+                "Shield": 1
+            }
+        }
+    },
     "card133":
     {
         "Name": "Flaccid",
