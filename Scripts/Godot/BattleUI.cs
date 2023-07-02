@@ -28,33 +28,38 @@ namespace TFCardBattle.Godot
 
         public override async void _Ready()
         {
-            Battle = new BattleController(
-                new PlayerLoadout
+            var cardRegistry = CreateCardRegistry();
+
+            var playerLoadout = new PlayerLoadout
+            {
+                CardPacks = new[]
                 {
-                    CardPacks = new[]
-                    {
-                        LoadCardPack("Mind"),
-                        LoadCardPack("Tech"),
-                        LoadCardPack("Hypno"),
-                        LoadCardPack("Chemist"),
-                        LoadCardPack("Ambition"),
-                        LoadCardPack("Purity"),
-                        LoadCardPack("Whore"),
-                        LoadCardPack("FemmeFatale"),
-                        LoadCardPack("Tease"),
-                        LoadCardPack("Romance"),
-                        LoadCardPack("Blowjob"),
-                        LoadCardPack("Submissive"),
-                        LoadCardPack("Bondage"),
-                        LoadCardPack("Cum"),
-                        LoadCardPack("Cock"),
-                        LoadCardPack("Sex")
-                    },
-                    PermanentBuyPile = LoadCardPack("StandardPermanentBuyPile"),
-                    StartingDeck = PlayerStartingDeck.StartingDeck()
+                    cardRegistry.CardPacks["Mind"],
+                    cardRegistry.CardPacks["Tech"],
+                    cardRegistry.CardPacks["Hypno"],
+                    cardRegistry.CardPacks["Chemist"],
+                    cardRegistry.CardPacks["Ambition"],
+                    cardRegistry.CardPacks["Purity"],
+                    cardRegistry.CardPacks["Whore"],
+                    cardRegistry.CardPacks["FemmeFatale"],
+                    cardRegistry.CardPacks["Tease"],
+                    cardRegistry.CardPacks["Romance"],
+                    cardRegistry.CardPacks["Blowjob"],
+                    cardRegistry.CardPacks["Submissive"],
+                    cardRegistry.CardPacks["Bondage"],
+                    cardRegistry.CardPacks["Cum"],
+                    cardRegistry.CardPacks["Cock"],
+                    cardRegistry.CardPacks["Sex"]
                 },
-                GetNode<BattleAnimationPlayer>("%BattleAnimationPlayer"),
-                new Random((int)DateTimeOffset.Now.ToUnixTimeMilliseconds())
+                PermanentBuyPile = cardRegistry.CardPacks["StandardPermanentBuyPile"],
+                StartingDeck = PlayerStartingDeck.StartingDeck()
+            };
+
+            Battle = new BattleController(
+                loadout: playerLoadout,
+                rng: new Random((int)DateTimeOffset.Now.ToUnixTimeMilliseconds()),
+                cardRegistry: cardRegistry,
+                animationPlayer: GetNode<BattleAnimationPlayer>("%BattleAnimationPlayer")
             );
 
             this.CardModelFactory.SetBattleState(Battle.State);
@@ -123,11 +128,23 @@ namespace TFCardBattle.Godot
             GetNode<Button>("%EndTurnButton").Disabled = !enabled;
         }
 
-        private IEnumerable<Card> LoadCardPack(string name)
+        private CardRegistry CreateCardRegistry()
         {
-            string path = $"res://CardPacks/{name}.json";
-            return Core.Parsing.CardPacks.Parse(FileAccess.GetFileAsString(path))
-                .Select(kvp => kvp.Value);
+            var registry = new CardRegistry();
+
+            IEnumerable<string> packNames = DirAccess
+                .GetFilesAt("res://CardPacks")
+                .Select(f => f.Split(".json")[0]);
+
+            foreach (string packName in packNames)
+            {
+                string path = $"res://CardPacks/{packName}.json";
+                var cards = Core.Parsing.CardPacks.Parse(FileAccess.GetFileAsString(path));
+
+                registry.ImportCardPack(packName, cards);
+            }
+
+            return registry;
         }
     }
 }

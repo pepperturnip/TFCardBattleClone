@@ -19,20 +19,24 @@ namespace TFCardBattle.Core
         public int EnemyMaxTFDamage => MaxEnemyDamageOnTurn(State.TurnsElapsed);
 
         public readonly BattleState State;
+        public readonly Random Rng;
+        public readonly CardRegistry CardRegistry;
+        public readonly IBattleAnimationPlayer AnimationPlayer;
 
         public bool BattleEnded {get; private set;} = false;
-        public Random Rng {get; private set;}
-        public IBattleAnimationPlayer AnimationPlayer {get; private set;}
 
         public BattleController(
             PlayerLoadout loadout,
-            IBattleAnimationPlayer animationPlayer,
-            Random rng
+            Random rng,
+            CardRegistry cardRegistry,
+            IBattleAnimationPlayer animationPlayer
         )
         {
             State = new BattleState(loadout);
-            AnimationPlayer = animationPlayer;
+
             Rng = rng;
+            CardRegistry = cardRegistry;
+            AnimationPlayer = animationPlayer;
         }
 
         public async Task DrawCard()
