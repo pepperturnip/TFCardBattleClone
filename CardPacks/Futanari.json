@@ -32,8 +32,10 @@
     {
         "Name": "Boner",
         "Image": "res://Media/Cards/card135.webp",
-        "OfferWeight": 54,
-        "HeartCost": 70,
+        "MinTF": 54,
+        "MaxTF": 70,
+        "OfferWeight": 0,
+        "HeartCost": 4,
         "DestroyOnActivate": true,
         "Effect":
         {
