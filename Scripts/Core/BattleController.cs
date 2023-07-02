@@ -148,6 +148,7 @@ namespace TFCardBattle.Core
 
             await DiscardResources();
             await ResetBuyPile();
+            State.ReflectDamage = false;
 
             // Draw a fresh hand of cards
             for (int i = 0; i < StartingHandSize; i++)
@@ -175,8 +176,22 @@ namespace TFCardBattle.Core
             int enemyTfDamage = RollEnemyDamage() - State.Shield;
             enemyTfDamage = Math.Clamp(enemyTfDamage, 0, int.MaxValue);
 
-            State.PlayerTF += enemyTfDamage;
-            await AnimationPlayer.DamagePlayer(enemyTfDamage);
+            if (!State.ReflectDamage)
+            {
+                State.PlayerTF += enemyTfDamage;
+                await AnimationPlayer.DamagePlayer(enemyTfDamage);
+            }
+            else
+            {
+                State.EnemyTF += State.Damage;
+                await AnimationPlayer.DamageEnemy(State.Damage);
+
+                if (State.EnemyTF >= State.EnemyMaxTF)
+                {
+                    EndBattle();
+                    return;
+                }
+            }
 
             if (State.PlayerTF >= State.PlayerMaxTF)
             {

@@ -60,6 +60,13 @@ namespace TFCardBattle.Core
         /// </summary>
         public List<Card> BuyPile = new List<Card>();
 
+        /// <summary>
+        /// If this is true, any damage the player would have received this
+        /// turn will instead be dealt to the enemy.
+        /// This resets at the start of the next turn.
+        /// </summary>
+        public bool ReflectDamage = false;
+
         public BattleState(
             PlayerLoadout loadout,
             CardRegistry cardRegistry
