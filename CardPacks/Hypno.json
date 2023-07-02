@@ -1,4 +1,5 @@
-[
+{
+    "card12":
     {
         "Name": "Motivational Poster",
         "Image": "res://Media/Cards/card12.webp",
@@ -11,14 +12,16 @@
             "Damage": 2
         }
     },
+    "card13":
     {
         "Name": "Hypnotic Email",
         "Image": "res://Media/Cards/card13.webp",
         "MinTF": 0,
         "MaxTF": 16,
         "BrainCost": 5,
-        "Effect": {"Damage": 4}
+        "Effect": { "Damage": 4 }
     },
+    "card27":
     {
         "Name": "Very Targeted Ads",
         "Image": "res://Media/Cards/card27.webp",
@@ -31,6 +34,7 @@
             "Damage": 2
         }
     },
+    "card45":
     {
         "Name": "Evil Therapist",
         "Image": "res://Media/Cards/card45.webp",
@@ -44,4 +48,4 @@
             "Draw": 2
         }
     }
-]
+}

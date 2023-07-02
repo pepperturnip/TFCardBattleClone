@@ -1,4 +1,5 @@
-[
+{
+    "card18":
     {
         "Name": "Spreadsheet Master",
         "Image": "res://Media/Cards/card18.webp",
@@ -11,14 +12,16 @@
             "Shield": 1
         }
     },
+    "card15":
     {
         "Name": "Firewall",
         "Image": "res://Media/Cards/card15.webp",
         "MinTF": 0,
         "MaxTF": 15,
         "BrainCost": 3,
-        "Effect": {"Shield": 3}
+        "Effect": { "Shield": 3 }
     },
+    "card28":
     {
         "Name": "L33t Hacker",
         "Image": "res://Media/Cards/card28.webp",
@@ -31,6 +34,7 @@
             "Shield": 2
         }
     },
+    "card21":
     {
         "Name": "Counter Measures",
         "Image": "res://Media/Cards/card21.webp",
@@ -43,4 +47,4 @@
             "Shield": 2
         }
     }
-]
+}

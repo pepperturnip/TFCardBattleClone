@@ -1,4 +1,5 @@
-[
+{
+    "card14":
     {
         "Name": "Purity of Mind",
         "MinTF": 0,
@@ -20,6 +21,7 @@
             }
         }
     },
+    "card26":
     {
         "Name": "Strategic Operation",
         "MinTF": 3,
@@ -41,6 +43,7 @@
             }
         }
     },
+    "card43":
     {
         "Name": "Mental Shield",
         "MinTF": 9,
@@ -62,6 +65,7 @@
             }
         }
     },
+    "card25":
     {
         "Name": "Online Interview",
         "MinTF": 26,
@@ -83,4 +87,4 @@
             }
         }
     }
-]
+}

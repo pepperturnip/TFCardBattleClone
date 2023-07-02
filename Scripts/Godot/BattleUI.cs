@@ -1,7 +1,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Linq;
 using Godot;
 using TFCardBattle.Core;
 
@@ -126,7 +126,8 @@ namespace TFCardBattle.Godot
         private IEnumerable<Card> LoadCardPack(string name)
         {
             string path = $"res://CardPacks/{name}.json";
-            return Core.Parsing.CardPacks.Parse(FileAccess.GetFileAsString(path));
+            return Core.Parsing.CardPacks.Parse(FileAccess.GetFileAsString(path))
+                .Select(kvp => kvp.Value);
         }
     }
 }

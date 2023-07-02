@@ -1,4 +1,5 @@
-[
+{
+    "card29":
     {
         "Name": "Second Base",
         "Image": "res://Media/Cards/card29.webp",
@@ -16,8 +17,9 @@
             "res://Media/CardGifs/29g.ogv",
             "res://Media/CardGifs/29h.ogv"
         ],
-        "Effect": {"Heart": 2}
+        "Effect": { "Heart": 2 }
     },
+    "card30":
     {
         "Name": "Bribe the Intern",
         "Image": "res://Media/Cards/card30.webp",
@@ -36,6 +38,7 @@
             "Draw": 1
         }
     },
+    "card35":
     {
         "Name": "Suggestive Moves",
         "Image": "res://Media/Cards/card35.webp",
@@ -56,6 +59,7 @@
             "Draw": 1
         }
     },
+    "card44":
     {
         "Name": "Seduce the Cable Guy",
         "Image": "res://Media/Cards/card44.webp",
@@ -68,14 +72,16 @@
             "Draw": 1
         }
     },
+    "card57":
     {
         "Name": "Sugar Daddy",
         "Image": "res://Media/Cards/card57.webp",
         "MinTF": 64,
         "MaxTF": 80,
         "HeartCost": 2,
-        "Effect": {"Shield": 3}
+        "Effect": { "Shield": 3 }
     },
+    "card84":
     {
         "Name": "Blacked",
         "Image": "res://Media/Cards/card84.webp",
@@ -93,8 +99,9 @@
             "res://Media/CardGifs/84g.ogv",
             "res://Media/CardGifs/84h.ogv"
         ],
-        "Effect": {"Draw": 2}
+        "Effect": { "Draw": 2 }
     },
+    "card79":
     {
         "Name": "Purity of Lust",
         "MinTF": 62,
@@ -116,4 +123,4 @@
             }
         }
     }
-]
+}

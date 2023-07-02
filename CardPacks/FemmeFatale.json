@@ -1,4 +1,5 @@
-[
+{
+    "card31":
     {
         "Name": "Seduction",
         "Image": "res://Media/Cards/card31.webp",
@@ -12,6 +13,7 @@
             "To": "Heart"
         }
     },
+    "card36":
     {
         "Name": "Infiltration Mission",
         "Image": "res://Media/Cards/card36.webp",
@@ -25,6 +27,7 @@
             "Draw": 1
         }
     },
+    "card48":
     {
         "Name": "Strapon",
         "Image": "res://Media/Cards/card48.webp",
@@ -45,12 +48,13 @@
             "Heart": 2
         }
     },
+    "card55":
     {
         "Name": "Outwit",
         "Image": "res://Media/Cards/card55.webp",
         "MinTF": 43,
         "MaxTF": 59,
         "HeartCost": 4,
-        "Effect": {"Class": "Outwit"}
+        "Effect": { "Class": "Outwit" }
     }
-]
+}
