@@ -38,9 +38,6 @@
         "MinTF": 22,
         "MaxTF": 38,
         "BrainCost": 6,
-        "Effect":
-        {
-            "Draw": 12
-        }
+        "Effect": {"Draw": 2 }
     }
 ]
