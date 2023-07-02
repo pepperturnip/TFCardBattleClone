@@ -45,7 +45,7 @@
         "MinTF": 31,
         "MaxTF": 47,
         "HeartCost": 3,
-        "Effect": {"Class": "RefreshBuyPile"}
+        "Effect": {"Class": "ResetBuyPile"}
     },
     {
         "Name": "Back to His Place",

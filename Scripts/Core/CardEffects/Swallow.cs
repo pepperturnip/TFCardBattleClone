@@ -6,7 +6,7 @@ namespace TFCardBattle.Core.CardEffects
     {
         public async Task Activate(BattleController battle)
         {
-            await battle.RefreshBuyPile();
+            await battle.ResetBuyPile();
 
             for (int i = 0; i < 3; i++)
                 await battle.DrawCard();
