@@ -142,7 +142,7 @@ namespace TFCardBattle.Core
             AssertBattleRunning();
 
             await DiscardResources();
-            await RefreshBuyPile();
+            await ResetBuyPile();
 
             // Draw a fresh hand of cards
             for (int i = 0; i < StartingHandSize; i++)
@@ -184,7 +184,7 @@ namespace TFCardBattle.Core
             await StartTurn();
         }
 
-        public Task RefreshBuyPile()
+        public Task ResetBuyPile()
         {
             // Offer a random set of cards to the player
             var offerableCards = CardsOfferableAtTf(
