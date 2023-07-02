@@ -49,7 +49,8 @@ namespace TFCardBattle.Godot
                     cardRegistry.CardPacks["Bondage"],
                     cardRegistry.CardPacks["Cum"],
                     cardRegistry.CardPacks["Cock"],
-                    cardRegistry.CardPacks["Sex"]
+                    cardRegistry.CardPacks["Sex"],
+                    cardRegistry.CardPacks["Futanari"]
                 },
                 PermanentBuyPile = cardRegistry.CardPacks["StandardPermanentBuyPile"],
                 StartingDeck = PlayerStartingDeck.StartingDeck()
