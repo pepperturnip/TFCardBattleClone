@@ -4,8 +4,9 @@ using System.Threading.Tasks;
 
 namespace TFCardBattle.Core.CardEffects
 {
-    public class DowngradeIfHeart : ICardEffect
+    public class DowngradeIfResource : ICardEffect
     {
+        public ResourceType Resource {get; set;}
         public VersionedSimple StrongVersion {get; set;}
         public VersionedSimple WeakVersion {get; set;}
 
@@ -34,7 +35,7 @@ namespace TFCardBattle.Core.CardEffects
         {
             return !state
                 .OwnedCards
-                .Any(c => c.HeartCost > 0);
+                .Any(c => c.GetCost(Resource) > 0);
         }
 
         public class VersionedSimple : Simple

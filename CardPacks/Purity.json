@@ -6,7 +6,8 @@
         "BrainCost": 4,
         "Effect":
         {
-            "Class": "DowngradeIfHeart",
+            "Class": "DowngradeIfResource",
+            "Resource": "Heart",
             "StrongVersion":
             {
                 "Image": "res://Media/Cards/card14a.webp",
@@ -26,7 +27,8 @@
         "BrainCost": 3,
         "Effect":
         {
-            "Class": "DowngradeIfHeart",
+            "Class": "DowngradeIfResource",
+            "Resource": "Heart",
             "StrongVersion":
             {
                 "Image": "res://Media/Cards/card26a.webp",
@@ -46,7 +48,8 @@
         "BrainCost": 3,
         "Effect":
         {
-            "Class": "DowngradeIfHeart",
+            "Class": "DowngradeIfResource",
+            "Resource": "Heart",
             "StrongVersion":
             {
                 "Image": "res://Media/Cards/card43a.webp",
@@ -66,7 +69,8 @@
         "BrainCost": 4,
         "Effect":
         {
-            "Class": "DowngradeIfHeart",
+            "Class": "DowngradeIfResource",
+            "Resource": "Heart",
             "StrongVersion":
             {
                 "Image": "res://Media/Cards/card25a.webp",
