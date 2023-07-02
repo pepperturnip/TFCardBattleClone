@@ -1,0 +1,70 @@
+{
+    "card133":
+    {
+        "Name": "Flaccid",
+        "Image": "res://Media/Cards/card133.webp",
+        "MinTF": 54,
+        "MaxTF": 70,
+        "HeartCost": 2,
+        "DestroyOnActivate": true,
+        "Effect":
+        {
+            "Class": "AddToBuyPile",
+            "CardId": "card134"
+        }
+    },
+    "card134":
+    {
+        "Name": "Chub",
+        "Image": "res://Media/Cards/card134.webp",
+        "MinTF": 54,
+        "MaxTF": 70,
+        "OfferWeight": 0,
+        "HeartCost": 3,
+        "DestroyOnActivate": true,
+        "Effect":
+        {
+            "Class": "AddToBuyPile",
+            "CardId": "card135"
+        }
+    },
+    "card135":
+    {
+        "Name": "Boner",
+        "Image": "res://Media/Cards/card135.webp",
+        "OfferWeight": 54,
+        "HeartCost": 70,
+        "DestroyOnActivate": true,
+        "Effect":
+        {
+            "Class": "AddToBuyPile",
+            "CardId": "card136"
+        }
+    },
+    "card136":
+    {
+        "Name": "Rock Hard",
+        "Image": "res://Media/Cards/card136.webp",
+        "MinTF": 54,
+        "MaxTF": 70,
+        "OfferWeight": 0,
+        "HeartCost": 5,
+        "DestroyOnActivate": true,
+        "Effect":
+        {
+            "Class": "AddToBuyPile",
+            "CardId": "card137"
+        }
+    },
+    "card137":
+    {
+        "Name": "Cum!",
+        "Image": "res://Media/Cards/card137.webp",
+        "MinTF": 56,
+        "MaxTF": 72,
+        "OfferWeight": 0,
+        "HeartCost": 6,
+        "DestroyOnActivate": true,
+        "Effect": { "Damage": 1000 }
+    }
+}
