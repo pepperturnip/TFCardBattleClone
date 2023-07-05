@@ -19,7 +19,12 @@
                 "Image": "res://Media/Cards/card123b.webp",
                 "Mind": 1
             }
-        }
+        },
+        "Gifs":
+        [
+            "res://Media/CardGifs/123a.ogv",
+            "res://Media/CardGifs/123b.ogv"
+        ]
     },
     "card124":
     {
@@ -41,7 +46,14 @@
                 "Image": "res://Media/Cards/card124b.webp",
                 "Heart": 1
             }
-        }
+        },
+        "Gifs":
+        [
+            "res://Media/CardGifs/124a.ogv",
+            "res://Media/CardGifs/124b.ogv",
+            "res://Media/CardGifs/124c.ogv",
+            "res://Media/CardGifs/124d.ogv"
+        ]
     },
     "card128":
     {
@@ -51,7 +63,15 @@
         "MaxTF": 44,
         "HeartCost": 2,
         "DestroyOnActivate": true,
-        "Effect": { "Class": "ForgetBasic" }
+        "Effect": { "Class": "ForgetBasic" },
+        "Gifs":
+        [
+            "res://Media/CardGifs/128a.ogv",
+            "res://Media/CardGifs/128b.ogv",
+            "res://Media/CardGifs/128c.ogv",
+            "res://Media/CardGifs/128d.ogv",
+            "res://Media/CardGifs/128e.ogv"
+        ]
     },
     "card126":
     {
@@ -73,7 +93,14 @@
                 "Image": "res://Media/Cards/card126b.webp",
                 "Draw": 1
             }
-        }
+        },
+        "Gifs":
+        [
+            "res://Media/CardGifs/126a.ogv",
+            "res://Media/CardGifs/126b.ogv",
+            "res://Media/CardGifs/126c.ogv",
+            "res://Media/CardGifs/126d.ogv"
+        ]
     },
     "card127":
     {
@@ -86,7 +113,12 @@
         {
             "Class": "MultiplyResources",
             "Shield": 2
-        }
+        },
+        "Gifs":
+        [
+            "res://Media/CardGifs/127a.ogv",
+            "res://Media/CardGifs/127b.ogv"
+        ]
     },
     "card125":
     {
@@ -96,7 +128,16 @@
         "MaxTF": 53,
         "HeartCost": 4,
         "DestroyOnActivate": true,
-        "Effect": { "Draw": 4 }
+        "Effect": { "Draw": 4 },
+        "Gifs":
+        [
+            "res://Media/CardGifs/125a.ogv",
+            "res://Media/CardGifs/125b.ogv",
+            "res://Media/CardGifs/125c.ogv",
+            "res://Media/CardGifs/125d.ogv",
+            "res://Media/CardGifs/125e.ogv",
+            "res://Media/CardGifs/125f.ogv"
+        ]
     },
     "card129":
     {
@@ -106,7 +147,15 @@
         "MaxTF": 56,
         "BrainCost": 3,
         "DestroyOnActivate": true,
-        "Effect": { "Damage": 10 }
+        "Effect": { "Damage": 10 },
+        "Gifs":
+        [
+            "res://Media/CardGifs/129a.ogv",
+            "res://Media/CardGifs/129b.ogv",
+            "res://Media/CardGifs/129c.ogv",
+            "res://Media/CardGifs/129d.ogv",
+            "res://Media/CardGifs/129e.ogv"
+        ]
     },
     "card130":
     {
@@ -120,7 +169,15 @@
             "Class": "TransferResources",
             "From": "Shield",
             "To": "Damage"
-        }
+        },
+        "Gifs":
+        [
+            "res://Media/CardGifs/130a.ogv",
+            "res://Media/CardGifs/130b.ogv",
+            "res://Media/CardGifs/130c.ogv",
+            "res://Media/CardGifs/130d.ogv",
+            "res://Media/CardGifs/130e.ogv"
+        ]
     },
     "card131":
     {
@@ -142,7 +199,14 @@
                 "Image": "res://Media/Cards/card131b.webp",
                 "Damage": 1
             }
-        }
+        },
+        "Gifs":
+        [
+            "res://Media/CardGifs/131a.ogv",
+            "res://Media/CardGifs/131b.ogv",
+            "res://Media/CardGifs/131c.ogv",
+            "res://Media/CardGifs/131d.ogv"
+        ]
     },
     "card132":
     {
@@ -156,7 +220,15 @@
             "Brain": 2,
             "Heart": 2,
             "Damage": 2
-        }
+        },
+        "Gifs":
+        [
+            "res://Media/CardGifs/132a.ogv",
+            "res://Media/CardGifs/132b.ogv",
+            "res://Media/CardGifs/132c.ogv",
+            "res://Media/CardGifs/132d.ogv",
+            "res://Media/CardGifs/132e.ogv"
+        ]
     },
     "card138":
     {
@@ -187,7 +259,14 @@
                 "Image": "res://Media/Cards/card139b.webp",
                 "Shield": 1
             }
-        }
+        },
+        "Gifs":
+        [
+            "res://Media/CardGifs/139a.ogv",
+            "res://Media/CardGifs/139b.ogv",
+            "res://Media/CardGifs/139c.ogv",
+            "res://Media/CardGifs/139d.ogv"
+        ]
     },
     "card133":
     {
@@ -201,7 +280,13 @@
         {
             "Class": "AddToBuyPile",
             "CardId": "card134"
-        }
+        },
+        "Gifs":
+        [
+            "res://Media/CardGifs/133a.ogv",
+            "res://Media/CardGifs/133b.ogv",
+            "res://Media/CardGifs/133c.ogv"
+        ]
     },
     "card134":
     {
@@ -216,7 +301,13 @@
         {
             "Class": "AddToBuyPile",
             "CardId": "card135"
-        }
+        },
+        "Gifs":
+        [
+            "res://Media/CardGifs/134a.ogv",
+            "res://Media/CardGifs/134b.ogv",
+            "res://Media/CardGifs/134c.ogv"
+        ]
     },
     "card135":
     {
@@ -231,7 +322,13 @@
         {
             "Class": "AddToBuyPile",
             "CardId": "card136"
-        }
+        },
+        "Gifs":
+        [
+            "res://Media/CardGifs/135a.ogv",
+            "res://Media/CardGifs/135b.ogv",
+            "res://Media/CardGifs/135c.ogv"
+        ]
     },
     "card136":
     {
@@ -246,7 +343,13 @@
         {
             "Class": "AddToBuyPile",
             "CardId": "card137"
-        }
+        },
+        "Gifs":
+        [
+            "res://Media/CardGifs/136a.ogv",
+            "res://Media/CardGifs/136b.ogv",
+            "res://Media/CardGifs/136c.ogv"
+        ]
     },
     "card137":
     {
@@ -257,6 +360,12 @@
         "OfferWeight": 0,
         "HeartCost": 6,
         "DestroyOnActivate": true,
-        "Effect": { "Damage": 1000 }
+        "Effect": { "Damage": 1000 },
+        "Gifs":
+        [
+            "res://Media/CardGifs/137a.ogv",
+            "res://Media/CardGifs/137b.ogv",
+            "res://Media/CardGifs/137c.ogv"
+        ]
     }
 }
