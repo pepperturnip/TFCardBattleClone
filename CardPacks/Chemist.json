@@ -21,7 +21,11 @@
         "BrainCost": 3,
         "Effect":
         {
-            "Consumables": ["MinorBrainPotion", "MinorBrainPotion"]
+            "Consumables":
+            [
+                "MinorBrainPotion",
+                "MinorBrainPotion"
+            ]
         }
     },
     "card42":
