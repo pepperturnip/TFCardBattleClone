@@ -21,6 +21,12 @@ namespace TFCardBattle.Core.CardEffects
 
         // TODO: Change the description and texture if the player has heart
         // cards in their deck.
-        public string GetOverriddenImage(BattleState state) => null;
+        public string GetOverriddenImage(BattleState state) => AnyHeart(state)
+            ? "res://Media/Cards/card64b.webp"
+            : null;
+
+        private bool AnyHeart(BattleState state) => state
+            .OwnedCards
+            .Any(c => c.HeartCost > 0);
     }
 }
