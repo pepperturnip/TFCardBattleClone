@@ -1,4 +1,5 @@
-[
+{
+    "card61":
     {
         "Name": "Cam Girl",
         "Image": "res://Media/Cards/card61.webp",
@@ -21,6 +22,7 @@
             "Shield": 1
         }
     },
+    "card41":
     {
         "Name": "Crotch Grab",
         "Image": "res://Media/Cards/card41.webp",
@@ -35,8 +37,9 @@
             "res://Media/CardGifs/41d.ogv",
             "res://Media/CardGifs/41e.ogv"
         ],
-        "Effect": {"Heart": 3}
+        "Effect": { "Heart": 3 }
     },
+    "card38":
     {
         "Name": "Free Entry",
         "Image": "res://Media/Cards/card38.webp",
@@ -50,6 +53,7 @@
             "Resource": "Heart"
         }
     },
+    "card49":
     {
         "Name": "Cock Tease",
         "Image": "res://Media/Cards/card49.webp",
@@ -70,4 +74,4 @@
             "Heart": 2
         }
     }
-]
+}

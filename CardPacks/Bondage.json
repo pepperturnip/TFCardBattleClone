@@ -1,4 +1,5 @@
-[
+{
+    "card72":
     {
         "Name": "Ropeplay",
         "Image": "res://Media/Cards/card72.webp",
@@ -14,8 +15,9 @@
             "res://Media/CardGifs/72e.ogv",
             "res://Media/CardGifs/72f.ogv"
         ],
-        "Effect": {"Sub": 3}
+        "Effect": { "Sub": 3 }
     },
+    "card74":
     {
         "Name": "Blindfolded",
         "Image": "res://Media/Cards/card74.webp",
@@ -36,6 +38,7 @@
             "Draw": 1
         }
     },
+    "card76":
     {
         "Name": "Locked Away",
         "Image": "res://Media/Cards/card76.webp",
@@ -56,6 +59,7 @@
             "Shield": 3
         }
     },
+    "card85":
     {
         "Name": "Collared",
         "Image": "res://Media/Cards/card85.webp",
@@ -71,6 +75,6 @@
             "res://Media/CardGifs/85d.ogv",
             "res://Media/CardGifs/85e.ogv"
         ],
-        "Effect": {"Class": "MultiplyResources"}
+        "Effect": { "Class": "MultiplyResources" }
     }
-]
+}

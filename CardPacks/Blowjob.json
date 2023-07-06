@@ -1,4 +1,5 @@
-[
+{
+    "card52":
     {
         "Name": "Just a Lick",
         "Image": "res://Media/Cards/card52.webp",
@@ -20,6 +21,7 @@
             "Draw": 1
         }
     },
+    "card60":
     {
         "Name": "Sixty-Nine",
         "Image": "res://Media/Cards/card60.webp",
@@ -41,6 +43,7 @@
             "Damage": 3
         }
     },
+    "card56":
     {
         "Name": "Blowjob",
         "Image": "res://Media/Cards/card56.webp",
@@ -67,6 +70,7 @@
             "To": "Damage"
         }
     },
+    "card86":
     {
         "Name": "Take it Deep",
         "Image": "res://Media/Cards/card86.webp",
@@ -91,4 +95,4 @@
             "To": "Shield"
         }
     }
-]
+}

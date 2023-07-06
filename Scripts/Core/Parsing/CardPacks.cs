@@ -12,12 +12,10 @@ namespace TFCardBattle.Core.Parsing
         private static readonly Dictionary<string, Type> _effectClassCache = new Dictionary<string, Type>();
         private static readonly Dictionary<string, Type> _consumableClassCache = new Dictionary<string, Type>();
 
-        public static IEnumerable<Card> Parse(string rawJson)
+        public static IReadOnlyDictionary<string, Card> Parse(string rawJson)
         {
-            return JArray.Parse(rawJson)
-                .Cast<JObject>()
-                .Select(FromJObject)
-                .ToArray();
+            var jObjs = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(rawJson);
+            return jObjs.ToDictionary(kvp => kvp.Key, kvp => FromJObject(kvp.Value));
         }
 
         private static Card FromJObject(JObject obj)

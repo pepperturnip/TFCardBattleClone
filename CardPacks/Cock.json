@@ -1,4 +1,5 @@
-[
+{
+    "card54":
     {
         "Name": "So Big!",
         "Image": "res://Media/Cards/card54.webp",
@@ -20,6 +21,7 @@
             "To": "Damage"
         }
     },
+    "card62":
     {
         "Name": "Just the Tip",
         "Image": "res://Media/Cards/card62.webp",
@@ -34,8 +36,9 @@
             "res://Media/CardGifs/62d.ogv",
             "res://Media/CardGifs/62e.ogv"
         ],
-        "Effect": {"Class": "JustTheTip"}
+        "Effect": { "Class": "JustTheTip" }
     },
+    "card69":
     {
         "Name": "Air Tight",
         "Image": "res://Media/Cards/card69.webp",
@@ -60,6 +63,7 @@
             "Shield": 3
         }
     },
+    "card93":
     {
         "Name": "Gangbang",
         "Image": "res://Media/Cards/card93.webp",
@@ -76,6 +80,6 @@
             "res://Media/CardGifs/93f.ogv",
             "res://Media/CardGifs/93g.ogv"
         ],
-        "Effect": {"Damage": 10}
+        "Effect": { "Damage": 10 }
     }
-]
+}

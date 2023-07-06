@@ -1,4 +1,5 @@
-[
+{
+    "card10":
     {
         "Name": "Quick Thinking",
         "Image": "res://Media/Cards/card10.webp",
@@ -12,6 +13,7 @@
             "Shield": 1
         }
     },
+    "card17":
     {
         "Name": "Phone a Friend",
         "Image": "res://Media/Cards/card17.webp",
@@ -34,6 +36,7 @@
             "Draw": 1
         }
     },
+    "card20":
     {
         "Name": "Paranoia",
         "Image": "res://Media/Cards/card20.webp",
@@ -46,36 +49,40 @@
             "Draw": 1
         }
     },
+    "card33":
     {
         "Name": "Eureka",
         "Image": "res://Media/Cards/card33.webp",
         "MinTF": 10,
         "MaxTF": 26,
         "BrainCost": 7,
-        "Effect": {"Brain": 4}
+        "Effect": { "Brain": 4 }
     },
+    "card70":
     {
         "Name": "Mental Mastery",
         "Image": "res://Media/Cards/card70.webp",
         "MinTF": 49,
         "MaxTF": 65,
         "BrainCost": 5,
-        "Effect": {"Class": "MentalMastery"}
+        "Effect": { "Class": "MentalMastery" }
     },
+    "card64":
     {
         "Name": "Triumph of the Mind",
         "Image": "res://Media/Cards/card64a.webp",
         "MinTF": 55,
         "MaxTF": 71,
         "BrainCost": 8,
-        "Effect": {"Class": "TriumphOfTheMind"}
+        "Effect": { "Class": "TriumphOfTheMind" }
     },
+    "card59":
     {
         "Name": "Corrective Surgery",
         "Image": "res://Media/Cards/card59.webp",
         "MinTF": 42,
         "MaxTF": 58,
         "BrainCost": 7,
-        "Effect": {"SelfHeal": 5}
+        "Effect": { "SelfHeal": 5 }
     }
-]
+}

@@ -1,4 +1,5 @@
-[
+{
+    "card16":
     {
         "Name": "Escape Route",
         "Image": "res://Media/Cards/card16.webp",
@@ -12,6 +13,7 @@
             "To": "Shield"
         }
     },
+    "card24":
     {
         "Name": "Rethink it",
         "Image": "res://Media/Cards/card24.webp",
@@ -20,6 +22,7 @@
         "BrainCost": 4,
         "Effect": { "Class": "ResetBuyPile" }
     },
+    "card23":
     {
         "Name": "Double Down",
         "Image": "res://Media/Cards/card23.webp",
@@ -32,12 +35,13 @@
             "Brain": 2
         }
     },
+    "card19":
     {
         "Name": "All Nighter",
         "Image": "res://Media/Cards/card19.webp",
         "MinTF": 22,
         "MaxTF": 38,
         "BrainCost": 6,
-        "Effect": {"Draw": 2 }
+        "Effect": { "Draw": 2 }
     }
-]
+}

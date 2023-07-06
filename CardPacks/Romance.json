@@ -1,4 +1,5 @@
-[
+{
+    "card32":
     {
         "Name": "Beauty Regimen",
         "Image": "res://Media/Cards/card32.webp",
@@ -19,6 +20,7 @@
             "Draw": 1
         }
     },
+    "card40":
     {
         "Name": "Date Night",
         "Image": "res://Media/Cards/card40.webp",
@@ -39,14 +41,16 @@
             "Shield": 2
         }
     },
+    "card46":
     {
         "Name": "Womans' Intuition",
         "Image": "res://Media/Cards/card46.webp",
         "MinTF": 31,
         "MaxTF": 47,
         "HeartCost": 3,
-        "Effect": {"Class": "ResetBuyPile"}
+        "Effect": { "Class": "ResetBuyPile" }
     },
+    "card50":
     {
         "Name": "Back to His Place",
         "Image": "res://Media/Cards/card50.webp",
@@ -67,4 +71,4 @@
             "Shield": 3
         }
     }
-]
+}

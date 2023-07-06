@@ -10,6 +10,8 @@ namespace TFCardBattle.Core
     /// </summary>
     public class BattleState
     {
+        public readonly CardRegistry CardRegistry;
+
         public PlayerLoadout PlayerLoadout;
 
         public int TurnsElapsed = 0;
@@ -58,9 +60,21 @@ namespace TFCardBattle.Core
         /// </summary>
         public List<Card> BuyPile = new List<Card>();
 
-        public BattleState(PlayerLoadout loadout)
+        /// <summary>
+        /// If this is true, any damage the player would have received this
+        /// turn will instead be dealt to the enemy.
+        /// This resets at the start of the next turn.
+        /// </summary>
+        public bool ReflectDamage = false;
+
+        public BattleState(
+            PlayerLoadout loadout,
+            CardRegistry cardRegistry
+        )
         {
             PlayerLoadout = loadout;
+            CardRegistry = cardRegistry;
+
             Deck.AddRange(loadout.StartingDeck);
         }
 

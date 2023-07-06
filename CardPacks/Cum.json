@@ -1,4 +1,5 @@
-[
+{
+    "card67":
     {
         "Name": "Facial",
         "Image": "res://Media/Cards/card67.webp",
@@ -19,6 +20,7 @@
             "Sub": 2
         }
     },
+    "card80":
     {
         "Name": "Creampie",
         "Image": "res://Media/Cards/card80.webp",
@@ -44,6 +46,7 @@
             "Draw": 2
         }
     },
+    "card83":
     {
         "Name": "Swallow",
         "Image": "res://Media/Cards/card83.webp",
@@ -59,8 +62,9 @@
             "res://Media/CardGifs/83e.ogv",
             "res://Media/CardGifs/83f.ogv"
         ],
-        "Effect": {"Class": "Swallow"}
+        "Effect": { "Class": "Swallow" }
     },
+    "card95":
     {
         "Name": "Lick it Up",
         "Image": "res://Media/Cards/card95.webp",
@@ -72,6 +76,6 @@
             "res://Media/CardGifs/95a.ogv",
             "res://Media/CardGifs/95b.ogv"
         ],
-        "Effect": {"Draw": 3}
+        "Effect": { "Draw": 3 }
     }
-]
+}

@@ -1,42 +1,47 @@
-[
+{
+    "card4":
     {
         "Name": "Online Research",
         "Image": "res://Media/Cards/card4.webp",
         "MinTF": 0,
         "MaxTF": 14,
         "BrainCost": 3,
-        "Effect": {"Brain": 2}
+        "Effect": { "Brain": 2 }
     },
+    "card3":
     {
         "Name": "Feminine Wiles",
         "Image": "res://Media/Cards/card3.webp",
         "MinTF": 15,
         "MaxTF": 29,
         "BrainCost": 3,
-        "Effect": {"Heart": 2}
+        "Effect": { "Heart": 2 }
     },
+    "card2":
     {
         "Name": "Fashion Magazine",
         "Image": "res://Media/Cards/card2.webp",
         "MinTF": 30,
         "MaxTF": 44,
         "HeartCost": 2,
-        "Effect": {"Heart": 2}
+        "Effect": { "Heart": 2 }
     },
+    "card1":
     {
         "Name": "Pet Play",
         "Image": "res://Media/Cards/card1.webp",
         "MinTF": 45,
         "MaxTF": 69,
         "HeartCost": 2,
-        "Effect": {"Sub": 2}
+        "Effect": { "Sub": 2 }
     },
+    "card0":
     {
         "Name": "Training Session",
         "Image": "res://Media/Cards/card0.webp",
         "MinTF": 70,
         "MaxTF": 9999,
         "SubCost": 1,
-        "Effect": {"Sub": 2}
+        "Effect": { "Sub": 2 }
     }
-]
+}

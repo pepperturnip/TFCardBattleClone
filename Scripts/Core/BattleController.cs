@@ -19,20 +19,25 @@ namespace TFCardBattle.Core
         public int EnemyMaxTFDamage => MaxEnemyDamageOnTurn(State.TurnsElapsed);
 
         public readonly BattleState State;
+        public readonly Random Rng;
+        public readonly IBattleAnimationPlayer AnimationPlayer;
 
         public bool BattleEnded {get; private set;} = false;
-        public Random Rng {get; private set;}
-        public IBattleAnimationPlayer AnimationPlayer {get; private set;}
 
         public BattleController(
             PlayerLoadout loadout,
-            IBattleAnimationPlayer animationPlayer,
-            Random rng
+            Random rng,
+            CardRegistry cardRegistry,
+            IBattleAnimationPlayer animationPlayer
         )
         {
-            State = new BattleState(loadout);
-            AnimationPlayer = animationPlayer;
+            State = new BattleState(
+                loadout: loadout,
+                cardRegistry: cardRegistry
+            );
+
             Rng = rng;
+            AnimationPlayer = animationPlayer;
         }
 
         public async Task DrawCard()
@@ -143,6 +148,7 @@ namespace TFCardBattle.Core
 
             await DiscardResources();
             await ResetBuyPile();
+            State.ReflectDamage = false;
 
             // Draw a fresh hand of cards
             for (int i = 0; i < StartingHandSize; i++)
@@ -170,8 +176,22 @@ namespace TFCardBattle.Core
             int enemyTfDamage = RollEnemyDamage() - State.Shield;
             enemyTfDamage = Math.Clamp(enemyTfDamage, 0, int.MaxValue);
 
-            State.PlayerTF += enemyTfDamage;
-            await AnimationPlayer.DamagePlayer(enemyTfDamage);
+            if (!State.ReflectDamage)
+            {
+                State.PlayerTF += enemyTfDamage;
+                await AnimationPlayer.DamagePlayer(enemyTfDamage);
+            }
+            else
+            {
+                State.EnemyTF += State.Damage;
+                await AnimationPlayer.DamageEnemy(State.Damage);
+
+                if (State.EnemyTF >= State.EnemyMaxTF)
+                {
+                    EndBattle();
+                    return;
+                }
+            }
 
             if (State.PlayerTF >= State.PlayerMaxTF)
             {

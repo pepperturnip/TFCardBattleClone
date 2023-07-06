@@ -1,4 +1,5 @@
-[
+{
+    "card77":
     {
         "Name": "Anal",
         "Image": "res://Media/Cards/card77.webp",
@@ -24,6 +25,7 @@
             "Draw": 1
         }
     },
+    "card89":
     {
         "Name": "Pounded",
         "Image": "res://Media/Cards/card89.webp",
@@ -50,6 +52,7 @@
             "Draw": 1
         }
     },
+    "card63":
     {
         "Name": "Ride 'em Cowgirl",
         "Image": "res://Media/Cards/card63.webp",
@@ -73,6 +76,7 @@
             "Draw": 1
         }
     },
+    "card96":
     {
         "Name": "Doggy Style",
         "Image": "res://Media/Cards/card96.webp",
@@ -92,6 +96,6 @@
             "res://Media/CardGifs/96i.ogv",
             "res://Media/CardGifs/96j.ogv"
         ],
-        "Effect": {"Draw": 4}
+        "Effect": { "Draw": 4 }
     }
-]
+}

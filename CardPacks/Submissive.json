@@ -1,4 +1,5 @@
-[
+{
+    "card71":
     {
         "Name": "Bow Down",
         "Image": "res://Media/Cards/card71.webp",
@@ -12,6 +13,7 @@
             "Damage": 1
         }
     },
+    "card73":
     {
         "Name": "Underfoot",
         "Image": "res://Media/Cards/card73.webp",
@@ -25,6 +27,7 @@
             "Shield": 1
         }
     },
+    "card91":
     {
         "Name": "At Master's Feet",
         "Image": "res://Media/Cards/card91.webp",
@@ -49,6 +52,7 @@
             "Draw": 1
         }
     },
+    "card87":
     {
         "Name": "Nipple Clamps",
         "Image": "res://Media/Cards/card87.webp",
@@ -69,6 +73,7 @@
             "Sub": 3
         }
     },
+    "card75":
     {
         "Name": "Inspection",
         "Image": "res://Media/Cards/card75.webp",
@@ -85,8 +90,9 @@
             "res://Media/CardGifs/75f.ogv",
             "res://Media/CardGifs/75g.ogv"
         ],
-        "Effect": {"Draw": 2}
+        "Effect": { "Draw": 2 }
     },
+    "card94":
     {
         "Name": "Branded",
         "Image": "res://Media/Cards/card94.webp",
@@ -99,4 +105,4 @@
             "Draw": 1
         }
     }
-]
+}
