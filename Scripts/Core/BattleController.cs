@@ -97,6 +97,13 @@ namespace TFCardBattle.Core
             }
         }
 
+        public async Task ForgetCardInHand(int handIndex)
+        {
+            var card = State.Hand[handIndex];
+            State.Hand.Remove(card);
+            await AnimationPlayer.ForgetCard(card, State);
+        }
+
         public async Task BuyCard(int buyPileIndex)
         {
             // Fail to buy the card if the player can't afford it.
