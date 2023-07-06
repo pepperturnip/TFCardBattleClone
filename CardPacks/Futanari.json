@@ -2,6 +2,7 @@
     "card123":
     {
         "Name": "Piledriver",
+        "Image": "res://Media/Cards/card123a.webp",
         "MinTF": 22,
         "MaxTF": 38,
         "HeartCost": 1,
@@ -29,6 +30,7 @@
     "card124":
     {
         "Name": "Dick Flash",
+        "Image": "res://Media/Cards/card124a.webp",
         "MinTF": 25,
         "MaxTF": 41,
         "HeartCost": 2,
@@ -76,6 +78,7 @@
     "card126":
     {
         "Name": "Ram it Down",
+        "Image": "res://Media/Cards/card126a.webp",
         "MinTF": 31,
         "MaxTF": 47,
         "HeartCost": 4,
@@ -182,6 +185,7 @@
     "card131":
     {
         "Name": "Full Nelson",
+        "Image": "res://Media/Cards/card131a.webp",
         "MinTF": 47,
         "MaxTF": 63,
         "HeartCost": 4,
@@ -242,6 +246,7 @@
     "card139":
     {
         "Name": "Pin Down",
+        "Image": "res://Media/Cards/card139a.webp",
         "MinTF": 61,
         "MaxTF": 77,
         "HeartCost": 5,
