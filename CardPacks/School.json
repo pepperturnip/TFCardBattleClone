@@ -1,0 +1,193 @@
+{
+    "card140":
+    {
+        "Name": "Hypnosis Class",
+        "Image": "res://Media/Cards/card140.webp",
+        "MinTF": 24,
+        "MaxTF": 40,
+        "BrainCost": 5,
+        "Gifs": ["res://Media/CardGifs/140.ogv"]
+    },
+    "card141":
+    {
+        "Name": "Oral Presentation",
+        "Image": "res://Media/Cards/card141.webp",
+        "MinTF": 28,
+        "MaxTF": 44,
+        "BrainCost": 5,
+        "Gifs":
+        [
+            "res://Media/CardGifs/141a.ogv",
+            "res://Media/CardGifs/141b.ogv",
+            "res://Media/CardGifs/141c.ogv",
+            "res://Media/CardGifs/141d.ogv",
+            "res://Media/CardGifs/141e.ogv"
+        ]
+    },
+    "card142":
+    {
+        "Name": "Rote Memorization",
+        "Image": "res://Media/Cards/card142.webp",
+        "MinTF": 32,
+        "MaxTF": 48,
+        "BrainCost": 6
+    },
+    "card143":
+    {
+        "Name": "Practical Demonstration",
+        "Image": "res://Media/Cards/card143.webp",
+        "MinTF": 36,
+        "MaxTF": 52,
+        "HeartCost": 4,
+        "Gifs":
+        [
+            "res://Media/CardGifs/143a.ogv",
+            "res://Media/CardGifs/143b.ogv",
+            "res://Media/CardGifs/143c.ogv",
+            "res://Media/CardGifs/143d.ogv",
+            "res://Media/CardGifs/143e.ogv"
+        ]
+    },
+    "card144":
+    {
+        "Name": "Sexual Education",
+        "Image": "res://Media/Cards/card144.webp",
+        "MinTF": 40,
+        "MaxTF": 56,
+        "HeartCost": 3,
+        "Gifs":
+        [
+            "res://Media/CardGifs/144a.ogv",
+            "res://Media/CardGifs/144b.ogv",
+            "res://Media/CardGifs/144c.ogv",
+            "res://Media/CardGifs/144d.ogv",
+            "res://Media/CardGifs/144e.ogv"
+        ]
+    },
+    "card145":
+    {
+        "Name": "Private Tutoring",
+        "Image": "res://Media/Cards/card145.webp",
+        "MinTF": 45,
+        "MaxTF": 61,
+        "BrainCost": 4,
+        "Gifs":
+        [
+            "res://Media/CardGifs/145a.ogv",
+            "res://Media/CardGifs/145b.ogv",
+            "res://Media/CardGifs/145c.ogv",
+            "res://Media/CardGifs/145d.ogv",
+            "res://Media/CardGifs/145e.ogv",
+            "res://Media/CardGifs/145f.ogv",
+            "res://Media/CardGifs/145g.ogv"
+        ]
+    },
+    "card147":
+    {
+        "Name": "Study Session",
+        "Image": "res://Media/Cards/card147.webp",
+        "MinTF": 50,
+        "MaxTF": 66,
+        "BrainCost": 8,
+        "Gifs":
+        [
+            "res://Media/CardGifs/147a.ogv",
+            "res://Media/CardGifs/147b.ogv",
+            "res://Media/CardGifs/147c.ogv",
+            "res://Media/CardGifs/147d.ogv",
+            "res://Media/CardGifs/147e.ogv"
+        ]
+    },
+    "card148":
+    {
+        "Name": "Detention",
+        "Image": "res://Media/Cards/card148.webp",
+        "MinTF": 54,
+        "MaxTF": 70,
+        "SubCost": 1,
+        "Gifs":
+        [
+            "res://Media/CardGifs/148a.ogv",
+            "res://Media/CardGifs/148b.ogv",
+            "res://Media/CardGifs/148c.ogv",
+            "res://Media/CardGifs/148d.ogv"
+        ]
+    },
+    "card149":
+    {
+        "Name": "Uniform Violation",
+        "Image": "res://Media/Cards/card149.webp",
+        "MinTF": 59,
+        "MaxTF": 75,
+        "BrainCost": 4,
+        "Gifs":
+        [
+            "res://Media/CardGifs/149a.ogv",
+            "res://Media/CardGifs/149b.ogv"
+        ]
+    },
+    "card150":
+    {
+        "Name": "Group Study",
+        "Image": "res://Media/Cards/card150.webp",
+        "MinTF": 65,
+        "MaxTF": 81,
+        "RainbowCost": 15,
+        "Gifs":
+        [
+            "res://Media/CardGifs/150a.ogv",
+            "res://Media/CardGifs/150b.ogv",
+            "res://Media/CardGifs/150c.ogv",
+            "res://Media/CardGifs/150d.ogv",
+            "res://Media/CardGifs/150e.ogv"
+        ]
+    },
+    "card151":
+    {
+        "Name": "Extra Credit",
+        "Image": "res://Media/Cards/card151.webp",
+        "MinTF": 69,
+        "MaxTF": 85,
+        "BrainCost": 5,
+        "Gifs":
+        [
+            "res://Media/CardGifs/151a.ogv",
+            "res://Media/CardGifs/151b.ogv",
+            "res://Media/CardGifs/151c.ogv",
+            "res://Media/CardGifs/151d.ogv",
+            "res://Media/CardGifs/151e.ogv"
+        ]
+    },
+    "card152":
+    {
+        "Name": "Parent Night",
+        "Image": "res://Media/Cards/card152.webp",
+        "MinTF": 73,
+        "MaxTF": 89,
+        "BrainCost": 8,
+        "Gifs":
+        [
+            "res://Media/CardGifs/152a.ogv",
+            "res://Media/CardGifs/152b.ogv",
+            "res://Media/CardGifs/152c.ogv",
+            "res://Media/CardGifs/152d.ogv",
+            "res://Media/CardGifs/152e.ogv"
+        ]
+    },
+    "card153":
+    {
+        "Name": "Graduation",
+        "Image": "res://Media/Cards/card153.webp",
+        "MinTF": 74,
+        "MaxTF": 90,
+        "BrainCost": 10,
+        "Gifs":
+        [
+            "res://Media/CardGifs/153a.ogv",
+            "res://Media/CardGifs/153b.ogv",
+            "res://Media/CardGifs/153c.ogv",
+            "res://Media/CardGifs/153d.ogv",
+            "res://Media/CardGifs/153e.ogv"
+        ]
+    }
+}
