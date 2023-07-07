@@ -6,7 +6,7 @@
         "MinTF": 24,
         "MaxTF": 40,
         "BrainCost": 5,
-        "Gifs": ["res://Media/CardGifs/140.ogv"],
+        "Gifs": ["res://Media/CardGifs/140a.ogv"],
         "Effect":
         {
             "Class": "ForgetRandomAndGainResourceEqualToCost",
