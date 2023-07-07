@@ -6,7 +6,12 @@
         "MinTF": 24,
         "MaxTF": 40,
         "BrainCost": 5,
-        "Gifs": ["res://Media/CardGifs/140.ogv"]
+        "Gifs": ["res://Media/CardGifs/140.ogv"],
+        "Effect":
+        {
+            "Class": "ForgetRandomAndGainResourceEqualToCost",
+            "Resource": "Brain"
+        }
     },
     "card141":
     {
@@ -22,7 +27,13 @@
             "res://Media/CardGifs/141c.ogv",
             "res://Media/CardGifs/141d.ogv",
             "res://Media/CardGifs/141e.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Class": "TransferResources",
+            "From": "Brain",
+            "To": "Damage"
+        }
     },
     "card142":
     {
@@ -30,7 +41,8 @@
         "Image": "res://Media/Cards/card142.webp",
         "MinTF": 32,
         "MaxTF": 48,
-        "BrainCost": 6
+        "BrainCost": 6,
+        "Effect": { "Class": "RoteMemorization" }
     },
     "card143":
     {
@@ -46,7 +58,13 @@
             "res://Media/CardGifs/143c.ogv",
             "res://Media/CardGifs/143d.ogv",
             "res://Media/CardGifs/143e.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Class": "TransferResources",
+            "From": "Heart",
+            "To": "Brain"
+        }
     },
     "card144":
     {
@@ -62,7 +80,8 @@
             "res://Media/CardGifs/144c.ogv",
             "res://Media/CardGifs/144d.ogv",
             "res://Media/CardGifs/144e.ogv"
-        ]
+        ],
+        "Effect": { "Brain": 3 }
     },
     "card145":
     {
@@ -80,7 +99,12 @@
             "res://Media/CardGifs/145e.ogv",
             "res://Media/CardGifs/145f.ogv",
             "res://Media/CardGifs/145g.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Class": "DrawMostExpensive",
+            "Resource": "Brain"
+        }
     },
     "card147":
     {
@@ -96,7 +120,8 @@
             "res://Media/CardGifs/147c.ogv",
             "res://Media/CardGifs/147d.ogv",
             "res://Media/CardGifs/147e.ogv"
-        ]
+        ],
+        "Effect": { "Draw": 3 }
     },
     "card148":
     {
@@ -111,7 +136,8 @@
             "res://Media/CardGifs/148b.ogv",
             "res://Media/CardGifs/148c.ogv",
             "res://Media/CardGifs/148d.ogv"
-        ]
+        ],
+        "Effect": { "Brain": 3 }
     },
     "card149":
     {
@@ -124,7 +150,12 @@
         [
             "res://Media/CardGifs/149a.ogv",
             "res://Media/CardGifs/149b.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Brain": 2,
+            "Sub": 2
+        }
     },
     "card150":
     {
@@ -140,7 +171,8 @@
             "res://Media/CardGifs/150c.ogv",
             "res://Media/CardGifs/150d.ogv",
             "res://Media/CardGifs/150e.ogv"
-        ]
+        ],
+        "Effect": { "Class": "TransferRainbowToDamage" }
     },
     "card151":
     {
@@ -156,7 +188,8 @@
             "res://Media/CardGifs/151c.ogv",
             "res://Media/CardGifs/151d.ogv",
             "res://Media/CardGifs/151e.ogv"
-        ]
+        ],
+        "Effect": { "Class": "CopyLastCardPlayed" }
     },
     "card152":
     {
@@ -172,7 +205,8 @@
             "res://Media/CardGifs/152c.ogv",
             "res://Media/CardGifs/152d.ogv",
             "res://Media/CardGifs/152e.ogv"
-        ]
+        ],
+        "Effect": { "Shield": 9999999 }
     },
     "card153":
     {
@@ -188,6 +222,7 @@
             "res://Media/CardGifs/153c.ogv",
             "res://Media/CardGifs/153d.ogv",
             "res://Media/CardGifs/153e.ogv"
-        ]
+        ],
+        "Effect": { "Draw": 5 }
     }
 }
