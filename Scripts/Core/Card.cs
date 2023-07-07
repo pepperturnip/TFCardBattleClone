@@ -17,6 +17,7 @@ namespace TFCardBattle.Core
         public int BrainCost;
         public int HeartCost;
         public int SubCost;
+        public int RainbowCost;
 
         public bool DestroyOnActivate;
 

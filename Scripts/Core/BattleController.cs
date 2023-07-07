@@ -120,9 +120,44 @@ namespace TFCardBattle.Core
 
             State.Discard.Add(card);
 
-            State.Brain -= card.BrainCost;
-            State.Heart -= card.HeartCost;
-            State.Sub -= card.SubCost;
+            if (card.RainbowCost == 0)
+            {
+                State.Brain -= card.BrainCost;
+                State.Heart -= card.HeartCost;
+                State.Sub -= card.SubCost;
+            }
+            else
+            {
+                // "Rainbow" cards can be paid for with any combination of
+                // resources.  IE: something that costs 15 rainbow can be bought
+                // with 15 brain, or with 10 brain + 5 heart, or with 5 of each,
+                // etc.
+                //
+                // So, which resources get spent "first"?
+                // It's subs, then hearts, then brains.
+                int leftToSpend = card.RainbowCost;
+                while (leftToSpend > 0)
+                {
+                    if (State.Sub > 0)
+                        State.Sub--;
+
+                    else if (State.Heart > 0)
+                        State.Heart--;
+
+                    else
+                        State.Brain--;
+
+                    leftToSpend--;
+                }
+                // Now, I know what you're thinking.
+                // "What the hell, dude?!  Why did you use a loop for this
+                // instead of doing some simple math?!"
+                //
+                // The answer is that I'm both stupid and lazy.
+                // I don't know the simple math off the top of my head, and I'm
+                // too lazy to figure it.  So instead, I'm just subtracting
+                // stuff one-by-one.
+            }
 
             await AnimationPlayer.BuyCard(buyPileIndex, isPermanentCard);
         }

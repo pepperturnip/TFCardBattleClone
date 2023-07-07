@@ -108,6 +108,9 @@ namespace TFCardBattle.Core
         {
             var card = BuyPile[buyPileIndex];
 
+            if (Brain + Heart + Sub < card.RainbowCost)
+                return false;
+
             if (Brain < card.BrainCost)
                 return false;
 
