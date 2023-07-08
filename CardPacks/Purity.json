@@ -2,6 +2,7 @@
     "card14":
     {
         "Name": "Purity of Mind",
+        "Image": "res://Media/Cards/card14a.webp",
         "MinTF": 0,
         "MaxTF": 13,
         "BrainCost": 4,
@@ -24,6 +25,7 @@
     "card26":
     {
         "Name": "Strategic Operation",
+        "Image": "res://Media/Cards/card26a.webp",
         "MinTF": 3,
         "MaxTF": 19,
         "BrainCost": 3,
@@ -46,6 +48,7 @@
     "card43":
     {
         "Name": "Mental Shield",
+        "Image": "res://Media/Cards/card43a.webp",
         "MinTF": 9,
         "MaxTF": 25,
         "BrainCost": 3,
@@ -68,6 +71,7 @@
     "card25":
     {
         "Name": "Online Interview",
+        "Image": "res://Media/Cards/card25a.webp",
         "MinTF": 26,
         "MaxTF": 42,
         "BrainCost": 4,

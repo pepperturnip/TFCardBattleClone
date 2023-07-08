@@ -2,9 +2,15 @@
     "card123":
     {
         "Name": "Piledriver",
+        "Image": "res://Media/Cards/card123a.webp",
         "MinTF": 22,
         "MaxTF": 38,
         "HeartCost": 1,
+        "Gifs":
+        [
+            "res://Media/CardGifs/123a.ogv",
+            "res://Media/CardGifs/123b.ogv"
+        ],
         "Effect":
         {
             "Class": "DowngradeIfResource",
@@ -19,19 +25,22 @@
                 "Image": "res://Media/Cards/card123b.webp",
                 "Mind": 1
             }
-        },
-        "Gifs":
-        [
-            "res://Media/CardGifs/123a.ogv",
-            "res://Media/CardGifs/123b.ogv"
-        ]
+        }
     },
     "card124":
     {
         "Name": "Dick Flash",
+        "Image": "res://Media/Cards/card124a.webp",
         "MinTF": 25,
         "MaxTF": 41,
         "HeartCost": 2,
+        "Gifs":
+        [
+            "res://Media/CardGifs/124a.ogv",
+            "res://Media/CardGifs/124b.ogv",
+            "res://Media/CardGifs/124c.ogv",
+            "res://Media/CardGifs/124d.ogv"
+        ],
         "Effect":
         {
             "Class": "DowngradeIfResource",
@@ -46,14 +55,7 @@
                 "Image": "res://Media/Cards/card124b.webp",
                 "Heart": 1
             }
-        },
-        "Gifs":
-        [
-            "res://Media/CardGifs/124a.ogv",
-            "res://Media/CardGifs/124b.ogv",
-            "res://Media/CardGifs/124c.ogv",
-            "res://Media/CardGifs/124d.ogv"
-        ]
+        }
     },
     "card128":
     {
@@ -63,7 +65,6 @@
         "MaxTF": 44,
         "HeartCost": 2,
         "DestroyOnActivate": true,
-        "Effect": { "Class": "ForgetBasic" },
         "Gifs":
         [
             "res://Media/CardGifs/128a.ogv",
@@ -71,14 +72,23 @@
             "res://Media/CardGifs/128c.ogv",
             "res://Media/CardGifs/128d.ogv",
             "res://Media/CardGifs/128e.ogv"
-        ]
+        ],
+        "Effect": { "Class": "ForgetBasic" }
     },
     "card126":
     {
         "Name": "Ram it Down",
+        "Image": "res://Media/Cards/card126a.webp",
         "MinTF": 31,
         "MaxTF": 47,
         "HeartCost": 4,
+        "Gifs":
+        [
+            "res://Media/CardGifs/126a.ogv",
+            "res://Media/CardGifs/126b.ogv",
+            "res://Media/CardGifs/126c.ogv",
+            "res://Media/CardGifs/126d.ogv"
+        ],
         "Effect":
         {
             "Class": "DowngradeIfResource",
@@ -93,14 +103,7 @@
                 "Image": "res://Media/Cards/card126b.webp",
                 "Draw": 1
             }
-        },
-        "Gifs":
-        [
-            "res://Media/CardGifs/126a.ogv",
-            "res://Media/CardGifs/126b.ogv",
-            "res://Media/CardGifs/126c.ogv",
-            "res://Media/CardGifs/126d.ogv"
-        ]
+        }
     },
     "card127":
     {
@@ -109,16 +112,16 @@
         "MinTF": 34,
         "MaxTF": 50,
         "BrainCost": 5,
-        "Effect":
-        {
-            "Class": "MultiplyResources",
-            "Shield": 2
-        },
         "Gifs":
         [
             "res://Media/CardGifs/127a.ogv",
             "res://Media/CardGifs/127b.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Class": "MultiplyResources",
+            "Shield": 2
+        }
     },
     "card125":
     {
@@ -128,7 +131,6 @@
         "MaxTF": 53,
         "HeartCost": 4,
         "DestroyOnActivate": true,
-        "Effect": { "Draw": 4 },
         "Gifs":
         [
             "res://Media/CardGifs/125a.ogv",
@@ -137,7 +139,8 @@
             "res://Media/CardGifs/125d.ogv",
             "res://Media/CardGifs/125e.ogv",
             "res://Media/CardGifs/125f.ogv"
-        ]
+        ],
+        "Effect": { "Draw": 4 }
     },
     "card129":
     {
@@ -147,7 +150,6 @@
         "MaxTF": 56,
         "BrainCost": 3,
         "DestroyOnActivate": true,
-        "Effect": { "Damage": 10 },
         "Gifs":
         [
             "res://Media/CardGifs/129a.ogv",
@@ -155,7 +157,8 @@
             "res://Media/CardGifs/129c.ogv",
             "res://Media/CardGifs/129d.ogv",
             "res://Media/CardGifs/129e.ogv"
-        ]
+        ],
+        "Effect": { "Damage": 10 }
     },
     "card130":
     {
@@ -164,12 +167,6 @@
         "MinTF": 44,
         "MaxTF": 60,
         "HeartCost": 5,
-        "Effect":
-        {
-            "Class": "TransferResources",
-            "From": "Shield",
-            "To": "Damage"
-        },
         "Gifs":
         [
             "res://Media/CardGifs/130a.ogv",
@@ -177,14 +174,28 @@
             "res://Media/CardGifs/130c.ogv",
             "res://Media/CardGifs/130d.ogv",
             "res://Media/CardGifs/130e.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Class": "TransferResources",
+            "From": "Shield",
+            "To": "Damage"
+        }
     },
     "card131":
     {
         "Name": "Full Nelson",
+        "Image": "res://Media/Cards/card131a.webp",
         "MinTF": 47,
         "MaxTF": 63,
         "HeartCost": 4,
+        "Gifs":
+        [
+            "res://Media/CardGifs/131a.ogv",
+            "res://Media/CardGifs/131b.ogv",
+            "res://Media/CardGifs/131c.ogv",
+            "res://Media/CardGifs/131d.ogv"
+        ],
         "Effect":
         {
             "Class": "DowngradeIfResource",
@@ -199,14 +210,7 @@
                 "Image": "res://Media/Cards/card131b.webp",
                 "Damage": 1
             }
-        },
-        "Gifs":
-        [
-            "res://Media/CardGifs/131a.ogv",
-            "res://Media/CardGifs/131b.ogv",
-            "res://Media/CardGifs/131c.ogv",
-            "res://Media/CardGifs/131d.ogv"
-        ]
+        }
     },
     "card132":
     {
@@ -215,12 +219,6 @@
         "MinTF": 51,
         "MaxTF": 67,
         "HeartCost": 4,
-        "Effect":
-        {
-            "Brain": 2,
-            "Heart": 2,
-            "Damage": 2
-        },
         "Gifs":
         [
             "res://Media/CardGifs/132a.ogv",
@@ -228,7 +226,13 @@
             "res://Media/CardGifs/132c.ogv",
             "res://Media/CardGifs/132d.ogv",
             "res://Media/CardGifs/132e.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Brain": 2,
+            "Heart": 2,
+            "Damage": 2
+        }
     },
     "card138":
     {
@@ -242,9 +246,17 @@
     "card139":
     {
         "Name": "Pin Down",
+        "Image": "res://Media/Cards/card139a.webp",
         "MinTF": 61,
         "MaxTF": 77,
         "HeartCost": 5,
+        "Gifs":
+        [
+            "res://Media/CardGifs/139a.ogv",
+            "res://Media/CardGifs/139b.ogv",
+            "res://Media/CardGifs/139c.ogv",
+            "res://Media/CardGifs/139d.ogv"
+        ],
         "Effect":
         {
             "Class": "DowngradeIfResource",
@@ -259,14 +271,7 @@
                 "Image": "res://Media/Cards/card139b.webp",
                 "Shield": 1
             }
-        },
-        "Gifs":
-        [
-            "res://Media/CardGifs/139a.ogv",
-            "res://Media/CardGifs/139b.ogv",
-            "res://Media/CardGifs/139c.ogv",
-            "res://Media/CardGifs/139d.ogv"
-        ]
+        }
     },
     "card133":
     {
@@ -276,17 +281,17 @@
         "MaxTF": 70,
         "HeartCost": 2,
         "DestroyOnActivate": true,
-        "Effect":
-        {
-            "Class": "AddToBuyPile",
-            "CardId": "card134"
-        },
         "Gifs":
         [
             "res://Media/CardGifs/133a.ogv",
             "res://Media/CardGifs/133b.ogv",
             "res://Media/CardGifs/133c.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Class": "AddToBuyPile",
+            "CardId": "card134"
+        }
     },
     "card134":
     {
@@ -297,17 +302,17 @@
         "OfferWeight": 0,
         "HeartCost": 3,
         "DestroyOnActivate": true,
-        "Effect":
-        {
-            "Class": "AddToBuyPile",
-            "CardId": "card135"
-        },
         "Gifs":
         [
             "res://Media/CardGifs/134a.ogv",
             "res://Media/CardGifs/134b.ogv",
             "res://Media/CardGifs/134c.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Class": "AddToBuyPile",
+            "CardId": "card135"
+        }
     },
     "card135":
     {
@@ -318,17 +323,17 @@
         "OfferWeight": 0,
         "HeartCost": 4,
         "DestroyOnActivate": true,
-        "Effect":
-        {
-            "Class": "AddToBuyPile",
-            "CardId": "card136"
-        },
         "Gifs":
         [
             "res://Media/CardGifs/135a.ogv",
             "res://Media/CardGifs/135b.ogv",
             "res://Media/CardGifs/135c.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Class": "AddToBuyPile",
+            "CardId": "card136"
+        }
     },
     "card136":
     {
@@ -339,17 +344,17 @@
         "OfferWeight": 0,
         "HeartCost": 5,
         "DestroyOnActivate": true,
-        "Effect":
-        {
-            "Class": "AddToBuyPile",
-            "CardId": "card137"
-        },
         "Gifs":
         [
             "res://Media/CardGifs/136a.ogv",
             "res://Media/CardGifs/136b.ogv",
             "res://Media/CardGifs/136c.ogv"
-        ]
+        ],
+        "Effect":
+        {
+            "Class": "AddToBuyPile",
+            "CardId": "card137"
+        }
     },
     "card137":
     {
@@ -360,12 +365,12 @@
         "OfferWeight": 0,
         "HeartCost": 6,
         "DestroyOnActivate": true,
-        "Effect": { "Damage": 1000 },
         "Gifs":
         [
             "res://Media/CardGifs/137a.ogv",
             "res://Media/CardGifs/137b.ogv",
             "res://Media/CardGifs/137c.ogv"
-        ]
+        ],
+        "Effect": { "Damage": 1000 }
     }
 }

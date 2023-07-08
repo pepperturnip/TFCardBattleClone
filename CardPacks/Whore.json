@@ -104,6 +104,7 @@
     "card79":
     {
         "Name": "Purity of Lust",
+        "Image": "res://Media/Cards/card79a.webp",
         "MinTF": 62,
         "MaxTF": 78,
         "HeartCost": 6,
