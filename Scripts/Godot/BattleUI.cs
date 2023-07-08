@@ -120,6 +120,7 @@ namespace TFCardBattle.Godot
 
             _resourcesDisplay.UpdateResources(Battle.State);
             _consumablesDisplay.Refresh(Battle.State.Consumables.ToArray());
+            GetNode<CardListDisplay>("%DiscardPileDisplay").Refresh(Battle.State.Discard);
         }
 
         private void EnableInput(bool enabled)
