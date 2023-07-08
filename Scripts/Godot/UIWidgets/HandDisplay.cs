@@ -55,7 +55,7 @@ namespace TFCardBattle.Godot
 
             // Start animating the clone in the background.
             const double stepDuration = 0.1;
-            Vector2 endPos = clone.Position + Vector2.Up * _cardRow.CardSize.Y;
+            Vector2 endPos = clone.Position + Vector2.Up * (Size.Y / 2);
             var tween = GetTree().CreateTween();
 
             tween.TweenProperty(

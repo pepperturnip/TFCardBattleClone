@@ -19,8 +19,8 @@ font_color = Color(0, 0, 0, 1)
 [node name="CardModel" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 128.0
-offset_bottom = 179.2
+offset_right = 160.0
+offset_bottom = 224.0
 script = ExtResource("1_65srg")
 
 [node name="Panel" type="Panel" parent="."]
