@@ -37,7 +37,7 @@ namespace TFCardBattle.Godot
                 var localPos = _cardModels.ToLocal(globalPos);
 
                 DrawRect(
-                    rect: new Rect2(localPos - (CardSize / 2), CardSize),
+                    rect: new Rect2(localPos, CardSize),
                     color: Colors.Red
                 );
 
@@ -52,6 +52,8 @@ namespace TFCardBattle.Godot
             CardSize = dummyCard.Size;
             dummyCard.QueueFree();
             dummyCard = null;
+
+            QueueRedraw();
         }
 
         public override void _Process(double deltaD)
@@ -147,7 +149,6 @@ namespace TFCardBattle.Godot
                 _cardPositions.AddChild(cardPositioner);
 
                 cardPositioner.GlobalPosition = TargetGlobalPosition(i, cardCount);
-                cardPositioner.GlobalPosition -= CardSize / 2;
 
                 // We need to make a copy of this value so it can be used within
                 // the closure.  This is because "i" will have changed by the
@@ -216,7 +217,7 @@ namespace TFCardBattle.Godot
             x += MinCardSeparation / 2;
 
             var pos = _cardPositions.GlobalPosition + Vector2.Right * x;
-            return pos + (CardSize / 2);
+            return pos;
         }
 
         private partial class CardPositioner : Control
