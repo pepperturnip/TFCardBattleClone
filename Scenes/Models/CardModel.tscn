@@ -16,16 +16,22 @@ font_color = Color(0, 0, 0, 1)
 font_size = 12
 font_color = Color(0, 0, 0, 1)
 
-[node name="CardModel" type="Node2D"]
+[node name="CardModel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 192.0
+pivot_offset = Vector2(64, 96)
 script = ExtResource("1_65srg")
 
 [node name="Panel" type="Panel" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(128, 192)
-offset_left = -76.0
-offset_top = -108.0
-offset_right = 76.0
-offset_bottom = 108.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_obthe")
 

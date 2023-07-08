@@ -5,13 +5,11 @@ using TFCardBattle.Core;
 namespace TFCardBattle.Godot
 {
     [Tool]
-    public partial class CardModel : Node2D
+    public partial class CardModel : Control
     {
         [Export] public bool Enabled = true;
         [Export] public Color EnabledModulate = Colors.White;
         [Export] public Color DisabledModulate = Color.FromHsv(0, 0, 0.5f);
-
-        public Vector2 Size => _panel.Size;
 
         public Card Card => _card;
         private Card _card;

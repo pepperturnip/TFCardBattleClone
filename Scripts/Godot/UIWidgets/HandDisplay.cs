@@ -119,6 +119,16 @@ namespace TFCardBattle.Godot
             node.GlobalPosition = globalPos;
         }
 
+        private void DetatchParent(Control node)
+        {
+            var globalPos = node.GlobalPosition;
+
+            node.GetParent().RemoveChild(node);
+            GetParent().AddChild(node);
+
+            node.GlobalPosition = globalPos;
+        }
+
         public void AddCard(Card card)
         {
             _cardRow.AddCard(card);
