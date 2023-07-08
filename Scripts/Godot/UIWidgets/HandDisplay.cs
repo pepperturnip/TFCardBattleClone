@@ -67,20 +67,20 @@ namespace TFCardBattle.Godot
             tween.Parallel();
             tween.TweenProperty(
                 clone,
-                "scale",
+                "CenterScale",
                 Vector2.One * 1.1f,
                 stepDuration
             );
 
             tween.TweenProperty(
                 clone,
-                "scale",
+                "CenterScale",
                 Vector2.One * 0.95f,
                 stepDuration
             );
             tween.TweenProperty(
                 clone,
-                "scale",
+                "CenterScale",
                 Vector2.One,
                 stepDuration
             );

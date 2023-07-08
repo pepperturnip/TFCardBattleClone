@@ -10,6 +10,7 @@ namespace TFCardBattle.Godot
         [Export] public bool Enabled = true;
         [Export] public Color EnabledModulate = Colors.White;
         [Export] public Color DisabledModulate = Color.FromHsv(0, 0, 0.5f);
+        [Export] public Vector2 CenterScale = Vector2.One;
 
         public Card Card => _card;
         private Card _card;
@@ -24,9 +25,15 @@ namespace TFCardBattle.Godot
 
         public override void _Process(double delta)
         {
+            if (Engine.IsEditorHint())
+                return;
+
             _panel.Modulate = Enabled
                 ? EnabledModulate
                 : DisabledModulate;
+
+            _panel.PivotOffset = Size / 2;
+            _panel.Scale = CenterScale;
         }
 
         public void SetCard(Card card, BattleState state)

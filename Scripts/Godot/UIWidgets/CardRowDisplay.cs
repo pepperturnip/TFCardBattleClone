@@ -85,7 +85,7 @@ namespace TFCardBattle.Godot
                     ? Vector2.One * CardHoverScale
                     : Vector2.One;
 
-                model.Scale = model.Scale.MoveToward(targetScale, CardHoverGrowSpeed * delta);
+                model.CenterScale = model.CenterScale.MoveToward(targetScale, CardHoverGrowSpeed * delta);
             }
         }
 
