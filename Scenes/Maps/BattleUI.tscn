@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cwoeadm07txvd" path="res://Scenes/UIWidgets/DamageAnimationPlayer.tscn" id="8_6si6n"]
 [ext_resource type="PackedScene" uid="uid://doy8c42dvds45" path="res://Scenes/UIWidgets/TFBar.tscn" id="8_knmsm"]
 [ext_resource type="PackedScene" uid="uid://btppoqavkkoqo" path="res://Scenes/UIWidgets/CardListDisplay.tscn" id="11_r54pf"]
-[ext_resource type="PackedScene" uid="uid://cs4vf3jnrvk57" path="res://Scenes/Models/CardModel.tscn" id="12_dbxp3"]
+[ext_resource type="PackedScene" uid="uid://bout6816idhcc" path="res://Scenes/UIWidgets/CardButton.tscn" id="13_yhsqw"]
 
 [sub_resource type="GDScript" id="GDScript_iy4y7"]
 script/source = "extends Panel
@@ -211,6 +211,43 @@ grow_horizontal = 2
 text = "Enemy"
 horizontal_alignment = 1
 
+[node name="DiscardPilePreview" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -84.0
+offset_right = -144.0
+offset_bottom = 84.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="DiscardPilePreview"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "Discard Pile
+"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="ShowDiscardButton" parent="DiscardPilePreview" instance=ExtResource("13_yhsqw")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 32.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="ForgetAnimationPlayerHolder" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -243,55 +280,6 @@ script = SubResource("GDScript_iy4y7")
 unique_name_in_owner = true
 layout_mode = 1
 ModelFactory = NodePath("../../CardModelFactory")
-
-[node name="DiscardPilePreview" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -248.0
-offset_top = -84.0
-offset_right = -144.0
-offset_bottom = 84.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="DiscardPilePreview"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 26.0
-grow_horizontal = 2
-text = "Discard Pile
-"
-horizontal_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="DiscardPilePreviewModel" parent="DiscardPilePreview" instance=ExtResource("12_dbxp3")]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 32.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_lock_ = true
-
-[node name="ShowDiscardButton" type="Button" parent="DiscardPilePreview"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-flat = true
-metadata/_edit_lock_ = true
 
 [connection signal="CardActivated" from="HandHolder/HandDisplay" to="." method="OnPlayCardClicked"]
 [connection signal="CardBought" from="BuyPileHolder/BuyPileDisplay" to="." method="OnBuyCardClicked"]
