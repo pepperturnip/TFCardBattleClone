@@ -94,9 +94,9 @@ namespace TFCardBattle.Godot
             return _cardModels.GetChild<CardModel>(cardIndex);
         }
 
-        public void AddCard(Card card)
+        public void AddCard(Card card, Vector2 spawnPointGlobal)
         {
-            AddCardModel(card, Vector2.Zero);
+            AddCardModel(card, spawnPointGlobal);
             RecreateCardPositioners(_cardModels.GetChildCount());
         }
 

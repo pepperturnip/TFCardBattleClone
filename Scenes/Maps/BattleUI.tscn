@@ -46,10 +46,11 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HandDisplay" parent="HandHolder" node_paths=PackedStringArray("ModelFactory") instance=ExtResource("3_423r0")]
+[node name="HandDisplay" parent="HandHolder" node_paths=PackedStringArray("ModelFactory", "CardSpawnPoint") instance=ExtResource("3_423r0")]
 unique_name_in_owner = true
 layout_mode = 1
 ModelFactory = NodePath("../../CardModelFactory")
+CardSpawnPoint = NodePath("../../Deck")
 EnableInput = true
 
 [node name="BuyPileHolder" type="Control" parent="."]
