@@ -22,6 +22,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 150.0
 offset_bottom = 210.0
+mouse_filter = 2
 script = ExtResource("1_65srg")
 
 [node name="Panel" type="Panel" parent="."]
@@ -32,6 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="BackTexture" type="TextureRect" parent="Panel"]
 unique_name_in_owner = true
@@ -41,6 +43,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("4_60t7t")
 expand_mode = 1
 
@@ -52,6 +55,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 expand_mode = 1
 
 [node name="Fallback" type="Panel" parent="Panel"]
@@ -63,7 +67,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(64, 96)
-mouse_filter = 1
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_obthe")
 
 [node name="NameLabel" type="Label" parent="Panel/Fallback"]
