@@ -1,11 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://bout6816idhcc"]
+[gd_scene load_steps=8 format=3 uid="uid://bout6816idhcc"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/CardButton.cs" id="1_87hct"]
 [ext_resource type="PackedScene" uid="uid://cs4vf3jnrvk57" path="res://Scenes/Models/CardModel.tscn" id="1_i8cke"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8uyox"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4ekyy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eslfu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tblhf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_msk6p"]
+
 [node name="CardButton" type="Button"]
 offset_right = 150.0
 offset_bottom = 210.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8uyox")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_4ekyy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_eslfu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tblhf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_msk6p")
 flat = true
 script = ExtResource("1_87hct")
 
