@@ -21,6 +21,8 @@ namespace TFCardBattle.Godot
 
         private ResourcesDisplay _resourcesDisplay => GetNode<ResourcesDisplay>("%ResourcesDisplay");
         private ConsumablesDisplay _consumablesDisplay => GetNode<ConsumablesDisplay>("%ConsumablesDisplay");
+        private CardListDisplay _discardPilePanelContents => GetNode<CardListDisplay>("%DiscardPileDisplay");
+        private CardButton _showDiscardButton => GetNode<CardButton>("%ShowDiscardButton");
 
 
         private BattleController Battle;
@@ -120,6 +122,8 @@ namespace TFCardBattle.Godot
 
             _resourcesDisplay.UpdateResources(Battle.State);
             _consumablesDisplay.Refresh(Battle.State.Consumables.ToArray());
+            _discardPilePanelContents.Refresh(Battle.State.Discard);
+            _showDiscardButton.SetCard(Battle.State.Discard.LastOrDefault(), Battle.State);
         }
 
         private void EnableInput(bool enabled)

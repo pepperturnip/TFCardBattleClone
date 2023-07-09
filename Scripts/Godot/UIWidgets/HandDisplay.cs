@@ -67,20 +67,20 @@ namespace TFCardBattle.Godot
             tween.Parallel();
             tween.TweenProperty(
                 clone,
-                "scale",
+                "CenterScale",
                 Vector2.One * 1.1f,
                 stepDuration
             );
 
             tween.TweenProperty(
                 clone,
-                "scale",
+                "CenterScale",
                 Vector2.One * 0.95f,
                 stepDuration
             );
             tween.TweenProperty(
                 clone,
-                "scale",
+                "CenterScale",
                 Vector2.One,
                 stepDuration
             );
@@ -110,6 +110,16 @@ namespace TFCardBattle.Godot
         }
 
         private void DetatchParent(Node2D node)
+        {
+            var globalPos = node.GlobalPosition;
+
+            node.GetParent().RemoveChild(node);
+            GetParent().AddChild(node);
+
+            node.GlobalPosition = globalPos;
+        }
+
+        private void DetatchParent(Control node)
         {
             var globalPos = node.GlobalPosition;
 
