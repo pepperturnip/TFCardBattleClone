@@ -15,6 +15,8 @@ namespace TFCardBattle.Godot
             set => _cardRow.ModelFactory = value;
         }
 
+        [Export] public Control CardSpawnPoint;
+
         [Export] public PackedScene GifPlayerPrefab;
 
         [Export] public bool EnableInput
@@ -131,7 +133,7 @@ namespace TFCardBattle.Godot
 
         public void AddCard(Card card)
         {
-            _cardRow.AddCard(card);
+            _cardRow.AddCard(card, CardSpawnPoint.GlobalPosition);
         }
 
         public void RemoveCard(int index)
