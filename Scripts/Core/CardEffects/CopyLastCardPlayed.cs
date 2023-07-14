@@ -34,7 +34,7 @@ namespace TFCardBattle.Core.CardEffects
             // Search the "in play" cards for the last copyable card.
             // This will not find cards that were deleted/forgotten, nor will
             // it find cards that were played last turn.
-            return ((IEnumerable<Card>)state.CardsPlayedThisTurn)
+            return ((IEnumerable<Card>)state.InPlay)
                 .Reverse()
                 .FirstOrDefault(c => c.Effect != this);
 

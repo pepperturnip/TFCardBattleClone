@@ -85,14 +85,14 @@ namespace TFCardBattle.Core
             var card = State.Hand[handIndex];
 
             State.Hand.Remove(card);
-            State.CardsPlayedThisTurn.Add(card);
+            State.InPlay.Add(card);
             await AnimationPlayer.PlayCard(handIndex, State);
 
             await card.Effect.Activate(this);
 
             if (card.DestroyOnActivate)
             {
-                State.CardsPlayedThisTurn.Remove(card);
+                State.InPlay.Remove(card);
                 await AnimationPlayer.ForgetCard(card, State);
             }
         }
@@ -282,7 +282,7 @@ namespace TFCardBattle.Core
 
         public async Task DiscardHand()
         {
-            TransferAllCards(State.CardsPlayedThisTurn, State.Discard);
+            TransferAllCards(State.InPlay, State.Discard);
             TransferAllCards(State.Hand, State.Discard);
             await AnimationPlayer.DiscardHand();
         }
@@ -305,7 +305,7 @@ namespace TFCardBattle.Core
             if (await TryForgetFrom(State.Discard))
                 return;
 
-            if (await TryForgetFrom(State.CardsPlayedThisTurn))
+            if (await TryForgetFrom(State.InPlay))
                 return;
 
             if (await TryForgetFrom(State.Hand))
@@ -356,7 +356,7 @@ namespace TFCardBattle.Core
             // It also seems to not trigger enemy traits that damage you when
             // you draw X-many cards in one turn.  That's because the original
             // game doesn't count this as "drawing" for those purposes.
-            TransferAllCards(State.CardsPlayedThisTurn, State.Discard);
+            TransferAllCards(State.InPlay, State.Discard);
             TransferAllCards(State.Hand, State.Discard);
             await AnimationPlayer.DiscardHand();
 
