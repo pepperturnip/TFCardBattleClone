@@ -36,9 +36,6 @@ namespace TFCardBattle.Godot
 
         public override void _Process(double delta)
         {
-            if (Engine.IsEditorHint())
-                return;
-
             _panel.Modulate = Enabled
                 ? EnabledModulate
                 : DisabledModulate;

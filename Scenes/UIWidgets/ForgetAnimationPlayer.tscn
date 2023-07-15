@@ -8,7 +8,7 @@ resource_name = "Forget"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Holder:scale")
+tracks/0/path = NodePath("CardModel:CenterScale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -20,7 +20,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Holder:modulate")
+tracks/1/path = NodePath("CardModel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -32,7 +32,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Holder:visible")
+tracks/2/path = NodePath("CardModel:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -71,7 +71,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Holder:scale")
+tracks/0/path = NodePath("CardModel:CenterScale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -83,7 +83,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Holder:modulate")
+tracks/1/path = NodePath("CardModel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -95,7 +95,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Holder:visible")
+tracks/2/path = NodePath("CardModel:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -138,11 +138,13 @@ _data = {
 [node name="ForgetAnimationPlayer" type="Node2D"]
 script = ExtResource("1_m6fri")
 
-[node name="Holder" type="Node2D" parent="."]
-visible = false
-
-[node name="CardModel" parent="Holder" instance=ExtResource("1_d3gx3")]
+[node name="CardModel" parent="." instance=ExtResource("1_d3gx3")]
 unique_name_in_owner = true
+visible = false
+offset_left = -72.0
+offset_top = -96.0
+offset_right = 78.0
+offset_bottom = 114.0
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
