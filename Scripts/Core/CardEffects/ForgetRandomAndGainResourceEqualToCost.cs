@@ -9,6 +9,9 @@ namespace TFCardBattle.Core.CardEffects
 
         public async Task Activate(BattleController battle)
         {
+            if (battle.State.Hand.Count <= 0)
+                return;
+
             int handIndex = battle.Rng.Next(battle.State.Hand.Count);
             var card = battle.State.Hand[handIndex];
             await battle.ForgetCardInHand(handIndex);
