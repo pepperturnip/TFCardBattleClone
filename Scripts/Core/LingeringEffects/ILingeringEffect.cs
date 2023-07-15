@@ -8,6 +8,9 @@ namespace TFCardBattle.Core
         Task OnCardAboutToActivate(BattleController battle, Card card) => Task.CompletedTask;
         Task OnCardFinishedActivating(BattleController battle, Card card) => Task.CompletedTask;
 
+        Task OnConsumableAboutToActivate(BattleController battle, IConsumable consumable) => Task.CompletedTask;
+        Task OnConsumableFinishedActivating(BattleController battle, IConsumable consumable) => Task.CompletedTask;
+
         /// <summary>
         /// Called when damage is about to be dealt to the player.
         /// </summary>

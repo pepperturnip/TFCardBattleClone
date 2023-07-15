@@ -199,7 +199,9 @@ namespace TFCardBattle.Core
             State.Consumables.Remove(consumable);
             // TODO: Play an animation of using the consumable
 
+            await TriggerEffects(e => e.OnConsumableAboutToActivate(this, consumable));
             await consumable.Activate(this);
+            await TriggerEffects(e => e.OnConsumableFinishedActivating(this, consumable));
         }
 
         public async Task StartTurn()
