@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://tm66spq6dn0h"]
 
-[ext_resource type="Script" path="res://Scripts/Godot/BattleUI.cs" id="1_s1rg7"]
+[ext_resource type="Script" path="res://Scripts/Godot/Maps/BattleUI.cs" id="1_td4vb"]
 [ext_resource type="PackedScene" uid="uid://bxkjo1whiydj3" path="res://Scenes/CardModelFactory.tscn" id="2_7qx4c"]
 [ext_resource type="PackedScene" uid="uid://banf0dyorxitu" path="res://Scenes/UIWidgets/HandDisplay.tscn" id="3_423r0"]
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/ConsumablesDisplay.cs" id="3_w7jsv"]
@@ -28,7 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_s1rg7")
+script = ExtResource("1_td4vb")
 CardModelFactory = NodePath("CardModelFactory")
 
 [node name="CardModelFactory" parent="." instance=ExtResource("2_7qx4c")]
