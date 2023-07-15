@@ -5,6 +5,9 @@ namespace TFCardBattle.Core
 {
     public interface ILingeringEffect
     {
+        Task OnCardAboutToActivate(BattleController battle, Card card) => Task.CompletedTask;
+        Task OnCardFinishedActivating(BattleController battle, Card card) => Task.CompletedTask;
+
         /// <summary>
         /// Called when damage is about to be dealt to the player.
         /// </summary>
@@ -17,5 +20,7 @@ namespace TFCardBattle.Core
         ///     damage received at the last second.
         /// </param>
         Task OnPlayerAboutToTakeDamage(BattleController battle, ref int damage) => Task.CompletedTask;
+
+        Task OnTurnEnd(BattleController battle) => Task.CompletedTask;
     }
 }

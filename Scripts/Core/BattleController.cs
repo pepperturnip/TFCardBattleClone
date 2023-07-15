@@ -104,7 +104,9 @@ namespace TFCardBattle.Core
             State.InPlay.Add(card);
             await AnimationPlayer.PlayCard(handIndex, State);
 
+            await TriggerEffects(e => e.OnCardAboutToActivate(this, card));
             await card.Effect.Activate(this);
+            await TriggerEffects(e => e.OnCardFinishedActivating(this, card));
 
             if (card.DestroyOnActivate)
             {
@@ -244,6 +246,8 @@ namespace TFCardBattle.Core
             }
 
             // Start the next turn
+            await TriggerEffects(e => e.OnTurnEnd(this));
+
             State.TurnsElapsed++;
             await StartTurn();
         }
