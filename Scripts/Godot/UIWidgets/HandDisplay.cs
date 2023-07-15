@@ -106,8 +106,9 @@ namespace TFCardBattle.Godot
             var gifPlayer = GifPlayerPrefab.Instantiate<GifPlayer>();
             AddChild(gifPlayer);
             gifPlayer.Position = pos;
-            gifPlayer.Play(_rng.PickFrom(card.Gifs));
+            gifPlayer.Position += _cardRow.CardSize / 2;
 
+            gifPlayer.Play(_rng.PickFrom(card.Gifs));
             DetatchParent(gifPlayer);
         }
 
