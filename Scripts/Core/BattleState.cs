@@ -40,7 +40,7 @@ namespace TFCardBattle.Core
 
         public List<Card> Deck = new List<Card>();
         public List<Card> Hand = new List<Card>();
-        public List<Card> CardsPlayedThisTurn = new List<Card>();
+        public List<Card> InPlay = new List<Card>();
         public List<Card> Discard = new List<Card>();
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace TFCardBattle.Core
         public IEnumerable<Card> OwnedCards => Deck
                 .Concat(Hand)
                 .Concat(Discard)
-                .Concat(CardsPlayedThisTurn);
+                .Concat(InPlay);
 
         /// <summary>
         /// The cards currently on offer to the player this turn.

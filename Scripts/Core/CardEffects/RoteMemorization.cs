@@ -11,7 +11,7 @@ namespace TFCardBattle.Core.CardEffects
             // HACK: Get a copy of this card by looking at the in-play cards
             // This only works because we know BattleController puts the card
             // in the in-play list before calling Activate().
-            Card copy = battle.State.CardsPlayedThisTurn.Last();
+            Card copy = battle.State.InPlay.Last();
 
             // Add brain equal to the number of copies the player owns.
             //
