@@ -16,7 +16,14 @@ namespace TFCardBattle.Godot
             _cardRegistry = CreateCardRegistry();
             _loadout = new PlayerLoadout
             {
-                CardPacks = new[]
+                Transformation = new Transformation
+                {
+                    CardPack = _cardRegistry.CardPacks["School"],
+                    PermanentBuyPile = _cardRegistry.CardPacks["StandardPermanentBuyPile"],
+                    StartingDeck = PlayerStartingDeck.StartingDeck().ToArray()
+                },
+
+                ThemePacks = new[]
                 {
                     _cardRegistry.CardPacks["Mind"],
                     _cardRegistry.CardPacks["Tech"],
@@ -33,11 +40,8 @@ namespace TFCardBattle.Godot
                     _cardRegistry.CardPacks["Bondage"],
                     _cardRegistry.CardPacks["Cum"],
                     _cardRegistry.CardPacks["Cock"],
-                    _cardRegistry.CardPacks["Sex"],
-                    _cardRegistry.CardPacks["School"]
-                },
-                PermanentBuyPile = _cardRegistry.CardPacks["StandardPermanentBuyPile"],
-                StartingDeck = PlayerStartingDeck.StartingDeck()
+                    _cardRegistry.CardPacks["Sex"]
+                }
             };
 
             StartBattle();
