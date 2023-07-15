@@ -11,17 +11,17 @@ namespace TFCardBattle.Godot
         private CardRegistry _cardRegistry;
         private PlayerLoadout _loadout;
 
+        private Transformation[] _transformationChoices;
+        private ItemList _transformationPicker => GetNode<ItemList>("%TransformationPicker");
+
         public override void _Ready()
         {
             _cardRegistry = CreateCardRegistry();
+            _transformationChoices = CreateTransformations(_cardRegistry);
+
             _loadout = new PlayerLoadout
             {
-                Transformation = new Transformation
-                {
-                    CardPack = _cardRegistry.CardPacks["School"],
-                    PermanentBuyPile = _cardRegistry.CardPacks["StandardPermanentBuyPile"],
-                    StartingDeck = PlayerStartingDeck.StartingDeck().ToArray()
-                },
+                Transformation = _transformationChoices[0],
 
                 ThemePacks = new[]
                 {
@@ -44,7 +44,12 @@ namespace TFCardBattle.Godot
                 }
             };
 
-            StartBattle();
+            foreach (var tf in _transformationChoices)
+            {
+                _transformationPicker.AddItem(tf.Name);
+            }
+            _transformationPicker.Select(0);
+            _transformationPicker.ItemSelected += i => _loadout.Transformation = _transformationChoices[i];
         }
 
         public void StartBattle()
@@ -52,7 +57,29 @@ namespace TFCardBattle.Godot
             Maps.Instance.GoToBattleScreen(_loadout, _cardRegistry);
         }
 
-        private CardRegistry CreateCardRegistry()
+        private static Transformation[] CreateTransformations(CardRegistry cardRegistry)
+        {
+            return new[]
+            {
+                new Transformation
+                {
+                    Name = "Futanari",
+                    CardPack = cardRegistry.CardPacks["Futanari"],
+                    PermanentBuyPile = cardRegistry.CardPacks["StandardPermanentBuyPile"],
+                    StartingDeck = PlayerStartingDeck.StartingDeck().ToArray()
+                },
+
+                new Transformation
+                {
+                    Name = "Schoolgirl",
+                    CardPack = cardRegistry.CardPacks["School"],
+                    PermanentBuyPile = cardRegistry.CardPacks["StandardPermanentBuyPile"],
+                    StartingDeck = PlayerStartingDeck.StartingDeck().ToArray()
+                }
+            };
+        }
+
+        private static CardRegistry CreateCardRegistry()
         {
             var registry = new CardRegistry();
 
