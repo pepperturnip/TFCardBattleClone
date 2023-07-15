@@ -27,42 +27,12 @@ namespace TFCardBattle.Godot
         private CardButton _showDiscardButton => GetNode<CardButton>("%ShowDiscardButton");
         private CardButton _showInPlayButton => GetNode<CardButton>("%ShowInPlayButton");
 
-
         private BattleController Battle;
 
-
-        public override async void _Ready()
+        public async void StartBattle(PlayerLoadout loadout, CardRegistry cardRegistry)
         {
-            var cardRegistry = CreateCardRegistry();
-
-            var playerLoadout = new PlayerLoadout
-            {
-                CardPacks = new[]
-                {
-                    cardRegistry.CardPacks["Mind"],
-                    cardRegistry.CardPacks["Tech"],
-                    cardRegistry.CardPacks["Hypno"],
-                    cardRegistry.CardPacks["Chemist"],
-                    cardRegistry.CardPacks["Ambition"],
-                    cardRegistry.CardPacks["Purity"],
-                    cardRegistry.CardPacks["Whore"],
-                    cardRegistry.CardPacks["FemmeFatale"],
-                    cardRegistry.CardPacks["Tease"],
-                    cardRegistry.CardPacks["Romance"],
-                    cardRegistry.CardPacks["Blowjob"],
-                    cardRegistry.CardPacks["Submissive"],
-                    cardRegistry.CardPacks["Bondage"],
-                    cardRegistry.CardPacks["Cum"],
-                    cardRegistry.CardPacks["Cock"],
-                    cardRegistry.CardPacks["Sex"],
-                    cardRegistry.CardPacks["School"]
-                },
-                PermanentBuyPile = cardRegistry.CardPacks["StandardPermanentBuyPile"],
-                StartingDeck = PlayerStartingDeck.StartingDeck()
-            };
-
             Battle = new BattleController(
-                loadout: playerLoadout,
+                loadout: loadout,
                 rng: new Random((int)DateTimeOffset.Now.ToUnixTimeMilliseconds()),
                 cardRegistry: cardRegistry,
                 animationPlayer: GetNode<BattleAnimationPlayer>("%BattleAnimationPlayer")
@@ -139,25 +109,6 @@ namespace TFCardBattle.Godot
             _handDisplay.EnableInput = enabled;
             _buyPileDisplay.EnableInput = enabled;
             GetNode<Button>("%EndTurnButton").Disabled = !enabled;
-        }
-
-        private CardRegistry CreateCardRegistry()
-        {
-            var registry = new CardRegistry();
-
-            IEnumerable<string> packNames = DirAccess
-                .GetFilesAt("res://CardPacks")
-                .Select(f => f.Split(".json")[0]);
-
-            foreach (string packName in packNames)
-            {
-                string path = $"res://CardPacks/{packName}.json";
-                var cards = Core.Parsing.CardPacks.Parse(FileAccess.GetFileAsString(path));
-
-                registry.ImportCardPack(packName, cards);
-            }
-
-            return registry;
         }
     }
 }
