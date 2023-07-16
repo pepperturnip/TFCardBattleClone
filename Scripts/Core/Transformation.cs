@@ -7,6 +7,6 @@ namespace TFCardBattle.Core
     {
         public string Name;
 
-        public Card[] CardPack;
+        public CardPackId[] RequiredCardPacks;
     }
 }

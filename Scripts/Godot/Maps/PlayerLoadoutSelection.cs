@@ -19,7 +19,7 @@ namespace TFCardBattle.Godot
             _registry = CreateContentRegistry();
             _transformationChoices = CreateTransformations(_registry);
 
-            _loadout = new PlayerLoadout
+            _loadout = new PlayerLoadout(_registry)
             {
                 Transformation = _transformationChoices[0],
                 PermanentBuyPile = _registry.CardPacks["StandardPermanentBuyPile"],
@@ -66,13 +66,13 @@ namespace TFCardBattle.Godot
                 new Transformation
                 {
                     Name = "Futanari",
-                    CardPack = registry.CardPacks["Futanari"],
+                    RequiredCardPacks = new CardPackId[] {"Futanari"}
                 },
 
                 new Transformation
                 {
                     Name = "Schoolgirl",
-                    CardPack = registry.CardPacks["School"],
+                    RequiredCardPacks = new CardPackId[] {"School"}
                 }
             };
         }
