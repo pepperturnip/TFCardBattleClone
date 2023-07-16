@@ -88,9 +88,7 @@ namespace TFCardBattle.Godot
             foreach (string packName in packNames)
             {
                 string path = $"res://CardPacks/{packName}.json";
-                var cards = Core.Parsing.CardPacks.Parse(FileAccess.GetFileAsString(path));
-
-                registry.ImportCardPack(packName, cards);
+                registry.ImportCardPack(packName, FileAccess.GetFileAsString(path));
             }
 
             return registry;
