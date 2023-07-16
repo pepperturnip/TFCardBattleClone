@@ -8,12 +8,21 @@ namespace TFCardBattle.Core
     public class ContentRegistry
     {
         public IReadOnlyDictionary<CardId, Card> Cards => _cards;
+        public IReadOnlyDictionary<ConsumableId, IConsumable> Consumables => _consumables;
         public IReadOnlyDictionary<CardPackId, CardPack> CardPacks => _cardPacks;
         public IReadOnlyDictionary<TransformationId, Transformation> Transformations => _transformations;
 
         private Dictionary<CardId, Card> _cards = new Dictionary<CardId, Card>();
         private Dictionary<CardPackId, CardPack> _cardPacks = new Dictionary<CardPackId, CardPack>();
-        private Dictionary<TransformationId, Transformation> _transformations= new Dictionary<TransformationId, Transformation>();
+        private Dictionary<TransformationId, Transformation> _transformations = new Dictionary<TransformationId, Transformation>();
+
+        private Dictionary<ConsumableId, IConsumable> _consumables = new Dictionary<ConsumableId, IConsumable>
+        {
+            {"MinorShieldPotion", new ConsumableClasses.MinorShieldPotion()},
+            {"MinorBrainPotion", new ConsumableClasses.MinorBrainPotion()},
+            {"BrainPotion", new ConsumableClasses.BrainPotion()},
+            {"MinorDrawPotion", new ConsumableClasses.MinorDrawPotion()}
+        };
 
         public IEnumerable<Card> CardsInPack(CardPackId id)
         {

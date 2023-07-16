@@ -10,7 +10,6 @@ namespace TFCardBattle.Core.Parsing
     public static class CardPacks
     {
         private static readonly Dictionary<string, Type> _effectClassCache = new Dictionary<string, Type>();
-        private static readonly Dictionary<string, Type> _consumableClassCache = new Dictionary<string, Type>();
 
         public static IReadOnlyDictionary<string, Card> Parse(string rawJson)
         {
@@ -24,31 +23,8 @@ namespace TFCardBattle.Core.Parsing
 
             dynamic dynamicCard = obj;
             string effectClass = dynamicCard.Effect.Class ?? "Simple";
+            card.Effect = ParseWithReflection((JObject)obj["Effect"], effectClass);
 
-            if (effectClass == "Simple")
-                card.Effect = ParseSimple((JObject)obj["Effect"]);
-            else
-                card.Effect = ParseWithReflection((JObject)obj["Effect"], effectClass);
-
-            return card;
-        }
-
-        private static ICardEffect ParseSimple(JObject obj)
-        {
-            // HACK: Parse the consumables separately from the rest of the
-            // card, since they're strings and we need IConsumables
-            var consumableIds = obj.ContainsKey("Consumables")
-                ? obj["Consumables"].ToObject<string[]>()
-                : Array.Empty<string>();
-
-            IConsumable[] consumables = consumableIds
-                .Select(ParseConsumable)
-                .ToArray();
-
-            obj.Remove("Consumables");
-
-            var card = (CardEffects.Simple)ParseWithReflection(obj, "Simple");
-            card.Consumables = consumables;
             return card;
         }
 
@@ -64,20 +40,6 @@ namespace TFCardBattle.Core.Parsing
                 throw new NotImplementedException($"No \"{className}\" card class found");
 
             return (ICardEffect)obj.ToObject(type);
-        }
-
-        private static IConsumable ParseConsumable(string className)
-        {
-            var type = FindClass(
-                className,
-                "TFCardBattle.Core.ConsumableClasses",
-                _consumableClassCache
-            );
-
-            if (type == null)
-                throw new NotImplementedException($"No \"{className}\" consumable class found");
-
-            return (IConsumable)Activator.CreateInstance(type);
         }
 
         private static Type FindClass(
