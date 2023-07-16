@@ -6,11 +6,11 @@ namespace TFCardBattle.Core
 {
     public class CardRegistry
     {
-        public IReadOnlyDictionary<string, Card> Cards => _cards;
-        public IReadOnlyDictionary<string, Card[]> CardPacks => _cardPacks;
+        public IReadOnlyDictionary<CardId, Card> Cards => _cards;
+        public IReadOnlyDictionary<CardPackId, Card[]> CardPacks => _cardPacks;
 
-        private Dictionary<string, Card> _cards = new Dictionary<string, Card>();
-        private Dictionary<string, Card[]> _cardPacks = new Dictionary<string, Card[]>();
+        private Dictionary<CardId, Card> _cards = new Dictionary<CardId, Card>();
+        private Dictionary<CardPackId, Card[]> _cardPacks = new Dictionary<CardPackId, Card[]>();
 
         /// <summary>
         /// Imports the given card pack into the registry.
@@ -23,7 +23,7 @@ namespace TFCardBattle.Core
         /// </summary>
         /// <param name="packName"></param>
         /// <param name="cards"></param>
-        public void ImportCardPack(string packName, IReadOnlyDictionary<string, Card> cards)
+        public void ImportCardPack(CardPackId packName, IReadOnlyDictionary<CardId, Card> cards)
         {
             _cardPacks.Add(packName, cards.Values.ToArray());
 
