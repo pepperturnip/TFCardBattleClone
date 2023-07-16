@@ -17,7 +17,7 @@ namespace TFCardBattle.Godot
         public override void _Ready()
         {
             _registry = CreateContentRegistry();
-            _transformationChoices = CreateTransformations(_registry);
+            _transformationChoices = _registry.Transformations.Values.ToArray();
 
             _loadout = new PlayerLoadout(_registry)
             {
@@ -56,51 +56,30 @@ namespace TFCardBattle.Godot
             Maps.Instance.GoToBattleScreen(_loadout, _registry);
         }
 
-        private static Transformation[] CreateTransformations(ContentRegistry registry)
-        {
-            return new[]
-            {
-                new Transformation
-                {
-                    Name = "Futanari",
-                    RequiredCardPacks = new CardPackId[]
-                    {
-                        "Futanari",
-                        "Mind",
-                        "Whore",
-                        "Submissive"
-                    }
-                },
-
-                new Transformation
-                {
-                    Name = "Schoolgirl",
-                    RequiredCardPacks = new CardPackId[]
-                    {
-                        "School",
-                        "Mind",
-                        "Whore",
-                        "Submissive"
-                    }
-                }
-            };
-        }
-
         private static ContentRegistry CreateContentRegistry()
         {
             var registry = new ContentRegistry();
 
-            IEnumerable<string> packNames = DirAccess
-                .GetFilesAt("res://CardPacks")
-                .Select(f => f.Split(".json")[0]);
-
-            foreach (string packName in packNames)
+            foreach (string packId in IdsInFolder("res://CardPacks"))
             {
-                string path = $"res://CardPacks/{packName}.json";
-                registry.ImportCardPack(packName, FileAccess.GetFileAsString(path));
+                string path = $"res://CardPacks/{packId}.json";
+                registry.ImportCardPack(packId, FileAccess.GetFileAsString(path));
+            }
+
+            foreach (string tfId in IdsInFolder("res://Content/Transformations"))
+            {
+                string path = $"res://Content/Transformations/{tfId}.json";
+                registry.ImportTransformation(tfId, FileAccess.GetFileAsString(path));
             }
 
             return registry;
+
+            IEnumerable<string> IdsInFolder(string folder)
+            {
+                return DirAccess
+                    .GetFilesAt(folder)
+                    .Select(f => f.Split(".json")[0]);
+            }
         }
     }
 }

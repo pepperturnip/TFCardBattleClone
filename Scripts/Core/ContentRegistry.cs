@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace TFCardBattle.Core
 {
@@ -8,9 +9,11 @@ namespace TFCardBattle.Core
     {
         public IReadOnlyDictionary<CardId, Card> Cards => _cards;
         public IReadOnlyDictionary<CardPackId, Card[]> CardPacks => _cardPacks;
+        public IReadOnlyDictionary<TransformationId, Transformation> Transformations => _transformations;
 
         private Dictionary<CardId, Card> _cards = new Dictionary<CardId, Card>();
         private Dictionary<CardPackId, Card[]> _cardPacks = new Dictionary<CardPackId, Card[]>();
+        private Dictionary<TransformationId, Transformation> _transformations= new Dictionary<TransformationId, Transformation>();
 
         /// <summary>
         /// Imports the given card pack into the registry.
@@ -32,6 +35,12 @@ namespace TFCardBattle.Core
             {
                 _cards[kvp.Key] = kvp.Value;
             }
+        }
+
+        public void ImportTransformation(TransformationId id, string json)
+        {
+            var tf = JsonConvert.DeserializeObject<Transformation>(json);
+            _transformations[id] = tf;
         }
     }
 }
