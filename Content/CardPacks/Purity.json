@@ -1,93 +1,97 @@
 {
-    "card14":
+    "Name": "Purity",
+    "Cards":
     {
-        "Name": "Purity of Mind",
-        "Image": "res://Media/Cards/card14a.webp",
-        "MinTF": 0,
-        "MaxTF": 13,
-        "BrainCost": 4,
-        "Effect":
+        "card14":
         {
-            "Class": "DowngradeIfResource",
-            "Resource": "Heart",
-            "StrongVersion":
+            "Name": "Purity of Mind",
+            "Image": "res://Media/Cards/card14a.webp",
+            "MinTF": 0,
+            "MaxTF": 13,
+            "BrainCost": 4,
+            "Effect":
             {
-                "Image": "res://Media/Cards/card14a.webp",
-                "Brain": 3
-            },
-            "WeakVersion":
-            {
-                "Image": "res://Media/Cards/card14b.webp",
-                "Brain": 1
+                "Class": "DowngradeIfResource",
+                "Resource": "Heart",
+                "StrongVersion":
+                {
+                    "Image": "res://Media/Cards/card14a.webp",
+                    "Brain": 3
+                },
+                "WeakVersion":
+                {
+                    "Image": "res://Media/Cards/card14b.webp",
+                    "Brain": 1
+                }
             }
-        }
-    },
-    "card26":
-    {
-        "Name": "Strategic Operation",
-        "Image": "res://Media/Cards/card26a.webp",
-        "MinTF": 3,
-        "MaxTF": 19,
-        "BrainCost": 3,
-        "Effect":
+        },
+        "card26":
         {
-            "Class": "DowngradeIfResource",
-            "Resource": "Heart",
-            "StrongVersion":
+            "Name": "Strategic Operation",
+            "Image": "res://Media/Cards/card26a.webp",
+            "MinTF": 3,
+            "MaxTF": 19,
+            "BrainCost": 3,
+            "Effect":
             {
-                "Image": "res://Media/Cards/card26a.webp",
-                "Damage": 3
-            },
-            "WeakVersion":
-            {
-                "Image": "res://Media/Cards/card26b.webp",
-                "Damage": 1
+                "Class": "DowngradeIfResource",
+                "Resource": "Heart",
+                "StrongVersion":
+                {
+                    "Image": "res://Media/Cards/card26a.webp",
+                    "Damage": 3
+                },
+                "WeakVersion":
+                {
+                    "Image": "res://Media/Cards/card26b.webp",
+                    "Damage": 1
+                }
             }
-        }
-    },
-    "card43":
-    {
-        "Name": "Mental Shield",
-        "Image": "res://Media/Cards/card43a.webp",
-        "MinTF": 9,
-        "MaxTF": 25,
-        "BrainCost": 3,
-        "Effect":
+        },
+        "card43":
         {
-            "Class": "DowngradeIfResource",
-            "Resource": "Heart",
-            "StrongVersion":
+            "Name": "Mental Shield",
+            "Image": "res://Media/Cards/card43a.webp",
+            "MinTF": 9,
+            "MaxTF": 25,
+            "BrainCost": 3,
+            "Effect":
             {
-                "Image": "res://Media/Cards/card43a.webp",
-                "Shield": 5
-            },
-            "WeakVersion":
-            {
-                "Image": "res://Media/Cards/card43b.webp",
-                "Shield": 1
+                "Class": "DowngradeIfResource",
+                "Resource": "Heart",
+                "StrongVersion":
+                {
+                    "Image": "res://Media/Cards/card43a.webp",
+                    "Shield": 5
+                },
+                "WeakVersion":
+                {
+                    "Image": "res://Media/Cards/card43b.webp",
+                    "Shield": 1
+                }
             }
-        }
-    },
-    "card25":
-    {
-        "Name": "Online Interview",
-        "Image": "res://Media/Cards/card25a.webp",
-        "MinTF": 26,
-        "MaxTF": 42,
-        "BrainCost": 4,
-        "Effect":
+        },
+        "card25":
         {
-            "Class": "DowngradeIfResource",
-            "Resource": "Heart",
-            "StrongVersion":
+            "Name": "Online Interview",
+            "Image": "res://Media/Cards/card25a.webp",
+            "MinTF": 26,
+            "MaxTF": 42,
+            "BrainCost": 4,
+            "Effect":
             {
-                "Image": "res://Media/Cards/card25a.webp",
-                "Draw": 2
-            },
-            "WeakVersion":
-            {
-                "Image": "res://Media/Cards/card25b.webp",
-                "Draw": 1
+                "Class": "DowngradeIfResource",
+                "Resource": "Heart",
+                "StrongVersion":
+                {
+                    "Image": "res://Media/Cards/card25a.webp",
+                    "Draw": 2
+                },
+                "WeakVersion":
+                {
+                    "Image": "res://Media/Cards/card25b.webp",
+                    "Draw": 1
+                }
             }
         }
     }

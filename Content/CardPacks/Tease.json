@@ -1,77 +1,81 @@
 {
-    "card61":
+    "Name": "Tease",
+    "Cards":
     {
-        "Name": "Cam Girl",
-        "Image": "res://Media/Cards/card61.webp",
-        "MinTF": 14,
-        "MaxTF": 30,
-        "HeartCost": 3,
-        "Gifs":
-        [
-            "res://Media/CardGifs/61a.ogv",
-            "res://Media/CardGifs/61b.ogv",
-            "res://Media/CardGifs/61c.ogv",
-            "res://Media/CardGifs/61d.ogv",
-            "res://Media/CardGifs/61e.ogv",
-            "res://Media/CardGifs/61f.ogv"
-        ],
-        "Effect":
+        "card61":
         {
-            "Heart": 2,
-            "Damage": 1,
-            "Shield": 1
-        }
-    },
-    "card41":
-    {
-        "Name": "Crotch Grab",
-        "Image": "res://Media/Cards/card41.webp",
-        "MinTF": 21,
-        "MaxTF": 37,
-        "HeartCost": 3,
-        "Gifs":
-        [
-            "res://Media/CardGifs/41a.ogv",
-            "res://Media/CardGifs/41b.ogv",
-            "res://Media/CardGifs/41c.ogv",
-            "res://Media/CardGifs/41d.ogv",
-            "res://Media/CardGifs/41e.ogv"
-        ],
-        "Effect": { "Heart": 3 }
-    },
-    "card38":
-    {
-        "Name": "Free Entry",
-        "Image": "res://Media/Cards/card38.webp",
-        "MinTF": 30,
-        "MaxTF": 46,
-        "HeartCost": 3,
-        "Gifs": ["res://Media/CardGifs/38.ogv"],
-        "Effect":
+            "Name": "Cam Girl",
+            "Image": "res://Media/Cards/card61.webp",
+            "MinTF": 14,
+            "MaxTF": 30,
+            "HeartCost": 3,
+            "Gifs":
+            [
+                "res://Media/CardGifs/61a.ogv",
+                "res://Media/CardGifs/61b.ogv",
+                "res://Media/CardGifs/61c.ogv",
+                "res://Media/CardGifs/61d.ogv",
+                "res://Media/CardGifs/61e.ogv",
+                "res://Media/CardGifs/61f.ogv"
+            ],
+            "Effect":
+            {
+                "Heart": 2,
+                "Damage": 1,
+                "Shield": 1
+            }
+        },
+        "card41":
         {
-            "Class": "DrawMostExpensive",
-            "Resource": "Heart"
-        }
-    },
-    "card49":
-    {
-        "Name": "Cock Tease",
-        "Image": "res://Media/Cards/card49.webp",
-        "MinTF": 48,
-        "MaxTF": 64,
-        "HeartCost": 5,
-        "Gifs":
-        [
-            "res://Media/CardGifs/49a.ogv",
-            "res://Media/CardGifs/49b.ogv",
-            "res://Media/CardGifs/49c.ogv",
-            "res://Media/CardGifs/49d.ogv",
-            "res://Media/CardGifs/49e.ogv"
-        ],
-        "Effect":
+            "Name": "Crotch Grab",
+            "Image": "res://Media/Cards/card41.webp",
+            "MinTF": 21,
+            "MaxTF": 37,
+            "HeartCost": 3,
+            "Gifs":
+            [
+                "res://Media/CardGifs/41a.ogv",
+                "res://Media/CardGifs/41b.ogv",
+                "res://Media/CardGifs/41c.ogv",
+                "res://Media/CardGifs/41d.ogv",
+                "res://Media/CardGifs/41e.ogv"
+            ],
+            "Effect": { "Heart": 3 }
+        },
+        "card38":
         {
-            "Class": "MultiplyResources",
-            "Heart": 2
+            "Name": "Free Entry",
+            "Image": "res://Media/Cards/card38.webp",
+            "MinTF": 30,
+            "MaxTF": 46,
+            "HeartCost": 3,
+            "Gifs": ["res://Media/CardGifs/38.ogv"],
+            "Effect":
+            {
+                "Class": "DrawMostExpensive",
+                "Resource": "Heart"
+            }
+        },
+        "card49":
+        {
+            "Name": "Cock Tease",
+            "Image": "res://Media/Cards/card49.webp",
+            "MinTF": 48,
+            "MaxTF": 64,
+            "HeartCost": 5,
+            "Gifs":
+            [
+                "res://Media/CardGifs/49a.ogv",
+                "res://Media/CardGifs/49b.ogv",
+                "res://Media/CardGifs/49c.ogv",
+                "res://Media/CardGifs/49d.ogv",
+                "res://Media/CardGifs/49e.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "MultiplyResources",
+                "Heart": 2
+            }
         }
     }
 }

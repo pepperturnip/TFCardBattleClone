@@ -1,85 +1,89 @@
 {
-    "card54":
+    "Name": "Cock",
+    "Cards":
     {
-        "Name": "So Big!",
-        "Image": "res://Media/Cards/card54.webp",
-        "MinTF": 39,
-        "MaxTF": 55,
-        "SubCost": 3,
-        "Gifs":
-        [
-            "res://Media/CardGifs/54a.ogv",
-            "res://Media/CardGifs/54b.ogv",
-            "res://Media/CardGifs/54c.ogv",
-            "res://Media/CardGifs/54d.ogv",
-            "res://Media/CardGifs/54e.ogv"
-        ],
-        "Effect":
+        "card54":
         {
-            "Class": "TransferResources",
-            "From": "Sub",
-            "To": "Damage"
-        }
-    },
-    "card62":
-    {
-        "Name": "Just the Tip",
-        "Image": "res://Media/Cards/card62.webp",
-        "MinTF": 51,
-        "MaxTF": 67,
-        "SubCost": 1,
-        "Gifs":
-        [
-            "res://Media/CardGifs/62a.ogv",
-            "res://Media/CardGifs/62b.ogv",
-            "res://Media/CardGifs/62c.ogv",
-            "res://Media/CardGifs/62d.ogv",
-            "res://Media/CardGifs/62e.ogv"
-        ],
-        "Effect": { "Class": "JustTheTip" }
-    },
-    "card69":
-    {
-        "Name": "Air Tight",
-        "Image": "res://Media/Cards/card69.webp",
-        "MinTF": 60,
-        "MaxTF": 76,
-        "SubCost": 5,
-        "Gifs":
-        [
-            "res://Media/CardGifs/69a.ogv",
-            "res://Media/CardGifs/69b.ogv",
-            "res://Media/CardGifs/69c.ogv",
-            "res://Media/CardGifs/69d.ogv",
-            "res://Media/CardGifs/69e.ogv",
-            "res://Media/CardGifs/69f.ogv",
-            "res://Media/CardGifs/69g.ogv",
-            "res://Media/CardGifs/69h.ogv"
-        ],
-        "Effect":
+            "Name": "So Big!",
+            "Image": "res://Media/Cards/card54.webp",
+            "MinTF": 39,
+            "MaxTF": 55,
+            "SubCost": 3,
+            "Gifs":
+            [
+                "res://Media/CardGifs/54a.ogv",
+                "res://Media/CardGifs/54b.ogv",
+                "res://Media/CardGifs/54c.ogv",
+                "res://Media/CardGifs/54d.ogv",
+                "res://Media/CardGifs/54e.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "TransferResources",
+                "From": "Sub",
+                "To": "Damage"
+            }
+        },
+        "card62":
         {
-            "Sub": 3,
-            "Damage": 3,
-            "Shield": 3
+            "Name": "Just the Tip",
+            "Image": "res://Media/Cards/card62.webp",
+            "MinTF": 51,
+            "MaxTF": 67,
+            "SubCost": 1,
+            "Gifs":
+            [
+                "res://Media/CardGifs/62a.ogv",
+                "res://Media/CardGifs/62b.ogv",
+                "res://Media/CardGifs/62c.ogv",
+                "res://Media/CardGifs/62d.ogv",
+                "res://Media/CardGifs/62e.ogv"
+            ],
+            "Effect": { "Class": "JustTheTip" }
+        },
+        "card69":
+        {
+            "Name": "Air Tight",
+            "Image": "res://Media/Cards/card69.webp",
+            "MinTF": 60,
+            "MaxTF": 76,
+            "SubCost": 5,
+            "Gifs":
+            [
+                "res://Media/CardGifs/69a.ogv",
+                "res://Media/CardGifs/69b.ogv",
+                "res://Media/CardGifs/69c.ogv",
+                "res://Media/CardGifs/69d.ogv",
+                "res://Media/CardGifs/69e.ogv",
+                "res://Media/CardGifs/69f.ogv",
+                "res://Media/CardGifs/69g.ogv",
+                "res://Media/CardGifs/69h.ogv"
+            ],
+            "Effect":
+            {
+                "Sub": 3,
+                "Damage": 3,
+                "Shield": 3
+            }
+        },
+        "card93":
+        {
+            "Name": "Gangbang",
+            "Image": "res://Media/Cards/card93.webp",
+            "MinTF": 71,
+            "MaxTF": 87,
+            "SubCost": 5,
+            "Gifs":
+            [
+                "res://Media/CardGifs/93a.ogv",
+                "res://Media/CardGifs/93b.ogv",
+                "res://Media/CardGifs/93c.ogv",
+                "res://Media/CardGifs/93d.ogv",
+                "res://Media/CardGifs/93e.ogv",
+                "res://Media/CardGifs/93f.ogv",
+                "res://Media/CardGifs/93g.ogv"
+            ],
+            "Effect": { "Damage": 10 }
         }
-    },
-    "card93":
-    {
-        "Name": "Gangbang",
-        "Image": "res://Media/Cards/card93.webp",
-        "MinTF": 71,
-        "MaxTF": 87,
-        "SubCost": 5,
-        "Gifs":
-        [
-            "res://Media/CardGifs/93a.ogv",
-            "res://Media/CardGifs/93b.ogv",
-            "res://Media/CardGifs/93c.ogv",
-            "res://Media/CardGifs/93d.ogv",
-            "res://Media/CardGifs/93e.ogv",
-            "res://Media/CardGifs/93f.ogv",
-            "res://Media/CardGifs/93g.ogv"
-        ],
-        "Effect": { "Damage": 10 }
     }
 }

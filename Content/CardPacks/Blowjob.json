@@ -1,98 +1,102 @@
 {
-    "card52":
+    "Name": "Blowjob",
+    "Cards":
     {
-        "Name": "Just a Lick",
-        "Image": "res://Media/Cards/card52.webp",
-        "MinTF": 17,
-        "MaxTF": 33,
-        "HeartCost": 2,
-        "Gifs":
-        [
-            "res://Media/CardGifs/52a.ogv",
-            "res://Media/CardGifs/52b.ogv",
-            "res://Media/CardGifs/52c.ogv",
-            "res://Media/CardGifs/52d.ogv",
-            "res://Media/CardGifs/52e.ogv",
-            "res://Media/CardGifs/52f.ogv"
-        ],
-        "Effect":
+        "card52":
         {
-            "Damage": 1,
-            "Draw": 1
-        }
-    },
-    "card60":
-    {
-        "Name": "Sixty-Nine",
-        "Image": "res://Media/Cards/card60.webp",
-        "MinTF": 25,
-        "MaxTF": 41,
-        "HeartCost": 4,
-        "Gifs":
-        [
-            "res://Media/CardGifs/60a.ogv",
-            "res://Media/CardGifs/60b.ogv",
-            "res://Media/CardGifs/60c.ogv",
-            "res://Media/CardGifs/60d.ogv",
-            "res://Media/CardGifs/60e.ogv",
-            "res://Media/CardGifs/60f.ogv"
-        ],
-        "Effect":
+            "Name": "Just a Lick",
+            "Image": "res://Media/Cards/card52.webp",
+            "MinTF": 17,
+            "MaxTF": 33,
+            "HeartCost": 2,
+            "Gifs":
+            [
+                "res://Media/CardGifs/52a.ogv",
+                "res://Media/CardGifs/52b.ogv",
+                "res://Media/CardGifs/52c.ogv",
+                "res://Media/CardGifs/52d.ogv",
+                "res://Media/CardGifs/52e.ogv",
+                "res://Media/CardGifs/52f.ogv"
+            ],
+            "Effect":
+            {
+                "Damage": 1,
+                "Draw": 1
+            }
+        },
+        "card60":
         {
-            "Heart": 3,
-            "Damage": 3
-        }
-    },
-    "card56":
-    {
-        "Name": "Blowjob",
-        "Image": "res://Media/Cards/card56.webp",
-        "MinTF": 33,
-        "MaxTF": 49,
-        "HeartCost": 5,
-        "Gifs":
-        [
-            "res://Media/CardGifs/56a.ogv",
-            "res://Media/CardGifs/56b.ogv",
-            "res://Media/CardGifs/56c.ogv",
-            "res://Media/CardGifs/56d.ogv",
-            "res://Media/CardGifs/56e.ogv",
-            "res://Media/CardGifs/56f.ogv",
-            "res://Media/CardGifs/56g.ogv",
-            "res://Media/CardGifs/56h.ogv",
-            "res://Media/CardGifs/56i.ogv",
-            "res://Media/CardGifs/56j.ogv"
-        ],
-        "Effect":
+            "Name": "Sixty-Nine",
+            "Image": "res://Media/Cards/card60.webp",
+            "MinTF": 25,
+            "MaxTF": 41,
+            "HeartCost": 4,
+            "Gifs":
+            [
+                "res://Media/CardGifs/60a.ogv",
+                "res://Media/CardGifs/60b.ogv",
+                "res://Media/CardGifs/60c.ogv",
+                "res://Media/CardGifs/60d.ogv",
+                "res://Media/CardGifs/60e.ogv",
+                "res://Media/CardGifs/60f.ogv"
+            ],
+            "Effect":
+            {
+                "Heart": 3,
+                "Damage": 3
+            }
+        },
+        "card56":
         {
-            "Class": "TransferResources",
-            "From": "Heart",
-            "To": "Damage"
-        }
-    },
-    "card86":
-    {
-        "Name": "Take it Deep",
-        "Image": "res://Media/Cards/card86.webp",
-        "MinTF": 61,
-        "MaxTF": 77,
-        "HeartCost": 4,
-        "Gifs":
-        [
-            "res://Media/CardGifs/86a.ogv",
-            "res://Media/CardGifs/86b.ogv",
-            "res://Media/CardGifs/86c.ogv",
-            "res://Media/CardGifs/86d.ogv",
-            "res://Media/CardGifs/86e.ogv",
-            "res://Media/CardGifs/86f.ogv",
-            "res://Media/CardGifs/86g.ogv",
-            "res://Media/CardGifs/86h.ogv"
-        ],
-        "Effect":
+            "Name": "Blowjob",
+            "Image": "res://Media/Cards/card56.webp",
+            "MinTF": 33,
+            "MaxTF": 49,
+            "HeartCost": 5,
+            "Gifs":
+            [
+                "res://Media/CardGifs/56a.ogv",
+                "res://Media/CardGifs/56b.ogv",
+                "res://Media/CardGifs/56c.ogv",
+                "res://Media/CardGifs/56d.ogv",
+                "res://Media/CardGifs/56e.ogv",
+                "res://Media/CardGifs/56f.ogv",
+                "res://Media/CardGifs/56g.ogv",
+                "res://Media/CardGifs/56h.ogv",
+                "res://Media/CardGifs/56i.ogv",
+                "res://Media/CardGifs/56j.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "TransferResources",
+                "From": "Heart",
+                "To": "Damage"
+            }
+        },
+        "card86":
         {
-            "Class": "TransferResources",
-            "From": "Heart",
-            "To": "Shield"
+            "Name": "Take it Deep",
+            "Image": "res://Media/Cards/card86.webp",
+            "MinTF": 61,
+            "MaxTF": 77,
+            "HeartCost": 4,
+            "Gifs":
+            [
+                "res://Media/CardGifs/86a.ogv",
+                "res://Media/CardGifs/86b.ogv",
+                "res://Media/CardGifs/86c.ogv",
+                "res://Media/CardGifs/86d.ogv",
+                "res://Media/CardGifs/86e.ogv",
+                "res://Media/CardGifs/86f.ogv",
+                "res://Media/CardGifs/86g.ogv",
+                "res://Media/CardGifs/86h.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "TransferResources",
+                "From": "Heart",
+                "To": "Shield"
+            }
         }
     }
 }

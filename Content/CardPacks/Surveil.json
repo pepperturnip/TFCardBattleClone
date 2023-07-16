@@ -1,62 +1,66 @@
 {
-    "card267":
+    "Name": "Surveil",
+    "Cards":
     {
-        "Name": "Home Security",
-        "Image": "res://Media/Cards/card267.webp",
-        "MinTF": 0,
-        "MaxTF": 11,
-        "BrainCost": 4,
-        "Gifs":
-        [
-            "res://Media/CardGifs/267a.ogv",
-            "res://Media/CardGifs/267b.ogv"
-        ],
-        "Effect":
+        "card267":
         {
-            "Class": "GainExtraEveryTimeYouGainResource",
-            "Resource": "Shield",
-            "ImmediateGain": 2,
-            "BonusAmount": 1
-        }
-    },
-    "card268":
-    {
-        "Name": "Stake Out",
-        "Image": "res://Media/Cards/card268.webp",
-        "MinTF": 1,
-        "MaxTF": 17,
-        "BrainCost": 4,
-        "Gifs": ["res://Media/CardGifs/268.ogv"],
-        "Effect":
+            "Name": "Home Security",
+            "Image": "res://Media/Cards/card267.webp",
+            "MinTF": 0,
+            "MaxTF": 11,
+            "BrainCost": 4,
+            "Gifs":
+            [
+                "res://Media/CardGifs/267a.ogv",
+                "res://Media/CardGifs/267b.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "GainExtraEveryTimeYouGainResource",
+                "Resource": "Shield",
+                "ImmediateGain": 2,
+                "BonusAmount": 1
+            }
+        },
+        "card268":
         {
-            "Class": "GainExtraEveryTimeYouGainResource",
-            "Resource": "Damage",
-            "ImmediateGain": 2,
-            "BonusAmount": 1
-        }
-    },
-    "card269":
-    {
-        "Name": "Borrowed Ideas",
-        "Image": "res://Media/Cards/card269.webp",
-        "MinTF": 7,
-        "MaxTF": 23,
-        "BrainCost": 6,
-        "Effect":
+            "Name": "Stake Out",
+            "Image": "res://Media/Cards/card268.webp",
+            "MinTF": 1,
+            "MaxTF": 17,
+            "BrainCost": 4,
+            "Gifs": ["res://Media/CardGifs/268.ogv"],
+            "Effect":
+            {
+                "Class": "GainExtraEveryTimeYouGainResource",
+                "Resource": "Damage",
+                "ImmediateGain": 2,
+                "BonusAmount": 1
+            }
+        },
+        "card269":
         {
-            "Class": "GainExtraEveryTimeYouGainResource",
-            "Resource": "Brain",
-            "ImmediateGain": 2,
-            "BonusAmount": 1
+            "Name": "Borrowed Ideas",
+            "Image": "res://Media/Cards/card269.webp",
+            "MinTF": 7,
+            "MaxTF": 23,
+            "BrainCost": 6,
+            "Effect":
+            {
+                "Class": "GainExtraEveryTimeYouGainResource",
+                "Resource": "Brain",
+                "ImmediateGain": 2,
+                "BonusAmount": 1
+            }
+        },
+        "card270":
+        {
+            "Name": "Tracking Chip",
+            "Image": "res://Media/Cards/card270.webp",
+            "MinTF": 19,
+            "MaxTF": 35,
+            "BrainCost": 6,
+            "Effect": { "Class": "TrackingChip" }
         }
-    },
-    "card270":
-    {
-        "Name": "Tracking Chip",
-        "Image": "res://Media/Cards/card270.webp",
-        "MinTF": 19,
-        "MaxTF": 35,
-        "BrainCost": 6,
-        "Effect": { "Class": "TrackingChip" }
     }
 }

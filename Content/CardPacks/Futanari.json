@@ -1,376 +1,380 @@
 {
-    "card123":
+    "Name": "Futanari",
+    "Cards":
     {
-        "Name": "Piledriver",
-        "Image": "res://Media/Cards/card123a.webp",
-        "MinTF": 22,
-        "MaxTF": 38,
-        "HeartCost": 1,
-        "Gifs":
-        [
-            "res://Media/CardGifs/123a.ogv",
-            "res://Media/CardGifs/123b.ogv"
-        ],
-        "Effect":
+        "card123":
         {
-            "Class": "DowngradeIfResource",
-            "Resource": "Sub",
-            "StrongVersion":
+            "Name": "Piledriver",
+            "Image": "res://Media/Cards/card123a.webp",
+            "MinTF": 22,
+            "MaxTF": 38,
+            "HeartCost": 1,
+            "Gifs":
+            [
+                "res://Media/CardGifs/123a.ogv",
+                "res://Media/CardGifs/123b.ogv"
+            ],
+            "Effect":
             {
-                "Image": "res://Media/Cards/card123a.webp",
-                "Mind": 3
-            },
-            "WeakVersion":
-            {
-                "Image": "res://Media/Cards/card123b.webp",
-                "Mind": 1
+                "Class": "DowngradeIfResource",
+                "Resource": "Sub",
+                "StrongVersion":
+                {
+                    "Image": "res://Media/Cards/card123a.webp",
+                    "Mind": 3
+                },
+                "WeakVersion":
+                {
+                    "Image": "res://Media/Cards/card123b.webp",
+                    "Mind": 1
+                }
             }
-        }
-    },
-    "card124":
-    {
-        "Name": "Dick Flash",
-        "Image": "res://Media/Cards/card124a.webp",
-        "MinTF": 25,
-        "MaxTF": 41,
-        "HeartCost": 2,
-        "Gifs":
-        [
-            "res://Media/CardGifs/124a.ogv",
-            "res://Media/CardGifs/124b.ogv",
-            "res://Media/CardGifs/124c.ogv",
-            "res://Media/CardGifs/124d.ogv"
-        ],
-        "Effect":
+        },
+        "card124":
         {
-            "Class": "DowngradeIfResource",
-            "Resource": "Sub",
-            "StrongVersion":
+            "Name": "Dick Flash",
+            "Image": "res://Media/Cards/card124a.webp",
+            "MinTF": 25,
+            "MaxTF": 41,
+            "HeartCost": 2,
+            "Gifs":
+            [
+                "res://Media/CardGifs/124a.ogv",
+                "res://Media/CardGifs/124b.ogv",
+                "res://Media/CardGifs/124c.ogv",
+                "res://Media/CardGifs/124d.ogv"
+            ],
+            "Effect":
             {
-                "Image": "res://Media/Cards/card124a.webp",
-                "Heart": 3
-            },
-            "WeakVersion":
-            {
-                "Image": "res://Media/Cards/card124b.webp",
-                "Heart": 1
+                "Class": "DowngradeIfResource",
+                "Resource": "Sub",
+                "StrongVersion":
+                {
+                    "Image": "res://Media/Cards/card124a.webp",
+                    "Heart": 3
+                },
+                "WeakVersion":
+                {
+                    "Image": "res://Media/Cards/card124b.webp",
+                    "Heart": 1
+                }
             }
-        }
-    },
-    "card128":
-    {
-        "Name": "Cock Slap",
-        "Image": "res://Media/Cards/card128.webp",
-        "MinTF": 28,
-        "MaxTF": 44,
-        "HeartCost": 2,
-        "DestroyOnActivate": true,
-        "Gifs":
-        [
-            "res://Media/CardGifs/128a.ogv",
-            "res://Media/CardGifs/128b.ogv",
-            "res://Media/CardGifs/128c.ogv",
-            "res://Media/CardGifs/128d.ogv",
-            "res://Media/CardGifs/128e.ogv"
-        ],
-        "Effect": { "Class": "ForgetBasic" }
-    },
-    "card126":
-    {
-        "Name": "Ram it Down",
-        "Image": "res://Media/Cards/card126a.webp",
-        "MinTF": 31,
-        "MaxTF": 47,
-        "HeartCost": 4,
-        "Gifs":
-        [
-            "res://Media/CardGifs/126a.ogv",
-            "res://Media/CardGifs/126b.ogv",
-            "res://Media/CardGifs/126c.ogv",
-            "res://Media/CardGifs/126d.ogv"
-        ],
-        "Effect":
+        },
+        "card128":
         {
-            "Class": "DowngradeIfResource",
-            "Resource": "Sub",
-            "StrongVersion":
+            "Name": "Cock Slap",
+            "Image": "res://Media/Cards/card128.webp",
+            "MinTF": 28,
+            "MaxTF": 44,
+            "HeartCost": 2,
+            "DestroyOnActivate": true,
+            "Gifs":
+            [
+                "res://Media/CardGifs/128a.ogv",
+                "res://Media/CardGifs/128b.ogv",
+                "res://Media/CardGifs/128c.ogv",
+                "res://Media/CardGifs/128d.ogv",
+                "res://Media/CardGifs/128e.ogv"
+            ],
+            "Effect": { "Class": "ForgetBasic" }
+        },
+        "card126":
+        {
+            "Name": "Ram it Down",
+            "Image": "res://Media/Cards/card126a.webp",
+            "MinTF": 31,
+            "MaxTF": 47,
+            "HeartCost": 4,
+            "Gifs":
+            [
+                "res://Media/CardGifs/126a.ogv",
+                "res://Media/CardGifs/126b.ogv",
+                "res://Media/CardGifs/126c.ogv",
+                "res://Media/CardGifs/126d.ogv"
+            ],
+            "Effect":
             {
-                "Image": "res://Media/Cards/card126a.webp",
-                "Draw": 2
-            },
-            "WeakVersion":
-            {
-                "Image": "res://Media/Cards/card126b.webp",
-                "Draw": 1
+                "Class": "DowngradeIfResource",
+                "Resource": "Sub",
+                "StrongVersion":
+                {
+                    "Image": "res://Media/Cards/card126a.webp",
+                    "Draw": 2
+                },
+                "WeakVersion":
+                {
+                    "Image": "res://Media/Cards/card126b.webp",
+                    "Draw": 1
+                }
             }
-        }
-    },
-    "card127":
-    {
-        "Name": "Choke Hold",
-        "Image": "res://Media/Cards/card127.webp",
-        "MinTF": 34,
-        "MaxTF": 50,
-        "BrainCost": 5,
-        "Gifs":
-        [
-            "res://Media/CardGifs/127a.ogv",
-            "res://Media/CardGifs/127b.ogv"
-        ],
-        "Effect":
+        },
+        "card127":
         {
-            "Class": "MultiplyResources",
-            "Shield": 2
-        }
-    },
-    "card125":
-    {
-        "Name": "Workout Session",
-        "Image": "res://Media/Cards/card125.webp",
-        "MinTF": 37,
-        "MaxTF": 53,
-        "HeartCost": 4,
-        "DestroyOnActivate": true,
-        "Gifs":
-        [
-            "res://Media/CardGifs/125a.ogv",
-            "res://Media/CardGifs/125b.ogv",
-            "res://Media/CardGifs/125c.ogv",
-            "res://Media/CardGifs/125d.ogv",
-            "res://Media/CardGifs/125e.ogv",
-            "res://Media/CardGifs/125f.ogv"
-        ],
-        "Effect": { "Draw": 4 }
-    },
-    "card129":
-    {
-        "Name": "Cock Bulge",
-        "Image": "res://Media/Cards/card129.webp",
-        "MinTF": 40,
-        "MaxTF": 56,
-        "BrainCost": 3,
-        "DestroyOnActivate": true,
-        "Gifs":
-        [
-            "res://Media/CardGifs/129a.ogv",
-            "res://Media/CardGifs/129b.ogv",
-            "res://Media/CardGifs/129c.ogv",
-            "res://Media/CardGifs/129d.ogv",
-            "res://Media/CardGifs/129e.ogv"
-        ],
-        "Effect": { "Damage": 10 }
-    },
-    "card130":
-    {
-        "Name": "Up The Ass",
-        "Image": "res://Media/Cards/card130.webp",
-        "MinTF": 44,
-        "MaxTF": 60,
-        "HeartCost": 5,
-        "Gifs":
-        [
-            "res://Media/CardGifs/130a.ogv",
-            "res://Media/CardGifs/130b.ogv",
-            "res://Media/CardGifs/130c.ogv",
-            "res://Media/CardGifs/130d.ogv",
-            "res://Media/CardGifs/130e.ogv"
-        ],
-        "Effect":
-        {
-            "Class": "TransferResources",
-            "From": "Shield",
-            "To": "Damage"
-        }
-    },
-    "card131":
-    {
-        "Name": "Full Nelson",
-        "Image": "res://Media/Cards/card131a.webp",
-        "MinTF": 47,
-        "MaxTF": 63,
-        "HeartCost": 4,
-        "Gifs":
-        [
-            "res://Media/CardGifs/131a.ogv",
-            "res://Media/CardGifs/131b.ogv",
-            "res://Media/CardGifs/131c.ogv",
-            "res://Media/CardGifs/131d.ogv"
-        ],
-        "Effect":
-        {
-            "Class": "DowngradeIfResource",
-            "Resource": "Sub",
-            "StrongVersion":
+            "Name": "Choke Hold",
+            "Image": "res://Media/Cards/card127.webp",
+            "MinTF": 34,
+            "MaxTF": 50,
+            "BrainCost": 5,
+            "Gifs":
+            [
+                "res://Media/CardGifs/127a.ogv",
+                "res://Media/CardGifs/127b.ogv"
+            ],
+            "Effect":
             {
-                "Image": "res://Media/Cards/card131a.webp",
-                "Damage": 6
-            },
-            "WeakVersion":
-            {
-                "Image": "res://Media/Cards/card131b.webp",
-                "Damage": 1
+                "Class": "MultiplyResources",
+                "Shield": 2
             }
-        }
-    },
-    "card132":
-    {
-        "Name": "Pegging",
-        "Image": "res://Media/Cards/card132.webp",
-        "MinTF": 51,
-        "MaxTF": 67,
-        "HeartCost": 4,
-        "Gifs":
-        [
-            "res://Media/CardGifs/132a.ogv",
-            "res://Media/CardGifs/132b.ogv",
-            "res://Media/CardGifs/132c.ogv",
-            "res://Media/CardGifs/132d.ogv",
-            "res://Media/CardGifs/132e.ogv"
-        ],
-        "Effect":
+        },
+        "card125":
         {
-            "Brain": 2,
-            "Heart": 2,
-            "Damage": 2
-        }
-    },
-    "card138":
-    {
-        "Name": "Flex",
-        "Image": "res://Media/Cards/card138.webp",
-        "MinTF": 58,
-        "MaxTF": 74,
-        "BrainCost": 7,
-        "Effect": { "Class": "ReflectDamage" }
-    },
-    "card139":
-    {
-        "Name": "Pin Down",
-        "Image": "res://Media/Cards/card139a.webp",
-        "MinTF": 61,
-        "MaxTF": 77,
-        "HeartCost": 5,
-        "Gifs":
-        [
-            "res://Media/CardGifs/139a.ogv",
-            "res://Media/CardGifs/139b.ogv",
-            "res://Media/CardGifs/139c.ogv",
-            "res://Media/CardGifs/139d.ogv"
-        ],
-        "Effect":
+            "Name": "Workout Session",
+            "Image": "res://Media/Cards/card125.webp",
+            "MinTF": 37,
+            "MaxTF": 53,
+            "HeartCost": 4,
+            "DestroyOnActivate": true,
+            "Gifs":
+            [
+                "res://Media/CardGifs/125a.ogv",
+                "res://Media/CardGifs/125b.ogv",
+                "res://Media/CardGifs/125c.ogv",
+                "res://Media/CardGifs/125d.ogv",
+                "res://Media/CardGifs/125e.ogv",
+                "res://Media/CardGifs/125f.ogv"
+            ],
+            "Effect": { "Draw": 4 }
+        },
+        "card129":
         {
-            "Class": "DowngradeIfResource",
-            "Resource": "Sub",
-            "StrongVersion":
+            "Name": "Cock Bulge",
+            "Image": "res://Media/Cards/card129.webp",
+            "MinTF": 40,
+            "MaxTF": 56,
+            "BrainCost": 3,
+            "DestroyOnActivate": true,
+            "Gifs":
+            [
+                "res://Media/CardGifs/129a.ogv",
+                "res://Media/CardGifs/129b.ogv",
+                "res://Media/CardGifs/129c.ogv",
+                "res://Media/CardGifs/129d.ogv",
+                "res://Media/CardGifs/129e.ogv"
+            ],
+            "Effect": { "Damage": 10 }
+        },
+        "card130":
+        {
+            "Name": "Up The Ass",
+            "Image": "res://Media/Cards/card130.webp",
+            "MinTF": 44,
+            "MaxTF": 60,
+            "HeartCost": 5,
+            "Gifs":
+            [
+                "res://Media/CardGifs/130a.ogv",
+                "res://Media/CardGifs/130b.ogv",
+                "res://Media/CardGifs/130c.ogv",
+                "res://Media/CardGifs/130d.ogv",
+                "res://Media/CardGifs/130e.ogv"
+            ],
+            "Effect":
             {
-                "Image": "res://Media/Cards/card139a.webp",
-                "Shield": 8
-            },
-            "WeakVersion":
-            {
-                "Image": "res://Media/Cards/card139b.webp",
-                "Shield": 1
+                "Class": "TransferResources",
+                "From": "Shield",
+                "To": "Damage"
             }
-        }
-    },
-    "card133":
-    {
-        "Name": "Flaccid",
-        "Image": "res://Media/Cards/card133.webp",
-        "MinTF": 54,
-        "MaxTF": 70,
-        "HeartCost": 2,
-        "DestroyOnActivate": true,
-        "Gifs":
-        [
-            "res://Media/CardGifs/133a.ogv",
-            "res://Media/CardGifs/133b.ogv",
-            "res://Media/CardGifs/133c.ogv"
-        ],
-        "Effect":
+        },
+        "card131":
         {
-            "Class": "AddToBuyPile",
-            "CardId": "card134"
-        }
-    },
-    "card134":
-    {
-        "Name": "Chub",
-        "Image": "res://Media/Cards/card134.webp",
-        "MinTF": 54,
-        "MaxTF": 70,
-        "OfferWeight": 0,
-        "HeartCost": 3,
-        "DestroyOnActivate": true,
-        "Gifs":
-        [
-            "res://Media/CardGifs/134a.ogv",
-            "res://Media/CardGifs/134b.ogv",
-            "res://Media/CardGifs/134c.ogv"
-        ],
-        "Effect":
+            "Name": "Full Nelson",
+            "Image": "res://Media/Cards/card131a.webp",
+            "MinTF": 47,
+            "MaxTF": 63,
+            "HeartCost": 4,
+            "Gifs":
+            [
+                "res://Media/CardGifs/131a.ogv",
+                "res://Media/CardGifs/131b.ogv",
+                "res://Media/CardGifs/131c.ogv",
+                "res://Media/CardGifs/131d.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "DowngradeIfResource",
+                "Resource": "Sub",
+                "StrongVersion":
+                {
+                    "Image": "res://Media/Cards/card131a.webp",
+                    "Damage": 6
+                },
+                "WeakVersion":
+                {
+                    "Image": "res://Media/Cards/card131b.webp",
+                    "Damage": 1
+                }
+            }
+        },
+        "card132":
         {
-            "Class": "AddToBuyPile",
-            "CardId": "card135"
-        }
-    },
-    "card135":
-    {
-        "Name": "Boner",
-        "Image": "res://Media/Cards/card135.webp",
-        "MinTF": 54,
-        "MaxTF": 70,
-        "OfferWeight": 0,
-        "HeartCost": 4,
-        "DestroyOnActivate": true,
-        "Gifs":
-        [
-            "res://Media/CardGifs/135a.ogv",
-            "res://Media/CardGifs/135b.ogv",
-            "res://Media/CardGifs/135c.ogv"
-        ],
-        "Effect":
+            "Name": "Pegging",
+            "Image": "res://Media/Cards/card132.webp",
+            "MinTF": 51,
+            "MaxTF": 67,
+            "HeartCost": 4,
+            "Gifs":
+            [
+                "res://Media/CardGifs/132a.ogv",
+                "res://Media/CardGifs/132b.ogv",
+                "res://Media/CardGifs/132c.ogv",
+                "res://Media/CardGifs/132d.ogv",
+                "res://Media/CardGifs/132e.ogv"
+            ],
+            "Effect":
+            {
+                "Brain": 2,
+                "Heart": 2,
+                "Damage": 2
+            }
+        },
+        "card138":
         {
-            "Class": "AddToBuyPile",
-            "CardId": "card136"
-        }
-    },
-    "card136":
-    {
-        "Name": "Rock Hard",
-        "Image": "res://Media/Cards/card136.webp",
-        "MinTF": 54,
-        "MaxTF": 70,
-        "OfferWeight": 0,
-        "HeartCost": 5,
-        "DestroyOnActivate": true,
-        "Gifs":
-        [
-            "res://Media/CardGifs/136a.ogv",
-            "res://Media/CardGifs/136b.ogv",
-            "res://Media/CardGifs/136c.ogv"
-        ],
-        "Effect":
+            "Name": "Flex",
+            "Image": "res://Media/Cards/card138.webp",
+            "MinTF": 58,
+            "MaxTF": 74,
+            "BrainCost": 7,
+            "Effect": { "Class": "ReflectDamage" }
+        },
+        "card139":
         {
-            "Class": "AddToBuyPile",
-            "CardId": "card137"
+            "Name": "Pin Down",
+            "Image": "res://Media/Cards/card139a.webp",
+            "MinTF": 61,
+            "MaxTF": 77,
+            "HeartCost": 5,
+            "Gifs":
+            [
+                "res://Media/CardGifs/139a.ogv",
+                "res://Media/CardGifs/139b.ogv",
+                "res://Media/CardGifs/139c.ogv",
+                "res://Media/CardGifs/139d.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "DowngradeIfResource",
+                "Resource": "Sub",
+                "StrongVersion":
+                {
+                    "Image": "res://Media/Cards/card139a.webp",
+                    "Shield": 8
+                },
+                "WeakVersion":
+                {
+                    "Image": "res://Media/Cards/card139b.webp",
+                    "Shield": 1
+                }
+            }
+        },
+        "card133":
+        {
+            "Name": "Flaccid",
+            "Image": "res://Media/Cards/card133.webp",
+            "MinTF": 54,
+            "MaxTF": 70,
+            "HeartCost": 2,
+            "DestroyOnActivate": true,
+            "Gifs":
+            [
+                "res://Media/CardGifs/133a.ogv",
+                "res://Media/CardGifs/133b.ogv",
+                "res://Media/CardGifs/133c.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "AddToBuyPile",
+                "CardId": "card134"
+            }
+        },
+        "card134":
+        {
+            "Name": "Chub",
+            "Image": "res://Media/Cards/card134.webp",
+            "MinTF": 54,
+            "MaxTF": 70,
+            "OfferWeight": 0,
+            "HeartCost": 3,
+            "DestroyOnActivate": true,
+            "Gifs":
+            [
+                "res://Media/CardGifs/134a.ogv",
+                "res://Media/CardGifs/134b.ogv",
+                "res://Media/CardGifs/134c.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "AddToBuyPile",
+                "CardId": "card135"
+            }
+        },
+        "card135":
+        {
+            "Name": "Boner",
+            "Image": "res://Media/Cards/card135.webp",
+            "MinTF": 54,
+            "MaxTF": 70,
+            "OfferWeight": 0,
+            "HeartCost": 4,
+            "DestroyOnActivate": true,
+            "Gifs":
+            [
+                "res://Media/CardGifs/135a.ogv",
+                "res://Media/CardGifs/135b.ogv",
+                "res://Media/CardGifs/135c.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "AddToBuyPile",
+                "CardId": "card136"
+            }
+        },
+        "card136":
+        {
+            "Name": "Rock Hard",
+            "Image": "res://Media/Cards/card136.webp",
+            "MinTF": 54,
+            "MaxTF": 70,
+            "OfferWeight": 0,
+            "HeartCost": 5,
+            "DestroyOnActivate": true,
+            "Gifs":
+            [
+                "res://Media/CardGifs/136a.ogv",
+                "res://Media/CardGifs/136b.ogv",
+                "res://Media/CardGifs/136c.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "AddToBuyPile",
+                "CardId": "card137"
+            }
+        },
+        "card137":
+        {
+            "Name": "Cum!",
+            "Image": "res://Media/Cards/card137.webp",
+            "MinTF": 56,
+            "MaxTF": 72,
+            "OfferWeight": 0,
+            "HeartCost": 6,
+            "DestroyOnActivate": true,
+            "Gifs":
+            [
+                "res://Media/CardGifs/137a.ogv",
+                "res://Media/CardGifs/137b.ogv",
+                "res://Media/CardGifs/137c.ogv"
+            ],
+            "Effect": { "Damage": 1000 }
         }
-    },
-    "card137":
-    {
-        "Name": "Cum!",
-        "Image": "res://Media/Cards/card137.webp",
-        "MinTF": 56,
-        "MaxTF": 72,
-        "OfferWeight": 0,
-        "HeartCost": 6,
-        "DestroyOnActivate": true,
-        "Gifs":
-        [
-            "res://Media/CardGifs/137a.ogv",
-            "res://Media/CardGifs/137b.ogv",
-            "res://Media/CardGifs/137c.ogv"
-        ],
-        "Effect": { "Damage": 1000 }
     }
 }

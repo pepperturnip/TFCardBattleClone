@@ -1,101 +1,105 @@
 {
-    "card77":
+    "Name": "Sex",
+    "Cards":
     {
-        "Name": "Anal",
-        "Image": "res://Media/Cards/card77.webp",
-        "MinTF": 41,
-        "MaxTF": 57,
-        "HeartCost": 5,
-        "Gifs":
-        [
-            "res://Media/CardGifs/77a.ogv",
-            "res://Media/CardGifs/77b.ogv",
-            "res://Media/CardGifs/77c.ogv",
-            "res://Media/CardGifs/77d.ogv",
-            "res://Media/CardGifs/77e.ogv",
-            "res://Media/CardGifs/77f.ogv",
-            "res://Media/CardGifs/77g.ogv",
-            "res://Media/CardGifs/77h.ogv",
-            "res://Media/CardGifs/77i.ogv",
-            "res://Media/CardGifs/77j.ogv"
-        ],
-        "Effect":
+        "card77":
         {
-            "Heart": 3,
-            "Draw": 1
-        }
-    },
-    "card89":
-    {
-        "Name": "Pounded",
-        "Image": "res://Media/Cards/card89.webp",
-        "MinTF": 52,
-        "MaxTF": 68,
-        "HeartCost": 5,
-        "Gifs":
-        [
-            "res://Media/CardGifs/89a.ogv",
-            "res://Media/CardGifs/89b.ogv",
-            "res://Media/CardGifs/89c.ogv",
-            "res://Media/CardGifs/89d.ogv",
-            "res://Media/CardGifs/89e.ogv",
-            "res://Media/CardGifs/89f.ogv",
-            "res://Media/CardGifs/89g.ogv",
-            "res://Media/CardGifs/89h.ogv",
-            "res://Media/CardGifs/89i.ogv",
-            "res://Media/CardGifs/89j.ogv"
-        ],
-        "Effect":
+            "Name": "Anal",
+            "Image": "res://Media/Cards/card77.webp",
+            "MinTF": 41,
+            "MaxTF": 57,
+            "HeartCost": 5,
+            "Gifs":
+            [
+                "res://Media/CardGifs/77a.ogv",
+                "res://Media/CardGifs/77b.ogv",
+                "res://Media/CardGifs/77c.ogv",
+                "res://Media/CardGifs/77d.ogv",
+                "res://Media/CardGifs/77e.ogv",
+                "res://Media/CardGifs/77f.ogv",
+                "res://Media/CardGifs/77g.ogv",
+                "res://Media/CardGifs/77h.ogv",
+                "res://Media/CardGifs/77i.ogv",
+                "res://Media/CardGifs/77j.ogv"
+            ],
+            "Effect":
+            {
+                "Heart": 3,
+                "Draw": 1
+            }
+        },
+        "card89":
         {
-            "Sub": 2,
-            "Damage": 2,
-            "Draw": 1
-        }
-    },
-    "card63":
-    {
-        "Name": "Ride 'em Cowgirl",
-        "Image": "res://Media/Cards/card63.webp",
-        "MinTF": 63,
-        "MaxTF": 79,
-        "HeartCost": 6,
-        "Gifs":
-        [
-            "res://Media/CardGifs/63a.ogv",
-            "res://Media/CardGifs/63b.ogv",
-            "res://Media/CardGifs/63c.ogv",
-            "res://Media/CardGifs/63d.ogv",
-            "res://Media/CardGifs/63e.ogv",
-            "res://Media/CardGifs/63f.ogv",
-            "res://Media/CardGifs/63g.ogv",
-            "res://Media/CardGifs/63h.ogv"
-        ],
-        "Effect":
+            "Name": "Pounded",
+            "Image": "res://Media/Cards/card89.webp",
+            "MinTF": 52,
+            "MaxTF": 68,
+            "HeartCost": 5,
+            "Gifs":
+            [
+                "res://Media/CardGifs/89a.ogv",
+                "res://Media/CardGifs/89b.ogv",
+                "res://Media/CardGifs/89c.ogv",
+                "res://Media/CardGifs/89d.ogv",
+                "res://Media/CardGifs/89e.ogv",
+                "res://Media/CardGifs/89f.ogv",
+                "res://Media/CardGifs/89g.ogv",
+                "res://Media/CardGifs/89h.ogv",
+                "res://Media/CardGifs/89i.ogv",
+                "res://Media/CardGifs/89j.ogv"
+            ],
+            "Effect":
+            {
+                "Sub": 2,
+                "Damage": 2,
+                "Draw": 1
+            }
+        },
+        "card63":
         {
-            "Damage": 6,
-            "Draw": 1
+            "Name": "Ride 'em Cowgirl",
+            "Image": "res://Media/Cards/card63.webp",
+            "MinTF": 63,
+            "MaxTF": 79,
+            "HeartCost": 6,
+            "Gifs":
+            [
+                "res://Media/CardGifs/63a.ogv",
+                "res://Media/CardGifs/63b.ogv",
+                "res://Media/CardGifs/63c.ogv",
+                "res://Media/CardGifs/63d.ogv",
+                "res://Media/CardGifs/63e.ogv",
+                "res://Media/CardGifs/63f.ogv",
+                "res://Media/CardGifs/63g.ogv",
+                "res://Media/CardGifs/63h.ogv"
+            ],
+            "Effect":
+            {
+                "Damage": 6,
+                "Draw": 1
+            }
+        },
+        "card96":
+        {
+            "Name": "Doggy Style",
+            "Image": "res://Media/Cards/card96.webp",
+            "MinTF": 72,
+            "MaxTF": 88,
+            "HeartCost": 9,
+            "Gifs":
+            [
+                "res://Media/CardGifs/96a.ogv",
+                "res://Media/CardGifs/96b.ogv",
+                "res://Media/CardGifs/96c.ogv",
+                "res://Media/CardGifs/96d.ogv",
+                "res://Media/CardGifs/96e.ogv",
+                "res://Media/CardGifs/96f.ogv",
+                "res://Media/CardGifs/96g.ogv",
+                "res://Media/CardGifs/96h.ogv",
+                "res://Media/CardGifs/96i.ogv",
+                "res://Media/CardGifs/96j.ogv"
+            ],
+            "Effect": { "Draw": 4 }
         }
-    },
-    "card96":
-    {
-        "Name": "Doggy Style",
-        "Image": "res://Media/Cards/card96.webp",
-        "MinTF": 72,
-        "MaxTF": 88,
-        "HeartCost": 9,
-        "Gifs":
-        [
-            "res://Media/CardGifs/96a.ogv",
-            "res://Media/CardGifs/96b.ogv",
-            "res://Media/CardGifs/96c.ogv",
-            "res://Media/CardGifs/96d.ogv",
-            "res://Media/CardGifs/96e.ogv",
-            "res://Media/CardGifs/96f.ogv",
-            "res://Media/CardGifs/96g.ogv",
-            "res://Media/CardGifs/96h.ogv",
-            "res://Media/CardGifs/96i.ogv",
-            "res://Media/CardGifs/96j.ogv"
-        ],
-        "Effect": { "Draw": 4 }
     }
 }

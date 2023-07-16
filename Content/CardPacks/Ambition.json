@@ -1,47 +1,51 @@
 {
-    "card16":
+    "Name": "Ambition",
+    "Cards":
     {
-        "Name": "Escape Route",
-        "Image": "res://Media/Cards/card16.webp",
-        "MinTF": 0,
-        "MaxTF": 12,
-        "BrainCost": 5,
-        "Effect":
+        "card16":
         {
-            "Class": "TransferResources",
-            "From": "Brain",
-            "To": "Shield"
-        }
-    },
-    "card24":
-    {
-        "Name": "Rethink it",
-        "Image": "res://Media/Cards/card24.webp",
-        "MinTF": 2,
-        "MaxTF": 18,
-        "BrainCost": 4,
-        "Effect": { "Class": "ResetBuyPile" }
-    },
-    "card23":
-    {
-        "Name": "Double Down",
-        "Image": "res://Media/Cards/card23.webp",
-        "MinTF": 8,
-        "MaxTF": 24,
-        "BrainCost": 6,
-        "Effect":
+            "Name": "Escape Route",
+            "Image": "res://Media/Cards/card16.webp",
+            "MinTF": 0,
+            "MaxTF": 12,
+            "BrainCost": 5,
+            "Effect":
+            {
+                "Class": "TransferResources",
+                "From": "Brain",
+                "To": "Shield"
+            }
+        },
+        "card24":
         {
-            "Class": "MultiplyResources",
-            "Brain": 2
+            "Name": "Rethink it",
+            "Image": "res://Media/Cards/card24.webp",
+            "MinTF": 2,
+            "MaxTF": 18,
+            "BrainCost": 4,
+            "Effect": { "Class": "ResetBuyPile" }
+        },
+        "card23":
+        {
+            "Name": "Double Down",
+            "Image": "res://Media/Cards/card23.webp",
+            "MinTF": 8,
+            "MaxTF": 24,
+            "BrainCost": 6,
+            "Effect":
+            {
+                "Class": "MultiplyResources",
+                "Brain": 2
+            }
+        },
+        "card19":
+        {
+            "Name": "All Nighter",
+            "Image": "res://Media/Cards/card19.webp",
+            "MinTF": 22,
+            "MaxTF": 38,
+            "BrainCost": 6,
+            "Effect": { "Draw": 2 }
         }
-    },
-    "card19":
-    {
-        "Name": "All Nighter",
-        "Image": "res://Media/Cards/card19.webp",
-        "MinTF": 22,
-        "MaxTF": 38,
-        "BrainCost": 6,
-        "Effect": { "Draw": 2 }
     }
 }
