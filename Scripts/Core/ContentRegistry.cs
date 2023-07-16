@@ -26,7 +26,7 @@ namespace TFCardBattle.Core
         /// </summary>
         /// <param name="packName"></param>
         /// <param name="cards"></param>
-        public void ImportCardPack(CardPackId packName, string json)
+        public void ImportCardPackOld(CardPackId packName, string json)
         {
             var cards = Core.Parsing.CardPacks.Parse(json);
             _cardPacks.Add(packName, cards.Values.ToArray());
