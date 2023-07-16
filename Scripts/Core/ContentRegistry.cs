@@ -8,12 +8,17 @@ namespace TFCardBattle.Core
     public class ContentRegistry
     {
         public IReadOnlyDictionary<CardId, Card> Cards => _cards;
-        public IReadOnlyDictionary<CardPackId, Card[]> CardPacks => _cardPacks;
+        public IReadOnlyDictionary<CardPackId, CardPack> CardPacks => _cardPacks;
         public IReadOnlyDictionary<TransformationId, Transformation> Transformations => _transformations;
 
         private Dictionary<CardId, Card> _cards = new Dictionary<CardId, Card>();
-        private Dictionary<CardPackId, Card[]> _cardPacks = new Dictionary<CardPackId, Card[]>();
+        private Dictionary<CardPackId, CardPack> _cardPacks = new Dictionary<CardPackId, CardPack>();
         private Dictionary<TransformationId, Transformation> _transformations= new Dictionary<TransformationId, Transformation>();
+
+        public IEnumerable<Card> CardsInPack(CardPackId id)
+        {
+            return CardPacks[id].Cards.Values;
+        }
 
         /// <summary>
         /// Imports the given card pack into the registry.
@@ -28,10 +33,15 @@ namespace TFCardBattle.Core
         /// <param name="cards"></param>
         public void ImportCardPackOld(CardPackId packName, string json)
         {
-            var cards = Core.Parsing.CardPacks.Parse(json);
-            _cardPacks.Add(packName, cards.Values.ToArray());
+            var cardPack = new CardPack
+            {
+                Name = packName,
+                Cards = Parsing.CardPacks.Parse(json)
+                    .ToDictionary(kvp => (CardId)kvp.Key, kvp => kvp.Value)
+            };
+            _cardPacks.Add(packName, cardPack);
 
-            foreach (var kvp in cards)
+            foreach (var kvp in cardPack.Cards)
             {
                 _cards[kvp.Key] = kvp.Value;
             }

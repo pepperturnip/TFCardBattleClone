@@ -22,7 +22,7 @@ namespace TFCardBattle.Godot
             _loadout = new PlayerLoadout(_registry)
             {
                 Transformation = _transformationChoices[0],
-                PermanentBuyPile = _registry.CardPacks["StandardPermanentBuyPile"],
+                PermanentBuyPile = _registry.CardPacks["StandardPermanentBuyPile"].Cards.Values,
                 StartingDeck = PlayerStartingDeck.StartingDeck(),
 
                 ThemePacks = new[]
