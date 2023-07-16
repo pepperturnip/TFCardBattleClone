@@ -27,18 +27,15 @@ namespace TFCardBattle.Godot
 
                 ThemePacks = new[]
                 {
-                    _registry.CardPacks["Mind"],
                     _registry.CardPacks["Tech"],
                     _registry.CardPacks["Hypno"],
                     _registry.CardPacks["Chemist"],
                     _registry.CardPacks["Ambition"],
                     _registry.CardPacks["Purity"],
-                    _registry.CardPacks["Whore"],
                     _registry.CardPacks["FemmeFatale"],
                     _registry.CardPacks["Tease"],
                     _registry.CardPacks["Romance"],
                     _registry.CardPacks["Blowjob"],
-                    _registry.CardPacks["Submissive"],
                     _registry.CardPacks["Bondage"],
                     _registry.CardPacks["Cum"],
                     _registry.CardPacks["Cock"],
@@ -66,13 +63,25 @@ namespace TFCardBattle.Godot
                 new Transformation
                 {
                     Name = "Futanari",
-                    RequiredCardPacks = new CardPackId[] {"Futanari"}
+                    RequiredCardPacks = new CardPackId[]
+                    {
+                        "Futanari",
+                        "Mind",
+                        "Whore",
+                        "Submissive"
+                    }
                 },
 
                 new Transformation
                 {
                     Name = "Schoolgirl",
-                    RequiredCardPacks = new CardPackId[] {"School"}
+                    RequiredCardPacks = new CardPackId[]
+                    {
+                        "School",
+                        "Mind",
+                        "Whore",
+                        "Submissive"
+                    }
                 }
             };
         }
