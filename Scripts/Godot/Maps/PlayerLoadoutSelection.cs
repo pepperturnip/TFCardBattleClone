@@ -8,7 +8,7 @@ namespace TFCardBattle.Godot
 {
     public partial class PlayerLoadoutSelection : Control
     {
-        private CardRegistry _cardRegistry;
+        private ContentRegistry _registry;
         private PlayerLoadout _loadout;
 
         private Transformation[] _transformationChoices;
@@ -16,31 +16,30 @@ namespace TFCardBattle.Godot
 
         public override void _Ready()
         {
-            _cardRegistry = CreateCardRegistry();
-            _transformationChoices = CreateTransformations(_cardRegistry);
+            _registry = CreateContentRegistry();
+            _transformationChoices = _registry.Transformations.Values.ToArray();
 
-            _loadout = new PlayerLoadout
+            _loadout = new PlayerLoadout(_registry)
             {
                 Transformation = _transformationChoices[0],
+                PermanentBuyPile = _registry.CardPacks["StandardPermanentBuyPile"],
+                StartingDeck = PlayerStartingDeck.StartingDeck(),
 
                 ThemePacks = new[]
                 {
-                    _cardRegistry.CardPacks["Mind"],
-                    _cardRegistry.CardPacks["Tech"],
-                    _cardRegistry.CardPacks["Hypno"],
-                    _cardRegistry.CardPacks["Chemist"],
-                    _cardRegistry.CardPacks["Ambition"],
-                    _cardRegistry.CardPacks["Purity"],
-                    _cardRegistry.CardPacks["Whore"],
-                    _cardRegistry.CardPacks["FemmeFatale"],
-                    _cardRegistry.CardPacks["Tease"],
-                    _cardRegistry.CardPacks["Romance"],
-                    _cardRegistry.CardPacks["Blowjob"],
-                    _cardRegistry.CardPacks["Submissive"],
-                    _cardRegistry.CardPacks["Bondage"],
-                    _cardRegistry.CardPacks["Cum"],
-                    _cardRegistry.CardPacks["Cock"],
-                    _cardRegistry.CardPacks["Sex"]
+                    _registry.CardPacks["Tech"],
+                    _registry.CardPacks["Hypno"],
+                    _registry.CardPacks["Chemist"],
+                    _registry.CardPacks["Ambition"],
+                    _registry.CardPacks["Purity"],
+                    _registry.CardPacks["FemmeFatale"],
+                    _registry.CardPacks["Tease"],
+                    _registry.CardPacks["Romance"],
+                    _registry.CardPacks["Blowjob"],
+                    _registry.CardPacks["Bondage"],
+                    _registry.CardPacks["Cum"],
+                    _registry.CardPacks["Cock"],
+                    _registry.CardPacks["Sex"]
                 }
             };
 
@@ -54,48 +53,33 @@ namespace TFCardBattle.Godot
 
         public void StartBattle()
         {
-            Maps.Instance.GoToBattleScreen(_loadout, _cardRegistry);
+            Maps.Instance.GoToBattleScreen(_loadout, _registry);
         }
 
-        private static Transformation[] CreateTransformations(CardRegistry cardRegistry)
+        private static ContentRegistry CreateContentRegistry()
         {
-            return new[]
+            var registry = new ContentRegistry();
+
+            foreach (string packId in IdsInFolder("res://Content/CardPacks"))
             {
-                new Transformation
-                {
-                    Name = "Futanari",
-                    CardPack = cardRegistry.CardPacks["Futanari"],
-                    PermanentBuyPile = cardRegistry.CardPacks["StandardPermanentBuyPile"],
-                    StartingDeck = PlayerStartingDeck.StartingDeck().ToArray()
-                },
+                string path = $"res://Content/CardPacks/{packId}.json";
+                registry.ImportCardPack(packId, FileAccess.GetFileAsString(path));
+            }
 
-                new Transformation
-                {
-                    Name = "Schoolgirl",
-                    CardPack = cardRegistry.CardPacks["School"],
-                    PermanentBuyPile = cardRegistry.CardPacks["StandardPermanentBuyPile"],
-                    StartingDeck = PlayerStartingDeck.StartingDeck().ToArray()
-                }
-            };
-        }
-
-        private static CardRegistry CreateCardRegistry()
-        {
-            var registry = new CardRegistry();
-
-            IEnumerable<string> packNames = DirAccess
-                .GetFilesAt("res://CardPacks")
-                .Select(f => f.Split(".json")[0]);
-
-            foreach (string packName in packNames)
+            foreach (string tfId in IdsInFolder("res://Content/Transformations"))
             {
-                string path = $"res://CardPacks/{packName}.json";
-                var cards = Core.Parsing.CardPacks.Parse(FileAccess.GetFileAsString(path));
-
-                registry.ImportCardPack(packName, cards);
+                string path = $"res://Content/Transformations/{tfId}.json";
+                registry.ImportTransformation(tfId, FileAccess.GetFileAsString(path));
             }
 
             return registry;
+
+            IEnumerable<string> IdsInFolder(string folder)
+            {
+                return DirAccess
+                    .GetFilesAt(folder)
+                    .Select(f => f.Split(".json")[0]);
+            }
         }
     }
 }

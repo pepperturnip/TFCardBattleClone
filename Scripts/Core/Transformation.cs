@@ -7,8 +7,6 @@ namespace TFCardBattle.Core
     {
         public string Name;
 
-        public Card[] CardPack;
-        public Card[] PermanentBuyPile;
-        public Card[] StartingDeck;
+        public CardPackId[] RequiredCardPacks;
     }
 }

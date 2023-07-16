@@ -27,13 +27,13 @@ namespace TFCardBattle.Core
         public BattleController(
             PlayerLoadout loadout,
             Random rng,
-            CardRegistry cardRegistry,
+            ContentRegistry registry,
             IBattleAnimationPlayer animationPlayer
         )
         {
             State = new BattleState(
                 loadout: loadout,
-                cardRegistry: cardRegistry
+                registry: registry
             );
 
             Rng = rng;

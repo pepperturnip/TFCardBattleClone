@@ -10,7 +10,7 @@ namespace TFCardBattle.Core
     /// </summary>
     public class BattleState
     {
-        public readonly CardRegistry CardRegistry;
+        public readonly ContentRegistry CardRegistry;
 
         public PlayerLoadout PlayerLoadout;
 
@@ -64,11 +64,11 @@ namespace TFCardBattle.Core
 
         public BattleState(
             PlayerLoadout loadout,
-            CardRegistry cardRegistry
+            ContentRegistry registry
         )
         {
             PlayerLoadout = loadout;
-            CardRegistry = cardRegistry;
+            CardRegistry = registry;
 
             Deck.AddRange(loadout.StartingDeck);
         }
