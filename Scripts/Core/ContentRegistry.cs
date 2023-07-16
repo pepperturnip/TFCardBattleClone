@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace TFCardBattle.Core
 {
-    public class CardRegistry
+    public class ContentRegistry
     {
         public IReadOnlyDictionary<CardId, Card> Cards => _cards;
         public IReadOnlyDictionary<CardPackId, Card[]> CardPacks => _cardPacks;

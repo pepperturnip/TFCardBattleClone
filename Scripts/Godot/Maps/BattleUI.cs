@@ -29,12 +29,12 @@ namespace TFCardBattle.Godot
 
         private BattleController Battle;
 
-        public async void StartBattle(PlayerLoadout loadout, CardRegistry cardRegistry)
+        public async void StartBattle(PlayerLoadout loadout, ContentRegistry registry)
         {
             Battle = new BattleController(
                 loadout: loadout,
                 rng: new Random((int)DateTimeOffset.Now.ToUnixTimeMilliseconds()),
-                cardRegistry: cardRegistry,
+                registry: registry,
                 animationPlayer: GetNode<BattleAnimationPlayer>("%BattleAnimationPlayer")
             );
 

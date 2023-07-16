@@ -8,7 +8,7 @@ namespace TFCardBattle.Godot
 {
     public partial class PlayerLoadoutSelection : Control
     {
-        private CardRegistry _cardRegistry;
+        private ContentRegistry _registry;
         private PlayerLoadout _loadout;
 
         private Transformation[] _transformationChoices;
@@ -16,33 +16,33 @@ namespace TFCardBattle.Godot
 
         public override void _Ready()
         {
-            _cardRegistry = CreateCardRegistry();
-            _transformationChoices = CreateTransformations(_cardRegistry);
+            _registry = CreateContentRegistry();
+            _transformationChoices = CreateTransformations(_registry);
 
             _loadout = new PlayerLoadout
             {
                 Transformation = _transformationChoices[0],
-                PermanentBuyPile = _cardRegistry.CardPacks["StandardPermanentBuyPile"],
+                PermanentBuyPile = _registry.CardPacks["StandardPermanentBuyPile"],
                 StartingDeck = PlayerStartingDeck.StartingDeck(),
 
                 ThemePacks = new[]
                 {
-                    _cardRegistry.CardPacks["Mind"],
-                    _cardRegistry.CardPacks["Tech"],
-                    _cardRegistry.CardPacks["Hypno"],
-                    _cardRegistry.CardPacks["Chemist"],
-                    _cardRegistry.CardPacks["Ambition"],
-                    _cardRegistry.CardPacks["Purity"],
-                    _cardRegistry.CardPacks["Whore"],
-                    _cardRegistry.CardPacks["FemmeFatale"],
-                    _cardRegistry.CardPacks["Tease"],
-                    _cardRegistry.CardPacks["Romance"],
-                    _cardRegistry.CardPacks["Blowjob"],
-                    _cardRegistry.CardPacks["Submissive"],
-                    _cardRegistry.CardPacks["Bondage"],
-                    _cardRegistry.CardPacks["Cum"],
-                    _cardRegistry.CardPacks["Cock"],
-                    _cardRegistry.CardPacks["Sex"]
+                    _registry.CardPacks["Mind"],
+                    _registry.CardPacks["Tech"],
+                    _registry.CardPacks["Hypno"],
+                    _registry.CardPacks["Chemist"],
+                    _registry.CardPacks["Ambition"],
+                    _registry.CardPacks["Purity"],
+                    _registry.CardPacks["Whore"],
+                    _registry.CardPacks["FemmeFatale"],
+                    _registry.CardPacks["Tease"],
+                    _registry.CardPacks["Romance"],
+                    _registry.CardPacks["Blowjob"],
+                    _registry.CardPacks["Submissive"],
+                    _registry.CardPacks["Bondage"],
+                    _registry.CardPacks["Cum"],
+                    _registry.CardPacks["Cock"],
+                    _registry.CardPacks["Sex"]
                 }
             };
 
@@ -56,30 +56,30 @@ namespace TFCardBattle.Godot
 
         public void StartBattle()
         {
-            Maps.Instance.GoToBattleScreen(_loadout, _cardRegistry);
+            Maps.Instance.GoToBattleScreen(_loadout, _registry);
         }
 
-        private static Transformation[] CreateTransformations(CardRegistry cardRegistry)
+        private static Transformation[] CreateTransformations(ContentRegistry registry)
         {
             return new[]
             {
                 new Transformation
                 {
                     Name = "Futanari",
-                    CardPack = cardRegistry.CardPacks["Futanari"],
+                    CardPack = registry.CardPacks["Futanari"],
                 },
 
                 new Transformation
                 {
                     Name = "Schoolgirl",
-                    CardPack = cardRegistry.CardPacks["School"],
+                    CardPack = registry.CardPacks["School"],
                 }
             };
         }
 
-        private static CardRegistry CreateCardRegistry()
+        private static ContentRegistry CreateContentRegistry()
         {
-            var registry = new CardRegistry();
+            var registry = new ContentRegistry();
 
             IEnumerable<string> packNames = DirAccess
                 .GetFilesAt("res://CardPacks")
