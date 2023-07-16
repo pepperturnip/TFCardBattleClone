@@ -22,6 +22,8 @@ namespace TFCardBattle.Godot
             _loadout = new PlayerLoadout
             {
                 Transformation = _transformationChoices[0],
+                PermanentBuyPile = _cardRegistry.CardPacks["StandardPermanentBuyPile"],
+                StartingDeck = PlayerStartingDeck.StartingDeck(),
 
                 ThemePacks = new[]
                 {
@@ -65,16 +67,12 @@ namespace TFCardBattle.Godot
                 {
                     Name = "Futanari",
                     CardPack = cardRegistry.CardPacks["Futanari"],
-                    PermanentBuyPile = cardRegistry.CardPacks["StandardPermanentBuyPile"],
-                    StartingDeck = PlayerStartingDeck.StartingDeck().ToArray()
                 },
 
                 new Transformation
                 {
                     Name = "Schoolgirl",
                     CardPack = cardRegistry.CardPacks["School"],
-                    PermanentBuyPile = cardRegistry.CardPacks["StandardPermanentBuyPile"],
-                    StartingDeck = PlayerStartingDeck.StartingDeck().ToArray()
                 }
             };
         }
