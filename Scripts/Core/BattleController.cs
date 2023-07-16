@@ -40,6 +40,22 @@ namespace TFCardBattle.Core
             AnimationPlayer = animationPlayer;
         }
 
+        public void AddEffect(ILingeringEffect effect)
+        {
+            State.LingeringEffects.Add(effect);
+        }
+
+        public void RemoveEffect(ILingeringEffect effect)
+        {
+            State.LingeringEffects.Remove(effect);
+        }
+
+        private async Task TriggerEffects(Func<ILingeringEffect, Task> action)
+        {
+            foreach (var effect in State.LingeringEffects.ToArray())
+                await action(effect);
+        }
+
         public async Task DrawCard()
         {
             // Reshuffle discard pile into the deck if the deck is empty
@@ -88,7 +104,9 @@ namespace TFCardBattle.Core
             State.InPlay.Add(card);
             await AnimationPlayer.PlayCard(handIndex, State);
 
+            await TriggerEffects(e => e.OnCardAboutToActivate(this, card));
             await card.Effect.Activate(this);
+            await TriggerEffects(e => e.OnCardFinishedActivating(this, card));
 
             if (card.DestroyOnActivate)
             {
@@ -181,7 +199,9 @@ namespace TFCardBattle.Core
             State.Consumables.Remove(consumable);
             // TODO: Play an animation of using the consumable
 
+            await TriggerEffects(e => e.OnConsumableAboutToActivate(this, consumable));
             await consumable.Activate(this);
+            await TriggerEffects(e => e.OnConsumableFinishedActivating(this, consumable));
         }
 
         public async Task StartTurn()
@@ -190,7 +210,6 @@ namespace TFCardBattle.Core
 
             await DiscardResources();
             await ResetBuyPile();
-            State.ReflectDamage = false;
 
             // Draw a fresh hand of cards
             for (int i = 0; i < StartingHandSize; i++)
@@ -218,22 +237,9 @@ namespace TFCardBattle.Core
             int enemyTfDamage = RollEnemyDamage() - State.Shield;
             enemyTfDamage = Math.Clamp(enemyTfDamage, 0, int.MaxValue);
 
-            if (!State.ReflectDamage)
-            {
-                State.PlayerTF += enemyTfDamage;
-                await AnimationPlayer.DamagePlayer(enemyTfDamage);
-            }
-            else
-            {
-                State.EnemyTF += State.Damage;
-                await AnimationPlayer.DamageEnemy(State.Damage);
-
-                if (State.EnemyTF >= State.EnemyMaxTF)
-                {
-                    EndBattle();
-                    return;
-                }
-            }
+            await TriggerEffects(e => e.OnPlayerAboutToTakeDamage(this, ref enemyTfDamage));
+            State.PlayerTF += enemyTfDamage;
+            await AnimationPlayer.DamagePlayer(enemyTfDamage);
 
             if (State.PlayerTF >= State.PlayerMaxTF)
             {
@@ -242,6 +248,8 @@ namespace TFCardBattle.Core
             }
 
             // Start the next turn
+            await TriggerEffects(e => e.OnTurnEnd(this));
+
             State.TurnsElapsed++;
             await StartTurn();
         }
