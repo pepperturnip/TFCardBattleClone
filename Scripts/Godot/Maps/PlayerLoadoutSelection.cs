@@ -60,9 +60,9 @@ namespace TFCardBattle.Godot
         {
             var registry = new ContentRegistry();
 
-            foreach (string packId in IdsInFolder("res://CardPacks"))
+            foreach (string packId in IdsInFolder("res://Content/CardPacks"))
             {
-                string path = $"res://CardPacks/{packId}.json";
+                string path = $"res://Content/CardPacks/{packId}.json";
                 registry.ImportCardPack(packId, FileAccess.GetFileAsString(path));
             }
 
