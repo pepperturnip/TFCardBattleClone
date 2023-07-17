@@ -7,29 +7,35 @@ using Newtonsoft.Json.Linq;
 
 namespace TFCardBattle.Core.Parsing
 {
-    public static class CardPacks
+    public class CardEffectJsonConverter : JsonConverter
     {
         private static readonly Dictionary<string, Type> _effectClassCache = new Dictionary<string, Type>();
 
-        public static IReadOnlyDictionary<string, Card> Parse(string rawJson)
+        public override bool CanConvert(Type objectType)
         {
-            var jObjs = JsonConvert.DeserializeObject<Dictionary<string, JObject>>(rawJson);
-            return jObjs.ToDictionary(kvp => kvp.Key, kvp => FromJObject(kvp.Value));
+            return objectType == typeof(ICardEffect);
+        }
+        public override object ReadJson(
+            JsonReader reader,
+            Type objectType,
+            object existingValue,
+            JsonSerializer serializer
+        )
+        {
+            var jobj = JObject.Load(reader);
+            return ParseWithReflection(jobj);
         }
 
-        private static Card FromJObject(JObject obj)
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var card = obj.ToObject<Card>();
-
-            dynamic dynamicCard = obj;
-            string effectClass = dynamicCard.Effect.Class ?? "Simple";
-            card.Effect = ParseWithReflection((JObject)obj["Effect"], effectClass);
-
-            return card;
+            throw new NotImplementedException();
         }
 
-        private static ICardEffect ParseWithReflection(JObject obj, string className)
+        private static ICardEffect ParseWithReflection(JObject obj)
         {
+            dynamic dynamicEffect = obj;
+            string className = dynamicEffect.Class ?? "Simple";
+
             var type = FindClass(
                 className,
                 "TFCardBattle.Core.CardEffects",

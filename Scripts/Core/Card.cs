@@ -21,7 +21,8 @@ namespace TFCardBattle.Core
 
         public bool DestroyOnActivate;
 
-        [JsonIgnore] public ICardEffect Effect;
+        [JsonConverter(typeof(Parsing.CardEffectJsonConverter))]
+        public ICardEffect Effect;
 
         public string GetDescription(BattleState state)
         {

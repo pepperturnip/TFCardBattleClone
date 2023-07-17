@@ -45,7 +45,7 @@ namespace TFCardBattle.Core
             var cardPack = new CardPack
             {
                 Name = packName,
-                Cards = Parsing.CardPacks.Parse(json)
+                Cards = JsonConvert.DeserializeObject<Dictionary<string, Card>>(json)
                     .ToDictionary(kvp => (CardId)kvp.Key, kvp => kvp.Value)
             };
             _cardPacks.Add(packName, cardPack);
