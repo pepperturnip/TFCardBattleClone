@@ -19,6 +19,7 @@ namespace TFCardBattle.Godot
 
         private HashSet<CardPack> _selectedThemePacks = new HashSet<CardPack>();
 
+        private const int RequiredThemePackCount = 13;
 
         public override void _Ready()
         {
@@ -57,17 +58,19 @@ namespace TFCardBattle.Godot
                 var cardPack = _themePackChoices[i];
 
                 var checkBox = new CheckBox();
+                _themePackPicker.AddChild(checkBox);
                 checkBox.Text = cardPack.Name;
-                checkBox.ButtonPressed = defaultSelections.Contains(cardPack);
                 checkBox.Toggled += (bool pressed) =>
                 {
                     if (pressed)
                         _selectedThemePacks.Add(cardPack);
                     else
                         _selectedThemePacks.Remove(cardPack);
+
+                    RefreshStartButton();
                 };
 
-                _themePackPicker.AddChild(checkBox);
+                checkBox.ButtonPressed = defaultSelections.Contains(cardPack);
             }
         }
 
@@ -83,6 +86,16 @@ namespace TFCardBattle.Godot
             };
 
             Maps.Instance.GoToBattleScreen(loadout, _registry);
+        }
+
+        private void RefreshStartButton()
+        {
+            int expectedCount = RequiredThemePackCount;
+            int actualCount = _selectedThemePacks.Count;
+            GetNode<Label>("%ThemeCountLabel").Text = $"({actualCount}/{expectedCount})";
+
+            bool enableStartButton = _selectedThemePacks.Count == expectedCount;
+            GetNode<Button>("%StartButton").Disabled = !enableStartButton;
         }
 
         private static ContentRegistry CreateContentRegistry()
