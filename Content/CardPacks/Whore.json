@@ -36,11 +36,7 @@
                 "res://Media/CardGifs/30b.ogv",
                 "res://Media/CardGifs/30c.ogv"
             ],
-            "Effect":
-            {
-                "Damage": 2,
-                "Draw": 1
-            }
+            "Effect": { "Damage": 2 }
         },
         "card35":
         {
