@@ -13,6 +13,7 @@ namespace TFCardBattle.Core
     {
         Standard,
         Core,
+        Transformation,
         PermanentBuyPile
     }
 }

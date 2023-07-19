@@ -3,57 +3,86 @@ using System.Collections.Generic;
 using System.Linq;
 using TFCardBattle.Core;
 using Godot;
+using Newtonsoft.Json;
 
 namespace TFCardBattle.Godot
 {
     public partial class PlayerLoadoutSelection : Control
     {
         private ContentRegistry _registry;
-        private PlayerLoadout _loadout;
 
         private Transformation[] _transformationChoices;
+        private CardPack[] _themePackChoices;
+
         private ItemList _transformationPicker => GetNode<ItemList>("%TransformationPicker");
+        private VBoxContainer _themePackPicker => GetNode<VBoxContainer>("%ThemePackPicker");
+
+        private HashSet<CardPack> _selectedThemePacks = new HashSet<CardPack>();
+
 
         public override void _Ready()
         {
             _registry = CreateContentRegistry();
+
+            InitTransformationPicker();
+            InitThemePackPicker();
+        }
+
+        private void InitTransformationPicker()
+        {
             _transformationChoices = _registry.Transformations.Values.ToArray();
-
-            _loadout = new PlayerLoadout(_registry)
-            {
-                Transformation = _transformationChoices[0],
-                PermanentBuyPile = _registry.CardPacks["StandardPermanentBuyPile"].Cards.Values,
-                StartingDeck = PlayerStartingDeck.StartingDeck(),
-
-                ThemePacks = new[]
-                {
-                    _registry.CardPacks["Tech"],
-                    _registry.CardPacks["Hypno"],
-                    _registry.CardPacks["Chemist"],
-                    _registry.CardPacks["Ambition"],
-                    _registry.CardPacks["Purity"],
-                    _registry.CardPacks["FemmeFatale"],
-                    _registry.CardPacks["Tease"],
-                    _registry.CardPacks["Romance"],
-                    _registry.CardPacks["Blowjob"],
-                    _registry.CardPacks["Bondage"],
-                    _registry.CardPacks["Cum"],
-                    _registry.CardPacks["Cock"],
-                    _registry.CardPacks["Sex"]
-                }
-            };
 
             foreach (var tf in _transformationChoices)
             {
                 _transformationPicker.AddItem(tf.Name);
             }
+
             _transformationPicker.Select(0);
-            _transformationPicker.ItemSelected += i => _loadout.Transformation = _transformationChoices[i];
+        }
+
+        private void InitThemePackPicker()
+        {
+            _themePackChoices = _registry.CardPacks
+                .Values
+                .Where(p => p.Type == CardPackType.Standard)
+                .ToArray();
+
+            string defaultSelectionsJson = FileAccess.GetFileAsString("res://Content/DefaultLoadout.json");
+            var defaultSelections = JsonConvert.DeserializeObject<CardPackId[]>(defaultSelectionsJson)
+                .Select(id => _registry.CardPacks[id])
+                .ToHashSet();
+
+            for (int i = 0; i < _themePackChoices.Length; i++)
+            {
+                var cardPack = _themePackChoices[i];
+
+                var checkBox = new CheckBox();
+                checkBox.Text = cardPack.Name;
+                checkBox.ButtonPressed = defaultSelections.Contains(cardPack);
+                checkBox.Toggled += (bool pressed) =>
+                {
+                    if (pressed)
+                        _selectedThemePacks.Add(cardPack);
+                    else
+                        _selectedThemePacks.Remove(cardPack);
+                };
+
+                _themePackPicker.AddChild(checkBox);
+            }
         }
 
         public void StartBattle()
         {
-            Maps.Instance.GoToBattleScreen(_loadout, _registry);
+            var loadout = new PlayerLoadout(_registry)
+            {
+                Transformation = _transformationChoices[_transformationPicker.GetSelectedItems()[0]],
+                ThemePacks = _selectedThemePacks.ToArray(),
+
+                PermanentBuyPile = _registry.CardPacks["StandardPermanentBuyPile"].Cards.Values,
+                StartingDeck = PlayerStartingDeck.StartingDeck(),
+            };
+
+            Maps.Instance.GoToBattleScreen(loadout, _registry);
         }
 
         private static ContentRegistry CreateContentRegistry()
