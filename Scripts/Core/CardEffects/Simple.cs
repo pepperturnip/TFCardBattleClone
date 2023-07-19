@@ -15,7 +15,7 @@ namespace TFCardBattle.Core.CardEffects
         public int Damage {get; set;}
         public int Draw {get; set;}
         public int SelfHeal {get; set;}
-        public IConsumable[] Consumables {get; set;} = Array.Empty<IConsumable>();
+        public ConsumableId[] Consumables {get; set;} = Array.Empty<ConsumableId>();
 
         public async Task Activate(BattleController battle)
         {
@@ -25,8 +25,9 @@ namespace TFCardBattle.Core.CardEffects
             battle.State.Shield += Shield;
             battle.State.Damage += Damage;
 
-            foreach (var consumable in Consumables)
+            foreach (var consumableId in Consumables)
             {
+                Consumable consumable = battle.State.CardRegistry.Consumables[consumableId];
                 await battle.AddConsumable(consumable);
             }
 

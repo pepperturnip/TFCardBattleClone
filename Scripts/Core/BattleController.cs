@@ -180,7 +180,7 @@ namespace TFCardBattle.Core
             await AnimationPlayer.BuyCard(buyPileIndex, isPermanentCard);
         }
 
-        public Task AddConsumable(IConsumable consumable)
+        public Task AddConsumable(Consumable consumable)
         {
             if (State.Consumables.Count >= MaxConsumableSlots)
             {
@@ -200,7 +200,7 @@ namespace TFCardBattle.Core
             // TODO: Play an animation of using the consumable
 
             await TriggerEffects(e => e.OnConsumableAboutToActivate(this, consumable));
-            await consumable.Activate(this);
+            await consumable.Effect.Activate(this);
             await TriggerEffects(e => e.OnConsumableFinishedActivating(this, consumable));
         }
 

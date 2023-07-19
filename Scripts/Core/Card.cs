@@ -21,7 +21,8 @@ namespace TFCardBattle.Core
 
         public bool DestroyOnActivate;
 
-        [JsonIgnore] public ICardEffect Effect;
+        [JsonConverter(typeof(Parsing.CardEffectJsonConverter))]
+        public ICardEffect Effect;
 
         public string GetDescription(BattleState state)
         {
@@ -43,13 +44,5 @@ namespace TFCardBattle.Core
                 default: throw new ArgumentException("Only brain, heart, and sub are accepted");
             }
         }
-    }
-
-    public interface ICardEffect
-    {
-        Task Activate(BattleController battle);
-
-        string GetDescription(BattleState state);
-        string GetOverriddenImage(BattleState state);
     }
 }

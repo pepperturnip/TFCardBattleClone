@@ -1,56 +1,60 @@
 {
-    "card11":
+    "Name": "Chemist",
+    "Cards":
     {
-        "Name": "Home Chemistry",
-        "Image": "res://Media/Cards/card11.webp",
-        "MinTF": 0,
-        "MaxTF": 11,
-        "BrainCost": 4,
-        "Effect":
+        "card11":
         {
-            "Damage": 1,
-            "Consumables": ["MinorShieldPotion"]
-        }
-    },
-    "card22":
-    {
-        "Name": "Scientific Advisor",
-        "Image": "res://Media/Cards/card22.webp",
-        "MinTF": 1,
-        "MaxTF": 17,
-        "BrainCost": 3,
-        "Effect":
+            "Name": "Home Chemistry",
+            "Image": "res://Media/Cards/card11.webp",
+            "MinTF": 0,
+            "MaxTF": 11,
+            "BrainCost": 4,
+            "Effect":
+            {
+                "Damage": 1,
+                "Consumables": ["MinorShieldPotion"]
+            }
+        },
+        "card22":
         {
-            "Consumables":
-            [
-                "MinorBrainPotion",
-                "MinorBrainPotion"
-            ]
-        }
-    },
-    "card42":
-    {
-        "Name": "Brain Booster",
-        "Image": "res://Media/Cards/card42.webp",
-        "MinTF": 7,
-        "MaxTF": 23,
-        "BrainCost": 5,
-        "Effect":
+            "Name": "Scientific Advisor",
+            "Image": "res://Media/Cards/card22.webp",
+            "MinTF": 1,
+            "MaxTF": 17,
+            "BrainCost": 3,
+            "Effect":
+            {
+                "Consumables":
+                [
+                    "MinorBrainPotion",
+                    "MinorBrainPotion"
+                ]
+            }
+        },
+        "card42":
         {
-            "Consumables": ["BrainPotion"]
-        }
-    },
-    "card51":
-    {
-        "Name": "Research Lab",
-        "Image": "res://Media/Cards/card51.webp",
-        "MinTF": 19,
-        "MaxTF": 35,
-        "BrainCost": 6,
-        "Effect":
+            "Name": "Brain Booster",
+            "Image": "res://Media/Cards/card42.webp",
+            "MinTF": 7,
+            "MaxTF": 23,
+            "BrainCost": 5,
+            "Effect":
+            {
+                "Consumables": ["BrainPotion"]
+            }
+        },
+        "card51":
         {
-            "Draw": 1,
-            "Consumables": ["MinorDrawPotion"]
+            "Name": "Research Lab",
+            "Image": "res://Media/Cards/card51.webp",
+            "MinTF": 19,
+            "MaxTF": 35,
+            "BrainCost": 6,
+            "Effect":
+            {
+                "Draw": 1,
+                "Consumables": ["MinorDrawPotion"]
+            }
         }
     }
 }

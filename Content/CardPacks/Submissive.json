@@ -1,108 +1,112 @@
 {
-    "card71":
+    "Name": "Submissive",
+    "Cards":
     {
-        "Name": "Bow Down",
-        "Image": "res://Media/Cards/card71.webp",
-        "MinTF": 34,
-        "MaxTF": 50,
-        "SubCost": 1,
-        "Gifs": ["res://Media/CardGifs/71.ogv"],
-        "Effect":
+        "card71":
         {
-            "Sub": 2,
-            "Damage": 1
-        }
-    },
-    "card73":
-    {
-        "Name": "Underfoot",
-        "Image": "res://Media/Cards/card73.webp",
-        "MinTF": 44,
-        "MaxTF": 60,
-        "SubCost": 1,
-        "Gifs": ["res://Media/CardGifs/73.ogv"],
-        "Effect":
+            "Name": "Bow Down",
+            "Image": "res://Media/Cards/card71.webp",
+            "MinTF": 34,
+            "MaxTF": 50,
+            "SubCost": 1,
+            "Gifs": ["res://Media/CardGifs/71.ogv"],
+            "Effect":
+            {
+                "Sub": 2,
+                "Damage": 1
+            }
+        },
+        "card73":
         {
-            "Damage": 2,
-            "Shield": 1
-        }
-    },
-    "card91":
-    {
-        "Name": "At Master's Feet",
-        "Image": "res://Media/Cards/card91.webp",
-        "MinTF": 53,
-        "MaxTF": 69,
-        "SubCost": 2,
-        "Gifs":
-        [
-            "res://Media/CardGifs/91a.ogv",
-            "res://Media/CardGifs/91b.ogv",
-            "res://Media/CardGifs/91c.ogv",
-            "res://Media/CardGifs/91d.ogv",
-            "res://Media/CardGifs/91e.ogv",
-            "res://Media/CardGifs/91f.ogv",
-            "res://Media/CardGifs/91g.ogv",
-            "res://Media/CardGifs/91h.ogv",
-            "res://Media/CardGifs/91i.ogv"
-        ],
-        "Effect":
+            "Name": "Underfoot",
+            "Image": "res://Media/Cards/card73.webp",
+            "MinTF": 44,
+            "MaxTF": 60,
+            "SubCost": 1,
+            "Gifs": ["res://Media/CardGifs/73.ogv"],
+            "Effect":
+            {
+                "Damage": 2,
+                "Shield": 1
+            }
+        },
+        "card91":
         {
-            "Sub": 2,
-            "Draw": 1
-        }
-    },
-    "card87":
-    {
-        "Name": "Nipple Clamps",
-        "Image": "res://Media/Cards/card87.webp",
-        "MinTF": 66,
-        "MaxTF": 82,
-        "SubCost": 2,
-        "Gifs":
-        [
-            "res://Media/CardGifs/87a.ogv",
-            "res://Media/CardGifs/87b.ogv",
-            "res://Media/CardGifs/87c.ogv",
-            "res://Media/CardGifs/87d.ogv",
-            "res://Media/CardGifs/87e.ogv"
-        ],
-        "Effect":
+            "Name": "At Master's Feet",
+            "Image": "res://Media/Cards/card91.webp",
+            "MinTF": 53,
+            "MaxTF": 69,
+            "SubCost": 2,
+            "Gifs":
+            [
+                "res://Media/CardGifs/91a.ogv",
+                "res://Media/CardGifs/91b.ogv",
+                "res://Media/CardGifs/91c.ogv",
+                "res://Media/CardGifs/91d.ogv",
+                "res://Media/CardGifs/91e.ogv",
+                "res://Media/CardGifs/91f.ogv",
+                "res://Media/CardGifs/91g.ogv",
+                "res://Media/CardGifs/91h.ogv",
+                "res://Media/CardGifs/91i.ogv"
+            ],
+            "Effect":
+            {
+                "Sub": 2,
+                "Draw": 1
+            }
+        },
+        "card87":
         {
-            "Heart": 2,
-            "Sub": 3
-        }
-    },
-    "card75":
-    {
-        "Name": "Inspection",
-        "Image": "res://Media/Cards/card75.webp",
-        "MinTF": 75,
-        "MaxTF": 91,
-        "SubCost": 4,
-        "Gifs":
-        [
-            "res://Media/CardGifs/75a.ogv",
-            "res://Media/CardGifs/75b.ogv",
-            "res://Media/CardGifs/75c.ogv",
-            "res://Media/CardGifs/75d.ogv",
-            "res://Media/CardGifs/75e.ogv",
-            "res://Media/CardGifs/75f.ogv",
-            "res://Media/CardGifs/75g.ogv"
-        ],
-        "Effect": { "Draw": 2 }
-    },
-    "card94":
-    {
-        "Name": "Branded",
-        "Image": "res://Media/Cards/card94.webp",
-        "MinTF": 76,
-        "MaxTF": 92,
-        "SubCost": 5,
-        "Effect":
+            "Name": "Nipple Clamps",
+            "Image": "res://Media/Cards/card87.webp",
+            "MinTF": 66,
+            "MaxTF": 82,
+            "SubCost": 2,
+            "Gifs":
+            [
+                "res://Media/CardGifs/87a.ogv",
+                "res://Media/CardGifs/87b.ogv",
+                "res://Media/CardGifs/87c.ogv",
+                "res://Media/CardGifs/87d.ogv",
+                "res://Media/CardGifs/87e.ogv"
+            ],
+            "Effect":
+            {
+                "Heart": 2,
+                "Sub": 3
+            }
+        },
+        "card75":
         {
-            "Shield": 5,
-            "Draw": 1
+            "Name": "Inspection",
+            "Image": "res://Media/Cards/card75.webp",
+            "MinTF": 75,
+            "MaxTF": 91,
+            "SubCost": 4,
+            "Gifs":
+            [
+                "res://Media/CardGifs/75a.ogv",
+                "res://Media/CardGifs/75b.ogv",
+                "res://Media/CardGifs/75c.ogv",
+                "res://Media/CardGifs/75d.ogv",
+                "res://Media/CardGifs/75e.ogv",
+                "res://Media/CardGifs/75f.ogv",
+                "res://Media/CardGifs/75g.ogv"
+            ],
+            "Effect": { "Draw": 2 }
+        },
+        "card94":
+        {
+            "Name": "Branded",
+            "Image": "res://Media/Cards/card94.webp",
+            "MinTF": 76,
+            "MaxTF": 92,
+            "SubCost": 5,
+            "Effect":
+            {
+                "Shield": 5,
+                "Draw": 1
+            }
         }
     }
 }

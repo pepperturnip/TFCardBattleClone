@@ -1,83 +1,87 @@
 {
-    "card72":
+    "Name": "Bondage",
+    "Cards":
     {
-        "Name": "Ropeplay",
-        "Image": "res://Media/Cards/card72.webp",
-        "MinTF": 35,
-        "MaxTF": 51,
-        "HeartCost": 2,
-        "Gifs":
-        [
-            "res://Media/CardGifs/72a.ogv",
-            "res://Media/CardGifs/72b.ogv",
-            "res://Media/CardGifs/72c.ogv",
-            "res://Media/CardGifs/72d.ogv",
-            "res://Media/CardGifs/72e.ogv",
-            "res://Media/CardGifs/72f.ogv"
-        ],
-        "Effect": { "Sub": 3 }
-    },
-    "card74":
-    {
-        "Name": "Blindfolded",
-        "Image": "res://Media/Cards/card74.webp",
-        "MinTF": 46,
-        "MaxTF": 62,
-        "HeartCost": 2,
-        "Gifs":
-        [
-            "res://Media/CardGifs/74a.ogv",
-            "res://Media/CardGifs/74b.ogv",
-            "res://Media/CardGifs/74c.ogv",
-            "res://Media/CardGifs/74d.ogv",
-            "res://Media/CardGifs/74e.ogv"
-        ],
-        "Effect":
+        "card72":
         {
-            "Sub": 1,
-            "Draw": 1
-        }
-    },
-    "card76":
-    {
-        "Name": "Locked Away",
-        "Image": "res://Media/Cards/card76.webp",
-        "MinTF": 57,
-        "MaxTF": 73,
-        "SubCost": 2,
-        "Gifs":
-        [
-            "res://Media/CardGifs/76a.ogv",
-            "res://Media/CardGifs/76b.ogv",
-            "res://Media/CardGifs/76c.ogv",
-            "res://Media/CardGifs/76d.ogv",
-            "res://Media/CardGifs/76e.ogv"
-        ],
-        "Effect":
+            "Name": "Ropeplay",
+            "Image": "res://Media/Cards/card72.webp",
+            "MinTF": 35,
+            "MaxTF": 51,
+            "HeartCost": 2,
+            "Gifs":
+            [
+                "res://Media/CardGifs/72a.ogv",
+                "res://Media/CardGifs/72b.ogv",
+                "res://Media/CardGifs/72c.ogv",
+                "res://Media/CardGifs/72d.ogv",
+                "res://Media/CardGifs/72e.ogv",
+                "res://Media/CardGifs/72f.ogv"
+            ],
+            "Effect": { "Sub": 3 }
+        },
+        "card74":
         {
-            "Sub": 1,
-            "Shield": 3
-        }
-    },
-    "card85":
-    {
-        "Name": "Collared",
-        "Image": "res://Media/Cards/card85.webp",
-        "MinTF": 67,
-        "MaxTF": 83,
-        "SubCost": 2,
-        "Gifs":
-        [
-            "res://Media/CardGifs/85a.ogv",
-            "res://Media/CardGifs/85b.ogv",
-            "res://Media/CardGifs/85c.ogv",
-            "res://Media/CardGifs/85d.ogv",
-            "res://Media/CardGifs/85e.ogv"
-        ],
-        "Effect":
+            "Name": "Blindfolded",
+            "Image": "res://Media/Cards/card74.webp",
+            "MinTF": 46,
+            "MaxTF": 62,
+            "HeartCost": 2,
+            "Gifs":
+            [
+                "res://Media/CardGifs/74a.ogv",
+                "res://Media/CardGifs/74b.ogv",
+                "res://Media/CardGifs/74c.ogv",
+                "res://Media/CardGifs/74d.ogv",
+                "res://Media/CardGifs/74e.ogv"
+            ],
+            "Effect":
+            {
+                "Sub": 1,
+                "Draw": 1
+            }
+        },
+        "card76":
         {
-            "Class": "MultiplyResources",
-            "Sub": 2
+            "Name": "Locked Away",
+            "Image": "res://Media/Cards/card76.webp",
+            "MinTF": 57,
+            "MaxTF": 73,
+            "SubCost": 2,
+            "Gifs":
+            [
+                "res://Media/CardGifs/76a.ogv",
+                "res://Media/CardGifs/76b.ogv",
+                "res://Media/CardGifs/76c.ogv",
+                "res://Media/CardGifs/76d.ogv",
+                "res://Media/CardGifs/76e.ogv"
+            ],
+            "Effect":
+            {
+                "Sub": 1,
+                "Shield": 3
+            }
+        },
+        "card85":
+        {
+            "Name": "Collared",
+            "Image": "res://Media/Cards/card85.webp",
+            "MinTF": 67,
+            "MaxTF": 83,
+            "SubCost": 2,
+            "Gifs":
+            [
+                "res://Media/CardGifs/85a.ogv",
+                "res://Media/CardGifs/85b.ogv",
+                "res://Media/CardGifs/85c.ogv",
+                "res://Media/CardGifs/85d.ogv",
+                "res://Media/CardGifs/85e.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "MultiplyResources",
+                "Sub": 2
+            }
         }
     }
 }

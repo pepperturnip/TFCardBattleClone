@@ -13,6 +13,19 @@ namespace TFCardBattle.Core
         public static implicit operator string(CardId c) => c._id;
     }
 
+    public struct ConsumableId
+    {
+        private readonly string _id;
+
+        public ConsumableId(string id)
+        {
+            _id = id;
+        }
+
+        public static implicit operator ConsumableId(string id) => new ConsumableId(id);
+        public static implicit operator string(ConsumableId c) => c._id;
+    }
+
     public struct CardPackId
     {
         private readonly string _id;

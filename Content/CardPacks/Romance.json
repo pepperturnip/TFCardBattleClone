@@ -1,74 +1,78 @@
 {
-    "card32":
+    "Name": "Romance",
+    "Cards":
     {
-        "Name": "Beauty Regimen",
-        "Image": "res://Media/Cards/card32.webp",
-        "MinTF": 15,
-        "MaxTF": 31,
-        "HeartCost": 2,
-        "Gifs":
-        [
-            "res://Media/CardGifs/32a.ogv",
-            "res://Media/CardGifs/32b.ogv",
-            "res://Media/CardGifs/32c.ogv",
-            "res://Media/CardGifs/32d.ogv",
-            "res://Media/CardGifs/32e.ogv"
-        ],
-        "Effect":
+        "card32":
         {
-            "Shield": 1,
-            "Draw": 1
-        }
-    },
-    "card40":
-    {
-        "Name": "Date Night",
-        "Image": "res://Media/Cards/card40.webp",
-        "MinTF": 23,
-        "MaxTF": 39,
-        "HeartCost": 3,
-        "Gifs":
-        [
-            "res://Media/CardGifs/40a.ogv",
-            "res://Media/CardGifs/40b.ogv",
-            "res://Media/CardGifs/40c.ogv",
-            "res://Media/CardGifs/40d.ogv",
-            "res://Media/CardGifs/40e.ogv"
-        ],
-        "Effect":
+            "Name": "Beauty Regimen",
+            "Image": "res://Media/Cards/card32.webp",
+            "MinTF": 15,
+            "MaxTF": 31,
+            "HeartCost": 2,
+            "Gifs":
+            [
+                "res://Media/CardGifs/32a.ogv",
+                "res://Media/CardGifs/32b.ogv",
+                "res://Media/CardGifs/32c.ogv",
+                "res://Media/CardGifs/32d.ogv",
+                "res://Media/CardGifs/32e.ogv"
+            ],
+            "Effect":
+            {
+                "Shield": 1,
+                "Draw": 1
+            }
+        },
+        "card40":
         {
-            "Heart": 2,
-            "Shield": 2
-        }
-    },
-    "card46":
-    {
-        "Name": "Womans' Intuition",
-        "Image": "res://Media/Cards/card46.webp",
-        "MinTF": 31,
-        "MaxTF": 47,
-        "HeartCost": 3,
-        "Effect": { "Class": "ResetBuyPile" }
-    },
-    "card50":
-    {
-        "Name": "Back to His Place",
-        "Image": "res://Media/Cards/card50.webp",
-        "MinTF": 56,
-        "MaxTF": 72,
-        "HeartCost": 3,
-        "Gifs":
-        [
-            "res://Media/CardGifs/50a.ogv",
-            "res://Media/CardGifs/50b.ogv",
-            "res://Media/CardGifs/50c.ogv",
-            "res://Media/CardGifs/50d.ogv",
-            "res://Media/CardGifs/50e.ogv"
-        ],
-        "Effect":
+            "Name": "Date Night",
+            "Image": "res://Media/Cards/card40.webp",
+            "MinTF": 23,
+            "MaxTF": 39,
+            "HeartCost": 3,
+            "Gifs":
+            [
+                "res://Media/CardGifs/40a.ogv",
+                "res://Media/CardGifs/40b.ogv",
+                "res://Media/CardGifs/40c.ogv",
+                "res://Media/CardGifs/40d.ogv",
+                "res://Media/CardGifs/40e.ogv"
+            ],
+            "Effect":
+            {
+                "Heart": 2,
+                "Shield": 2
+            }
+        },
+        "card46":
         {
-            "Damage": 2,
-            "Shield": 3
+            "Name": "Womans' Intuition",
+            "Image": "res://Media/Cards/card46.webp",
+            "MinTF": 31,
+            "MaxTF": 47,
+            "HeartCost": 3,
+            "Effect": { "Class": "ResetBuyPile" }
+        },
+        "card50":
+        {
+            "Name": "Back to His Place",
+            "Image": "res://Media/Cards/card50.webp",
+            "MinTF": 56,
+            "MaxTF": 72,
+            "HeartCost": 3,
+            "Gifs":
+            [
+                "res://Media/CardGifs/50a.ogv",
+                "res://Media/CardGifs/50b.ogv",
+                "res://Media/CardGifs/50c.ogv",
+                "res://Media/CardGifs/50d.ogv",
+                "res://Media/CardGifs/50e.ogv"
+            ],
+            "Effect":
+            {
+                "Damage": 2,
+                "Shield": 3
+            }
         }
     }
 }

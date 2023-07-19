@@ -1,51 +1,55 @@
 {
-    "card12":
+    "Name": "Hypno",
+    "Cards":
     {
-        "Name": "Motivational Poster",
-        "Image": "res://Media/Cards/card12.webp",
-        "MinTF": 0,
-        "MaxTF": 10,
-        "BrainCost": 3,
-        "Effect":
+        "card12":
         {
-            "Brain": 1,
-            "Damage": 2
-        }
-    },
-    "card13":
-    {
-        "Name": "Hypnotic Email",
-        "Image": "res://Media/Cards/card13.webp",
-        "MinTF": 0,
-        "MaxTF": 16,
-        "BrainCost": 5,
-        "Effect": { "Damage": 4 }
-    },
-    "card27":
-    {
-        "Name": "Very Targeted Ads",
-        "Image": "res://Media/Cards/card27.webp",
-        "MinTF": 6,
-        "MaxTF": 22,
-        "BrainCost": 6,
-        "Effect":
+            "Name": "Motivational Poster",
+            "Image": "res://Media/Cards/card12.webp",
+            "MinTF": 0,
+            "MaxTF": 10,
+            "BrainCost": 3,
+            "Effect":
+            {
+                "Brain": 1,
+                "Damage": 2
+            }
+        },
+        "card13":
         {
-            "Class": "MultiplyResources",
-            "Damage": 2
-        }
-    },
-    "card45":
-    {
-        "Name": "Evil Therapist",
-        "Image": "res://Media/Cards/card45.webp",
-        "MinTF": 16,
-        "MaxTF": 32,
-        "BrainCost": 7,
-        "Gifs": ["res://Media/CardGifs/45.ogv"],
-        "Effect":
+            "Name": "Hypnotic Email",
+            "Image": "res://Media/Cards/card13.webp",
+            "MinTF": 0,
+            "MaxTF": 16,
+            "BrainCost": 5,
+            "Effect": { "Damage": 4 }
+        },
+        "card27":
         {
-            "Damage": 3,
-            "Draw": 2
+            "Name": "Very Targeted Ads",
+            "Image": "res://Media/Cards/card27.webp",
+            "MinTF": 6,
+            "MaxTF": 22,
+            "BrainCost": 6,
+            "Effect":
+            {
+                "Class": "MultiplyResources",
+                "Damage": 2
+            }
+        },
+        "card45":
+        {
+            "Name": "Evil Therapist",
+            "Image": "res://Media/Cards/card45.webp",
+            "MinTF": 16,
+            "MaxTF": 32,
+            "BrainCost": 7,
+            "Gifs": ["res://Media/CardGifs/45.ogv"],
+            "Effect":
+            {
+                "Damage": 3,
+                "Draw": 2
+            }
         }
     }
 }

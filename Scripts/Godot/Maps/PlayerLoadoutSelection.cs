@@ -22,7 +22,7 @@ namespace TFCardBattle.Godot
             _loadout = new PlayerLoadout(_registry)
             {
                 Transformation = _transformationChoices[0],
-                PermanentBuyPile = _registry.CardPacks["StandardPermanentBuyPile"],
+                PermanentBuyPile = _registry.CardPacks["StandardPermanentBuyPile"].Cards.Values,
                 StartingDeck = PlayerStartingDeck.StartingDeck(),
 
                 ThemePacks = new[]
@@ -64,6 +64,12 @@ namespace TFCardBattle.Godot
             {
                 string path = $"res://Content/CardPacks/{packId}.json";
                 registry.ImportCardPack(packId, FileAccess.GetFileAsString(path));
+            }
+
+            foreach (string fileNameWithoutExt in IdsInFolder("res://Content/ConsumablePacks"))
+            {
+                string path = $"res://Content/ConsumablePacks/{fileNameWithoutExt}.json";
+                registry.ImportConsumables(FileAccess.GetFileAsString(path));
             }
 
             foreach (string tfId in IdsInFolder("res://Content/Transformations"))

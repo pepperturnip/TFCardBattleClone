@@ -1,50 +1,54 @@
 {
-    "card18":
+    "Name": "Tech",
+    "Cards":
     {
-        "Name": "Spreadsheet Master",
-        "Image": "res://Media/Cards/card18.webp",
-        "MinTF": 0,
-        "MaxTF": 9,
-        "BrainCost": 2,
-        "Effect":
+        "card18":
         {
-            "Brain": 1,
-            "Shield": 1
-        }
-    },
-    "card15":
-    {
-        "Name": "Firewall",
-        "Image": "res://Media/Cards/card15.webp",
-        "MinTF": 0,
-        "MaxTF": 15,
-        "BrainCost": 3,
-        "Effect": { "Shield": 3 }
-    },
-    "card28":
-    {
-        "Name": "L33t Hacker",
-        "Image": "res://Media/Cards/card28.webp",
-        "MinTF": 5,
-        "MaxTF": 21,
-        "BrainCost": 4,
-        "Effect":
+            "Name": "Spreadsheet Master",
+            "Image": "res://Media/Cards/card18.webp",
+            "MinTF": 0,
+            "MaxTF": 9,
+            "BrainCost": 2,
+            "Effect":
+            {
+                "Brain": 1,
+                "Shield": 1
+            }
+        },
+        "card15":
         {
-            "Brain": 2,
-            "Shield": 2
-        }
-    },
-    "card21":
-    {
-        "Name": "Counter Measures",
-        "Image": "res://Media/Cards/card21.webp",
-        "MinTF": 13,
-        "MaxTF": 29,
-        "BrainCost": 4,
-        "Effect":
+            "Name": "Firewall",
+            "Image": "res://Media/Cards/card15.webp",
+            "MinTF": 0,
+            "MaxTF": 15,
+            "BrainCost": 3,
+            "Effect": { "Shield": 3 }
+        },
+        "card28":
         {
-            "Damage": 2,
-            "Shield": 2
+            "Name": "L33t Hacker",
+            "Image": "res://Media/Cards/card28.webp",
+            "MinTF": 5,
+            "MaxTF": 21,
+            "BrainCost": 4,
+            "Effect":
+            {
+                "Brain": 2,
+                "Shield": 2
+            }
+        },
+        "card21":
+        {
+            "Name": "Counter Measures",
+            "Image": "res://Media/Cards/card21.webp",
+            "MinTF": 13,
+            "MaxTF": 29,
+            "BrainCost": 4,
+            "Effect":
+            {
+                "Damage": 2,
+                "Shield": 2
+            }
         }
     }
 }

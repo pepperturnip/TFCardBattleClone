@@ -1,0 +1,25 @@
+{
+    "MinorShieldPotion":
+    {
+        "Name": "Minor Shield Potion",
+        "Effect": { "Shield": 3 }
+    },
+
+    "MinorBrainPotion":
+    {
+        "Name": "Minor Brain Potion",
+        "Effect": { "Brain": 1 }
+    },
+
+    "BrainPotion":
+    {
+        "Name": "Brain Potion",
+        "Effect": { "Brain": 3 }
+    },
+
+    "MinorDrawPotion":
+    {
+        "Name": "Minor Draw Potion",
+        "Effect": { "Draw": 1 }
+    }
+}

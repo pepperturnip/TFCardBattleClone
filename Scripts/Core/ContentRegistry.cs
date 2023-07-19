@@ -8,12 +8,20 @@ namespace TFCardBattle.Core
     public class ContentRegistry
     {
         public IReadOnlyDictionary<CardId, Card> Cards => _cards;
-        public IReadOnlyDictionary<CardPackId, Card[]> CardPacks => _cardPacks;
+        public IReadOnlyDictionary<ConsumableId, Consumable> Consumables => _consumables;
+        public IReadOnlyDictionary<CardPackId, CardPack> CardPacks => _cardPacks;
         public IReadOnlyDictionary<TransformationId, Transformation> Transformations => _transformations;
 
         private Dictionary<CardId, Card> _cards = new Dictionary<CardId, Card>();
-        private Dictionary<CardPackId, Card[]> _cardPacks = new Dictionary<CardPackId, Card[]>();
-        private Dictionary<TransformationId, Transformation> _transformations= new Dictionary<TransformationId, Transformation>();
+        private Dictionary<CardPackId, CardPack> _cardPacks = new Dictionary<CardPackId, CardPack>();
+        private Dictionary<TransformationId, Transformation> _transformations = new Dictionary<TransformationId, Transformation>();
+
+        private Dictionary<ConsumableId, Consumable> _consumables = new Dictionary<ConsumableId, Consumable>();
+
+        public IEnumerable<Card> CardsInPack(CardPackId id)
+        {
+            return CardPacks[id].Cards.Values;
+        }
 
         /// <summary>
         /// Imports the given card pack into the registry.
@@ -28,12 +36,21 @@ namespace TFCardBattle.Core
         /// <param name="cards"></param>
         public void ImportCardPack(CardPackId packName, string json)
         {
-            var cards = Core.Parsing.CardPacks.Parse(json);
-            _cardPacks.Add(packName, cards.Values.ToArray());
+            var cardPack = JsonConvert.DeserializeObject<CardPack>(json);
+            _cardPacks.Add(packName, cardPack);
 
-            foreach (var kvp in cards)
+            foreach (var kvp in cardPack.Cards)
             {
                 _cards[kvp.Key] = kvp.Value;
+            }
+        }
+
+        public void ImportConsumables(string json)
+        {
+            var consumables = JsonConvert.DeserializeObject<Dictionary<ConsumableId, Consumable>>(json);
+            foreach (var kvp in consumables)
+            {
+                _consumables[kvp.Key] = kvp.Value;
             }
         }
 
