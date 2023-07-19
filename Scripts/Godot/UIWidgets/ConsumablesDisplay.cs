@@ -10,7 +10,7 @@ namespace TFCardBattle.Godot
 
         [Export] public bool EnableInput = true;
 
-        public void Refresh(IConsumable[] consumables)
+        public void Refresh(Consumable[] consumables)
         {
             while (GetChildCount() > 0)
             {
@@ -22,7 +22,7 @@ namespace TFCardBattle.Godot
             for(int i = 0; i < consumables.Length; i++)
             {
                 var button = new Button();
-                button.Text = consumables[i].GetType().Name;
+                button.Text = consumables[i].Name;
                 AddChild(button);
 
                 // We need to make a copy of this value so it can be used within

@@ -27,7 +27,7 @@ namespace TFCardBattle.Core.CardEffects
 
             foreach (var consumableId in Consumables)
             {
-                IConsumable consumable = battle.State.CardRegistry.Consumables[consumableId];
+                Consumable consumable = battle.State.CardRegistry.Consumables[consumableId];
                 await battle.AddConsumable(consumable);
             }
 

@@ -63,7 +63,13 @@ namespace TFCardBattle.Godot
             foreach (string packId in IdsInFolder("res://Content/CardPacks"))
             {
                 string path = $"res://Content/CardPacks/{packId}.json";
-                registry.ImportCardPackOld(packId, FileAccess.GetFileAsString(path));
+                registry.ImportCardPack(packId, FileAccess.GetFileAsString(path));
+            }
+
+            foreach (string fileNameWithoutExt in IdsInFolder("res://Content/ConsumablePacks"))
+            {
+                string path = $"res://Content/ConsumablePacks/{fileNameWithoutExt}.json";
+                registry.ImportConsumables(FileAccess.GetFileAsString(path));
             }
 
             foreach (string tfId in IdsInFolder("res://Content/Transformations"))

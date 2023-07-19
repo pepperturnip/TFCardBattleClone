@@ -34,13 +34,13 @@ namespace TFCardBattle.Core
             return Task.CompletedTask;
         }
 
-        Task ILingeringEffect.OnConsumableAboutToActivate(BattleController battle, IConsumable c)
+        Task ILingeringEffect.OnConsumableAboutToActivate(BattleController battle, Consumable c)
         {
             SetBefore(battle);
             return Task.CompletedTask;
         }
 
-        Task ILingeringEffect.OnConsumableFinishedActivating(BattleController battle, IConsumable c)
+        Task ILingeringEffect.OnConsumableFinishedActivating(BattleController battle, Consumable c)
         {
             AddBonus(battle);
             return Task.CompletedTask;
