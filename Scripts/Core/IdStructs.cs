@@ -51,4 +51,18 @@ namespace TFCardBattle.Core
         public static implicit operator TransformationId(string id) => new TransformationId(id);
         public static implicit operator string(TransformationId t) => t._id;
     }
+
+    public struct CustomResourceId
+    {
+        private readonly string _id;
+
+        public CustomResourceId(string id)
+        {
+            _id = id;
+        }
+
+        public static implicit operator CustomResourceId(string id) => new CustomResourceId(id);
+        public static implicit operator string(CustomResourceId t) => t._id;
+    }
+
 }
