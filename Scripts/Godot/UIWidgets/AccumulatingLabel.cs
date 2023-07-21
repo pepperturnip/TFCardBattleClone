@@ -7,13 +7,14 @@ namespace TFCardBattle.Godot
     {
         [Export] public double AccumulationTimeSeconds = 1;
 
+        public int DisplayedValue {get; private set;}
+        public int AccumulatedDelta {get; private set;}
+
         private Label _displayedValueLabel => GetNode<Label>("%DisplayedValue");
         private Label _accumLabel => GetNode<Label>("%Accumulator");
 
         private bool _isTicking => _accumulateTimer <= 0;
 
-        private int _displayedValue;
-        private int _accumulatedDelta;
         private double _accumulateTimer;
 
         public void AccumulateToValue(int newValue)
@@ -28,13 +29,13 @@ namespace TFCardBattle.Godot
             // That way, the player won't see the accumulator go from "+5" to
             // "+4" if they spend a resource really fast; instead, it'll display
             // "-1" as you'd expect.
-            int newDelta = newValue - _displayedValue;
-            if (ChangedDirection(_accumulatedDelta, newDelta))
+            int newDelta = newValue - DisplayedValue;
+            if (ChangedDirection(AccumulatedDelta, newDelta))
             {
                 SkipCurrentAnimation();
             }
 
-            _accumulatedDelta = newValue - _displayedValue;
+            AccumulatedDelta = newValue - DisplayedValue;
             _accumulateTimer = AccumulationTimeSeconds;
         }
 
@@ -44,8 +45,8 @@ namespace TFCardBattle.Godot
         /// <param name="newValue"></param>
         public void RefreshValue(int newValue)
         {
-            _displayedValue = newValue;
-            _accumulatedDelta = 0;
+            DisplayedValue = newValue;
+            AccumulatedDelta = 0;
             _accumulateTimer = 0;
         }
 
@@ -57,9 +58,9 @@ namespace TFCardBattle.Godot
             }
             else
             {
-                int sign = Math.Sign(_accumulatedDelta);
-                _accumulatedDelta -= sign;
-                _displayedValue += sign;
+                int sign = Math.Sign(AccumulatedDelta);
+                AccumulatedDelta -= sign;
+                DisplayedValue += sign;
             }
 
             UpdateLabels();
@@ -67,20 +68,20 @@ namespace TFCardBattle.Godot
 
         private void UpdateLabels()
         {
-            _displayedValueLabel.Text = _displayedValue.ToString();
+            _displayedValueLabel.Text = DisplayedValue.ToString();
 
-            if (_accumulatedDelta == 0)
+            if (AccumulatedDelta == 0)
                 _accumLabel.Text = "";
-            else if (_accumulatedDelta > 0)
-                _accumLabel.Text = $"+{_accumulatedDelta}";
+            else if (AccumulatedDelta > 0)
+                _accumLabel.Text = $"+{AccumulatedDelta}";
             else
-                _accumLabel.Text = _accumulatedDelta.ToString();
+                _accumLabel.Text = AccumulatedDelta.ToString();
         }
 
         private void SkipCurrentAnimation()
         {
-            _displayedValue += _accumulatedDelta;
-            _accumulatedDelta = 0;
+            DisplayedValue += AccumulatedDelta;
+            AccumulatedDelta = 0;
             _accumulateTimer = 0;
         }
 
