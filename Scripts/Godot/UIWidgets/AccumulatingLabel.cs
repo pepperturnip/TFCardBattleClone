@@ -7,8 +7,8 @@ namespace TFCardBattle.Godot
     {
         [Export] public double AccumulationTimeSeconds = 1;
 
-        public int DisplayedValue {get; private set;}
-        public int AccumulatedDelta {get; private set;}
+        public double DisplayedValue {get; private set;}
+        public double AccumulatedDelta {get; private set;}
 
         private Label _displayedValueLabel => GetNode<Label>("%DisplayedValue");
         private Label _accumLabel => GetNode<Label>("%Accumulator");
@@ -17,7 +17,7 @@ namespace TFCardBattle.Godot
 
         private double _accumulateTimer;
 
-        public void AccumulateToValue(int newValue)
+        public void AccumulateToValue(double newValue)
         {
             // Skip the animation if we're already ticking
             if (_isTicking)
@@ -29,7 +29,7 @@ namespace TFCardBattle.Godot
             // That way, the player won't see the accumulator go from "+5" to
             // "+4" if they spend a resource really fast; instead, it'll display
             // "-1" as you'd expect.
-            int newDelta = newValue - DisplayedValue;
+            double newDelta = newValue - DisplayedValue;
             if (ChangedDirection(AccumulatedDelta, newDelta))
             {
                 SkipCurrentAnimation();
@@ -55,13 +55,21 @@ namespace TFCardBattle.Godot
             if (_accumulateTimer > 0)
             {
                 _accumulateTimer -= delta;
+                UpdateLabels();
+                return;
             }
-            else
+
+            if (Math.Abs(AccumulatedDelta) < 1)
             {
-                int sign = Math.Sign(AccumulatedDelta);
-                AccumulatedDelta -= sign;
-                DisplayedValue += sign;
+                DisplayedValue += AccumulatedDelta;
+                AccumulatedDelta = 0;
+                UpdateLabels();
+                return;
             }
+
+            int sign = Math.Sign(AccumulatedDelta);
+            AccumulatedDelta -= sign;
+            DisplayedValue += sign;
 
             UpdateLabels();
         }
@@ -85,7 +93,7 @@ namespace TFCardBattle.Godot
             _accumulateTimer = 0;
         }
 
-        private static bool ChangedDirection(int oldDelta, int newDelta)
+        private static bool ChangedDirection(double oldDelta, double newDelta)
         {
             if (oldDelta > 0)
                 return newDelta < oldDelta;
