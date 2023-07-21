@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using TFCardBattle.Core;
 
@@ -6,6 +7,8 @@ namespace TFCardBattle.Godot
 {
     public partial class ResourcesDisplay : Control
     {
+        private readonly ResourceType[] _resources = Enum.GetValues<ResourceType>();
+
         /// <summary>
         /// Updates the resource counters, but using a smooth "counting"
         /// animation.
@@ -13,18 +16,9 @@ namespace TFCardBattle.Godot
         /// <param name="state"></param>
         public void UpdateResources(BattleState state)
         {
-            var resources = new[]
+            foreach (var resource in _resources)
             {
-                ResourceType.Brain,
-                ResourceType.Heart,
-                ResourceType.Sub,
-                ResourceType.Shield,
-                ResourceType.Damage
-            };
-
-            foreach (var resource in resources)
-            {
-                var label = GetAccumulatingLabel(resource);
+                var label = GetValueLabel(resource);
                 label.AccumulateToValue(state.GetResource(resource));
             }
         }
@@ -35,23 +29,27 @@ namespace TFCardBattle.Godot
         /// <param name="state"></param>
         public void DiscardResources()
         {
-            var resources = new[]
+            foreach (var resource in _resources)
             {
-                ResourceType.Brain,
-                ResourceType.Heart,
-                ResourceType.Sub,
-                ResourceType.Shield,
-                ResourceType.Damage
-            };
-
-            foreach (var resource in resources)
-            {
-                var label = GetAccumulatingLabel(resource);
+                var label = GetValueLabel(resource);
                 label.RefreshValue(0);
             }
         }
 
-        private AccumulatingLabel GetAccumulatingLabel(ResourceType resource)
+        public override void _Process(double delta)
+        {
+            foreach (var resource in _resources)
+            {
+                var resourceDisplay = GetResourceDisplay(resource);
+                var valueLabel = GetValueLabel(resource);
+                resourceDisplay.Visible = valueLabel.DisplayedValue != 0 || valueLabel.AccumulatedDelta != 0;
+            }
+        }
+
+        private Control GetResourceDisplay(ResourceType resource)
+            => GetNode<Control>(resource.ToString());
+
+        private AccumulatingLabel GetValueLabel(ResourceType resource)
             => GetNode<AccumulatingLabel>($"{resource}/ValueLabel");
     }
 }

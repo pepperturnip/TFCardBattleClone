@@ -108,6 +108,7 @@ offset_right = 130.0
 offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
 [node name="ResourcesDisplay" parent="Resources" instance=ExtResource("4_36rf5")]
 unique_name_in_owner = true
