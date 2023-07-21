@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace TFCardBattle.Core.CardEffects
@@ -15,7 +16,11 @@ namespace TFCardBattle.Core.CardEffects
         public int Damage {get; set;}
         public int Draw {get; set;}
         public int SelfHeal {get; set;}
+
         public ConsumableId[] Consumables {get; set;} = Array.Empty<ConsumableId>();
+
+        public IReadOnlyDictionary<CustomResourceId, double> CustomResources {get; set;}
+            = new Dictionary<CustomResourceId, double>();
 
         public async Task Activate(BattleController battle)
         {
@@ -24,6 +29,11 @@ namespace TFCardBattle.Core.CardEffects
             battle.State.Sub += Sub;
             battle.State.Shield += Shield;
             battle.State.Damage += Damage;
+
+            foreach (var id in CustomResources.Keys)
+            {
+                battle.State.CustomResources[id] += CustomResources[id];
+            }
 
             foreach (var consumableId in Consumables)
             {
@@ -52,6 +62,12 @@ namespace TFCardBattle.Core.CardEffects
             LabelFor("Draw", Draw);
             LabelFor("Self heal", SelfHeal);
 
+            foreach (var id in CustomResources.Keys)
+            {
+                string resourceName = state.CardRegistry.CustomResources[id].Name;
+                LabelForDouble(resourceName, CustomResources[id]);
+            }
+
             foreach (var c in Consumables)
             {
                 builder.AppendLine($"+1 {c.GetType().Name}");
@@ -60,6 +76,16 @@ namespace TFCardBattle.Core.CardEffects
             return builder.ToString();
 
             void LabelFor(string resource, int value)
+            {
+                if (value == 0)
+                    return;
+                else if (value > 0)
+                    builder.AppendLine($"{resource}: +{value}");
+                else
+                    builder.AppendLine($"{resource}: {value}");
+            }
+
+            void LabelForDouble(string resource, double value)
             {
                 if (value == 0)
                     return;
