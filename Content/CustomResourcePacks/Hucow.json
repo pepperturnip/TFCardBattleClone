@@ -1,0 +1,7 @@
+{
+    "BreastSize":
+    {
+        "Name": "Breast Size",
+        "IconPath": "res://Icons/BreastSize.svg"
+    }
+}
