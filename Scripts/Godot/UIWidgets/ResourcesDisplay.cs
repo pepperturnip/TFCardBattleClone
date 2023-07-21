@@ -6,12 +6,6 @@ namespace TFCardBattle.Godot
 {
     public partial class ResourcesDisplay : Control
     {
-        private AccumulatingLabel _brain => GetNode<AccumulatingLabel>("%BrainLabel");
-        private AccumulatingLabel _heart => GetNode<AccumulatingLabel>("%HeartLabel");
-        private AccumulatingLabel _sub => GetNode<AccumulatingLabel>("%SubLabel");
-        private AccumulatingLabel _shield => GetNode<AccumulatingLabel>("%ShieldLabel");
-        private AccumulatingLabel _damage => GetNode<AccumulatingLabel>("%DamageResourceLabel");
-
         /// <summary>
         /// Updates the resource counters, but using a smooth "counting"
         /// animation.
@@ -19,11 +13,20 @@ namespace TFCardBattle.Godot
         /// <param name="state"></param>
         public void UpdateResources(BattleState state)
         {
-            _brain.AccumulateToValue(state.Brain);
-            _heart.AccumulateToValue(state.Heart);
-            _sub.AccumulateToValue(state.Sub);
-            _shield.AccumulateToValue(state.Shield);
-            _damage.AccumulateToValue(state.Damage);
+            var resources = new[]
+            {
+                ResourceType.Brain,
+                ResourceType.Heart,
+                ResourceType.Sub,
+                ResourceType.Shield,
+                ResourceType.Damage
+            };
+
+            foreach (var resource in resources)
+            {
+                var label = GetAccumulatingLabel(resource);
+                label.AccumulateToValue(state.GetResource(resource));
+            }
         }
 
         /// <summary>
@@ -32,11 +35,23 @@ namespace TFCardBattle.Godot
         /// <param name="state"></param>
         public void DiscardResources()
         {
-            _brain.RefreshValue(0);
-            _heart.RefreshValue(0);
-            _sub.RefreshValue(0);
-            _shield.RefreshValue(0);
-            _damage.RefreshValue(0);
+            var resources = new[]
+            {
+                ResourceType.Brain,
+                ResourceType.Heart,
+                ResourceType.Sub,
+                ResourceType.Shield,
+                ResourceType.Damage
+            };
+
+            foreach (var resource in resources)
+            {
+                var label = GetAccumulatingLabel(resource);
+                label.RefreshValue(0);
+            }
         }
+
+        private AccumulatingLabel GetAccumulatingLabel(ResourceType resource)
+            => GetNode<AccumulatingLabel>($"{resource}/ValueLabel");
     }
 }
