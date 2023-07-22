@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbg374tv654tv"]
+[gd_scene load_steps=3 format=3 uid="uid://dbg374tv654tv"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/Maps/PlayerLoadoutSelection.cs" id="1_x3ol6"]
+[ext_resource type="PackedScene" uid="uid://xqul3vpm8pja" path="res://Scenes/UIWidgets/ThemePackPicker.tscn" id="2_a6lus"]
 
 [node name="PlayerLoadoutSelection" type="Control"]
 layout_mode = 3
@@ -58,18 +59,9 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "(0/13)"
 
-[node name="Panel" type="PanelContainer" parent="ThemePacks"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="ThemePacks/Panel"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ThemePackPicker" type="VBoxContainer" parent="ThemePacks/Panel/ScrollContainer"]
+[node name="ThemePackPicker" parent="ThemePacks" instance=ExtResource("2_a6lus")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="StartButton" type="Button" parent="."]
@@ -88,4 +80,5 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Start"
 
+[connection signal="SelectionChanged" from="ThemePacks/ThemePackPicker" to="." method="RefreshStartButton"]
 [connection signal="pressed" from="StartButton" to="." method="StartBattle"]
