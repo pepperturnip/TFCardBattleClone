@@ -45,7 +45,7 @@ namespace TFCardBattle.Godot
         {
             _themePackChoices = _registry.CardPacks
                 .Values
-                .Where(p => p.Type == CardPackType.Standard)
+                .Where(p => p.CanBeEquipped())
                 .ToArray();
 
             string defaultSelectionsJson = FileAccess.GetFileAsString("res://Content/DefaultLoadout.json");
