@@ -59,7 +59,17 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "(0/13)"
 
-[node name="ThemePackPicker" parent="ThemePacks" instance=ExtResource("2_a6lus")]
+[node name="BrainPacks" parent="ThemePacks" instance=ExtResource("2_a6lus")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HeartPacks" parent="ThemePacks" instance=ExtResource("2_a6lus")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SubPacks" parent="ThemePacks" instance=ExtResource("2_a6lus")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -80,5 +90,7 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Start"
 
-[connection signal="SelectionChanged" from="ThemePacks/ThemePackPicker" to="." method="RefreshStartButton"]
+[connection signal="SelectionChanged" from="ThemePacks/BrainPacks" to="." method="RefreshStartButton"]
+[connection signal="SelectionChanged" from="ThemePacks/HeartPacks" to="." method="RefreshStartButton"]
+[connection signal="SelectionChanged" from="ThemePacks/SubPacks" to="." method="RefreshStartButton"]
 [connection signal="pressed" from="StartButton" to="." method="StartBattle"]

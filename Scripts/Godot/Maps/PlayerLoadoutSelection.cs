@@ -14,7 +14,9 @@ namespace TFCardBattle.Godot
         private Transformation[] _transformationChoices;
 
         private ItemList _transformationPicker => GetNode<ItemList>("%TransformationPicker");
-        private ThemePackPicker _themePackPicker => GetNode<ThemePackPicker>("%ThemePackPicker");
+        private ThemePackPicker _brainPacks => GetNode<ThemePackPicker>("%BrainPacks");
+        private ThemePackPicker _heartPacks => GetNode<ThemePackPicker>("%HeartPacks");
+        private ThemePackPicker _subPacks => GetNode<ThemePackPicker>("%SubPacks");
 
         private const int RequiredThemePackCount = 13;
 
@@ -23,7 +25,9 @@ namespace TFCardBattle.Godot
             _registry = CreateContentRegistry();
 
             InitTransformationPicker();
-            InitThemePackPicker();
+            InitThemePackPicker(_brainPacks, CardPackType.BrainSlot);
+            InitThemePackPicker(_heartPacks, CardPackType.HeartSlot);
+            InitThemePackPicker(_subPacks, CardPackType.SubSlot);
         }
 
         private void InitTransformationPicker()
@@ -38,11 +42,11 @@ namespace TFCardBattle.Godot
             _transformationPicker.Select(0);
         }
 
-        private void InitThemePackPicker()
+        private void InitThemePackPicker(ThemePackPicker picker, CardPackType packType)
         {
             var themePackChoices = _registry.CardPacks
                 .Values
-                .Where(p => p.CanBeEquipped())
+                .Where(p => p.Type == packType)
                 .ToArray();
 
             string defaultSelectionsJson = FileAccess.GetFileAsString("res://Content/DefaultLoadout.json");
@@ -50,7 +54,7 @@ namespace TFCardBattle.Godot
                 .Select(id => _registry.CardPacks[id])
                 .ToArray();
 
-            _themePackPicker.SetChoices(themePackChoices, defaultSelections);
+            picker.SetChoices(themePackChoices, defaultSelections);
         }
 
         public void StartBattle()
@@ -58,7 +62,10 @@ namespace TFCardBattle.Godot
             var loadout = new PlayerLoadout(_registry)
             {
                 Transformation = _transformationChoices[_transformationPicker.GetSelectedItems()[0]],
-                ThemePacks = _themePackPicker.SelectedPacks.ToArray(),
+                ThemePacks = _brainPacks.SelectedPacks
+                    .Concat(_heartPacks.SelectedPacks)
+                    .Concat(_subPacks.SelectedPacks)
+                    .ToArray(),
 
                 PermanentBuyPile = _registry.CardPacks["StandardPermanentBuyPile"].Cards.Values,
                 StartingDeck = PlayerStartingDeck.StartingDeck(),
@@ -70,7 +77,11 @@ namespace TFCardBattle.Godot
         private void RefreshStartButton()
         {
             int expectedCount = RequiredThemePackCount;
-            int actualCount = _themePackPicker.SelectedPacks.Count;
+            int actualCount =
+                _brainPacks.SelectedPacks.Count +
+                _heartPacks.SelectedPacks.Count +
+                _subPacks.SelectedPacks.Count;
+
             GetNode<Label>("%ThemeCountLabel").Text = $"({actualCount}/{expectedCount})";
 
             bool enableStartButton = actualCount == expectedCount;
