@@ -17,7 +17,7 @@ namespace TFCardBattle.Godot
         private HashSet<CardPack> _selectedPacks = new HashSet<CardPack>();
 
         private Label _countLabel => GetNode<Label>("%CountLabel");
-        private VBoxContainer _container => GetNode<VBoxContainer>("%CheckBoxContainer");
+        private Container _container => GetNode<Container>("%CheckBoxContainer");
 
         public void SetChoices(
             CardPack[] choices,
