@@ -73,22 +73,10 @@ namespace TFCardBattle.Godot
         }
 
         private Control GetResourceDisplay(ResourceType resource)
-        {
-            var control = GetNodeOrNull<Control>(resource.ToString());
-            if (control != null)
-                return control;
-
-            // It doesn't already exist, so create it from the template
-            var resourceDisplay = (Control)_template.Duplicate();
-            resourceDisplay.Name = resource.ToString();
-            resourceDisplay.GetNode<Label>("Label").Text = resource.ToString();
-            AddChild(resourceDisplay);
-
-            return resourceDisplay;
-        }
+            => GetNode<Control>(resource.ToString());
 
         private AccumulatingLabel GetValueLabel(ResourceType resource)
-            => GetResourceDisplay(resource).GetNode<AccumulatingLabel>("ValueLabel");
+            => GetNode<AccumulatingLabel>($"{resource}/ValueLabel");
 
         private Control GetResourceDisplay(CustomResourceId resource)
         {
