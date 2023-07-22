@@ -11,6 +11,8 @@ namespace TFCardBattle.Core
 
         public static implicit operator CardId(string id) => new CardId(id);
         public static implicit operator string(CardId c) => c._id;
+
+        public override string ToString() => _id;
     }
 
     public struct ConsumableId
@@ -24,6 +26,8 @@ namespace TFCardBattle.Core
 
         public static implicit operator ConsumableId(string id) => new ConsumableId(id);
         public static implicit operator string(ConsumableId c) => c._id;
+
+        public override string ToString() => _id;
     }
 
     public struct CardPackId
@@ -37,6 +41,8 @@ namespace TFCardBattle.Core
 
         public static implicit operator CardPackId(string id) => new CardPackId(id);
         public static implicit operator string(CardPackId c) => c._id;
+
+        public override string ToString() => _id;
     }
 
     public struct TransformationId
@@ -50,5 +56,23 @@ namespace TFCardBattle.Core
 
         public static implicit operator TransformationId(string id) => new TransformationId(id);
         public static implicit operator string(TransformationId t) => t._id;
+
+        public override string ToString() => _id;
     }
+
+    public struct CustomResourceId
+    {
+        private readonly string _id;
+
+        public CustomResourceId(string id)
+        {
+            _id = id;
+        }
+
+        public static implicit operator CustomResourceId(string id) => new CustomResourceId(id);
+        public static implicit operator string(CustomResourceId t) => t._id;
+
+        public override string ToString() => _id;
+    }
+
 }

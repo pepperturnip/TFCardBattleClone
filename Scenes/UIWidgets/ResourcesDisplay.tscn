@@ -15,6 +15,7 @@ offset_right = 130.0
 offset_bottom = 28.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 script = ExtResource("1_2f5ds")
 
 [node name="Brain" type="VBoxContainer" parent="."]
@@ -27,8 +28,7 @@ text = "Brain"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="BrainLabel" parent="Brain" instance=ExtResource("1_fwtdk")]
-unique_name_in_owner = true
+[node name="ValueLabel" parent="Brain" instance=ExtResource("1_fwtdk")]
 layout_mode = 2
 
 [node name="Heart" type="VBoxContainer" parent="."]
@@ -41,8 +41,7 @@ text = "Heart"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="HeartLabel" parent="Heart" instance=ExtResource("1_fwtdk")]
-unique_name_in_owner = true
+[node name="ValueLabel" parent="Heart" instance=ExtResource("1_fwtdk")]
 layout_mode = 2
 
 [node name="Sub" type="VBoxContainer" parent="."]
@@ -55,8 +54,7 @@ text = "Sub"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="SubLabel" parent="Sub" instance=ExtResource("1_fwtdk")]
-unique_name_in_owner = true
+[node name="ValueLabel" parent="Sub" instance=ExtResource("1_fwtdk")]
 layout_mode = 2
 
 [node name="Shield" type="VBoxContainer" parent="."]
@@ -69,8 +67,7 @@ text = "Shield"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="ShieldLabel" parent="Shield" instance=ExtResource("1_fwtdk")]
-unique_name_in_owner = true
+[node name="ValueLabel" parent="Shield" instance=ExtResource("1_fwtdk")]
 layout_mode = 2
 
 [node name="Damage" type="VBoxContainer" parent="."]
@@ -83,6 +80,19 @@ text = "TF"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="DamageResourceLabel" parent="Damage" instance=ExtResource("1_fwtdk")]
+[node name="ValueLabel" parent="Damage" instance=ExtResource("1_fwtdk")]
+layout_mode = 2
+
+[node name="LabelTemplate" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LabelTemplate"]
+layout_mode = 2
+text = "Custom"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ValueLabel" parent="LabelTemplate" instance=ExtResource("1_fwtdk")]
 layout_mode = 2

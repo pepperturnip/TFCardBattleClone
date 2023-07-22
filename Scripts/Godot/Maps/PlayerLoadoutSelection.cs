@@ -120,6 +120,11 @@ namespace TFCardBattle.Godot
                 registry.ImportTransformation(tfId, FileAccess.GetFileAsString(path));
             }
 
+            foreach (string path in FilePathsInFolder("res://Content/CustomResourcePacks"))
+            {
+                registry.ImportCustomResources(FileAccess.GetFileAsString(path));
+            }
+
             return registry;
 
             IEnumerable<string> IdsInFolder(string folder)
@@ -127,6 +132,13 @@ namespace TFCardBattle.Godot
                 return DirAccess
                     .GetFilesAt(folder)
                     .Select(f => f.Split(".json")[0]);
+            }
+
+            IEnumerable<string> FilePathsInFolder(string folder)
+            {
+                return DirAccess
+                    .GetFilesAt(folder)
+                    .Select(f => $"{folder}/{f}");
             }
         }
     }

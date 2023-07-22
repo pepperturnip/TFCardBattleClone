@@ -28,6 +28,9 @@ namespace TFCardBattle.Core
         public int Shield = 0;
         public int Damage = 0;
 
+        public DefaultDictionary<CustomResourceId, double> CustomResources
+            = new DefaultDictionary<CustomResourceId, double>(0);
+
         public List<Consumable> Consumables = new List<Consumable>();
 
         /// <summary>

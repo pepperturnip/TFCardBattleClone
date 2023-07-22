@@ -8,15 +8,17 @@ namespace TFCardBattle.Core
     public class ContentRegistry
     {
         public IReadOnlyDictionary<CardId, Card> Cards => _cards;
-        public IReadOnlyDictionary<ConsumableId, Consumable> Consumables => _consumables;
         public IReadOnlyDictionary<CardPackId, CardPack> CardPacks => _cardPacks;
+        public IReadOnlyDictionary<ConsumableId, Consumable> Consumables => _consumables;
         public IReadOnlyDictionary<TransformationId, Transformation> Transformations => _transformations;
+        public IReadOnlyDictionary<CustomResourceId, CustomResource> CustomResources => _customResources;
+
 
         private Dictionary<CardId, Card> _cards = new Dictionary<CardId, Card>();
         private Dictionary<CardPackId, CardPack> _cardPacks = new Dictionary<CardPackId, CardPack>();
-        private Dictionary<TransformationId, Transformation> _transformations = new Dictionary<TransformationId, Transformation>();
-
         private Dictionary<ConsumableId, Consumable> _consumables = new Dictionary<ConsumableId, Consumable>();
+        private Dictionary<TransformationId, Transformation> _transformations = new Dictionary<TransformationId, Transformation>();
+        private Dictionary<CustomResourceId, CustomResource> _customResources = new Dictionary<CustomResourceId, CustomResource>();
 
         public IEnumerable<Card> CardsInPack(CardPackId id)
         {
@@ -58,6 +60,15 @@ namespace TFCardBattle.Core
         {
             var tf = JsonConvert.DeserializeObject<Transformation>(json);
             _transformations[id] = tf;
+        }
+
+        public void ImportCustomResources(string json)
+        {
+            var resources = JsonConvert.DeserializeObject<Dictionary<CustomResourceId, CustomResource>>(json);
+            foreach (var kvp in resources)
+            {
+                _customResources[kvp.Key] = kvp.Value;
+            }
         }
     }
 }

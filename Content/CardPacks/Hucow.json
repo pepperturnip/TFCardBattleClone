@@ -1,0 +1,270 @@
+{
+    "Name": "Hucow",
+    "Type": "Transformation",
+    "Cards":
+    {
+        "card110":
+        {
+            "Name": "Breast Pump",
+            "Image": "res://Media/Cards/card110.webp",
+            "MinTF": 24,
+            "MaxTF": 40,
+            "HeartCost": 1,
+            "Gifs":
+            [
+                "res://Media/CardGifs/110a.ogv",
+                "res://Media/CardGifs/110b.ogv",
+                "res://Media/CardGifs/110c.ogv",
+                "res://Media/CardGifs/110d.ogv"
+            ],
+            "Effect":
+            {
+                "Heart": 1,
+                "CustomResources":
+                {
+                    "BreastSize": 0.25
+                }
+            }
+        },
+        "card111":
+        {
+            "Name": "Ranch Hand",
+            "Image": "res://Media/Cards/card111.webp",
+            "MinTF": 28,
+            "MaxTF": 44,
+            "HeartCost": 2,
+            "Gifs":
+            [
+                "res://Media/CardGifs/111a.ogv",
+                "res://Media/CardGifs/111b.ogv",
+                "res://Media/CardGifs/111c.ogv",
+                "res://Media/CardGifs/111d.ogv",
+                "res://Media/CardGifs/111e.ogv",
+                "res://Media/CardGifs/111f.ogv",
+                "res://Media/CardGifs/111g.ogv"
+            ],
+            "Effect":
+            {
+                "Shield": 2,
+                "CustomResources":
+                {
+                    "BreastSize": 0.25
+                }
+            }
+        },
+        "card112":
+        {
+            "Name": "Implants",
+            "Image": "res://Media/Cards/card112.webp",
+            "MinTF": 32,
+            "MaxTF": 48,
+            "HeartCost": 3,
+            "Gifs":
+            [
+                "res://Media/CardGifs/112a.ogv",
+                "res://Media/CardGifs/112b.ogv",
+                "res://Media/CardGifs/112c.ogv",
+                "res://Media/CardGifs/112d.ogv",
+                "res://Media/CardGifs/112e.ogv"
+            ],
+            "Effect":
+            {
+                "Heart": 1,
+                "Damage": 2,
+                "CustomResources":
+                {
+                    "BreastSize": 0.25
+                }
+            }
+        },
+        "card113":
+        {
+            "Name": "Breast Massage",
+            "Image": "res://Media/Cards/card113.webp",
+            "MinTF": 36,
+            "MaxTF": 52,
+            "HeartCost": 3,
+            "Gifs":
+            [
+                "res://Media/CardGifs/113a.ogv",
+                "res://Media/CardGifs/113b.ogv",
+                "res://Media/CardGifs/113c.ogv",
+                "res://Media/CardGifs/113d.ogv",
+                "res://Media/CardGifs/113e.ogv"
+            ],
+            "Effect":
+            {
+                "Draw": 1,
+                "CustomResources":
+                {
+                    "BreastSize": 0.25
+                }
+            }
+        },
+        "card116":
+        {
+            "Name": "Join the Herd",
+            "Image": "res://Media/Cards/card116.webp",
+            "MinTF": 40,
+            "MaxTF": 56,
+            "HeartCost": 3,
+            "Gifs":
+            [
+                "res://Media/CardGifs/116a.ogv",
+                "res://Media/CardGifs/116b.ogv",
+                "res://Media/CardGifs/116c.ogv",
+                "res://Media/CardGifs/116d.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "TransferFromCustomResource",
+                "From": "BreastSize",
+                "To": "Damage"
+            }
+        },
+        "card115":
+        {
+            "Name": "Personal Attention",
+            "Image": "res://Media/Cards/card115.webp",
+            "MinTF": 45,
+            "MaxTF": 61,
+            "SubCost": 1,
+            "Gifs":
+            [
+                "res://Media/CardGifs/115a.ogv",
+                "res://Media/CardGifs/115b.ogv",
+                "res://Media/CardGifs/115c.ogv",
+                "res://Media/CardGifs/115d.ogv",
+                "res://Media/CardGifs/115e.ogv"
+            ],
+            "Effect":
+            {
+                "Damage": 2,
+                "CustomResources":
+                {
+                    "BreastSize": 0.25
+                }
+            }
+        },
+        "card114":
+        {
+            "Name": "Hormone Injections",
+            "Image": "res://Media/Cards/card114.webp",
+            "MinTF": 50,
+            "MaxTF": 66,
+            "HeartCost": 3,
+            "Effect":
+            {
+                "CustomResources":
+                {
+                    "BreastSize": 0.5
+                }
+            }
+        },
+        "card118":
+        {
+            "Name": "Good Cow",
+            "Image": "res://Media/Cards/card118.webp",
+            "MinTF": 54,
+            "MaxTF": 70,
+            "SubCost": 3,
+            "Gifs":
+            [
+                "res://Media/CardGifs/118a.ogv",
+                "res://Media/CardGifs/118b.ogv",
+                "res://Media/CardGifs/118c.ogv",
+                "res://Media/CardGifs/118d.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "TransferFromCustomResource",
+                "From": "BreastSize",
+                "To": "Sub"
+            }
+        },
+        "card117":
+        {
+            "Name": "Moo!",
+            "Image": "res://Media/Cards/card117.webp",
+            "MinTF": 59,
+            "MaxTF": 75,
+            "SubCost": 3,
+            "Effect":
+            {
+                "CustomResources":
+                {
+                    "BreastSize": 1
+                }
+            }
+        },
+        "card119":
+        {
+            "Name": "Cattle Pens",
+            "Image": "res://Media/Cards/card119.webp",
+            "MinTF": 65,
+            "MaxTF": 81,
+            "SubCost": 3,
+            "Gifs":
+            [
+                "res://Media/CardGifs/119a.ogv",
+                "res://Media/CardGifs/119b.ogv",
+                "res://Media/CardGifs/119c.ogv",
+                "res://Media/CardGifs/119d.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "TransferFromCustomResource",
+                "From": "BreastSize",
+                "To": "Shield"
+            }
+        },
+        "card122":
+        {
+            "Name": "Milk bath",
+            "Image": "res://Media/Cards/card122.webp",
+            "MinTF": 69,
+            "MaxTF": 85,
+            "HeartCost": 6,
+            "Gifs": ["res://Media/CardGifs/122.ogv"],
+            "Effect": { "Class": "MilkBath" }
+        },
+        "card120":
+        {
+            "Name": "Milking Machine",
+            "Image": "res://Media/Cards/card120.webp",
+            "MinTF": 73,
+            "MaxTF": 89,
+            "SubCost": 4,
+            "Gifs":
+            [
+                "res://Media/CardGifs/120a.ogv",
+                "res://Media/CardGifs/120b.ogv",
+                "res://Media/CardGifs/120c.ogv",
+                "res://Media/CardGifs/120d.ogv",
+                "res://Media/CardGifs/120e.ogv"
+            ],
+            "Effect": { "Class": "MilkingMachine" }
+        },
+        "card121":
+        {
+            "Name": "Breeding Machine",
+            "Image": "res://Media/Cards/card121.webp",
+            "MinTF": 74,
+            "MaxTF": 90,
+            "SubCost": 5,
+            "Gifs":
+            [
+                "res://Media/CardGifs/121a.ogv",
+                "res://Media/CardGifs/121b.ogv",
+                "res://Media/CardGifs/121c.ogv",
+                "res://Media/CardGifs/121d.ogv",
+                "res://Media/CardGifs/121e.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "TransferFromCustomResourceToRainbow",
+                "Resource": "BreastSize"
+            }
+        }
+    }
+}
