@@ -12,6 +12,8 @@ namespace TFCardBattle.Godot
 
         private Control _template;
 
+        private ContentRegistry _registry;
+
         public override void _Ready()
         {
             _template = GetNode<Control>("%LabelTemplate");
@@ -25,6 +27,8 @@ namespace TFCardBattle.Godot
         /// <param name="state"></param>
         public void UpdateResources(BattleState state)
         {
+            _registry = state.CardRegistry;
+
             foreach (var resource in _resources)
             {
                 var label = GetValueLabel(resource);
@@ -78,16 +82,18 @@ namespace TFCardBattle.Godot
         private AccumulatingLabel GetValueLabel(ResourceType resource)
             => GetNode<AccumulatingLabel>($"{resource}/ValueLabel");
 
-        private Control GetResourceDisplay(CustomResourceId resource)
+        private Control GetResourceDisplay(CustomResourceId id)
         {
-            var control = GetNodeOrNull<Control>(resource.ToString());
+            var control = GetNodeOrNull<Control>(id.ToString());
             if (control != null)
                 return control;
 
             // It doesn't already exist, so create it from the template
-            var resourceDisplay = (Control)_template.Duplicate();
-            resourceDisplay.Name = resource.ToString();
-            resourceDisplay.GetNode<Label>("Label").Text = resource.ToString();
+            CustomResource resource = _registry.CustomResources[id];
+
+            var resourceDisplay = (TextureRect)_template.Duplicate();
+            resourceDisplay.Name = id.ToString();
+            resourceDisplay.Texture = ResourceLoader.Load<Texture2D>(resource.IconPath);
             AddChild(resourceDisplay);
 
             return resourceDisplay;

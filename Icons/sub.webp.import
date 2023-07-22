@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvk74u16yhllh"
-path="res://.godot/imported/Brain.svg-bc10688428fb8a00bf45d101ee6990f3.ctex"
+uid="uid://djeew0ajxrcj5"
+path="res://.godot/imported/sub.webp-86d027049d7d5945cd588405f5925c13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Icons/Brain.svg"
-dest_files=["res://.godot/imported/Brain.svg-bc10688428fb8a00bf45d101ee6990f3.ctex"]
+source_file="res://Icons/sub.webp"
+dest_files=["res://.godot/imported/sub.webp-86d027049d7d5945cd588405f5925c13.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
