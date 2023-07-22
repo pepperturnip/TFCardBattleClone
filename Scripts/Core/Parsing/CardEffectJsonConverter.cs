@@ -13,7 +13,9 @@ namespace TFCardBattle.Core.Parsing
 
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(ICardEffect);
+            return
+                objectType == typeof(ICardEffect) ||
+                objectType == typeof(ICardEffect[]);
         }
         public override object ReadJson(
             JsonReader reader,
@@ -22,6 +24,14 @@ namespace TFCardBattle.Core.Parsing
             JsonSerializer serializer
         )
         {
+            if (objectType == typeof(ICardEffect[]))
+            {
+                return JArray.Load(reader)
+                    .ToObject<JObject[]>()
+                    .Select(ParseWithReflection)
+                    .ToArray();
+            }
+
             var jobj = JObject.Load(reader);
             return ParseWithReflection(jobj);
         }
