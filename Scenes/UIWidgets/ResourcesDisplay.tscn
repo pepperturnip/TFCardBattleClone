@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnu088vlpj25r"]
+[gd_scene load_steps=9 format=3 uid="uid://bnu088vlpj25r"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/ResourcesDisplay.cs" id="1_2f5ds"]
 [ext_resource type="PackedScene" uid="uid://bk2uhlq3oxck" path="res://Scenes/UIWidgets/AccumlatingLabel.tscn" id="1_fwtdk"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://djeew0ajxrcj5" path="res://Icons/sub.webp" id="5_xrluh"]
 [ext_resource type="Texture2D" uid="uid://bldx1tf2h8sob" path="res://Icons/shield.webp" id="6_d12to"]
 [ext_resource type="Texture2D" uid="uid://3tm57g1sq7tb" path="res://Icons/tf.webp" id="7_ug6yb"]
+[ext_resource type="Texture2D" uid="uid://6joeeyssjsdx" path="res://Icons/BreastSize.svg" id="8_tx2v0"]
 
 [node name="ResourcesDisplay" type="HBoxContainer"]
 anchors_preset = 8
@@ -108,16 +109,20 @@ offset_top = -26.5
 offset_right = 5.0
 offset_bottom = 26.5
 
-[node name="LabelTemplate" type="VBoxContainer" parent="."]
+[node name="LabelTemplate" type="TextureRect" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
-
-[node name="Label" type="Label" parent="LabelTemplate"]
-layout_mode = 2
-text = "Custom"
-horizontal_alignment = 1
-vertical_alignment = 2
+texture = ExtResource("8_tx2v0")
+stretch_mode = 2
 
 [node name="ValueLabel" parent="LabelTemplate" instance=ExtResource("1_fwtdk")]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -26.5
+offset_right = 5.0
+offset_bottom = 26.5
