@@ -9,6 +9,14 @@ namespace TFCardBattle.Godot
     {
         private readonly ResourceType[] _resources = Enum.GetValues<ResourceType>();
 
+        private Control _template;
+
+        public override void _Ready()
+        {
+            _template = GetNode<Control>("%LabelTemplate");
+            RemoveChild(_template);
+        }
+
         /// <summary>
         /// Updates the resource counters, but using a smooth "counting"
         /// animation.
@@ -47,9 +55,21 @@ namespace TFCardBattle.Godot
         }
 
         private Control GetResourceDisplay(ResourceType resource)
-            => GetNode<Control>(resource.ToString());
+        {
+            var control = GetNodeOrNull<Control>(resource.ToString());
+            if (control != null)
+                return control;
+
+            // It doesn't already exist, so create it from the template
+            var resourceDisplay = (Control)_template.Duplicate();
+            resourceDisplay.Name = resource.ToString();
+            resourceDisplay.GetNode<Label>("Label").Text = resource.ToString();
+            AddChild(resourceDisplay);
+
+            return resourceDisplay;
+        }
 
         private AccumulatingLabel GetValueLabel(ResourceType resource)
-            => GetNode<AccumulatingLabel>($"{resource}/ValueLabel");
+            => GetResourceDisplay(resource).GetNode<AccumulatingLabel>("ValueLabel");
     }
 }

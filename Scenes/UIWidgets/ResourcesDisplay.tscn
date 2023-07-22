@@ -18,67 +18,16 @@ grow_vertical = 2
 alignment = 1
 script = ExtResource("1_2f5ds")
 
-[node name="Brain" type="VBoxContainer" parent="."]
+[node name="LabelTemplate" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Brain"]
+[node name="Label" type="Label" parent="LabelTemplate"]
 layout_mode = 2
-text = "Brain"
+text = "Custom"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="ValueLabel" parent="Brain" instance=ExtResource("1_fwtdk")]
-layout_mode = 2
-
-[node name="Heart" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(48, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Heart"]
-layout_mode = 2
-text = "Heart"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ValueLabel" parent="Heart" instance=ExtResource("1_fwtdk")]
-layout_mode = 2
-
-[node name="Sub" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(48, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Sub"]
-layout_mode = 2
-text = "Sub"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ValueLabel" parent="Sub" instance=ExtResource("1_fwtdk")]
-layout_mode = 2
-
-[node name="Shield" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(48, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Shield"]
-layout_mode = 2
-text = "Shield"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ValueLabel" parent="Shield" instance=ExtResource("1_fwtdk")]
-layout_mode = 2
-
-[node name="Damage" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(48, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Damage"]
-layout_mode = 2
-text = "TF"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="ValueLabel" parent="Damage" instance=ExtResource("1_fwtdk")]
+[node name="ValueLabel" parent="LabelTemplate" instance=ExtResource("1_fwtdk")]
 layout_mode = 2
