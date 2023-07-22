@@ -1,22 +1,22 @@
 [gd_scene load_steps=10 format=3 uid="uid://bycsfwfkgv85h"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/CardCostDisplay.cs" id="1_jh5qn"]
-[ext_resource type="Texture2D" uid="uid://bvk74u16yhllh" path="res://Icons/Brain.svg" id="2_wmum8"]
-[ext_resource type="Texture2D" uid="uid://dososbff7cd0m" path="res://Icons/Heart.svg" id="3_o2cid"]
-[ext_resource type="Texture2D" uid="uid://7jkrq8rtdm40" path="res://Icons/Sub.svg" id="4_6nvgy"]
+[ext_resource type="Texture2D" uid="uid://yb3slkksjf5l" path="res://Icons/brain.webp" id="2_guk01"]
+[ext_resource type="Texture2D" uid="uid://dpf2k6oyx4krj" path="res://Icons/heart.webp" id="3_kyjub"]
+[ext_resource type="Texture2D" uid="uid://djeew0ajxrcj5" path="res://Icons/sub.webp" id="4_7xnw8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tr8r0"]
-texture = ExtResource("2_wmum8")
+texture = ExtResource("2_guk01")
 
 [sub_resource type="LabelSettings" id="LabelSettings_rwc1w"]
 font_size = 41
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cut4h"]
-texture = ExtResource("3_o2cid")
+texture = ExtResource("3_kyjub")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8sdbi"]
-texture = ExtResource("4_6nvgy")
+texture = ExtResource("4_7xnw8")
 
 [sub_resource type="LabelSettings" id="LabelSettings_uqlk8"]
 font_size = 41
