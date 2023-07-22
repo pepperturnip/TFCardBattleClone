@@ -54,11 +54,6 @@ layout_mode = 2
 text = "Choose theme packs"
 horizontal_alignment = 1
 
-[node name="ThemeCountLabel" type="Label" parent="ThemePacks/Labels"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "(0/13)"
-
 [node name="BrainPacks" parent="ThemePacks" instance=ExtResource("2_a6lus")]
 unique_name_in_owner = true
 layout_mode = 2

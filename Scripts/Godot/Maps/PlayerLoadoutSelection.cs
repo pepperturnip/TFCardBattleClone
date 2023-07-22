@@ -18,16 +18,18 @@ namespace TFCardBattle.Godot
         private ThemePackPicker _heartPacks => GetNode<ThemePackPicker>("%HeartPacks");
         private ThemePackPicker _subPacks => GetNode<ThemePackPicker>("%SubPacks");
 
-        private const int RequiredThemePackCount = 13;
+        private const int RequiredBrainCount = 5;
+        private const int RequiredHeartCount = 4;
+        private const int RequiredSubCount = 4;
 
         public override void _Ready()
         {
             _registry = CreateContentRegistry();
 
             InitTransformationPicker();
-            InitThemePackPicker(_brainPacks, CardPackType.BrainSlot);
-            InitThemePackPicker(_heartPacks, CardPackType.HeartSlot);
-            InitThemePackPicker(_subPacks, CardPackType.SubSlot);
+            InitThemePackPicker(_brainPacks, CardPackType.BrainSlot, RequiredBrainCount);
+            InitThemePackPicker(_heartPacks, CardPackType.HeartSlot, RequiredHeartCount);
+            InitThemePackPicker(_subPacks, CardPackType.SubSlot, RequiredSubCount);
         }
 
         private void InitTransformationPicker()
@@ -42,7 +44,11 @@ namespace TFCardBattle.Godot
             _transformationPicker.Select(0);
         }
 
-        private void InitThemePackPicker(ThemePackPicker picker, CardPackType packType)
+        private void InitThemePackPicker(
+            ThemePackPicker picker,
+            CardPackType packType,
+            int requiredCount
+        )
         {
             var themePackChoices = _registry.CardPacks
                 .Values
@@ -54,7 +60,7 @@ namespace TFCardBattle.Godot
                 .Select(id => _registry.CardPacks[id])
                 .ToArray();
 
-            picker.SetChoices(themePackChoices, defaultSelections);
+            picker.SetChoices(themePackChoices, defaultSelections, requiredCount);
         }
 
         public void StartBattle()
@@ -76,15 +82,11 @@ namespace TFCardBattle.Godot
 
         private void RefreshStartButton()
         {
-            int expectedCount = RequiredThemePackCount;
-            int actualCount =
-                _brainPacks.SelectedPacks.Count +
-                _heartPacks.SelectedPacks.Count +
-                _subPacks.SelectedPacks.Count;
+            bool enableStartButton =
+                _brainPacks.SelectionsValid &&
+                _heartPacks.SelectionsValid &&
+                _subPacks.SelectionsValid;
 
-            GetNode<Label>("%ThemeCountLabel").Text = $"({actualCount}/{expectedCount})";
-
-            bool enableStartButton = actualCount == expectedCount;
             GetNode<Button>("%StartButton").Disabled = !enableStartButton;
         }
 
