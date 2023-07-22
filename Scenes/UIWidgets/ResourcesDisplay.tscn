@@ -26,6 +26,7 @@ script = ExtResource("1_2f5ds")
 
 [node name="Brain" type="TextureRect" parent="."]
 layout_mode = 2
+size_flags_vertical = 4
 texture = ExtResource("2_sewrm")
 stretch_mode = 2
 
@@ -43,6 +44,7 @@ offset_bottom = 26.5
 
 [node name="Heart" type="TextureRect" parent="."]
 layout_mode = 2
+size_flags_vertical = 4
 texture = ExtResource("4_5lccb")
 stretch_mode = 2
 
@@ -60,6 +62,7 @@ offset_bottom = 26.5
 
 [node name="Sub" type="TextureRect" parent="."]
 layout_mode = 2
+size_flags_vertical = 4
 texture = ExtResource("5_xrluh")
 stretch_mode = 2
 
@@ -77,6 +80,7 @@ offset_bottom = 26.5
 
 [node name="Shield" type="TextureRect" parent="."]
 layout_mode = 2
+size_flags_vertical = 4
 texture = ExtResource("6_d12to")
 stretch_mode = 2
 
@@ -94,6 +98,7 @@ offset_bottom = 26.5
 
 [node name="Damage" type="TextureRect" parent="."]
 layout_mode = 2
+size_flags_vertical = 4
 texture = ExtResource("7_ug6yb")
 stretch_mode = 2
 
@@ -112,6 +117,7 @@ offset_bottom = 26.5
 [node name="LabelTemplate" type="TextureRect" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 4
 texture = ExtResource("8_tx2v0")
 stretch_mode = 2
 
