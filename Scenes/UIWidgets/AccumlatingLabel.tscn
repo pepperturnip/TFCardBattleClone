@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk2uhlq3oxck"]
+[gd_scene load_steps=3 format=3 uid="uid://bk2uhlq3oxck"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/AccumulatingLabel.cs" id="1_0fke7"]
 
@@ -6,11 +6,8 @@
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_2nsof"]
-outline_size = 6
-outline_color = Color(0, 0, 0, 1)
-
-[node name="AccumlatingLabel" type="VBoxContainer"]
+[node name="AccumlatingLabel" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,14 +17,27 @@ script = ExtResource("1_0fke7")
 
 [node name="DisplayedValue" type="Label" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
 text = "0"
 label_settings = SubResource("LabelSettings_lu5gt")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Accumulator" type="Label" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+size_flags_vertical = 1
 text = "+0"
-label_settings = SubResource("LabelSettings_2nsof")
+label_settings = SubResource("LabelSettings_lu5gt")
 horizontal_alignment = 1
