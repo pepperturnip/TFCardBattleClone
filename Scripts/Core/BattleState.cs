@@ -11,16 +11,37 @@ namespace TFCardBattle.Core
     public class BattleState
     {
         public readonly ContentRegistry CardRegistry;
+        public List<ILingeringEffect> LingeringEffects = new List<ILingeringEffect>();
 
         public PlayerLoadout PlayerLoadout;
 
-        public int TurnsElapsed = 0;
-
-        public int PlayerTF = 0;
-        public int EnemyTF = 0;
-
         public int PlayerMaxTF = 100;
+        public int PlayerTF = 0;
+
+        public int EnemyTF = 0;
         public int EnemyMaxTF = 100;
+
+        /// <summary>
+        /// The cards currently on offer to the player this turn.
+        /// Gets repopulated with random cards from
+        /// <see cref="BattleState.OfferableCards"/> at the start of each turn.
+        /// </summary>
+        public List<Card> BuyPile = new List<Card>();
+
+        /// <summary>
+        /// All cards that the player owns, whether they're in the deck, hand,
+        /// discard pile, or in-play.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Card> OwnedCards => Deck
+                .Concat(Hand)
+                .Concat(Discard)
+                .Concat(InPlay);
+
+        public List<Card> Deck = new List<Card>();
+        public List<Card> Hand = new List<Card>();
+        public List<Card> InPlay = new List<Card>();
+        public List<Card> Discard = new List<Card>();
 
         public int Brain = 0;
         public int Heart = 0;
@@ -40,30 +61,7 @@ namespace TFCardBattle.Core
         /// drawing too much.
         /// </summary>
         public int DrawCount = 0;
-
-        public List<Card> Deck = new List<Card>();
-        public List<Card> Hand = new List<Card>();
-        public List<Card> InPlay = new List<Card>();
-        public List<Card> Discard = new List<Card>();
-
-        /// <summary>
-        /// All cards that the player owns, whether they're in the deck, hand,
-        /// discard pile, or in-play.
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<Card> OwnedCards => Deck
-                .Concat(Hand)
-                .Concat(Discard)
-                .Concat(InPlay);
-
-        /// <summary>
-        /// The cards currently on offer to the player this turn.
-        /// Gets repopulated with random cards from
-        /// <see cref="BattleState.OfferableCards"/> at the start of each turn.
-        /// </summary>
-        public List<Card> BuyPile = new List<Card>();
-
-        public List<ILingeringEffect> LingeringEffects = new List<ILingeringEffect>();
+        public int TurnsElapsed = 0;
 
         public BattleState(
             PlayerLoadout loadout,

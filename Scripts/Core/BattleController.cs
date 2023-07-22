@@ -303,6 +303,7 @@ namespace TFCardBattle.Core
             State.Shield = 0;
             State.Damage = 0;
             await AnimationPlayer.DiscardResources();
+            await TriggerEffects(e => e.OnResourcesDiscarded(this));
         }
 
         public async Task ForgetBasicCard()

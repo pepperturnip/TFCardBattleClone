@@ -1,0 +1,118 @@
+{
+    "Name": "Ass",
+    "Type": "HeartSlot",
+    "Cards":
+    {
+        "card271":
+        {
+            "Name": "Twerk",
+            "Image": "res://Media/Cards/card271.webp",
+            "MinTF": 15,
+            "MaxTF": 31,
+            "HeartCost": 2,
+            "Gifs":
+            [
+                "res://Media/CardGifs/271a.ogv",
+                "res://Media/CardGifs/271b.ogv",
+                "res://Media/CardGifs/271c.ogv",
+                "res://Media/CardGifs/271d.ogv",
+                "res://Media/CardGifs/271e.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "Multi",
+                "Effects":
+                [
+                    { "Heart": 2 },
+                    {
+                        "Class": "CarryOverResources",
+                        "Resources": ["Heart"]
+                    }
+                ]
+            }
+        },
+        "card272":
+        {
+            "Name": "Slap Dat Ass",
+            "Image": "res://Media/Cards/card272.webp",
+            "MinTF": 23,
+            "MaxTF": 39,
+            "HeartCost": 4,
+            "Gifs":
+            [
+                "res://Media/CardGifs/272a.ogv",
+                "res://Media/CardGifs/272b.ogv",
+                "res://Media/CardGifs/272c.ogv",
+                "res://Media/CardGifs/272d.ogv",
+                "res://Media/CardGifs/272e.ogv",
+                "res://Media/CardGifs/272f.ogv",
+                "res://Media/CardGifs/272g.ogv",
+                "res://Media/CardGifs/272h.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "Multi",
+                "Effects":
+                [
+                    { "Damage": 2 },
+                    { "Class": "CarryOverHalfDamage" }
+                ]
+            }
+        },
+        "card273":
+        {
+            "Name": "Yoga Pants",
+            "Image": "res://Media/Cards/card273.webp",
+            "MinTF": 31,
+            "MaxTF": 47,
+            "HeartCost": 3,
+            "Gifs":
+            [
+                "res://Media/CardGifs/273a.ogv",
+                "res://Media/CardGifs/273b.ogv",
+                "res://Media/CardGifs/273c.ogv",
+                "res://Media/CardGifs/273d.ogv",
+                "res://Media/CardGifs/273e.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "Multi",
+                "Effects":
+                [
+                    { "Shield": 2 },
+                    {
+                        "Class": "CarryOverResources",
+                        "Resources": ["Shield"]
+                    }
+                ]
+            }
+        },
+        "card274":
+        {
+            "Name": "Hotdogging",
+            "Image": "res://Media/Cards/card274.webp",
+            "MinTF": 56,
+            "MaxTF": 72,
+            "HeartCost": 5,
+            "Gifs":
+            [
+                "res://Media/CardGifs/274a.ogv",
+                "res://Media/CardGifs/274b.ogv",
+                "res://Media/CardGifs/274c.ogv",
+                "res://Media/CardGifs/274d.ogv",
+                "res://Media/CardGifs/274e.ogv",
+                "res://Media/CardGifs/274f.ogv"
+            ],
+            "Effect":
+            {
+                "Class": "CarryOverResources",
+                "Resources":
+                [
+                    "Brain",
+                    "Heart",
+                    "Shield"
+                ]
+            }
+        }
+    }
+}

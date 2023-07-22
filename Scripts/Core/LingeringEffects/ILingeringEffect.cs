@@ -5,6 +5,8 @@ namespace TFCardBattle.Core
 {
     public interface ILingeringEffect
     {
+        Task OnResourcesDiscarded(BattleController battle) => Task.CompletedTask;
+
         Task OnCardAboutToActivate(BattleController battle, Card card) => Task.CompletedTask;
         Task OnCardFinishedActivating(BattleController battle, Card card) => Task.CompletedTask;
 
