@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="40" height="40">
+    <rect
+        x="15.3"
+        y="0.8"
+        width="8.8"
+        height="10.6"
+        stroke="black"/>
+    <ellipse
+        cx="20"
+        cy="24"
+        rx="15"
+        ry="15"
+        stroke="black"/>
+    <rect
+        x="15.3"
+        y="0.8"
+        width="8.8"
+        height="10.6"
+        fill="white"/>
+    <ellipse
+        cx="20"
+        cy="24"
+        rx="15"
+        ry="15"
+        fill="royalblue"/>
+    <rect
+        x="15.3"
+        y="5"
+        width="8.8"
+        height="5"
+        fill="royalblue"/>
+</svg>
