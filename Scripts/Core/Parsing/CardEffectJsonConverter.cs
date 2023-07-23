@@ -9,8 +9,6 @@ namespace TFCardBattle.Core.Parsing
 {
     public class CardEffectJsonConverter : JsonConverter
     {
-        private static readonly Dictionary<string, Type> _effectClassCache = new Dictionary<string, Type>();
-
         public override bool CanConvert(Type objectType)
         {
             return
@@ -46,37 +44,15 @@ namespace TFCardBattle.Core.Parsing
             dynamic dynamicEffect = obj;
             string className = dynamicEffect.Class ?? "Simple";
 
-            var type = FindClass(
-                className,
+            var type = FindClass.InNamespace(
                 "TFCardBattle.Core.CardEffects",
-                _effectClassCache
+                className
             );
 
             if (type == null)
                 throw new NotImplementedException($"No \"{className}\" card class found");
 
             return (ICardEffect)obj.ToObject(type);
-        }
-
-        private static Type FindClass(
-            string className,
-            string nameSpace,
-            Dictionary<string, Type> cache
-        )
-        {
-            if (cache.TryGetValue(className, out var result))
-                return result;
-
-            // Only search for classes in the the given namespace, for
-            // security.  We don't want nefarious dudes instantiating any C#
-            // class they want!
-            var type = Assembly.GetExecutingAssembly()
-                .DefinedTypes
-                .Where(t => t.Namespace == nameSpace)
-                .FirstOrDefault(t => t.Name == className);
-
-            cache[className] = type;
-            return type;
         }
     }
 }
