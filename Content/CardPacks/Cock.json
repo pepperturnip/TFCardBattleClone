@@ -40,7 +40,14 @@
                 "res://Media/CardGifs/62d.ogv",
                 "res://Media/CardGifs/62e.ogv"
             ],
-            "Effect": { "Class": "JustTheTip" }
+            "Effect":
+            [
+                { "Shield": -3 },
+                {
+                    "Class": "MultiplyResources",
+                    "Damage": 2
+                }
+            ]
         },
         "card69":
         {

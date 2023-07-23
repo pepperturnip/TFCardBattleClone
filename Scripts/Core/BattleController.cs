@@ -210,6 +210,7 @@ namespace TFCardBattle.Core
 
             await DiscardResources();
             await ResetBuyPile();
+            await DebugCheatCardsIntoHand();
 
             // Draw a fresh hand of cards
             for (int i = 0; i < StartingHandSize; i++)
@@ -425,6 +426,20 @@ namespace TFCardBattle.Core
             return cards
                 .Where(c => tf <= c.MaxTF)
                 .Where(c => tf >= c.MinTF);
+        }
+
+        private async Task DebugCheatCardsIntoHand()
+        {
+            var cardsToCheat = State.CardRegistry
+                .Cards
+                .Values
+                .Where(c => c.DebugCheatIntoHand);
+
+            foreach (var card in cardsToCheat)
+            {
+                State.Hand.Add(card);
+                await AnimationPlayer.DrawCard(card);
+            }
         }
     }
 }

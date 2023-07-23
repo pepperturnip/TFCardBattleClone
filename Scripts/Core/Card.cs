@@ -10,6 +10,12 @@ namespace TFCardBattle.Core
         public string Image;
         public string[] Gifs = new string[] {};
 
+        /// <summary>
+        /// Set this to "true" in the JSON to cheat this card into your hand
+        /// at the start of every turn.
+        /// </summary>
+        public bool DebugCheatIntoHand = false;
+
         public int MinTF;
         public int MaxTF;
         public int OfferWeight = 1;

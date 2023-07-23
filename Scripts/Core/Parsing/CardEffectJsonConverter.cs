@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -9,14 +6,11 @@ namespace TFCardBattle.Core.Parsing
 {
     public class CardEffectJsonConverter : JsonConverter
     {
-        private static readonly Dictionary<string, Type> _effectClassCache = new Dictionary<string, Type>();
-
         public override bool CanConvert(Type objectType)
         {
-            return
-                objectType == typeof(ICardEffect) ||
-                objectType == typeof(ICardEffect[]);
+            return objectType == typeof(ICardEffect);
         }
+
         public override object ReadJson(
             JsonReader reader,
             Type objectType,
@@ -24,16 +18,19 @@ namespace TFCardBattle.Core.Parsing
             JsonSerializer serializer
         )
         {
-            if (objectType == typeof(ICardEffect[]))
+            // If the json value is an array, interpret it as a shorthand for
+            // the "Multi" effect class.
+            if (reader.TokenType == JsonToken.StartArray)
             {
-                return JArray.Load(reader)
-                    .ToObject<JObject[]>()
-                    .Select(ParseWithReflection)
-                    .ToArray();
+                var array = JArray.Load(reader);
+                var multi = new CardEffects.Multi();
+                multi.Effects = CardEffectArrayJsonConverter.FromJArray(array);
+
+                return multi;
             }
 
             var jobj = JObject.Load(reader);
-            return ParseWithReflection(jobj);
+            return FromJObject(jobj);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -41,42 +38,20 @@ namespace TFCardBattle.Core.Parsing
             throw new NotImplementedException();
         }
 
-        private static ICardEffect ParseWithReflection(JObject obj)
+        public static ICardEffect FromJObject(JObject obj)
         {
             dynamic dynamicEffect = obj;
             string className = dynamicEffect.Class ?? "Simple";
 
-            var type = FindClass(
-                className,
+            var type = FindClass.InNamespace(
                 "TFCardBattle.Core.CardEffects",
-                _effectClassCache
+                className
             );
 
             if (type == null)
                 throw new NotImplementedException($"No \"{className}\" card class found");
 
             return (ICardEffect)obj.ToObject(type);
-        }
-
-        private static Type FindClass(
-            string className,
-            string nameSpace,
-            Dictionary<string, Type> cache
-        )
-        {
-            if (cache.TryGetValue(className, out var result))
-                return result;
-
-            // Only search for classes in the the given namespace, for
-            // security.  We don't want nefarious dudes instantiating any C#
-            // class they want!
-            var type = Assembly.GetExecutingAssembly()
-                .DefinedTypes
-                .Where(t => t.Namespace == nameSpace)
-                .FirstOrDefault(t => t.Name == className);
-
-            cache[className] = type;
-            return type;
         }
     }
 }
