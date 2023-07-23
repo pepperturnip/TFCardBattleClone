@@ -19,17 +19,13 @@
                 "res://Media/CardGifs/271e.ogv"
             ],
             "Effect":
-            {
-                "Class": "Multi",
-                "Effects":
-                [
-                    { "Heart": 2 },
-                    {
-                        "Class": "CarryOverResources",
-                        "Resources": ["Heart"]
-                    }
-                ]
-            }
+            [
+                { "Heart": 2 },
+                {
+                    "Class": "CarryOverResources",
+                    "Resources": ["Heart"]
+                }
+            ]
         },
         "card272":
         {
@@ -50,14 +46,10 @@
                 "res://Media/CardGifs/272h.ogv"
             ],
             "Effect":
-            {
-                "Class": "Multi",
-                "Effects":
-                [
-                    { "Damage": 2 },
-                    { "Class": "CarryOverHalfDamage" }
-                ]
-            }
+            [
+                { "Damage": 2 },
+                { "Class": "CarryOverHalfDamage" }
+            ]
         },
         "card273":
         {
@@ -75,17 +67,13 @@
                 "res://Media/CardGifs/273e.ogv"
             ],
             "Effect":
-            {
-                "Class": "Multi",
-                "Effects":
-                [
-                    { "Shield": 2 },
-                    {
-                        "Class": "CarryOverResources",
-                        "Resources": ["Shield"]
-                    }
-                ]
-            }
+            [
+                { "Shield": 2 },
+                {
+                    "Class": "CarryOverResources",
+                    "Resources": ["Shield"]
+                }
+            ]
         },
         "card274":
         {
