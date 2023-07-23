@@ -2,24 +2,28 @@
     "MinorShieldPotion":
     {
         "Name": "Minor Shield Potion",
+        "IconPath": "res://Icons/Consumables/MinorShieldPotion.svg",
         "Effect": { "Shield": 3 }
     },
 
     "MinorBrainPotion":
     {
         "Name": "Minor Brain Potion",
+        "IconPath": "res://Icons/Consumables/MinorBrainPotion.svg",
         "Effect": { "Brain": 1 }
     },
 
     "BrainPotion":
     {
         "Name": "Brain Potion",
+        "IconPath": "res://Icons/Consumables/BrainPotion.svg",
         "Effect": { "Brain": 3 }
     },
 
     "MinorDrawPotion":
     {
         "Name": "Minor Draw Potion",
+        "IconPath": "res://Icons/Consumables/MinorDrawPotion.svg",
         "Effect": { "Draw": 1 }
     }
 }
