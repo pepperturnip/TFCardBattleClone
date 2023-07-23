@@ -7,7 +7,7 @@ namespace TFCardBattle.Core.CardEffects
 {
     public class Multi : ICardEffect
     {
-        [JsonConverter(typeof(Parsing.CardEffectJsonConverter))]
+        [JsonConverter(typeof(Parsing.CardEffectArrayJsonConverter))]
         public ICardEffect[] Effects;
         public async Task Activate(BattleController battle)
         {

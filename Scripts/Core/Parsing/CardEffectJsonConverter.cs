@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -11,9 +8,7 @@ namespace TFCardBattle.Core.Parsing
     {
         public override bool CanConvert(Type objectType)
         {
-            return
-                objectType == typeof(ICardEffect) ||
-                objectType == typeof(ICardEffect[]);
+            return objectType == typeof(ICardEffect);
         }
         public override object ReadJson(
             JsonReader reader,
@@ -22,16 +17,8 @@ namespace TFCardBattle.Core.Parsing
             JsonSerializer serializer
         )
         {
-            if (objectType == typeof(ICardEffect[]))
-            {
-                return JArray.Load(reader)
-                    .ToObject<JObject[]>()
-                    .Select(ParseWithReflection)
-                    .ToArray();
-            }
-
             var jobj = JObject.Load(reader);
-            return ParseWithReflection(jobj);
+            return FromJObject(jobj);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -39,7 +26,7 @@ namespace TFCardBattle.Core.Parsing
             throw new NotImplementedException();
         }
 
-        private static ICardEffect ParseWithReflection(JObject obj)
+        public static ICardEffect FromJObject(JObject obj)
         {
             dynamic dynamicEffect = obj;
             string className = dynamicEffect.Class ?? "Simple";
