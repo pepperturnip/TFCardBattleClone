@@ -10,6 +10,7 @@ namespace TFCardBattle.Core.Parsing
         {
             return objectType == typeof(ICardEffect);
         }
+
         public override object ReadJson(
             JsonReader reader,
             Type objectType,
@@ -17,6 +18,17 @@ namespace TFCardBattle.Core.Parsing
             JsonSerializer serializer
         )
         {
+            // If the json value is an array, interpret it as a shorthand for
+            // the "Multi" effect class.
+            if (reader.TokenType == JsonToken.StartArray)
+            {
+                var array = JArray.Load(reader);
+                var multi = new CardEffects.Multi();
+                multi.Effects = CardEffectArrayJsonConverter.FromJArray(array);
+
+                return multi;
+            }
+
             var jobj = JObject.Load(reader);
             return FromJObject(jobj);
         }
