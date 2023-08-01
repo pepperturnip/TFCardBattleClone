@@ -18,13 +18,8 @@
             "Effect":
             [
                 { "Class": "StartMaid" },
-                {
-                    "Heart": 2,
-                    "CustomResources":
-                    {
-                        "MaidDirty": -1
-                    }
-                }
+                { "Class": "MaidClean" },
+                { "Heart": 2 }
             ]
         },
         "card98":
@@ -37,13 +32,8 @@
             "Effect":
             [
                 { "Class": "StartMaid" },
-                {
-                    "Shield": 2,
-                    "CustomResources":
-                    {
-                        "MaidDirty": -1
-                    }
-                }
+                { "Class": "MaidClean" },
+                { "Shield": 2 }
             ]
         },
         "card99":
@@ -62,13 +52,10 @@
             "Effect":
             [
                 { "Class": "StartMaid" },
+                { "Class": "MaidClean" },
                 {
                     "Damage": 2,
-                    "Heart": 2,
-                    "CustomResources":
-                    {
-                        "MaidDirty": -1
-                    }
+                    "Heart": 2
                 }
             ]
         },
@@ -115,12 +102,10 @@
             "Effect":
             [
                 { "Class": "StartMaid" },
+                { "Draw": 2 },
                 {
-                    "Draw": 2,
-                    "CustomResources":
-                    {
-                        "MaidDirty": 1
-                    }
+                    "Class": "MaidClean",
+                    "Amount": -1
                 }
             ]
         },
@@ -141,13 +126,8 @@
             "Effect":
             [
                 { "Class": "StartMaid" },
-                {
-                    "Damage": 3,
-                    "CustomResources":
-                    {
-                        "MaidDirty": -1
-                    }
-                }
+                { "Class": "MaidClean" },
+                { "Damage": 3 }
             ]
         },
         "card100":
@@ -168,13 +148,8 @@
             "Effect":
             [
                 { "Class": "StartMaid" },
-                {
-                    "Draw": 1,
-                    "CustomResources":
-                    {
-                        "MaidDirty": -1
-                    }
-                }
+                { "Class": "MaidClean" },
+                { "Draw": 1 }
             ]
         },
         "card109":
@@ -193,13 +168,10 @@
             "Effect":
             [
                 { "Class": "StartMaid" },
+                { "Class": "MaidClean" },
                 {
                     "Sub": 1,
-                    "Draw": 1,
-                    "CustomResources":
-                    {
-                        "MaidDirty": -1
-                    }
+                    "Draw": 1
                 }
             ]
         },
@@ -244,12 +216,7 @@
             [
                 { "Class": "StartMaid" },
                 { "Class": "ResetBuyPile" },
-                {
-                    "CustomResources":
-                    {
-                        "MaidDirty": 1
-                    }
-                }
+                { "Class": "MaidClean" }
             ]
         },
         "card106":
