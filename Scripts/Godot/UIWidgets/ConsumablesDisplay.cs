@@ -22,7 +22,8 @@ namespace TFCardBattle.Godot
             for(int i = 0; i < consumables.Length; i++)
             {
                 var button = new Button();
-                button.Text = consumables[i].Name;
+                button.TooltipText = consumables[i].Name;
+                button.Icon = ResourceLoader.Load<Texture2D>(consumables[i].IconPath);
                 AddChild(button);
 
                 // We need to make a copy of this value so it can be used within
