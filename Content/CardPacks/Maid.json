@@ -1,5 +1,6 @@
 {
     "Name": "Maid",
+    "Type": "Transformation",
     "Cards":
     {
         "card97":
@@ -86,6 +87,14 @@
                 "res://Media/CardGifs/103d.ogv",
                 "res://Media/CardGifs/103e.ogv",
                 "res://Media/CardGifs/103f.ogv"
+            ],
+            "Effect":
+            [
+                { "Class": "StartMaid" },
+                {
+                    "Class": "AddResourcesMinusMaidDirty",
+                    "Damage": 11
+                }
             ]
         },
         "card101":
@@ -102,6 +111,17 @@
                 "res://Media/CardGifs/101c.ogv",
                 "res://Media/CardGifs/101d.ogv",
                 "res://Media/CardGifs/101e.ogv"
+            ],
+            "Effect":
+            [
+                { "Class": "StartMaid" },
+                {
+                    "Draw": 2,
+                    "CustomResources":
+                    {
+                        "MaidDirty": 1
+                    }
+                }
             ]
         },
         "card102":
@@ -117,6 +137,17 @@
                 "res://Media/CardGifs/102b.ogv",
                 "res://Media/CardGifs/102c.ogv",
                 "res://Media/CardGifs/102d.ogv"
+            ],
+            "Effect":
+            [
+                { "Class": "StartMaid" },
+                {
+                    "Damage": 3,
+                    "CustomResources":
+                    {
+                        "MaidDirty": -1
+                    }
+                }
             ]
         },
         "card100":
@@ -133,6 +164,17 @@
                 "res://Media/CardGifs/100c.ogv",
                 "res://Media/CardGifs/100d.ogv",
                 "res://Media/CardGifs/100e.ogv"
+            ],
+            "Effect":
+            [
+                { "Class": "StartMaid" },
+                {
+                    "Draw": 1,
+                    "CustomResources":
+                    {
+                        "MaidDirty": -1
+                    }
+                }
             ]
         },
         "card109":
@@ -147,6 +189,18 @@
                 "res://Media/CardGifs/109a.ogv",
                 "res://Media/CardGifs/109b.ogv",
                 "res://Media/CardGifs/109c.ogv"
+            ],
+            "Effect":
+            [
+                { "Class": "StartMaid" },
+                {
+                    "Sub": 1,
+                    "Draw": 1,
+                    "CustomResources":
+                    {
+                        "MaidDirty": -1
+                    }
+                }
             ]
         },
         "card105":
@@ -161,6 +215,14 @@
                 "res://Media/CardGifs/105a.ogv",
                 "res://Media/CardGifs/105b.ogv",
                 "res://Media/CardGifs/105c.ogv"
+            ],
+            "Effect":
+            [
+                { "Class": "StartMaid" },
+                {
+                    "Class": "AddResourcesMinusMaidDirty",
+                    "Sub": 11
+                }
             ]
         },
         "card104":
@@ -177,6 +239,17 @@
                 "res://Media/CardGifs/104c.ogv",
                 "res://Media/CardGifs/104d.ogv",
                 "res://Media/CardGifs/104e.ogv"
+            ],
+            "Effect":
+            [
+                { "Class": "StartMaid" },
+                { "Class": "ResetBuyPile" },
+                {
+                    "CustomResources":
+                    {
+                        "MaidDirty": 1
+                    }
+                }
             ]
         },
         "card106":
@@ -194,6 +267,14 @@
                 "res://Media/CardGifs/106d.ogv",
                 "res://Media/CardGifs/106e.ogv",
                 "res://Media/CardGifs/106f.ogv"
+            ],
+            "Effect":
+            [
+                { "Class": "StartMaid" },
+                {
+                    "Class": "AddResourcesMinusMaidDirty",
+                    "Shield": 11
+                }
             ]
         },
         "card107":
@@ -208,6 +289,14 @@
                 "res://Media/CardGifs/107a.ogv",
                 "res://Media/CardGifs/107b.ogv",
                 "res://Media/CardGifs/107c.ogv"
+            ],
+            "Effect":
+            [
+                { "Class": "StartMaid" },
+                {
+                    "Class": "AddResourcesMinusMaidDirty",
+                    "Draw": 6
+                }
             ]
         },
         "card108":
@@ -222,6 +311,16 @@
                 "res://Media/CardGifs/108a.ogv",
                 "res://Media/CardGifs/108b.ogv",
                 "res://Media/CardGifs/108c.ogv"
+            ],
+            "Effect":
+            [
+                { "Class": "StartMaid" },
+                {
+                    "Class": "AddResourcesMinusMaidDirty",
+                    "Brain": 7,
+                    "Heart": 7,
+                    "Sub": 7
+                }
             ]
         }
     }
