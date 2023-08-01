@@ -1,0 +1,194 @@
+{
+    "Name": "Maid",
+    "Cards":
+    {
+        "card97":
+        {
+            "Name": "Maid Duty",
+            "Image": "res://Media/Cards/card97.webp",
+            "MinTF": 24,
+            "MaxTF": 40,
+            "HeartCost": 2,
+            "Gifs":
+            [
+                "res://Media/CardGifs/97a.ogv",
+                "res://Media/CardGifs/97b.ogv"
+            ]
+        },
+        "card98":
+        {
+            "Name": "Maid Quarters",
+            "Image": "res://Media/Cards/card98.webp",
+            "MinTF": 28,
+            "MaxTF": 44,
+            "HeartCost": 1
+        },
+        "card99":
+        {
+            "Name": "Short Skirt",
+            "Image": "res://Media/Cards/card99.webp",
+            "MinTF": 32,
+            "MaxTF": 48,
+            "HeartCost": 3,
+            "Gifs":
+            [
+                "res://Media/CardGifs/99a.ogv",
+                "res://Media/CardGifs/99b.ogv",
+                "res://Media/CardGifs/99c.ogv"
+            ]
+        },
+        "card103":
+        {
+            "Name": "Pleasing Master",
+            "Image": "res://Media/Cards/card103.webp",
+            "MinTF": 36,
+            "MaxTF": 52,
+            "HeartCost": 4,
+            "Gifs":
+            [
+                "res://Media/CardGifs/103a.ogv",
+                "res://Media/CardGifs/103b.ogv",
+                "res://Media/CardGifs/103c.ogv",
+                "res://Media/CardGifs/103d.ogv",
+                "res://Media/CardGifs/103e.ogv",
+                "res://Media/CardGifs/103f.ogv"
+            ]
+        },
+        "card101":
+        {
+            "Name": "Take a Break",
+            "Image": "res://Media/Cards/card101.webp",
+            "MinTF": 40,
+            "MaxTF": 56,
+            "HeartCost": 4,
+            "Gifs":
+            [
+                "res://Media/CardGifs/101a.ogv",
+                "res://Media/CardGifs/101b.ogv",
+                "res://Media/CardGifs/101c.ogv",
+                "res://Media/CardGifs/101d.ogv",
+                "res://Media/CardGifs/101e.ogv"
+            ]
+        },
+        "card102":
+        {
+            "Name": "Bend Over",
+            "Image": "res://Media/Cards/card102.webp",
+            "MinTF": 45,
+            "MaxTF": 61,
+            "HeartCost": 2,
+            "Gifs":
+            [
+                "res://Media/CardGifs/102a.ogv",
+                "res://Media/CardGifs/102b.ogv",
+                "res://Media/CardGifs/102c.ogv",
+                "res://Media/CardGifs/102d.ogv"
+            ]
+        },
+        "card100":
+        {
+            "Name": "Scrub the Floors",
+            "Image": "res://Media/Cards/card100.webp",
+            "MinTF": 50,
+            "MaxTF": 66,
+            "HeartCost": 2,
+            "Gifs":
+            [
+                "res://Media/CardGifs/100a.ogv",
+                "res://Media/CardGifs/100b.ogv",
+                "res://Media/CardGifs/100c.ogv",
+                "res://Media/CardGifs/100d.ogv",
+                "res://Media/CardGifs/100e.ogv"
+            ]
+        },
+        "card109":
+        {
+            "Name": "Uniform Upgrade",
+            "Image": "res://Media/Cards/card109.webp",
+            "MinTF": 54,
+            "MaxTF": 70,
+            "HeartCost": 2,
+            "Gifs":
+            [
+                "res://Media/CardGifs/109a.ogv",
+                "res://Media/CardGifs/109b.ogv",
+                "res://Media/CardGifs/109c.ogv"
+            ]
+        },
+        "card105":
+        {
+            "Name": "Learn Your Place",
+            "Image": "res://Media/Cards/card105.webp",
+            "MinTF": 59,
+            "MaxTF": 75,
+            "SubCost": 3,
+            "Gifs":
+            [
+                "res://Media/CardGifs/105a.ogv",
+                "res://Media/CardGifs/105b.ogv",
+                "res://Media/CardGifs/105c.ogv"
+            ]
+        },
+        "card104":
+        {
+            "Name": "Deep Cleaning",
+            "Image": "res://Media/Cards/card104.webp",
+            "MinTF": 65,
+            "MaxTF": 81,
+            "SubCost": 2,
+            "Gifs":
+            [
+                "res://Media/CardGifs/104a.ogv",
+                "res://Media/CardGifs/104b.ogv",
+                "res://Media/CardGifs/104c.ogv",
+                "res://Media/CardGifs/104d.ogv",
+                "res://Media/CardGifs/104e.ogv"
+            ]
+        },
+        "card106":
+        {
+            "Name": "Pecking Order",
+            "Image": "res://Media/Cards/card106.webp",
+            "MinTF": 69,
+            "MaxTF": 85,
+            "SubCost": 3,
+            "Gifs":
+            [
+                "res://Media/CardGifs/106a.ogv",
+                "res://Media/CardGifs/106b.ogv",
+                "res://Media/CardGifs/106c.ogv",
+                "res://Media/CardGifs/106d.ogv",
+                "res://Media/CardGifs/106e.ogv",
+                "res://Media/CardGifs/106f.ogv"
+            ]
+        },
+        "card107":
+        {
+            "Name": "Ready to Serve",
+            "Image": "res://Media/Cards/card107.webp",
+            "MinTF": 73,
+            "MaxTF": 89,
+            "HeartCost": 5,
+            "Gifs":
+            [
+                "res://Media/CardGifs/107a.ogv",
+                "res://Media/CardGifs/107b.ogv",
+                "res://Media/CardGifs/107c.ogv"
+            ]
+        },
+        "card108":
+        {
+            "Name": "Guest Entertainment",
+            "Image": "res://Media/Cards/card108.webp",
+            "MinTF": 74,
+            "MaxTF": 90,
+            "SubCost": 4,
+            "Gifs":
+            [
+                "res://Media/CardGifs/108a.ogv",
+                "res://Media/CardGifs/108b.ogv",
+                "res://Media/CardGifs/108c.ogv"
+            ]
+        }
+    }
+}
