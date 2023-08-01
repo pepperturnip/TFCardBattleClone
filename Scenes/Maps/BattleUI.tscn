@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://Scripts/Godot/Maps/BattleUI.cs" id="1_td4vb"]
 [ext_resource type="PackedScene" uid="uid://bxkjo1whiydj3" path="res://Scenes/CardModelFactory.tscn" id="2_7qx4c"]
 [ext_resource type="PackedScene" uid="uid://banf0dyorxitu" path="res://Scenes/UIWidgets/HandDisplay.tscn" id="3_423r0"]
-[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/ConsumablesDisplay.cs" id="3_w7jsv"]
 [ext_resource type="PackedScene" uid="uid://bnu088vlpj25r" path="res://Scenes/UIWidgets/ResourcesDisplay.tscn" id="4_36rf5"]
 [ext_resource type="PackedScene" uid="uid://b1ox1ej1baxb1" path="res://Scenes/UIWidgets/BuyPileDisplay.tscn" id="4_bxu7y"]
 [ext_resource type="Script" path="res://Scripts/Godot/BattleAnimationPlayer.cs" id="4_uf642"]
+[ext_resource type="PackedScene" uid="uid://c1axyhmauo5ge" path="res://Scenes/UIWidgets/ConsumablesDisplay.tscn" id="7_8jnav"]
 [ext_resource type="PackedScene" uid="uid://pwc8q4s75ea5" path="res://Scenes/UIWidgets/ForgetAnimationPlayer.tscn" id="7_s5ny6"]
 [ext_resource type="PackedScene" uid="uid://cwoeadm07txvd" path="res://Scenes/UIWidgets/DamageAnimationPlayer.tscn" id="8_6si6n"]
 [ext_resource type="PackedScene" uid="uid://doy8c42dvds45" path="res://Scenes/UIWidgets/TFBar.tscn" id="8_knmsm"]
@@ -114,10 +114,9 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ConsumablesDisplay" type="VBoxContainer" parent="Resources"]
+[node name="ConsumablesDisplay" parent="Resources" instance=ExtResource("7_8jnav")]
 unique_name_in_owner = true
 layout_mode = 2
-script = ExtResource("3_w7jsv")
 
 [node name="EndTurnButton" type="Button" parent="."]
 unique_name_in_owner = true
