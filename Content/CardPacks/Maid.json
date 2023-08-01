@@ -13,6 +13,17 @@
             [
                 "res://Media/CardGifs/97a.ogv",
                 "res://Media/CardGifs/97b.ogv"
+            ],
+            "Effect":
+            [
+                { "Class": "StartMaid" },
+                {
+                    "Heart": 2,
+                    "CustomResources":
+                    {
+                        "MaidDirty": -1
+                    }
+                }
             ]
         },
         "card98":
@@ -21,7 +32,18 @@
             "Image": "res://Media/Cards/card98.webp",
             "MinTF": 28,
             "MaxTF": 44,
-            "HeartCost": 1
+            "HeartCost": 1,
+            "Effect":
+            [
+                { "Class": "StartMaid" },
+                {
+                    "Shield": 2,
+                    "CustomResources":
+                    {
+                        "MaidDirty": -1
+                    }
+                }
+            ]
         },
         "card99":
         {
@@ -35,6 +57,18 @@
                 "res://Media/CardGifs/99a.ogv",
                 "res://Media/CardGifs/99b.ogv",
                 "res://Media/CardGifs/99c.ogv"
+            ],
+            "Effect":
+            [
+                { "Class": "StartMaid" },
+                {
+                    "Damage": 2,
+                    "Heart": 2,
+                    "CustomResources":
+                    {
+                        "MaidDirty": -1
+                    }
+                }
             ]
         },
         "card103":
