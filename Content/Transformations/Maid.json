@@ -1,0 +1,10 @@
+{
+    "Name": "Maid",
+    "RequiredCardPacks":
+    [
+        "Maid",
+        "Mind",
+        "Whore",
+        "Submissive"
+    ]
+}
