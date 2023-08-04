@@ -122,6 +122,15 @@ namespace TFCardBattle.Godot
             }
         }
 
+        public async Task BossRoundStart()
+        {
+            using (SetAnimating())
+            {
+                GetNode("%BossStartAnimationPlayer").Call("Play");
+                await WaitFor.Seconds(1.8);
+            }
+        }
+
         private async Task TweenPos(GodotObject node, Vector2 destination, double duration)
         {
             var tween = GetTree().CreateTween();

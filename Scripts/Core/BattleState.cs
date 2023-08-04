@@ -21,6 +21,8 @@ namespace TFCardBattle.Core
         public int EnemyTF = 0;
         public int EnemyMaxTF = 100;
 
+        public bool IsBossRound;
+
         /// <summary>
         /// The cards currently on offer to the player this turn.
         /// Gets repopulated with random cards from

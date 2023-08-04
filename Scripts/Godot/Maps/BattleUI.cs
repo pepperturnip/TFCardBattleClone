@@ -102,6 +102,8 @@ namespace TFCardBattle.Godot
 
             _showDiscardButton.SetCard(Battle.State.Discard.LastOrDefault(), Battle.State);
             _showInPlayButton.SetCard(Battle.State.InPlay.LastOrDefault(), Battle.State);
+
+            _buyPileDisplay.Visible = !Battle.State.IsBossRound;
         }
 
         private void EnableInput(bool enabled)

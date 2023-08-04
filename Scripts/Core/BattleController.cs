@@ -228,9 +228,15 @@ namespace TFCardBattle.Core
             State.EnemyTF += State.Damage;
             await AnimationPlayer.DamageEnemy(State.Damage);
 
+            // Move to the boss round if the enemy is defeated, or end the
+            // battle if we just beat the boss round.
             if (State.EnemyTF >= State.EnemyMaxTF)
             {
-                EndBattle();
+                if (!State.IsBossRound)
+                    await StartBossRound();
+                else
+                    EndBattle();
+
                 return;
             }
 
@@ -426,6 +432,15 @@ namespace TFCardBattle.Core
             return cards
                 .Where(c => tf <= c.MaxTF)
                 .Where(c => tf >= c.MinTF);
+        }
+
+        private async Task StartBossRound()
+        {
+            State.IsBossRound = true;
+            State.EnemyTF = 0;
+
+            await AnimationPlayer.BossRoundStart();
+            await StartTurn();
         }
 
         private async Task DebugCheatCardsIntoHand()
