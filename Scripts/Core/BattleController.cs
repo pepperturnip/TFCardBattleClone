@@ -124,6 +124,11 @@ namespace TFCardBattle.Core
 
         public async Task BuyCard(int buyPileIndex)
         {
+            // This command is not valid during boss fights.  The button for
+            // it shouldn't even be visible then.
+            if (State.IsBossRound)
+                throw new Exception("Can't buy a card during a boss fight");
+
             // Fail to buy the card if the player can't afford it.
             // TODO: Show some kind of message
             if (!State.CanAffordCard(buyPileIndex))
