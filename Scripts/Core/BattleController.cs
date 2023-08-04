@@ -383,6 +383,7 @@ namespace TFCardBattle.Core
             // Move to the boss round if the enemy is defeated
             if (State.EnemyTF >= State.EnemyMaxTF)
             {
+                await TriggerEffects(e => e.OnTurnEnd(this));
                 await StartBossRound();
                 return;
             }
