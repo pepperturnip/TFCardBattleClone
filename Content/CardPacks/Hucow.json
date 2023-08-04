@@ -20,10 +20,7 @@
             "Effect":
             {
                 "Heart": 1,
-                "CustomResources":
-                {
-                    "BreastSize": 0.25
-                }
+                "CustomResources": { "BreastSize": 0.25 }
             }
         },
         "card111":
@@ -46,10 +43,7 @@
             "Effect":
             {
                 "Shield": 2,
-                "CustomResources":
-                {
-                    "BreastSize": 0.25
-                }
+                "CustomResources": { "BreastSize": 0.25 }
             }
         },
         "card112":
@@ -71,10 +65,7 @@
             {
                 "Heart": 1,
                 "Damage": 2,
-                "CustomResources":
-                {
-                    "BreastSize": 0.25
-                }
+                "CustomResources": { "BreastSize": 0.25 }
             }
         },
         "card113":
@@ -95,10 +86,7 @@
             "Effect":
             {
                 "Draw": 1,
-                "CustomResources":
-                {
-                    "BreastSize": 0.25
-                }
+                "CustomResources": { "BreastSize": 0.25 }
             }
         },
         "card116":
@@ -140,10 +128,7 @@
             "Effect":
             {
                 "Damage": 2,
-                "CustomResources":
-                {
-                    "BreastSize": 0.25
-                }
+                "CustomResources": { "BreastSize": 0.25 }
             }
         },
         "card114":
@@ -155,10 +140,7 @@
             "HeartCost": 3,
             "Effect":
             {
-                "CustomResources":
-                {
-                    "BreastSize": 0.5
-                }
+                "CustomResources": { "BreastSize": 0.5 }
             }
         },
         "card118":
@@ -191,10 +173,7 @@
             "SubCost": 3,
             "Effect":
             {
-                "CustomResources":
-                {
-                    "BreastSize": 1
-                }
+                "CustomResources": { "BreastSize": 1 }
             }
         },
         "card119":
