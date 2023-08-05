@@ -372,6 +372,17 @@ namespace TFCardBattle.Core
             return ((turnZeroBased - 1)) / 6 + 3;
         }
 
+        public int TotalDamageToBoss()
+        {
+            // During the boss round, the three main resources count as damage,
+            // and TF counts for _double_ damage.
+            return
+                State.Brain +
+                State.Heart +
+                State.Sub +
+                (2 * State.Damage);
+        }
+
         private async Task EndTurnNormal()
         {
             await DiscardHand();
@@ -414,14 +425,8 @@ namespace TFCardBattle.Core
             await DiscardHand();
 
             // Allow the player to attack.
-            // During the boss round, the three main resources count as damage,
-            // and TF counts for _double_ damage.
-            int totalDamage =
-                State.Brain +
-                State.Heart +
-                State.Sub +
-                (2 * State.Damage);
 
+            int totalDamage = TotalDamageToBoss();
             State.EnemyTF += totalDamage;
             await AnimationPlayer.DamageEnemy(totalDamage);
 
