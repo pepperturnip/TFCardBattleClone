@@ -18,7 +18,7 @@ namespace TFCardBattle.Core.CardEffects
         }
 
         public string GetDescription(BattleState state)
-            => $"{state.CardRegistry.CustomResources[Resource].Name} => Rainbow";
+            => $"{ContentRegistry.CustomResources[Resource].Name} => Rainbow";
 
         public string GetOverriddenImage(BattleState state) => null;
     }

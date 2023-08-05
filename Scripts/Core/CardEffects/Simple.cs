@@ -37,7 +37,7 @@ namespace TFCardBattle.Core.CardEffects
 
             foreach (var consumableId in Consumables)
             {
-                Consumable consumable = battle.State.CardRegistry.Consumables[consumableId];
+                Consumable consumable = ContentRegistry.Consumables[consumableId];
                 await battle.AddConsumable(consumable);
             }
 
@@ -64,7 +64,7 @@ namespace TFCardBattle.Core.CardEffects
 
             foreach (var id in CustomResources.Keys)
             {
-                string resourceName = state.CardRegistry.CustomResources[id].Name;
+                string resourceName = ContentRegistry.CustomResources[id].Name;
                 LabelForDouble(resourceName, CustomResources[id]);
             }
 

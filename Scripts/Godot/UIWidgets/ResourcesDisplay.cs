@@ -12,8 +12,6 @@ namespace TFCardBattle.Godot
         private readonly ResourceType[] _resources = Enum.GetValues<ResourceType>();
         private readonly HashSet<CustomResourceId> _customResources = new HashSet<CustomResourceId>();
 
-        private ContentRegistry _registry;
-
         /// <summary>
         /// Updates the resource counters, but using a smooth "counting"
         /// animation.
@@ -21,8 +19,6 @@ namespace TFCardBattle.Godot
         /// <param name="state"></param>
         public void UpdateResources(BattleState state)
         {
-            _registry = state.CardRegistry;
-
             foreach (var resource in _resources)
             {
                 var counter = GetResourceCounter(resource);
@@ -63,7 +59,7 @@ namespace TFCardBattle.Godot
                 return control;
 
             // It doesn't already exist, so create it from the template
-            CustomResource resource = _registry.CustomResources[id];
+            CustomResource resource = ContentRegistry.CustomResources[id];
 
             var counter = ResourceCounterPrefab.Instantiate<ResourceCounter>();
             counter.Name = id.ToString();

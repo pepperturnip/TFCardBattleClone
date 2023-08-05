@@ -27,13 +27,11 @@ namespace TFCardBattle.Core
         public BattleController(
             PlayerLoadout loadout,
             Random rng,
-            ContentRegistry registry,
             IBattleAnimationPlayer animationPlayer
         )
         {
             State = new BattleState(
-                loadout: loadout,
-                registry: registry
+                loadout: loadout
             );
 
             Rng = rng;
@@ -440,8 +438,7 @@ namespace TFCardBattle.Core
 
         private async Task DebugCheatCardsIntoHand()
         {
-            var cardsToCheat = State.CardRegistry
-                .Cards
+            var cardsToCheat = ContentRegistry.Cards
                 .Values
                 .Where(c => c.DebugCheatIntoHand);
 

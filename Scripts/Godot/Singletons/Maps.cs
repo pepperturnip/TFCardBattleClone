@@ -22,11 +22,11 @@ namespace TFCardBattle.Godot
             GetTree().ChangeSceneToPacked(PlayerLoadoutSelection);
         }
 
-        public void GoToBattleScreen(PlayerLoadout loadout, ContentRegistry registry)
+        public void GoToBattleScreen(PlayerLoadout loadout)
         {
             var battleUI = BattleScreen.Instantiate<BattleUI>();
             ChangeSceneToNode(battleUI);
-            battleUI.StartBattle(loadout, registry);
+            battleUI.StartBattle(loadout);
         }
 
         private void ChangeSceneToNode(Node n)
