@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddsvkjp4pe5vt"]
+
+[ext_resource type="Texture2D" uid="uid://6joeeyssjsdx" path="res://Icons/BreastSize.svg" id="1_p56rq"]
+[ext_resource type="PackedScene" uid="uid://bk2uhlq3oxck" path="res://Scenes/UIWidgets/AccumlatingLabel.tscn" id="2_6qi8l"]
+[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/ResourceCounter.cs" id="2_tqgyu"]
+
+[node name="ResourceCounter" type="TextureRect"]
+custom_minimum_size = Vector2(40, 40)
+size_flags_vertical = 4
+texture = ExtResource("1_p56rq")
+script = ExtResource("2_tqgyu")
+
+[node name="ValueLabel" parent="." instance=ExtResource("2_6qi8l")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+grow_horizontal = 0
+grow_vertical = 0
