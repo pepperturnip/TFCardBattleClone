@@ -61,7 +61,7 @@ namespace TFCardBattle.Core
             // Reshuffle discard pile into the deck if the deck is empty
             if (State.Deck.Count == 0)
             {
-                TransferAllCards(State.Discard, State.Deck);
+                State.Discard.TransferAllTo(State.Deck);
 
                 // If the deck is _still_ empty after shuffling in the discard
                 // pile, then we simply fail to draw a card.
@@ -269,8 +269,8 @@ namespace TFCardBattle.Core
 
         public async Task DiscardHand()
         {
-            TransferAllCards(State.InPlay, State.Discard);
-            TransferAllCards(State.Hand, State.Discard);
+            State.InPlay.TransferAllTo(State.Discard);
+            State.Hand.TransferAllTo(State.Discard);
             await AnimationPlayer.DiscardHand();
         }
 
@@ -304,8 +304,8 @@ namespace TFCardBattle.Core
             // It also seems to not trigger enemy traits that damage you when
             // you draw X-many cards in one turn.  That's because the original
             // game doesn't count this as "drawing" for those purposes.
-            TransferAllCards(State.InPlay, State.Discard);
-            TransferAllCards(State.Hand, State.Discard);
+            State.InPlay.TransferAllTo(State.Discard);
+            State.Hand.TransferAllTo(State.Discard);
             await AnimationPlayer.DiscardHand();
 
             for (int i = 0; i < StartingHandSize; i++)
@@ -441,12 +441,6 @@ namespace TFCardBattle.Core
         private bool IsPermanentBuyPileCard(int buyPileIndex)
         {
             return buyPileIndex == State.BuyPile.Count - 1;
-        }
-
-        private void TransferAllCards(List<Card> src, List<Card> dst)
-        {
-            dst.AddRange(src);
-            src.Clear();
         }
 
         private void EndBattle()
