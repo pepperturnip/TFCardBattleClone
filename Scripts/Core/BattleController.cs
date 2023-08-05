@@ -131,7 +131,7 @@ namespace TFCardBattle.Core
 
             // Fail to buy the card if the player can't afford it.
             // TODO: Show some kind of message
-            if (!State.CanAffordCard(buyPileIndex))
+            if (!CanAffordCard(buyPileIndex))
                 return;
 
             bool isPermanentCard = IsPermanentBuyPileCard(buyPileIndex);
@@ -381,6 +381,25 @@ namespace TFCardBattle.Core
                 State.Heart +
                 State.Sub +
                 (2 * State.Damage);
+        }
+
+        public bool CanAffordCard(int buyPileIndex)
+        {
+            var card = State.BuyPile[buyPileIndex];
+
+            if (State.Brain + State.Heart + State.Sub < card.RainbowCost)
+                return false;
+
+            if (State.Brain < card.BrainCost)
+                return false;
+
+            if (State.Heart < card.HeartCost)
+                return false;
+
+            if (State.Sub < card.SubCost)
+                return false;
+
+            return true;
         }
 
         private async Task EndTurnNormal()
