@@ -22,8 +22,6 @@ namespace TFCardBattle.Godot
 
         public override void _Ready()
         {
-            CreateContentRegistry();
-
             InitTransformationPicker();
             InitThemePackPicker(_brainPacks, CardPackType.BrainSlot, RequiredBrainCount);
             InitThemePackPicker(_heartPacks, CardPackType.HeartSlot, RequiredHeartCount);
@@ -86,46 +84,6 @@ namespace TFCardBattle.Godot
                 _subPacks.SelectionsValid;
 
             GetNode<Button>("%StartButton").Disabled = !enableStartButton;
-        }
-
-        private static void CreateContentRegistry()
-        {
-            foreach (string packId in IdsInFolder("res://Content/CardPacks"))
-            {
-                string path = $"res://Content/CardPacks/{packId}.json";
-                ContentRegistry.ImportCardPack(packId, FileAccess.GetFileAsString(path));
-            }
-
-            foreach (string fileNameWithoutExt in IdsInFolder("res://Content/ConsumablePacks"))
-            {
-                string path = $"res://Content/ConsumablePacks/{fileNameWithoutExt}.json";
-                ContentRegistry.ImportConsumables(FileAccess.GetFileAsString(path));
-            }
-
-            foreach (string tfId in IdsInFolder("res://Content/Transformations"))
-            {
-                string path = $"res://Content/Transformations/{tfId}.json";
-                ContentRegistry.ImportTransformation(tfId, FileAccess.GetFileAsString(path));
-            }
-
-            foreach (string path in FilePathsInFolder("res://Content/CustomResourcePacks"))
-            {
-                ContentRegistry.ImportCustomResources(FileAccess.GetFileAsString(path));
-            }
-
-            IEnumerable<string> IdsInFolder(string folder)
-            {
-                return DirAccess
-                    .GetFilesAt(folder)
-                    .Select(f => f.Split(".json")[0]);
-            }
-
-            IEnumerable<string> FilePathsInFolder(string folder)
-            {
-                return DirAccess
-                    .GetFilesAt(folder)
-                    .Select(f => $"{folder}/{f}");
-            }
         }
     }
 }
