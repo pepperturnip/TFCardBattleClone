@@ -61,7 +61,7 @@ namespace TFCardBattle.Core
             // Reshuffle discard pile into the deck if the deck is empty
             if (State.Deck.Count == 0)
             {
-                TransferAllCards(State.Discard, State.Deck);
+                State.Discard.TransferAllTo(State.Deck);
 
                 // If the deck is _still_ empty after shuffling in the discard
                 // pile, then we simply fail to draw a card.
@@ -131,7 +131,7 @@ namespace TFCardBattle.Core
 
             // Fail to buy the card if the player can't afford it.
             // TODO: Show some kind of message
-            if (!State.CanAffordCard(buyPileIndex))
+            if (!CanAffordCard(buyPileIndex))
                 return;
 
             bool isPermanentCard = IsPermanentBuyPileCard(buyPileIndex);
@@ -269,8 +269,8 @@ namespace TFCardBattle.Core
 
         public async Task DiscardHand()
         {
-            TransferAllCards(State.InPlay, State.Discard);
-            TransferAllCards(State.Hand, State.Discard);
+            State.InPlay.TransferAllTo(State.Discard);
+            State.Hand.TransferAllTo(State.Discard);
             await AnimationPlayer.DiscardHand();
         }
 
@@ -283,83 +283,6 @@ namespace TFCardBattle.Core
             State.Damage = 0;
             await AnimationPlayer.DiscardResources();
             await TriggerEffects(e => e.OnResourcesDiscarded(this));
-        }
-
-        public async Task ForgetBasicCard()
-        {
-            if (await TryForgetFrom(State.Deck))
-                return;
-
-            if (await TryForgetFrom(State.Discard))
-                return;
-
-            if (await TryForgetFrom(State.InPlay))
-                return;
-
-            if (await TryForgetFrom(State.Hand))
-                return;
-
-            // TODO: Show some message saying no card could be forgotten
-
-            bool IsBasic(Card c)
-            {
-                // TODO: Allow Mysterious Pills to be deleted as well
-                return c.Effect is CardEffects.TransitioningBasicCard;
-            }
-
-            async Task<bool> TryForgetFrom(List<Card> cards)
-            {
-                for (int i = 0; i < cards.Count; i++)
-                {
-                    var card = cards[i];
-
-                    if (IsBasic(card))
-                    {
-                        cards.RemoveAt(i);
-                        await AnimationPlayer.ForgetCard(card, State);
-                        return true;
-                    }
-                }
-
-                return false;
-            }
-        }
-
-        public async Task TakeExtraTurn()
-        {
-            // For the Triumph of the Mind card.
-            //
-            // What does an "extra turn" mean in this context?
-            // Well, according to the original game's source code, it means
-            // you discard your hand and in-play cards, and then draw a fresh
-            // hand.  It also resets your draw-count to 0.
-            //
-            // Anything else that would normally trigger at the end of a turn,
-            // such as enemy traits, body mods, etc. will not activate.
-            // You also don't lose any of your resources, nor do you deal any
-            // of the TF damage you've built up.  Nor does it reset the buy pile,
-            // either.
-            // It literally just moves cards around and nothing else.
-            //
-            // It also seems to not trigger enemy traits that damage you when
-            // you draw X-many cards in one turn.  That's because the original
-            // game doesn't count this as "drawing" for those purposes.
-            TransferAllCards(State.InPlay, State.Discard);
-            TransferAllCards(State.Hand, State.Discard);
-            await AnimationPlayer.DiscardHand();
-
-            for (int i = 0; i < StartingHandSize; i++)
-            {
-                await DrawCard();
-            }
-            // Fun fact: the original game shuffles your deck _after_ you draw
-            // 5, instead of before.  In my opinion, that sounds like a bug, so
-            // we're not doing that here.  Instead, we let DrawCard() do the
-            // shuffling when the deck runs out.
-            State.DrawCount = 0;
-
-            // TODO: Maybe find a way to reuse the code from StartTurn()?
-            // Not sure if that's a good idea yet or not.
         }
 
         public int MinEnemyDamageOnTurn(int turnZeroBased)
@@ -381,6 +304,25 @@ namespace TFCardBattle.Core
                 State.Heart +
                 State.Sub +
                 (2 * State.Damage);
+        }
+
+        public bool CanAffordCard(int buyPileIndex)
+        {
+            var card = State.BuyPile[buyPileIndex];
+
+            if (State.Brain + State.Heart + State.Sub < card.RainbowCost)
+                return false;
+
+            if (State.Brain < card.BrainCost)
+                return false;
+
+            if (State.Heart < card.HeartCost)
+                return false;
+
+            if (State.Sub < card.SubCost)
+                return false;
+
+            return true;
         }
 
         private async Task EndTurnNormal()
@@ -462,12 +404,6 @@ namespace TFCardBattle.Core
         private bool IsPermanentBuyPileCard(int buyPileIndex)
         {
             return buyPileIndex == State.BuyPile.Count - 1;
-        }
-
-        private void TransferAllCards(List<Card> src, List<Card> dst)
-        {
-            dst.AddRange(src);
-            src.Clear();
         }
 
         private void EndBattle()

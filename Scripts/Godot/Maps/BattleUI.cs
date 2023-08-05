@@ -41,7 +41,7 @@ namespace TFCardBattle.Godot
             );
 
             this.CardModelFactory.SetBattleState(Battle.State);
-            _buyPileDisplay.SetBattleState(Battle.State);
+            _buyPileDisplay.SetBattle(Battle);
             _handDisplay.SetBattleState(Battle.State);
 
             await Battle.StartTurn();
