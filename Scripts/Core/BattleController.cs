@@ -124,6 +124,11 @@ namespace TFCardBattle.Core
 
         public async Task BuyCard(int buyPileIndex)
         {
+            // This command is not valid during boss fights.  The button for
+            // it shouldn't even be visible then.
+            if (State.IsBossRound)
+                throw new Exception("Can't buy a card during a boss fight");
+
             // Fail to buy the card if the player can't afford it.
             // TODO: Show some kind of message
             if (!State.CanAffordCard(buyPileIndex))
@@ -220,39 +225,12 @@ namespace TFCardBattle.Core
             State.DrawCount = 0;
         }
 
-        public async Task EndTurn()
+        public Task EndTurn()
         {
-            await DiscardHand();
-
-            // Allow the player to attack
-            State.EnemyTF += State.Damage;
-            await AnimationPlayer.DamageEnemy(State.Damage);
-
-            if (State.EnemyTF >= State.EnemyMaxTF)
-            {
-                EndBattle();
-                return;
-            }
-
-            // Allow the enemy to attack.
-            int enemyTfDamage = RollEnemyDamage() - State.Shield;
-            enemyTfDamage = Math.Clamp(enemyTfDamage, 0, int.MaxValue);
-
-            await TriggerEffects(e => e.OnPlayerAboutToTakeDamage(this, ref enemyTfDamage));
-            State.PlayerTF += enemyTfDamage;
-            await AnimationPlayer.DamagePlayer(enemyTfDamage);
-
-            if (State.PlayerTF >= State.PlayerMaxTF)
-            {
-                EndBattle();
-                return;
-            }
-
-            // Start the next turn
-            await TriggerEffects(e => e.OnTurnEnd(this));
-
-            State.TurnsElapsed++;
-            await StartTurn();
+            if (!State.IsBossRound)
+                return EndTurnNormal();
+            else
+                return EndTurnBoss();
         }
 
         public Task ResetBuyPile()
@@ -394,6 +372,93 @@ namespace TFCardBattle.Core
             return ((turnZeroBased - 1)) / 6 + 3;
         }
 
+        public int TotalDamageToBoss()
+        {
+            // During the boss round, the three main resources count as damage,
+            // and TF counts for _double_ damage.
+            return
+                State.Brain +
+                State.Heart +
+                State.Sub +
+                (2 * State.Damage);
+        }
+
+        private async Task EndTurnNormal()
+        {
+            await DiscardHand();
+
+            // Allow the player to attack
+            State.EnemyTF += State.Damage;
+            await AnimationPlayer.DamageEnemy(State.Damage);
+
+            // Move to the boss round if the enemy is defeated
+            if (State.EnemyTF >= State.EnemyMaxTF)
+            {
+                await TriggerEffects(e => e.OnTurnEnd(this));
+                await StartBossRound();
+                return;
+            }
+
+            // Allow the enemy to attack.
+            int enemyTfDamage = RollEnemyDamage() - State.Shield;
+            enemyTfDamage = Math.Clamp(enemyTfDamage, 0, int.MaxValue);
+
+            await TriggerEffects(e => e.OnPlayerAboutToTakeDamage(this, ref enemyTfDamage));
+            State.PlayerTF += enemyTfDamage;
+            await AnimationPlayer.DamagePlayer(enemyTfDamage);
+
+            if (State.PlayerTF >= State.PlayerMaxTF)
+            {
+                EndBattle();
+                return;
+            }
+
+            // Start the next turn
+            await TriggerEffects(e => e.OnTurnEnd(this));
+
+            State.TurnsElapsed++;
+            await StartTurn();
+        }
+
+        private async Task EndTurnBoss()
+        {
+            await DiscardHand();
+
+            // Allow the player to attack.
+
+            int totalDamage = TotalDamageToBoss();
+            State.EnemyTF += totalDamage;
+            await AnimationPlayer.DamageEnemy(totalDamage);
+
+            // End the battle if the boss is defeated
+            if (State.EnemyTF >= State.EnemyMaxTF)
+            {
+                EndBattle();
+                return;
+            }
+
+            // Allow the enemy to attack.
+            // TODO: Use boss mechanics instead
+            int enemyTfDamage = RollEnemyDamage() - State.Shield;
+            enemyTfDamage = Math.Clamp(enemyTfDamage, 0, int.MaxValue);
+
+            await TriggerEffects(e => e.OnPlayerAboutToTakeDamage(this, ref enemyTfDamage));
+            State.PlayerTF += enemyTfDamage;
+            await AnimationPlayer.DamagePlayer(enemyTfDamage);
+
+            if (State.PlayerTF >= State.PlayerMaxTF)
+            {
+                EndBattle();
+                return;
+            }
+
+            // Start the next turn
+            await TriggerEffects(e => e.OnTurnEnd(this));
+
+            State.TurnsElapsed++;
+            await StartTurn();
+        }
+
         private bool IsPermanentBuyPileCard(int buyPileIndex)
         {
             return buyPileIndex == State.BuyPile.Count - 1;
@@ -426,6 +491,15 @@ namespace TFCardBattle.Core
             return cards
                 .Where(c => tf <= c.MaxTF)
                 .Where(c => tf >= c.MinTF);
+        }
+
+        private async Task StartBossRound()
+        {
+            State.IsBossRound = true;
+            State.EnemyTF = 0;
+
+            await AnimationPlayer.BossRoundStart();
+            await StartTurn();
         }
 
         private async Task DebugCheatCardsIntoHand()

@@ -1,13 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnu088vlpj25r"]
+[gd_scene load_steps=8 format=3 uid="uid://bnu088vlpj25r"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/ResourcesDisplay.cs" id="1_2f5ds"]
-[ext_resource type="PackedScene" uid="uid://bk2uhlq3oxck" path="res://Scenes/UIWidgets/AccumlatingLabel.tscn" id="1_fwtdk"]
+[ext_resource type="PackedScene" uid="uid://ddsvkjp4pe5vt" path="res://Scenes/UIWidgets/ResourceCounter.tscn" id="2_33u33"]
 [ext_resource type="Texture2D" uid="uid://yb3slkksjf5l" path="res://Icons/brain.webp" id="2_sewrm"]
 [ext_resource type="Texture2D" uid="uid://dpf2k6oyx4krj" path="res://Icons/heart.webp" id="4_5lccb"]
 [ext_resource type="Texture2D" uid="uid://djeew0ajxrcj5" path="res://Icons/sub.webp" id="5_xrluh"]
 [ext_resource type="Texture2D" uid="uid://bldx1tf2h8sob" path="res://Icons/shield.webp" id="6_d12to"]
 [ext_resource type="Texture2D" uid="uid://3tm57g1sq7tb" path="res://Icons/tf.webp" id="7_ug6yb"]
-[ext_resource type="Texture2D" uid="uid://6joeeyssjsdx" path="res://Icons/BreastSize.svg" id="8_tx2v0"]
 
 [node name="ResourcesDisplay" type="HBoxContainer"]
 anchors_preset = 8
@@ -23,88 +22,24 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 script = ExtResource("1_2f5ds")
+ResourceCounterPrefab = ExtResource("2_33u33")
 
-[node name="Brain" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(40, 40)
+[node name="Brain" parent="." instance=ExtResource("2_33u33")]
 layout_mode = 2
-size_flags_vertical = 4
 texture = ExtResource("2_sewrm")
 
-[node name="ValueLabel" parent="Brain" instance=ExtResource("1_fwtdk")]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="Heart" type="TextureRect" parent="."]
+[node name="Heart" parent="." instance=ExtResource("2_33u33")]
 layout_mode = 2
-size_flags_vertical = 4
 texture = ExtResource("4_5lccb")
-stretch_mode = 2
 
-[node name="ValueLabel" parent="Heart" instance=ExtResource("1_fwtdk")]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="Sub" type="TextureRect" parent="."]
+[node name="Sub" parent="." instance=ExtResource("2_33u33")]
 layout_mode = 2
-size_flags_vertical = 4
 texture = ExtResource("5_xrluh")
-stretch_mode = 2
 
-[node name="ValueLabel" parent="Sub" instance=ExtResource("1_fwtdk")]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="Shield" type="TextureRect" parent="."]
+[node name="Shield" parent="." instance=ExtResource("2_33u33")]
 layout_mode = 2
-size_flags_vertical = 4
 texture = ExtResource("6_d12to")
-stretch_mode = 2
 
-[node name="ValueLabel" parent="Shield" instance=ExtResource("1_fwtdk")]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="Damage" type="TextureRect" parent="."]
+[node name="Damage" parent="." instance=ExtResource("2_33u33")]
 layout_mode = 2
-size_flags_vertical = 4
 texture = ExtResource("7_ug6yb")
-stretch_mode = 2
-
-[node name="ValueLabel" parent="Damage" instance=ExtResource("1_fwtdk")]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="LabelTemplate" type="TextureRect" parent="."]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 4
-texture = ExtResource("8_tx2v0")
-stretch_mode = 2
-
-[node name="ValueLabel" parent="LabelTemplate" instance=ExtResource("1_fwtdk")]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-grow_horizontal = 0
-grow_vertical = 0

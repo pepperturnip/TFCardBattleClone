@@ -43,7 +43,7 @@ namespace TFCardBattle.Godot
         /// Immediately sets the displayed value, skipping any animations
         /// </summary>
         /// <param name="newValue"></param>
-        public void RefreshValue(int newValue)
+        public void RefreshValue(double newValue)
         {
             DisplayedValue = newValue;
             AccumulatedDelta = 0;

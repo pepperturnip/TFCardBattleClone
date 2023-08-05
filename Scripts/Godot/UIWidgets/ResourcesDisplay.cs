@@ -7,18 +7,12 @@ namespace TFCardBattle.Godot
 {
     public partial class ResourcesDisplay : Control
     {
+        [Export] public PackedScene ResourceCounterPrefab;
+
         private readonly ResourceType[] _resources = Enum.GetValues<ResourceType>();
         private readonly HashSet<CustomResourceId> _customResources = new HashSet<CustomResourceId>();
 
-        private Control _template;
-
         private ContentRegistry _registry;
-
-        public override void _Ready()
-        {
-            _template = GetNode<Control>("%LabelTemplate");
-            RemoveChild(_template);
-        }
 
         /// <summary>
         /// Updates the resource counters, but using a smooth "counting"
@@ -31,15 +25,15 @@ namespace TFCardBattle.Godot
 
             foreach (var resource in _resources)
             {
-                var label = GetValueLabel(resource);
-                label.AccumulateToValue(state.GetResource(resource));
+                var counter = GetResourceCounter(resource);
+                counter.AccumulateToValue(state.GetResource(resource));
             }
 
             foreach (var id in state.CustomResources.Keys)
             {
                 _customResources.Add(id);
-                var label = GetValueLabel(id);
-                label.AccumulateToValue(state.CustomResources[id]);
+                var counter = GetResourceCounter(id);
+                counter.AccumulateToValue(state.CustomResources[id]);
             }
         }
 
@@ -51,55 +45,32 @@ namespace TFCardBattle.Godot
         {
             foreach (var resource in _resources)
             {
-                var label = GetValueLabel(resource);
-                label.RefreshValue(0);
+                var counter = GetResourceCounter(resource);
+                counter.RefreshValue(0);
             }
 
             // Note: we're intentionally NOT discarding the custom resources,
             // because they don't reset at the end of every turn.
         }
 
-        public override void _Process(double delta)
+        private ResourceCounter GetResourceCounter(ResourceType resource)
+            => GetNode<ResourceCounter>(resource.ToString());
+
+        private ResourceCounter GetResourceCounter(CustomResourceId id)
         {
-            foreach (var resource in _resources)
-            {
-                var resourceDisplay = GetResourceDisplay(resource);
-                var valueLabel = GetValueLabel(resource);
-                resourceDisplay.Visible = valueLabel.DisplayedValue != 0 || valueLabel.AccumulatedDelta != 0;
-            }
-
-            foreach (var id in _customResources)
-            {
-                var resourceDisplay = GetResourceDisplay(id);
-                var valueLabel = GetValueLabel(id);
-                resourceDisplay.Visible = valueLabel.DisplayedValue != 0 || valueLabel.AccumulatedDelta != 0;
-            }
-        }
-
-        private Control GetResourceDisplay(ResourceType resource)
-            => GetNode<Control>(resource.ToString());
-
-        private AccumulatingLabel GetValueLabel(ResourceType resource)
-            => GetNode<AccumulatingLabel>($"{resource}/ValueLabel");
-
-        private Control GetResourceDisplay(CustomResourceId id)
-        {
-            var control = GetNodeOrNull<Control>(id.ToString());
+            var control = GetNodeOrNull<ResourceCounter>(id.ToString());
             if (control != null)
                 return control;
 
             // It doesn't already exist, so create it from the template
             CustomResource resource = _registry.CustomResources[id];
 
-            var resourceDisplay = (TextureRect)_template.Duplicate();
-            resourceDisplay.Name = id.ToString();
-            resourceDisplay.Texture = ResourceLoader.Load<Texture2D>(resource.IconPath);
-            AddChild(resourceDisplay);
+            var counter = ResourceCounterPrefab.Instantiate<ResourceCounter>();
+            counter.Name = id.ToString();
+            counter.Texture = ResourceLoader.Load<Texture2D>(resource.IconPath);
+            AddChild(counter);
 
-            return resourceDisplay;
+            return counter;
         }
-
-        private AccumulatingLabel GetValueLabel(CustomResourceId resource)
-            => GetResourceDisplay(resource).GetNode<AccumulatingLabel>("ValueLabel");
     }
 }

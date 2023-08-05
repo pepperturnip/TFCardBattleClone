@@ -23,6 +23,7 @@ namespace TFCardBattle.Godot
         private DamageAnimationPlayer _damageAnimator => GetNode<DamageAnimationPlayer>("%DamageAnimationPlayer");
         private HandDisplay _handDisplay => GetNode<HandDisplay>("%HandDisplay");
         private BuyPileDisplay _buyPileDisplay => GetNode<BuyPileDisplay>("%BuyPileDisplay");
+        private ResourceCounter _bossDamageCounter => GetNode<ResourceCounter>("%BossDamageCounter");
         private ResourcesDisplay _resourcesDisplay => GetNode<ResourcesDisplay>("%ResourcesDisplay");
 
         public async Task DamageEnemy(int damageAmount)
@@ -74,6 +75,7 @@ namespace TFCardBattle.Godot
 
         public Task DiscardResources()
         {
+            _bossDamageCounter.RefreshValue(0);
             _resourcesDisplay.DiscardResources();
             return Task.CompletedTask;
         }
@@ -119,6 +121,15 @@ namespace TFCardBattle.Godot
             {
                 GetNode<ForgetAnimationPlayer>("%ForgetAnimationPlayer").QueueForget(card, state);
                 await WaitFor.Seconds(0.25);
+            }
+        }
+
+        public async Task BossRoundStart()
+        {
+            using (SetAnimating())
+            {
+                GetNode("%BossStartAnimationPlayer").Call("Play");
+                await WaitFor.Seconds(1.8);
             }
         }
 

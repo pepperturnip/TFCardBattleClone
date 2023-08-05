@@ -19,8 +19,10 @@ namespace TFCardBattle.Godot
         private HandDisplay _handDisplay => GetNode<HandDisplay>("%HandDisplay");
         private BuyPileDisplay _buyPileDisplay => GetNode<BuyPileDisplay>("%BuyPileDisplay");
 
+        private ResourceCounter _bossDamageCounter => GetNode<ResourceCounter>("%BossDamageCounter");
         private ResourcesDisplay _resourcesDisplay => GetNode<ResourcesDisplay>("%ResourcesDisplay");
         private ConsumablesDisplay _consumablesDisplay => GetNode<ConsumablesDisplay>("%ConsumablesDisplay");
+
         private CardListDisplay _discardPilePanelContents => GetNode<CardListDisplay>("%DiscardPileDisplay");
         private CardListDisplay _deckPanelContents => GetNode<CardListDisplay>("%DeckDisplay");
         private CardListDisplay _inPlayPanelContents => GetNode<CardListDisplay>("%InPlayCardsDisplay");
@@ -95,6 +97,11 @@ namespace TFCardBattle.Godot
 
             _resourcesDisplay.UpdateResources(Battle.State);
             _consumablesDisplay.Refresh(Battle.State.Consumables.ToArray());
+            _bossDamageCounter.AccumulateToValue(
+                Battle.State.IsBossRound
+                    ? Battle.TotalDamageToBoss()
+                    : 0
+            );
 
             _discardPilePanelContents.Refresh(Battle.State.Discard);
             _deckPanelContents.Refresh(Battle.State.Deck);
@@ -102,6 +109,8 @@ namespace TFCardBattle.Godot
 
             _showDiscardButton.SetCard(Battle.State.Discard.LastOrDefault(), Battle.State);
             _showInPlayButton.SetCard(Battle.State.InPlay.LastOrDefault(), Battle.State);
+
+            _buyPileDisplay.Visible = !Battle.State.IsBossRound;
         }
 
         private void EnableInput(bool enabled)
