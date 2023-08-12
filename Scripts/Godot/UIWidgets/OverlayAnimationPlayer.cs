@@ -14,10 +14,11 @@ namespace TFCardBattle.Godot
         public Task DamageEnemy(int damageAmount)
             => _damageAnimationPlayer.DamageEnemy(damageAmount);
 
-        public Task BossRoundStart()
+        public async Task BossRoundStart()
         {
-            GetNode("%BossStartAnimationPlayer").Call("Play");
-            return WaitFor.Seconds(1.8);
+            var animator = GetNode<AnimationPlayer>("%BossStartAnimator");
+            animator.ResetAndPlay("Start");
+            await ToSignal(animator, AnimationPlayer.SignalName.AnimationFinished);
         }
     }
 }
