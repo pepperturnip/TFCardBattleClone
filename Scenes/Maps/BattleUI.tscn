@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://tm66spq6dn0h"]
+[gd_scene load_steps=16 format=3 uid="uid://tm66spq6dn0h"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/Maps/BattleUI.cs" id="1_td4vb"]
 [ext_resource type="PackedScene" uid="uid://bxkjo1whiydj3" path="res://Scenes/CardModelFactory.tscn" id="2_7qx4c"]
@@ -10,10 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://c1axyhmauo5ge" path="res://Scenes/UIWidgets/ConsumablesDisplay.tscn" id="7_8jnav"]
 [ext_resource type="Texture2D" uid="uid://cl2dulidff7vn" path="res://Icons/rainbow.webp" id="7_rlhmv"]
 [ext_resource type="PackedScene" uid="uid://pwc8q4s75ea5" path="res://Scenes/UIWidgets/ForgetAnimationPlayer.tscn" id="7_s5ny6"]
-[ext_resource type="PackedScene" uid="uid://cwoeadm07txvd" path="res://Scenes/UIWidgets/DamageAnimationPlayer.tscn" id="8_6si6n"]
 [ext_resource type="PackedScene" uid="uid://doy8c42dvds45" path="res://Scenes/UIWidgets/TFBar.tscn" id="8_knmsm"]
+[ext_resource type="PackedScene" uid="uid://ds6bssvw7cihl" path="res://Scenes/UIWidgets/OverlayAnimationPlayer.tscn" id="11_cr5yp"]
 [ext_resource type="PackedScene" uid="uid://btppoqavkkoqo" path="res://Scenes/UIWidgets/CardListDisplay.tscn" id="11_r54pf"]
-[ext_resource type="PackedScene" uid="uid://8rongf2eysdp" path="res://Scenes/UIWidgets/BossStartAnimationPlayer.tscn" id="13_g1e8l"]
 [ext_resource type="PackedScene" uid="uid://bout6816idhcc" path="res://Scenes/UIWidgets/CardButton.tscn" id="13_yhsqw"]
 
 [sub_resource type="GDScript" id="GDScript_iy4y7"]
@@ -227,10 +226,6 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DamageAnimationPlayer" parent="." instance=ExtResource("8_6si6n")]
-unique_name_in_owner = true
-layout_mode = 1
-
 [node name="PlayerSideBar" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 9
@@ -388,7 +383,7 @@ unique_name_in_owner = true
 layout_mode = 1
 ModelFactory = NodePath("../../CardModelFactory")
 
-[node name="BossStartAnimationPlayer" parent="." instance=ExtResource("13_g1e8l")]
+[node name="OverlayAnimationPlayer" parent="." instance=ExtResource("11_cr5yp")]
 unique_name_in_owner = true
 layout_mode = 1
 

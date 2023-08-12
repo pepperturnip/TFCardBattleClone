@@ -20,7 +20,7 @@ namespace TFCardBattle.Godot
         }
         private bool _isAnimating;
 
-        private DamageAnimationPlayer _damageAnimator => GetNode<DamageAnimationPlayer>("%DamageAnimationPlayer");
+        private OverlayAnimationPlayer _overlayAnimator => GetNode<OverlayAnimationPlayer>("%OverlayAnimationPlayer");
         private HandDisplay _handDisplay => GetNode<HandDisplay>("%HandDisplay");
         private BuyPileDisplay _buyPileDisplay => GetNode<BuyPileDisplay>("%BuyPileDisplay");
         private ResourceCounter _bossDamageCounter => GetNode<ResourceCounter>("%BossDamageCounter");
@@ -30,7 +30,7 @@ namespace TFCardBattle.Godot
         {
             using (SetAnimating())
             {
-                await _damageAnimator.DamageEnemy(damageAmount);
+                await _overlayAnimator.DamageEnemy(damageAmount);
 
                 var tfBar = GetNode<TFBar>("%EnemyTFBar");
                 var tween = GetTree().CreateTween();
@@ -43,7 +43,7 @@ namespace TFCardBattle.Godot
         {
             using (SetAnimating())
             {
-                await _damageAnimator.DamagePlayer(damageAmount);
+                await _overlayAnimator.DamagePlayer(damageAmount);
 
                 // Don't wait for the bar to finish moving.
                 // This ain't Pokemon Diamond.
@@ -128,8 +128,7 @@ namespace TFCardBattle.Godot
         {
             using (SetAnimating())
             {
-                GetNode("%BossStartAnimationPlayer").Call("Play");
-                await WaitFor.Seconds(1.8);
+                await _overlayAnimator.BossRoundStart();
             }
         }
 
