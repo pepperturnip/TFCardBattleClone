@@ -14,6 +14,9 @@ namespace TFCardBattle.Core
         Task RefreshBuyPile(Card[] cards);
         Task BuyCard(int buyPileIndex, bool isPermanentBuyPileCard);
         Task ForgetCard(Card card, BattleState state);
+
         Task BossRoundStart();
+        Task PlayerWin();
+        Task PlayerLose();
     }
 }

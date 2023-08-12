@@ -349,7 +349,7 @@ namespace TFCardBattle.Core
 
             if (State.PlayerTF >= State.PlayerMaxTF)
             {
-                EndBattle();
+                await PlayerLose();
                 return;
             }
 
@@ -373,7 +373,7 @@ namespace TFCardBattle.Core
             // End the battle if the boss is defeated
             if (State.EnemyTF >= State.EnemyMaxTF)
             {
-                EndBattle();
+                await PlayerWin();
                 return;
             }
 
@@ -388,7 +388,7 @@ namespace TFCardBattle.Core
 
             if (State.PlayerTF >= State.PlayerMaxTF)
             {
-                EndBattle();
+                await PlayerLose();
                 return;
             }
 
@@ -399,14 +399,21 @@ namespace TFCardBattle.Core
             await StartTurn();
         }
 
+        private async Task PlayerWin()
+        {
+            await AnimationPlayer.PlayerWin();
+            BattleEnded = true;
+        }
+
+        private async Task PlayerLose()
+        {
+            await AnimationPlayer.PlayerLose();
+            BattleEnded = true;
+        }
+
         private bool IsPermanentBuyPileCard(int buyPileIndex)
         {
             return buyPileIndex == State.BuyPile.Count - 1;
-        }
-
-        private void EndBattle()
-        {
-            BattleEnded = true;
         }
 
         private int RollEnemyDamage()

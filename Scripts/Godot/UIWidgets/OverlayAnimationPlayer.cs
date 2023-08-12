@@ -31,5 +31,12 @@ namespace TFCardBattle.Godot
             animator.ResetAndPlay("Start");
             await ToSignal(animator, AnimationPlayer.SignalName.AnimationFinished);
         }
+
+        public async Task BattleEnd()
+        {
+            var animator = GetNode<AnimationPlayer>("%BattleEndAnimator");
+            animator.ResetAndPlay("Start");
+            await ToSignal(animator, AnimationPlayer.SignalName.AnimationFinished);
+        }
     }
 }

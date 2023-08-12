@@ -132,6 +132,22 @@ namespace TFCardBattle.Godot
             }
         }
 
+        public async Task PlayerWin()
+        {
+            using (SetAnimating())
+            {
+                await _overlayAnimator.BattleEnd();
+            }
+        }
+
+        public async Task PlayerLose()
+        {
+            using (SetAnimating())
+            {
+                await _overlayAnimator.BattleEnd();
+            }
+        }
+
         private async Task TweenPos(GodotObject node, Vector2 destination, double duration)
         {
             var tween = GetTree().CreateTween();
