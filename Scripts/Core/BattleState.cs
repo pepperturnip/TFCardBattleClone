@@ -10,7 +10,6 @@ namespace TFCardBattle.Core
     /// </summary>
     public class BattleState
     {
-        public readonly ContentRegistry CardRegistry;
         public List<ILingeringEffect> LingeringEffects = new List<ILingeringEffect>();
 
         public PlayerLoadout PlayerLoadout;
@@ -66,13 +65,10 @@ namespace TFCardBattle.Core
         public int TurnsElapsed = 0;
 
         public BattleState(
-            PlayerLoadout loadout,
-            ContentRegistry registry
+            PlayerLoadout loadout
         )
         {
             PlayerLoadout = loadout;
-            CardRegistry = registry;
-
             Deck.AddRange(loadout.StartingDeck);
         }
 

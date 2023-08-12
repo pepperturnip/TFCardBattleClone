@@ -9,8 +9,6 @@ namespace TFCardBattle.Godot
 {
     public partial class PlayerLoadoutSelection : Control
     {
-        private ContentRegistry _registry;
-
         private Transformation[] _transformationChoices;
 
         private ItemList _transformationPicker => GetNode<ItemList>("%TransformationPicker");
@@ -24,8 +22,6 @@ namespace TFCardBattle.Godot
 
         public override void _Ready()
         {
-            _registry = CreateContentRegistry();
-
             InitTransformationPicker();
             InitThemePackPicker(_brainPacks, CardPackType.BrainSlot, RequiredBrainCount);
             InitThemePackPicker(_heartPacks, CardPackType.HeartSlot, RequiredHeartCount);
@@ -34,7 +30,7 @@ namespace TFCardBattle.Godot
 
         private void InitTransformationPicker()
         {
-            _transformationChoices = _registry.Transformations.Values.ToArray();
+            _transformationChoices = ContentRegistry.Transformations.Values.ToArray();
 
             foreach (var tf in _transformationChoices)
             {
@@ -50,14 +46,14 @@ namespace TFCardBattle.Godot
             int requiredCount
         )
         {
-            var themePackChoices = _registry.CardPacks
+            var themePackChoices = ContentRegistry.CardPacks
                 .Values
                 .Where(p => p.Type == packType)
                 .ToArray();
 
             string defaultSelectionsJson = FileAccess.GetFileAsString("res://Content/DefaultLoadout.json");
             var defaultSelections = JsonConvert.DeserializeObject<CardPackId[]>(defaultSelectionsJson)
-                .Select(id => _registry.CardPacks[id])
+                .Select(id => ContentRegistry.CardPacks[id])
                 .ToArray();
 
             picker.SetChoices(themePackChoices, defaultSelections, requiredCount);
@@ -65,7 +61,7 @@ namespace TFCardBattle.Godot
 
         public void StartBattle()
         {
-            var loadout = new PlayerLoadout(_registry)
+            var loadout = new PlayerLoadout
             {
                 Transformation = _transformationChoices[_transformationPicker.GetSelectedItems()[0]],
                 ThemePacks = _brainPacks.SelectedPacks
@@ -73,11 +69,11 @@ namespace TFCardBattle.Godot
                     .Concat(_subPacks.SelectedPacks)
                     .ToArray(),
 
-                PermanentBuyPile = _registry.CardPacks["StandardPermanentBuyPile"].Cards.Values,
+                PermanentBuyPile = ContentRegistry.CardPacks["StandardPermanentBuyPile"].Cards.Values,
                 StartingDeck = PlayerStartingDeck.StartingDeck(),
             };
 
-            Maps.Instance.GoToBattleScreen(loadout, _registry);
+            Maps.Instance.GoToBattleScreen(loadout);
         }
 
         private void RefreshStartButton()
@@ -88,50 +84,6 @@ namespace TFCardBattle.Godot
                 _subPacks.SelectionsValid;
 
             GetNode<Button>("%StartButton").Disabled = !enableStartButton;
-        }
-
-        private static ContentRegistry CreateContentRegistry()
-        {
-            var registry = new ContentRegistry();
-
-            foreach (string packId in IdsInFolder("res://Content/CardPacks"))
-            {
-                string path = $"res://Content/CardPacks/{packId}.json";
-                registry.ImportCardPack(packId, FileAccess.GetFileAsString(path));
-            }
-
-            foreach (string fileNameWithoutExt in IdsInFolder("res://Content/ConsumablePacks"))
-            {
-                string path = $"res://Content/ConsumablePacks/{fileNameWithoutExt}.json";
-                registry.ImportConsumables(FileAccess.GetFileAsString(path));
-            }
-
-            foreach (string tfId in IdsInFolder("res://Content/Transformations"))
-            {
-                string path = $"res://Content/Transformations/{tfId}.json";
-                registry.ImportTransformation(tfId, FileAccess.GetFileAsString(path));
-            }
-
-            foreach (string path in FilePathsInFolder("res://Content/CustomResourcePacks"))
-            {
-                registry.ImportCustomResources(FileAccess.GetFileAsString(path));
-            }
-
-            return registry;
-
-            IEnumerable<string> IdsInFolder(string folder)
-            {
-                return DirAccess
-                    .GetFilesAt(folder)
-                    .Select(f => f.Split(".json")[0]);
-            }
-
-            IEnumerable<string> FilePathsInFolder(string folder)
-            {
-                return DirAccess
-                    .GetFilesAt(folder)
-                    .Select(f => $"{folder}/{f}");
-            }
         }
     }
 }

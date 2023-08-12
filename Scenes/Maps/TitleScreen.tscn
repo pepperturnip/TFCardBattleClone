@@ -1,11 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b44tuins5ycq2"]
 
-[sub_resource type="GDScript" id="GDScript_vkbfj"]
-script/source = "extends Control
-
-func OnPlayButtonClicked():
-    Maps.GoToLoadoutSelection()
-"
+[ext_resource type="Script" path="res://Scripts/Godot/Maps/TitleScreen.cs" id="1_vgcf0"]
 
 [sub_resource type="SystemFont" id="SystemFont_t60qf"]
 
@@ -20,7 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_vkbfj")
+script = ExtResource("1_vgcf0")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
