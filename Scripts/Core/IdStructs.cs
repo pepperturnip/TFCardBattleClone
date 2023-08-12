@@ -1,78 +1,38 @@
 namespace TFCardBattle.Core
 {
-    public struct CardId
+    public readonly record struct CardId(string Id)
     {
-        private readonly string _id;
-
-        public CardId(string id)
-        {
-            _id = id;
-        }
-
         public static implicit operator CardId(string id) => new CardId(id);
-        public static implicit operator string(CardId c) => c._id;
-
-        public override string ToString() => _id;
+        public static implicit operator string(CardId c) => c.Id;
+        public override string ToString() => Id;
     }
 
-    public struct ConsumableId
+    public readonly record struct ConsumableId(string Id)
     {
-        private readonly string _id;
-
-        public ConsumableId(string id)
-        {
-            _id = id;
-        }
-
         public static implicit operator ConsumableId(string id) => new ConsumableId(id);
-        public static implicit operator string(ConsumableId c) => c._id;
-
-        public override string ToString() => _id;
+        public static implicit operator string(ConsumableId c) => c.Id;
+        public override string ToString() => Id;
     }
 
-    public struct CardPackId
+    public readonly record struct CardPackId(string Id)
     {
-        private readonly string _id;
-
-        public CardPackId(string id)
-        {
-            _id = id;
-        }
-
         public static implicit operator CardPackId(string id) => new CardPackId(id);
-        public static implicit operator string(CardPackId c) => c._id;
-
-        public override string ToString() => _id;
+        public static implicit operator string(CardPackId c) => c.Id;
+        public override string ToString() => Id;
     }
 
-    public struct TransformationId
+    public readonly record struct TransformationId(string Id)
     {
-        private readonly string _id;
-
-        public TransformationId(string id)
-        {
-            _id = id;
-        }
-
         public static implicit operator TransformationId(string id) => new TransformationId(id);
-        public static implicit operator string(TransformationId t) => t._id;
-
-        public override string ToString() => _id;
+        public static implicit operator string(TransformationId t) => t.Id;
+        public override string ToString() => Id;
     }
 
-    public struct CustomResourceId
+    public readonly record struct CustomResourceId(string Id)
     {
-        private readonly string _id;
-
-        public CustomResourceId(string id)
-        {
-            _id = id;
-        }
-
         public static implicit operator CustomResourceId(string id) => new CustomResourceId(id);
-        public static implicit operator string(CustomResourceId t) => t._id;
-
-        public override string ToString() => _id;
+        public static implicit operator string(CustomResourceId t) => t.Id;
+        public override string ToString() => Id;
     }
 
 }
