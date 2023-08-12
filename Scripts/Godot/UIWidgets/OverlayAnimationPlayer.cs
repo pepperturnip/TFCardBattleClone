@@ -6,13 +6,24 @@ namespace TFCardBattle.Godot
 {
     public partial class OverlayAnimationPlayer : Control
     {
-        private DamageAnimationPlayer _damageAnimationPlayer => GetNode<DamageAnimationPlayer>("%DamageAnimationPlayer");
-
         public Task DamagePlayer(int damageAmount)
-            => _damageAnimationPlayer.DamagePlayer(damageAmount);
+            => DamageAnimation("DamagePlayer", damageAmount);
 
         public Task DamageEnemy(int damageAmount)
-            => _damageAnimationPlayer.DamageEnemy(damageAmount);
+            => DamageAnimation("DamageEnemy", damageAmount);
+
+        private async Task DamageAnimation(string animName, int damageAmount)
+        {
+            var animator = GetNode<AnimationPlayer>("%DamageAnimator");
+            var label = GetNode<Label>("%DamageAnimationLabel");
+
+            if (damageAmount <= 0)
+                return;
+
+            label.Text = $"+{damageAmount}";
+            animator.ResetAndPlay(animName);
+            await ToSignal(animator, AnimationPlayer.SignalName.AnimationFinished);
+        }
 
         public async Task BossRoundStart()
         {
