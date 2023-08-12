@@ -4,6 +4,13 @@ using Newtonsoft.Json;
 
 namespace TFCardBattle.Core
 {
+    public readonly record struct CardId(string Id)
+    {
+        public static implicit operator CardId(string id) => new CardId(id);
+        public static implicit operator string(CardId c) => c.Id;
+        public override string ToString() => Id;
+    }
+
     public class Card
     {
         public string Name;
