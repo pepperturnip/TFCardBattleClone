@@ -9,13 +9,13 @@ namespace TFCardBattle.Godot
         [Export] public float CardHoverScale = 1.1f;
         [Export] public float CardHoverGrowSpeed = 1;
 
-        private CardModel _model => GetNode<CardModel>("%Model");
+        public CardModel Model => GetNode<CardModel>("%Model");
 
         private bool _isMouseOver = false;
 
         public void SetCard(Card card, BattleState state)
         {
-            _model.SetCard(card, state);
+            Model.SetCard(card, state);
         }
 
         public override void _Ready()
@@ -30,7 +30,7 @@ namespace TFCardBattle.Godot
         {
             float delta = (float)deltaD;
 
-            _model.Enabled = !this.Disabled;
+            Model.Enabled = !this.Disabled;
 
             // Make cards bigger when being hovered over
             bool isBig = !Disabled && _isMouseOver;
@@ -39,7 +39,7 @@ namespace TFCardBattle.Godot
                 ? Vector2.One * CardHoverScale
                 : Vector2.One;
 
-            _model.CenterScale = _model.CenterScale.MoveToward(targetScale, CardHoverGrowSpeed * delta);
+            Model.CenterScale = Model.CenterScale.MoveToward(targetScale, CardHoverGrowSpeed * delta);
         }
     }
 }

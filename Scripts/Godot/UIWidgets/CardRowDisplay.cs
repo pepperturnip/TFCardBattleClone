@@ -12,19 +12,18 @@ namespace TFCardBattle.Godot
         [Signal] public delegate void CardClickedEventHandler(int handIndex);
 
         [Export] public PackedScene DummyCardModelPrefab;
+        [Export] public PackedScene CardButtonPrefab;
         [Export] public CardModelFactory ModelFactory;
         [Export] public float MinCardSeparation = 8;
         [Export] public float CardMoveDecayRate = 10;
-        [Export] public float CardHoverGrowSpeed = 1;
-        [Export] public float CardHoverScale = 1.1f;
         [Export] public bool EnableInput = true;
 
         [Export] public int EditorPreviewCardCount = 6;
 
         public Vector2 CardSize {get; private set;}
 
-        private Control _cardPositions => GetNode<Control>("%CardPositions");
-        private Node2D _cardModels => GetNode<Node2D>("%CardModels");
+        private Control _cardButtons => GetNode<Control>("%CardButtons");
+        private Node2D _toLocalDummy => GetNode<Node2D>("%ToLocalDummy");
 
         public override void _Draw()
         {
@@ -34,7 +33,7 @@ namespace TFCardBattle.Godot
             for (int i = 0; i < EditorPreviewCardCount; i++)
             {
                 var globalPos = TargetGlobalPosition(i, EditorPreviewCardCount);
-                var localPos = _cardModels.ToLocal(globalPos);
+                var localPos = _toLocalDummy.ToLocal(globalPos);
 
                 DrawRect(
                     rect: new Rect2(localPos, CardSize),
@@ -63,52 +62,59 @@ namespace TFCardBattle.Godot
             if (Engine.IsEditorHint())
                 return;
 
-            for (int i = 0; i < _cardModels.GetChildCount(); i++)
+            for (int i = 0; i < _cardButtons.GetChildCount(); i++)
             {
                 // Exponentially decay all card models to their target positions
-                var model = _cardModels.GetChild<CardModel>(i);
-                var targetPos = TargetGlobalPosition(i, _cardModels.GetChildCount());
+                var model = _cardButtons.GetChild<CardButton>(i).Model;
+                var targetPos = TargetGlobalPosition(i, _cardButtons.GetChildCount());
 
                 float dist = model.GlobalPosition.DistanceTo(targetPos);
                 float newDist = dist * Mathf.Pow(Mathf.E, -CardMoveDecayRate * delta);
                 float deltaPos = Mathf.Abs(dist - newDist);
 
                 model.GlobalPosition = model.GlobalPosition.MoveToward(targetPos, deltaPos);
-
-                // Make cards bigger when being hovered over
-                bool isBig =
-                    EnableInput &&
-                    model.Enabled &&
-                    _cardPositions.GetChild<CardPositioner>(i).IsMouseOver;
-
-                var targetScale = isBig
-                    ? Vector2.One * CardHoverScale
-                    : Vector2.One;
-
-                model.CenterScale = model.CenterScale.MoveToward(targetScale, CardHoverGrowSpeed * delta);
             }
-        }
-
-        public CardModel GetCardModel(int cardIndex)
-        {
-            return _cardModels.GetChild<CardModel>(cardIndex);
         }
 
         public void AddCard(Card card, Vector2 spawnPointGlobal)
         {
-            AddCardModel(card, spawnPointGlobal);
-            RecreateCardPositioners(_cardModels.GetChildCount());
+            var button = AddCard(card);
+            button.Model.GlobalPosition = spawnPointGlobal;
+        }
+
+        private CardButton AddCard(Card card)
+        {
+            var button = CardButtonPrefab.Instantiate<CardButton>();
+            button.SetCard(card, ModelFactory.BattleState);
+            button.Pressed += () =>
+            {
+                if (EnableInput)
+                    EmitSignal(SignalName.CardClicked, button.GetIndex());
+            };
+
+            _cardButtons.AddChild(button);
+            RefreshCardLayout();
+
+            return button;
         }
 
         public void RemoveCard(int removedHandIndex)
         {
-            RemoveCardModel(removedHandIndex);
-            RecreateCardPositioners(_cardModels.GetChildCount());
+            var button = _cardButtons.GetChild(removedHandIndex);
+            _cardButtons.RemoveChild(button);
+            button.QueueFree();
+
+            RefreshCardLayout();
+        }
+
+        public CardButton GetCardButton(int index)
+        {
+            return _cardButtons.GetChild<CardButton>(index);
         }
 
         public CardModel CloneCardForAnimation(int cardIndex)
         {
-            var originalModel = GetCardModel(cardIndex);
+            var originalModel = _cardButtons.GetChild<CardButton>(cardIndex).Model;
             CardModel clone = ModelFactory.Create(originalModel.Card);
             AddChild(clone);
             clone.GlobalPosition = originalModel.GlobalPosition;
@@ -118,11 +124,11 @@ namespace TFCardBattle.Godot
 
         public void Refresh(Card[] cards)
         {
-            // HACK: Reuse old models if nothing changed, to prevent the card
+            // HACK: Reuse old buttons if nothing changed, to prevent the card
             // move animation from being needlessly interrupted.
-            var oldCards = _cardModels
-                .EnumerateChildren<CardModel>()
-                .Select(m => m.Card);
+            var oldCards = _cardButtons
+                .EnumerateChildren<CardButton>()
+                .Select(b => b.Model.Card);
 
             if (cards.SequenceEqual(oldCards))
             {
@@ -131,44 +137,31 @@ namespace TFCardBattle.Godot
             }
 
             GD.Print($"Forcibly refreshing card row display({_forceRefreshCount++})");
-
-            RecreateCardPositioners(cards.Length);
-            RecreateCardModels(cards);
+            RecreateCardButtons(cards);
         }
         private int _forceRefreshCount = 0;
 
-        private void RecreateCardPositioners(int cardCount)
+        private void RefreshCardLayout()
         {
-            DeleteAllChildren(_cardPositions);
+            int cardCount = _cardButtons.GetChildCount();
 
             for(int i = 0; i < cardCount; i++)
             {
-                var cardPositioner = new CardPositioner();
-                cardPositioner.Size = CardSize;
-                cardPositioner.CustomMinimumSize = CardSize;
-                _cardPositions.AddChild(cardPositioner);
+                var button = _cardButtons.GetChild<CardButton>(i);
 
-                cardPositioner.GlobalPosition = TargetGlobalPosition(i, cardCount);
-
-                // We need to make a copy of this value so it can be used within
-                // the closure.  This is because "i" will have changed by the
-                // time the card is clicked, since it's the looping variable.
-                int handIndex = i;
-                cardPositioner.Clicked += () =>
-                {
-                    if (EnableInput)
-                        EmitSignal(SignalName.CardClicked, handIndex);
-                };
+                var modelGlobalPos = button.Model.GlobalPosition;
+                button.GlobalPosition = TargetGlobalPosition(i, cardCount);
+                button.Model.GlobalPosition = modelGlobalPos;
             }
         }
 
-        private void RecreateCardModels(Card[] cards)
+        private void RecreateCardButtons(Card[] cards)
         {
-            DeleteAllChildren(_cardModels);
+            DeleteAllChildren(_cardButtons);
 
             for (int i = 0; i < cards.Length; i++)
             {
-                AddCardModel(cards[i], TargetGlobalPosition(i, cards.Length));
+                AddCard(cards[i]);
             }
         }
 
@@ -176,23 +169,9 @@ namespace TFCardBattle.Godot
         {
             for (int i = 0; i < cards.Length; i++)
             {
-                var model = _cardModels.GetChild<CardModel>(i);
-                model.Refresh();
+                var button = _cardButtons.GetChild<CardButton>(i);
+                button.SetCard(cards[i], ModelFactory.BattleState);
             }
-        }
-
-        private void AddCardModel(Card card, Vector2 globalPos)
-        {
-            var model = ModelFactory.Create(card);
-            _cardModels.AddChild(model);
-            model.GlobalPosition = globalPos;
-        }
-
-        private void RemoveCardModel(int index)
-        {
-            var holder = _cardModels.GetChild(index);
-            _cardModels.RemoveChild(holder);
-            holder.QueueFree();
         }
 
         private void DeleteAllChildren(Node node)
@@ -216,29 +195,8 @@ namespace TFCardBattle.Godot
             x -= totalSize.X / 2;
             x += MinCardSeparation / 2;
 
-            var pos = _cardPositions.GlobalPosition + Vector2.Right * x;
+            var pos = _cardButtons.GlobalPosition + Vector2.Right * x;
             return pos;
-        }
-
-        private partial class CardPositioner : Control
-        {
-            [Signal] public delegate void ClickedEventHandler();
-
-            public bool IsMouseOver {get; private set;}
-
-            public override void _Ready()
-            {
-                base._Ready();
-
-                MouseEntered += () => IsMouseOver = true;
-                MouseExited += () => IsMouseOver = false;
-            }
-
-            public override void _GuiInput(InputEvent ev)
-            {
-                if (ev is InputEventMouseButton clickEvent)
-                    EmitSignal(SignalName.Clicked);
-            }
         }
     }
 }
