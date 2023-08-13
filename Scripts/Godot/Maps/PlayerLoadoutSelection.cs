@@ -10,20 +10,12 @@ namespace TFCardBattle.Godot
     public partial class PlayerLoadoutSelection : Control
     {
         private TransformationPicker _transformationPicker => GetNode<TransformationPicker>("%TransformationPicker");
-        private SingleSuitThemePackPicker _brainPacks => GetNode<SingleSuitThemePackPicker>("%BrainPacks");
-        private SingleSuitThemePackPicker _heartPacks => GetNode<SingleSuitThemePackPicker>("%HeartPacks");
-        private SingleSuitThemePackPicker _subPacks => GetNode<SingleSuitThemePackPicker>("%SubPacks");
-
-        private const int RequiredBrainCount = 5;
-        private const int RequiredHeartCount = 4;
-        private const int RequiredSubCount = 4;
+        private ThemePackPicker _themePackPicker => GetNode<ThemePackPicker>("%ThemePackPicker");
 
         public override void _Ready()
         {
             InitTransformationPicker();
-            InitThemePackPicker(_brainPacks, CardPackType.BrainSlot, RequiredBrainCount);
-            InitThemePackPicker(_heartPacks, CardPackType.HeartSlot, RequiredHeartCount);
-            InitThemePackPicker(_subPacks, CardPackType.SubSlot, RequiredSubCount);
+            InitThemePackPicker();
         }
 
         private void InitTransformationPicker()
@@ -32,23 +24,24 @@ namespace TFCardBattle.Godot
             _transformationPicker.SetChoices(choices);
         }
 
-        private void InitThemePackPicker(
-            SingleSuitThemePackPicker picker,
-            CardPackType packType,
-            int requiredCount
-        )
+        private void InitThemePackPicker()
         {
-            var themePackChoices = ContentRegistry.CardPacks
+            var brainChoices = ContentRegistry.CardPacks
                 .Values
-                .Where(p => p.Type == packType)
+                .Where(p => p.Type == CardPackType.BrainSlot)
                 .ToArray();
 
-            string defaultSelectionsJson = FileAccess.GetFileAsString("res://Content/DefaultLoadout.json");
-            var defaultSelections = JsonConvert.DeserializeObject<CardPackId[]>(defaultSelectionsJson)
-                .Select(id => ContentRegistry.CardPacks[id])
+            var heartChoices = ContentRegistry.CardPacks
+                .Values
+                .Where(p => p.Type == CardPackType.HeartSlot)
                 .ToArray();
 
-            picker.SetChoices(themePackChoices, defaultSelections, requiredCount);
+            var subChoices = ContentRegistry.CardPacks
+                .Values
+                .Where(p => p.Type == CardPackType.SubSlot)
+                .ToArray();
+
+            _themePackPicker.SetChoices(brainChoices, heartChoices, subChoices);
         }
 
         public void StartBattle()
@@ -56,10 +49,7 @@ namespace TFCardBattle.Godot
             var loadout = new PlayerLoadout
             {
                 Transformation = _transformationPicker.SelectedChoice,
-                ThemePacks = _brainPacks.SelectedPacks
-                    .Concat(_heartPacks.SelectedPacks)
-                    .Concat(_subPacks.SelectedPacks)
-                    .ToArray(),
+                ThemePacks = _themePackPicker.SelectedPacks.ToArray(),
 
                 PermanentBuyPile = ContentRegistry.CardPacks["StandardPermanentBuyPile"].Cards.Values,
                 StartingDeck = PlayerStartingDeck.StartingDeck(),
@@ -70,12 +60,7 @@ namespace TFCardBattle.Godot
 
         private void RefreshStartButton()
         {
-            bool enableStartButton =
-                _brainPacks.SelectionsValid &&
-                _heartPacks.SelectionsValid &&
-                _subPacks.SelectionsValid;
-
-            GetNode<Button>("%StartButton").Disabled = !enableStartButton;
+            GetNode<Button>("%StartButton").Disabled = !_themePackPicker.SelectionsValid;
         }
     }
 }
