@@ -7,17 +7,17 @@ namespace TFCardBattle.Godot
     {
         [Export] public PackedScene CardModelPrefab;
 
-        private BattleState _battleState;
+        public BattleState BattleState;
 
         public void SetBattleState(BattleState state)
         {
-            _battleState = state;
+            BattleState = state;
         }
 
         public CardModel Create(Card card)
         {
             var model = CardModelPrefab.Instantiate<CardModel>();
-            model.SetCard(card, _battleState);
+            model.SetCard(card, BattleState);
 
             return model;
         }
