@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dao0w4slv7603"]
+[gd_scene load_steps=4 format=3 uid="uid://dao0w4slv7603"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/CardRowDisplay.cs" id="1_ka2l4"]
 [ext_resource type="PackedScene" uid="uid://cs4vf3jnrvk57" path="res://Scenes/Models/CardModel.tscn" id="2_id4gy"]
+[ext_resource type="PackedScene" uid="uid://bout6816idhcc" path="res://Scenes/UIWidgets/CardButton.tscn" id="3_b6uta"]
 
 [node name="CardRowDisplay" type="Control"]
 layout_mode = 3
@@ -9,11 +10,12 @@ anchors_preset = 0
 offset_bottom = 202.0
 script = ExtResource("1_ka2l4")
 DummyCardModelPrefab = ExtResource("2_id4gy")
+CardButtonPrefab = ExtResource("3_b6uta")
 
-[node name="CardModels" type="Node2D" parent="."]
+[node name="ToLocalDummy" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="CardPositions" type="Control" parent="."]
+[node name="CardButtons" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5

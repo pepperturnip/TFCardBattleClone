@@ -40,7 +40,7 @@ namespace TFCardBattle.Godot
             // Disable cards that the player can't afford
             for (int i = 0; i < _battle.State.BuyPile.Count; i++)
             {
-                _cardRow.GetCardModel(i).Enabled = _battle.CanAffordCard(i);
+                _cardRow.GetCardButton(i).Disabled = !_battle.CanAffordCard(i);
             }
         }
 
