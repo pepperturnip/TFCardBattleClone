@@ -6,7 +6,7 @@ using TFCardBattle.Core;
 
 namespace TFCardBattle.Godot
 {
-    public partial class ThemePackPicker : Control
+    public partial class SingleSuitThemePackPicker : Control
     {
         [Signal] public delegate void SelectionChangedEventHandler();
 

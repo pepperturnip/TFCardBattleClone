@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://xqul3vpm8pja"]
 
-[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/ThemePackPicker.cs" id="1_qo51o"]
+[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/SingleSuitThemePackPicker.cs" id="1_qo51o"]
 
 [node name="ThemePackPicker" type="Control"]
 layout_mode = 3

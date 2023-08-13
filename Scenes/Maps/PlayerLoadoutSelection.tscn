@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbg374tv654tv"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/Maps/PlayerLoadoutSelection.cs" id="1_x3ol6"]
-[ext_resource type="PackedScene" uid="uid://xqul3vpm8pja" path="res://Scenes/UIWidgets/ThemePackPicker.tscn" id="2_a6lus"]
+[ext_resource type="PackedScene" uid="uid://xqul3vpm8pja" path="res://Scenes/UIWidgets/SingleSuitThemePackPicker.tscn" id="2_a6lus"]
 [ext_resource type="PackedScene" uid="uid://chtsu6gy5alch" path="res://Scenes/UIWidgets/TransformationPicker.tscn" id="2_s1dxe"]
 
 [node name="PlayerLoadoutSelection" type="Control"]

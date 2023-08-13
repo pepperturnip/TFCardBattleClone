@@ -10,9 +10,9 @@ namespace TFCardBattle.Godot
     public partial class PlayerLoadoutSelection : Control
     {
         private TransformationPicker _transformationPicker => GetNode<TransformationPicker>("%TransformationPicker");
-        private ThemePackPicker _brainPacks => GetNode<ThemePackPicker>("%BrainPacks");
-        private ThemePackPicker _heartPacks => GetNode<ThemePackPicker>("%HeartPacks");
-        private ThemePackPicker _subPacks => GetNode<ThemePackPicker>("%SubPacks");
+        private SingleSuitThemePackPicker _brainPacks => GetNode<SingleSuitThemePackPicker>("%BrainPacks");
+        private SingleSuitThemePackPicker _heartPacks => GetNode<SingleSuitThemePackPicker>("%HeartPacks");
+        private SingleSuitThemePackPicker _subPacks => GetNode<SingleSuitThemePackPicker>("%SubPacks");
 
         private const int RequiredBrainCount = 5;
         private const int RequiredHeartCount = 4;
@@ -33,7 +33,7 @@ namespace TFCardBattle.Godot
         }
 
         private void InitThemePackPicker(
-            ThemePackPicker picker,
+            SingleSuitThemePackPicker picker,
             CardPackType packType,
             int requiredCount
         )
