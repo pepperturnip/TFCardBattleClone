@@ -136,7 +136,7 @@ namespace TFCardBattle.Godot
         {
             using (SetAnimating())
             {
-                await _overlayAnimator.BattleEnd();
+                await _overlayAnimator.PlayerWin();
             }
         }
 
@@ -144,7 +144,7 @@ namespace TFCardBattle.Godot
         {
             using (SetAnimating())
             {
-                await _overlayAnimator.BattleEnd();
+                await _overlayAnimator.PlayerLose();
             }
         }
 

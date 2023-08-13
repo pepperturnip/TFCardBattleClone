@@ -32,10 +32,17 @@ namespace TFCardBattle.Godot
             await ToSignal(animator, AnimationPlayer.SignalName.AnimationFinished);
         }
 
-        public async Task BattleEnd()
+        public async Task PlayerWin()
         {
             var animator = GetNode<AnimationPlayer>("%BattleEndAnimator");
-            animator.ResetAndPlay("Start");
+            animator.ResetAndPlay("PlayerWin");
+            await ToSignal(animator, AnimationPlayer.SignalName.AnimationFinished);
+        }
+
+        public async Task PlayerLose()
+        {
+            var animator = GetNode<AnimationPlayer>("%BattleEndAnimator");
+            animator.ResetAndPlay("PlayerLose");
             await ToSignal(animator, AnimationPlayer.SignalName.AnimationFinished);
         }
     }
