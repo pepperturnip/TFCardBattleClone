@@ -37,10 +37,13 @@ namespace TFCardBattle.Godot
         {
             _cardRow.Refresh(_battle.State.BuyPile.ToArray());
 
-            // Disable cards that the player can't afford
             for (int i = 0; i < _battle.State.BuyPile.Count; i++)
             {
-                _cardRow.GetCardButton(i).Disabled = !_battle.CanAffordCard(i);
+                var card = _battle.State.BuyPile[i];
+                var button = _cardRow.GetCardButton(i);
+
+                button.Disabled = !_battle.CanAffordCard(i);
+                button.TooltipText = $"Range: {card.MinTF}-{card.MaxTF}";
             }
         }
 
