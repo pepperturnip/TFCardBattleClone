@@ -9,6 +9,8 @@ namespace TFCardBattle.Godot
 {
     public partial class ThemePackPicker : Control
     {
+        [Signal] public delegate void SelectionChangedEventHandler();
+
         public bool SelectionsValid =>
             _brainPacks.SelectionsValid &&
             _heartPacks.SelectionsValid &&
@@ -35,6 +37,11 @@ namespace TFCardBattle.Godot
             InitPicker(_brainPacks, brainChoices, RequiredBrainCount);
             InitPicker(_heartPacks, heartChoices, RequiredHeartCount);
             InitPicker(_subPacks, subChoices, RequiredSubCount);
+        }
+
+        public void OnChildSelectionChanged()
+        {
+            EmitSignal(SignalName.SelectionChanged);
         }
 
         private void InitPicker(
