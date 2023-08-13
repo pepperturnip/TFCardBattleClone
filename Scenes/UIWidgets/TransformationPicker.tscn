@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://chtsu6gy5alch"]
+
+[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/TransformationPicker.cs" id="1_47wgt"]
+
+[node name="TransformationPicker" type="ItemList"]
+size_flags_vertical = 3
+script = ExtResource("1_47wgt")

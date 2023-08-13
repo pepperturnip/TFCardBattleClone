@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbg374tv654tv"]
+[gd_scene load_steps=4 format=3 uid="uid://dbg374tv654tv"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/Maps/PlayerLoadoutSelection.cs" id="1_x3ol6"]
 [ext_resource type="PackedScene" uid="uid://xqul3vpm8pja" path="res://Scenes/UIWidgets/ThemePackPicker.tscn" id="2_a6lus"]
+[ext_resource type="PackedScene" uid="uid://chtsu6gy5alch" path="res://Scenes/UIWidgets/TransformationPicker.tscn" id="2_s1dxe"]
 
 [node name="PlayerLoadoutSelection" type="Control"]
 layout_mode = 3
@@ -27,10 +28,9 @@ layout_mode = 2
 text = "Choose a transformation"
 horizontal_alignment = 1
 
-[node name="TransformationPicker" type="ItemList" parent="Transformation"]
+[node name="TransformationPicker" parent="Transformation" instance=ExtResource("2_s1dxe")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="ThemePacks" type="VBoxContainer" parent="."]
 layout_mode = 1

@@ -9,9 +9,7 @@ namespace TFCardBattle.Godot
 {
     public partial class PlayerLoadoutSelection : Control
     {
-        private Transformation[] _transformationChoices;
-
-        private ItemList _transformationPicker => GetNode<ItemList>("%TransformationPicker");
+        private TransformationPicker _transformationPicker => GetNode<TransformationPicker>("%TransformationPicker");
         private ThemePackPicker _brainPacks => GetNode<ThemePackPicker>("%BrainPacks");
         private ThemePackPicker _heartPacks => GetNode<ThemePackPicker>("%HeartPacks");
         private ThemePackPicker _subPacks => GetNode<ThemePackPicker>("%SubPacks");
@@ -30,14 +28,8 @@ namespace TFCardBattle.Godot
 
         private void InitTransformationPicker()
         {
-            _transformationChoices = ContentRegistry.Transformations.Values.ToArray();
-
-            foreach (var tf in _transformationChoices)
-            {
-                _transformationPicker.AddItem(tf.Name);
-            }
-
-            _transformationPicker.Select(0);
+            var choices = ContentRegistry.Transformations.Values.ToArray();
+            _transformationPicker.SetChoices(choices);
         }
 
         private void InitThemePackPicker(
@@ -63,7 +55,7 @@ namespace TFCardBattle.Godot
         {
             var loadout = new PlayerLoadout
             {
-                Transformation = _transformationChoices[_transformationPicker.GetSelectedItems()[0]],
+                Transformation = _transformationPicker.SelectedChoice,
                 ThemePacks = _brainPacks.SelectedPacks
                     .Concat(_heartPacks.SelectedPacks)
                     .Concat(_subPacks.SelectedPacks)
