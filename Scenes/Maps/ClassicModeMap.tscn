@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://chunr772o07as"]
+[gd_scene load_steps=5 format=3 uid="uid://chunr772o07as"]
 
-[ext_resource type="PackedScene" uid="uid://dbg374tv654tv" path="res://Scenes/UIPages/LoadoutSelectionPage.tscn" id="1_0ufqi"]
 [ext_resource type="Script" path="res://Scripts/Godot/Maps/ClassicModeMap.cs" id="1_1xpoh"]
 [ext_resource type="PackedScene" uid="uid://tm66spq6dn0h" path="res://Scenes/UIPages/BattlePage.tscn" id="1_5ipxr"]
 [ext_resource type="PackedScene" uid="uid://bkiem38iqr7yu" path="res://Scenes/UIPages/TransformationSelectionPage.tscn" id="2_mwtoh"]
@@ -27,17 +26,12 @@ process_mode = 4
 visible = false
 layout_mode = 1
 
-[node name="LoadoutSelectionPage" parent="." instance=ExtResource("1_0ufqi")]
-unique_name_in_owner = true
-process_mode = 4
-visible = false
-layout_mode = 1
-
 [node name="BattlePage" parent="." instance=ExtResource("1_5ipxr")]
 unique_name_in_owner = true
 process_mode = 4
 visible = false
 layout_mode = 1
 
-[connection signal="LoadoutSelected" from="LoadoutSelectionPage" to="." method="OnLoadoutSelected"]
+[connection signal="Confirmed" from="TransformationSelectionPage" to="." method="OnTransformationSelected"]
+[connection signal="Confirmed" from="ThemePackSelectionPage" to="." method="OnThemePacksSelected"]
 [connection signal="BattleEnded" from="BattlePage" to="." method="OnBattleEnded"]

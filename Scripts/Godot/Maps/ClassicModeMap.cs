@@ -1,22 +1,39 @@
 using System;
 using Godot;
+using TFCardBattle.Core;
 
 namespace TFCardBattle.Godot
 {
     public partial class ClassicModeMap : Control
     {
-        private LoadoutSelectionPage _loadoutSelectionPage => GetNode<LoadoutSelectionPage>("%LoadoutSelectionPage");
+        private PlayerLoadout _playerLoadout;
+
+        private TransformationSelectionPage _tfSelectionPage => GetNode<TransformationSelectionPage>("%TransformationSelectionPage");
+        private ThemePackSelectionPage _packSelectionPage => GetNode<ThemePackSelectionPage>("%ThemePackSelectionPage");
         private BattlePage _battlePage => GetNode<BattlePage>("%BattlePage");
 
         public override void _Ready()
         {
-            ChangePage(_loadoutSelectionPage);
+            _playerLoadout = new PlayerLoadout
+            {
+                PermanentBuyPile = ContentRegistry.CardPacks["StandardPermanentBuyPile"].Cards.Values,
+                StartingDeck = PlayerStartingDeck.StartingDeck(),
+            };
+
+            _tfSelectionPage.Init(_playerLoadout);
+            ChangePage(_tfSelectionPage);
         }
 
-        public void OnLoadoutSelected()
+        public void OnTransformationSelected()
         {
+            _packSelectionPage.Init(_playerLoadout);
+            ChangePage(_packSelectionPage);
+        }
+
+        public void OnThemePacksSelected()
+        {
+            _battlePage.StartBattle(_playerLoadout);
             ChangePage(_battlePage);
-            _battlePage.StartBattle(_loadoutSelectionPage.SelectedLoadout);
         }
 
         public void OnBattleEnded(bool playerWon)
