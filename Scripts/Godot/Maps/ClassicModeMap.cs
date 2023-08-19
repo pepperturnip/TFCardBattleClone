@@ -6,7 +6,7 @@ namespace TFCardBattle.Godot
     public partial class ClassicModeMap : Control
     {
         private PlayerLoadoutSelection _loadoutSelectionPage => GetNode<PlayerLoadoutSelection>("%LoadoutSelectionPage");
-        private BattleUI _battlePage => GetNode<BattleUI>("%BattlePage");
+        private BattlePage _battlePage => GetNode<BattlePage>("%BattlePage");
 
         public override void _Ready()
         {

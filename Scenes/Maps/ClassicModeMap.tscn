@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dbg374tv654tv" path="res://Scenes/UIPages/PlayerLoadoutSelection.tscn" id="1_0ufqi"]
 [ext_resource type="Script" path="res://Scripts/Godot/Maps/ClassicModeMap.cs" id="1_1xpoh"]
-[ext_resource type="PackedScene" uid="uid://tm66spq6dn0h" path="res://Scenes/UIPages/BattleUI.tscn" id="1_5ipxr"]
+[ext_resource type="PackedScene" uid="uid://tm66spq6dn0h" path="res://Scenes/UIPages/BattlePage.tscn" id="1_5ipxr"]
 
 [node name="ClassicModeMap" type="Control"]
 layout_mode = 3

@@ -7,7 +7,7 @@ using TFCardBattle.Core;
 
 namespace TFCardBattle.Godot
 {
-    public partial class BattleUI : Control
+    public partial class BattlePage : Control
     {
         [Signal] public delegate void BattleEndedEventHandler(bool playerWon);
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://tm66spq6dn0h"]
 
-[ext_resource type="Script" path="res://Scripts/Godot/UIPages/BattleUI.cs" id="1_lo0d2"]
+[ext_resource type="Script" path="res://Scripts/Godot/UIPages/BattlePage.cs" id="1_lo0d2"]
 [ext_resource type="PackedScene" uid="uid://bxkjo1whiydj3" path="res://Scenes/CardModelFactory.tscn" id="2_ab7q2"]
 [ext_resource type="PackedScene" uid="uid://bout6816idhcc" path="res://Scenes/UIWidgets/CardButton.tscn" id="3_5qhcb"]
 [ext_resource type="PackedScene" uid="uid://banf0dyorxitu" path="res://Scenes/UIWidgets/HandDisplay.tscn" id="4_ed8ll"]
@@ -23,7 +23,7 @@ func _process(delta):
         visible = false
 "
 
-[node name="BattleUI" type="Control" node_paths=PackedStringArray("CardModelFactory")]
+[node name="BattlePage" type="Control" node_paths=PackedStringArray("CardModelFactory")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
