@@ -9,6 +9,10 @@ namespace TFCardBattle.Godot
 {
     public partial class PlayerLoadoutSelection : Control
     {
+        [Signal] public delegate void LoadoutSelectedEventHandler();
+
+        public PlayerLoadout SelectedLoadout {get; private set;}
+
         private TransformationPicker _transformationPicker => GetNode<TransformationPicker>("%TransformationPicker");
         private ThemePackPicker _themePackPicker => GetNode<ThemePackPicker>("%ThemePackPicker");
 
@@ -46,7 +50,7 @@ namespace TFCardBattle.Godot
 
         public void StartBattle()
         {
-            var loadout = new PlayerLoadout
+            SelectedLoadout = new PlayerLoadout
             {
                 Transformation = _transformationPicker.SelectedChoice,
                 ThemePacks = _themePackPicker.SelectedPacks.ToArray(),
@@ -55,7 +59,7 @@ namespace TFCardBattle.Godot
                 StartingDeck = PlayerStartingDeck.StartingDeck(),
             };
 
-            Maps.Instance.GoToBattleScreen(loadout);
+            EmitSignal(SignalName.LoadoutSelected);
         }
 
         private void RefreshStartButton()

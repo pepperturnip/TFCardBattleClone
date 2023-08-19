@@ -13,6 +13,12 @@ namespace TFCardBattle.Godot
             ChangePage(_loadoutSelectionPage);
         }
 
+        public void OnLoadoutSelected()
+        {
+            ChangePage(_battlePage);
+            _battlePage.StartBattle(_loadoutSelectionPage.SelectedLoadout);
+        }
+
         private void ChangePage(Control page)
         {
             // Hide all pages

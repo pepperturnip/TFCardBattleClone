@@ -24,3 +24,5 @@ unique_name_in_owner = true
 process_mode = 4
 visible = false
 layout_mode = 1
+
+[connection signal="LoadoutSelected" from="LoadoutSelectionPage" to="." method="OnLoadoutSelected"]
