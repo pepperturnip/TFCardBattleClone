@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using Godot;
+using Newtonsoft.Json;
 using TFCardBattle.Core;
 
 namespace TFCardBattle.Godot
@@ -14,10 +16,16 @@ namespace TFCardBattle.Godot
 
         public override void _Ready()
         {
+            string defaultPacksJson = FileAccess.GetFileAsString("res://Content/DefaultLoadout.json");
+            var defaultPacks = JsonConvert.DeserializeObject<CardPackId[]>(defaultPacksJson)
+                .Select(id => ContentRegistry.CardPacks[id])
+                .ToArray();
+
             _playerLoadout = new PlayerLoadout
             {
+                ThemePacks = defaultPacks,
                 PermanentBuyPile = ContentRegistry.CardPacks["StandardPermanentBuyPile"].Cards.Values,
-                StartingDeck = PlayerStartingDeck.StartingDeck(),
+                StartingDeck = PlayerStartingDeck.StartingDeck()
             };
 
             _tfSelectionPage.Init(_playerLoadout);

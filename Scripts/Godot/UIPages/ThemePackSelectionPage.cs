@@ -36,7 +36,7 @@ namespace TFCardBattle.Godot
         public void Init(PlayerLoadout loadout)
         {
             _loadout = loadout;
-            // TODO: Initialize the choices
+            _picker.SetSelectedPacks(_loadout.ThemePacks);
         }
 
         public void OnSelectionChanged()
