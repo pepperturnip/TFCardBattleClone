@@ -1,45 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://xqul3vpm8pja"]
+[gd_scene load_steps=3 format=3 uid="uid://cttb7623vpohk"]
 
-[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/ThemePackPicker.cs" id="1_qo51o"]
+[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/ThemePackPicker.cs" id="1_yhw4i"]
+[ext_resource type="PackedScene" uid="uid://xqul3vpm8pja" path="res://Scenes/UIWidgets/SingleSuitThemePackPicker.tscn" id="2_kuf8x"]
 
-[node name="ThemePackPicker" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_qo51o")
+[node name="ThemePackPicker" type="GridContainer"]
+offset_right = 240.0
+offset_bottom = 224.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_yhw4i")
 
-[node name="Panel" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="CheckBoxContainer" type="HFlowContainer" parent="Panel/ScrollContainer"]
+[node name="BrainPacks" parent="." instance=ExtResource("2_kuf8x")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CountLabel" type="Label" parent="."]
+[node name="HeartPacks" parent="." instance=ExtResource("2_kuf8x")]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -26.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "0/4"
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SubPacks" parent="." instance=ExtResource("2_kuf8x")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="SelectionChanged" from="BrainPacks" to="." method="OnChildSelectionChanged"]
+[connection signal="SelectionChanged" from="HeartPacks" to="." method="OnChildSelectionChanged"]
+[connection signal="SelectionChanged" from="SubPacks" to="." method="OnChildSelectionChanged"]

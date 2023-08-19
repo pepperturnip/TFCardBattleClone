@@ -1,16 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbg374tv654tv"]
+[gd_scene load_steps=4 format=3 uid="uid://dbg374tv654tv"]
 
-[ext_resource type="Script" path="res://Scripts/Godot/Maps/PlayerLoadoutSelection.cs" id="1_x3ol6"]
-[ext_resource type="PackedScene" uid="uid://xqul3vpm8pja" path="res://Scenes/UIWidgets/ThemePackPicker.tscn" id="2_a6lus"]
+[ext_resource type="Script" path="res://Scripts/Godot/UIPages/LoadoutSelectionPage.cs" id="1_7oe06"]
+[ext_resource type="PackedScene" uid="uid://chtsu6gy5alch" path="res://Scenes/UIWidgets/TransformationPicker.tscn" id="2_mn2a5"]
+[ext_resource type="PackedScene" uid="uid://cttb7623vpohk" path="res://Scenes/UIWidgets/ThemePackPicker.tscn" id="3_nbom6"]
 
-[node name="PlayerLoadoutSelection" type="Control"]
+[node name="LoadoutSelectionPage" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_x3ol6")
+script = ExtResource("1_7oe06")
 
 [node name="Transformation" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -27,10 +28,9 @@ layout_mode = 2
 text = "Choose a transformation"
 horizontal_alignment = 1
 
-[node name="TransformationPicker" type="ItemList" parent="Transformation"]
+[node name="TransformationPicker" parent="Transformation" instance=ExtResource("2_mn2a5")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="ThemePacks" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -45,28 +45,15 @@ offset_bottom = -136.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Labels" type="HBoxContainer" parent="ThemePacks"]
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="ThemePacks/Labels"]
+[node name="Label" type="Label" parent="ThemePacks"]
 layout_mode = 2
 text = "Choose theme packs"
 horizontal_alignment = 1
 
-[node name="BrainPacks" parent="ThemePacks" instance=ExtResource("2_a6lus")]
+[node name="ThemePackPicker" parent="ThemePacks" instance=ExtResource("3_nbom6")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HeartPacks" parent="ThemePacks" instance=ExtResource("2_a6lus")]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="SubPacks" parent="ThemePacks" instance=ExtResource("2_a6lus")]
-unique_name_in_owner = true
-layout_mode = 2
+size_flags_horizontal = 1
 size_flags_vertical = 3
 
 [node name="StartButton" type="Button" parent="."]
@@ -85,7 +72,5 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Start"
 
-[connection signal="SelectionChanged" from="ThemePacks/BrainPacks" to="." method="RefreshStartButton"]
-[connection signal="SelectionChanged" from="ThemePacks/HeartPacks" to="." method="RefreshStartButton"]
-[connection signal="SelectionChanged" from="ThemePacks/SubPacks" to="." method="RefreshStartButton"]
+[connection signal="SelectionChanged" from="ThemePacks/ThemePackPicker" to="." method="RefreshStartButton"]
 [connection signal="pressed" from="StartButton" to="." method="StartBattle"]

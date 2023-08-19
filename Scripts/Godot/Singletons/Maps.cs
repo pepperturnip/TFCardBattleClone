@@ -9,34 +9,21 @@ namespace TFCardBattle.Godot
         public static Maps Instance {get; private set;}
 
         [Export] public PackedScene TitleScreen;
-        [Export] public PackedScene PlayerLoadoutSelection;
-        [Export] public PackedScene BattleScreen;
+        [Export] public PackedScene ClassicMode;
 
         public override void _Ready()
         {
             Instance = this;
         }
 
-        public void GoToLoadoutSelection()
+        public void GoToTitleScreen()
         {
-            GetTree().ChangeSceneToPacked(PlayerLoadoutSelection);
+            GetTree().ChangeSceneToPacked(TitleScreen);
         }
 
-        public void GoToBattleScreen(PlayerLoadout loadout)
+        public void GoToClassicMode()
         {
-            var battleUI = BattleScreen.Instantiate<BattleUI>();
-            ChangeSceneToNode(battleUI);
-            battleUI.StartBattle(loadout);
-        }
-
-        private void ChangeSceneToNode(Node n)
-        {
-            var oldScene = GetTree().CurrentScene;
-            GetTree().Root.RemoveChild(oldScene);
-            oldScene.QueueFree();
-
-            GetTree().Root.AddChild(n);
-            GetTree().CurrentScene = n;
+            GetTree().ChangeSceneToPacked(ClassicMode);
         }
     }
 }

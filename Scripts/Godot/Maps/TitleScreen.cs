@@ -19,9 +19,9 @@ namespace TFCardBattle.Godot
             }
         }
 
-        public void OnPlayButtonClicked()
+        public void OnClassicModeClicked()
         {
-            Maps.Instance.GoToLoadoutSelection();
+            Maps.Instance.GoToClassicMode();
         }
 
         private static void LoadContentRegistry()

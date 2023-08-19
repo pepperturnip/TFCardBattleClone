@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Godot;
 using TFCardBattle.Core;
+using Godot;
+using Newtonsoft.Json;
 
 namespace TFCardBattle.Godot
 {
@@ -10,46 +11,51 @@ namespace TFCardBattle.Godot
     {
         [Signal] public delegate void SelectionChangedEventHandler();
 
-        public int RequiredSelections {get; private set;}
-        public bool SelectionsValid => SelectedPacks.Count == RequiredSelections;
+        public bool SelectionsValid =>
+            _brainPacks.SelectionsValid &&
+            _heartPacks.SelectionsValid &&
+            _subPacks.SelectionsValid;
 
-        public IReadOnlySet<CardPack> SelectedPacks => _selectedPacks;
-        private HashSet<CardPack> _selectedPacks = new HashSet<CardPack>();
+        public IEnumerable<CardPack> SelectedPacks => _brainPacks.SelectedPacks
+            .Concat(_heartPacks.SelectedPacks)
+            .Concat(_subPacks.SelectedPacks);
 
-        private Label _countLabel => GetNode<Label>("%CountLabel");
-        private Container _container => GetNode<Container>("%CheckBoxContainer");
+        private SingleSuitThemePackPicker _brainPacks => GetNode<SingleSuitThemePackPicker>("%BrainPacks");
+        private SingleSuitThemePackPicker _heartPacks => GetNode<SingleSuitThemePackPicker>("%HeartPacks");
+        private SingleSuitThemePackPicker _subPacks => GetNode<SingleSuitThemePackPicker>("%SubPacks");
+
+        private const int RequiredBrainCount = 5;
+        private const int RequiredHeartCount = 4;
+        private const int RequiredSubCount = 4;
 
         public void SetChoices(
-            CardPack[] choices,
-            CardPack[] defaultSelections,
-            int requiredSelections
+            CardPack[] brainChoices,
+            CardPack[] heartChoices,
+            CardPack[] subChoices
         )
         {
-            RequiredSelections = requiredSelections;
-
-            // Create a checkbox for each choice
-            for (int i = 0; i < choices.Length; i++)
-            {
-                var cardPack = choices[i];
-
-                var checkBox = new CheckBox();
-                _container.AddChild(checkBox);
-                checkBox.Text = cardPack.Name;
-                checkBox.Toggled += (bool pressed) => OnPackToggled(cardPack, pressed);
-                checkBox.ButtonPressed = defaultSelections.Contains(cardPack);
-            }
+            InitPicker(_brainPacks, brainChoices, RequiredBrainCount);
+            InitPicker(_heartPacks, heartChoices, RequiredHeartCount);
+            InitPicker(_subPacks, subChoices, RequiredSubCount);
         }
 
-        private void OnPackToggled(CardPack cardPack, bool pressed)
+        public void OnChildSelectionChanged()
         {
-            if (pressed)
-                _selectedPacks.Add(cardPack);
-            else
-                _selectedPacks.Remove(cardPack);
-
             EmitSignal(SignalName.SelectionChanged);
+        }
 
-            _countLabel.Text = $"({SelectedPacks.Count}/{RequiredSelections})";
+        private void InitPicker(
+            SingleSuitThemePackPicker picker,
+            CardPack[] choices,
+            int requiredCount
+        )
+        {
+            string defaultSelectionsJson = FileAccess.GetFileAsString("res://Content/DefaultLoadout.json");
+            var defaultSelections = JsonConvert.DeserializeObject<CardPackId[]>(defaultSelectionsJson)
+                .Select(id => ContentRegistry.CardPacks[id])
+                .ToArray();
+
+            picker.SetChoices(choices, defaultSelections, requiredCount);
         }
     }
 }
