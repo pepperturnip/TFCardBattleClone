@@ -26,3 +26,4 @@ visible = false
 layout_mode = 1
 
 [connection signal="LoadoutSelected" from="LoadoutSelectionPage" to="." method="OnLoadoutSelected"]
+[connection signal="BattleEnded" from="BattlePage" to="." method="OnBattleEnded"]

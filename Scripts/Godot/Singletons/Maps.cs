@@ -18,6 +18,11 @@ namespace TFCardBattle.Godot
             Instance = this;
         }
 
+        public void GoToTitleScreen()
+        {
+            GetTree().ChangeSceneToPacked(TitleScreen);
+        }
+
         public void GoToClassicMode()
         {
             GetTree().ChangeSceneToPacked(ClassicMode);

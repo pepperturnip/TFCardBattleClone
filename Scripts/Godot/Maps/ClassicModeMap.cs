@@ -19,6 +19,11 @@ namespace TFCardBattle.Godot
             _battlePage.StartBattle(_loadoutSelectionPage.SelectedLoadout);
         }
 
+        public void OnBattleEnded(bool playerWon)
+        {
+            Maps.Instance.GoToTitleScreen();
+        }
+
         private void ChangePage(Control page)
         {
             // Hide all pages

@@ -9,6 +9,8 @@ namespace TFCardBattle.Godot
 {
     public partial class BattleUI : Control
     {
+        [Signal] public delegate void BattleEndedEventHandler(bool playerWon);
+
         [Export] public CardModelFactory CardModelFactory;
 
         private TFBar _playerTFBar => GetNode<TFBar>("%PlayerTFBar");
@@ -50,7 +52,16 @@ namespace TFCardBattle.Godot
         public override void _Process(double delta)
         {
             if (Battle.BattleEnded)
-                GetTree().ChangeSceneToPacked(Maps.Instance.TitleScreen);
+            {
+                var state = Battle.State;
+
+                bool playerWon =
+                    state.IsBossRound &&
+                    state.EnemyTF >= state.EnemyMaxTF &&
+                    state.PlayerTF < state.PlayerMaxTF;
+
+                EmitSignal(SignalName.BattleEnded, playerWon);
+            }
         }
 
         public void OnIsAnimatingChanged(bool isAnimating) => EnableInput(!isAnimating);
