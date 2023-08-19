@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkiem38iqr7yu"]
+
+[ext_resource type="PackedScene" uid="uid://chtsu6gy5alch" path="res://Scenes/UIWidgets/TransformationPicker.tscn" id="1_kosl6"]
+[ext_resource type="Script" path="res://Scripts/Godot/UIPages/TransformationSelectionPage.cs" id="1_u1yfp"]
+
+[node name="TransformationSelectionPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u1yfp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.277778
+anchor_top = 0.0987654
+anchor_right = 0.666667
+anchor_bottom = 0.888889
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TransformationPicker" parent="VBoxContainer" instance=ExtResource("1_kosl6")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ConfirmButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Confirm"
+
+[connection signal="item_selected" from="VBoxContainer/TransformationPicker" to="." method="OnSelectionChanged"]
+[connection signal="pressed" from="VBoxContainer/ConfirmButton" to="." method="OnConfirmButtonPressed"]

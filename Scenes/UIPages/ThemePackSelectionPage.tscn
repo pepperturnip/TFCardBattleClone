@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://sd7r1owj3cx4"]
+
+[ext_resource type="PackedScene" uid="uid://cttb7623vpohk" path="res://Scenes/UIWidgets/ThemePackPicker.tscn" id="1_gbkuq"]
+[ext_resource type="Script" path="res://Scripts/Godot/UIPages/ThemePackSelectionPage.cs" id="1_svt5d"]
+
+[node name="ThemePackSelectionPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_svt5d")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.277778
+anchor_top = 0.0987654
+anchor_right = 0.722222
+anchor_bottom = 0.888889
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ThemePackPicker" parent="VBoxContainer" instance=ExtResource("1_gbkuq")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
+
+[node name="ConfirmButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Confirm"
+
+[node name="NextAndBackButtons" type="Control" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="VBoxContainer/NextAndBackButtons"]
+layout_mode = 1
+offset_right = 36.0
+offset_bottom = 31.0
+text = "<=="
+
+[node name="NextButton" type="Button" parent="VBoxContainer/NextAndBackButtons"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "==>"
+
+[connection signal="SelectionChanged" from="VBoxContainer/ThemePackPicker" to="." method="OnSelectionChanged"]
+[connection signal="pressed" from="VBoxContainer/ConfirmButton" to="." method="OnConfirmButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/NextAndBackButtons/BackButton" to="." method="OnBackButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/NextAndBackButtons/NextButton" to="." method="OnConfirmButtonPressed"]

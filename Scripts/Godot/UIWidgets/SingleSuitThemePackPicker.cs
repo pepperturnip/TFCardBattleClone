@@ -15,16 +15,14 @@ namespace TFCardBattle.Godot
 
         public IReadOnlySet<CardPack> SelectedPacks => _selectedPacks;
         private HashSet<CardPack> _selectedPacks = new HashSet<CardPack>();
+        private CardPack[] _choices;
 
         private Label _countLabel => GetNode<Label>("%CountLabel");
         private Container _container => GetNode<Container>("%CheckBoxContainer");
 
-        public void SetChoices(
-            CardPack[] choices,
-            CardPack[] defaultSelections,
-            int requiredSelections
-        )
+        public void SetChoices(CardPack[] choices, int requiredSelections)
         {
+            _choices = choices;
             RequiredSelections = requiredSelections;
 
             // Create a checkbox for each choice
@@ -36,7 +34,19 @@ namespace TFCardBattle.Godot
                 _container.AddChild(checkBox);
                 checkBox.Text = cardPack.Name;
                 checkBox.Toggled += (bool pressed) => OnPackToggled(cardPack, pressed);
-                checkBox.ButtonPressed = defaultSelections.Contains(cardPack);
+            }
+        }
+
+        public void SetSelectedPacks(IEnumerable<CardPack> selectedPacks)
+        {
+            _selectedPacks = selectedPacks.ToHashSet();
+
+            for (int i = 0; i < _choices.Length; i++)
+            {
+                var cardPack = _choices[i];
+                var checkBox = _container.GetChild<CheckBox>(i);
+
+                checkBox.ButtonPressed = _selectedPacks.Contains(cardPack);
             }
         }
 

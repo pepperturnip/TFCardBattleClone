@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TFCardBattle.Core;
 using Godot;
-using Newtonsoft.Json;
 
 namespace TFCardBattle.Godot
 {
@@ -34,28 +33,21 @@ namespace TFCardBattle.Godot
             CardPack[] subChoices
         )
         {
-            InitPicker(_brainPacks, brainChoices, RequiredBrainCount);
-            InitPicker(_heartPacks, heartChoices, RequiredHeartCount);
-            InitPicker(_subPacks, subChoices, RequiredSubCount);
+            _brainPacks.SetChoices(brainChoices, RequiredBrainCount);
+            _heartPacks.SetChoices(heartChoices, RequiredHeartCount);
+            _subPacks.SetChoices(subChoices, RequiredSubCount);
+        }
+
+        public void SetSelectedPacks(IEnumerable<CardPack> selectedPacks)
+        {
+            _brainPacks.SetSelectedPacks(selectedPacks.Where(p => p.Type == CardPackType.BrainSlot));
+            _heartPacks.SetSelectedPacks(selectedPacks.Where(p => p.Type == CardPackType.HeartSlot));
+            _subPacks.SetSelectedPacks(selectedPacks.Where(p => p.Type == CardPackType.SubSlot));
         }
 
         public void OnChildSelectionChanged()
         {
             EmitSignal(SignalName.SelectionChanged);
-        }
-
-        private void InitPicker(
-            SingleSuitThemePackPicker picker,
-            CardPack[] choices,
-            int requiredCount
-        )
-        {
-            string defaultSelectionsJson = FileAccess.GetFileAsString("res://Content/DefaultLoadout.json");
-            var defaultSelections = JsonConvert.DeserializeObject<CardPackId[]>(defaultSelectionsJson)
-                .Select(id => ContentRegistry.CardPacks[id])
-                .ToArray();
-
-            picker.SetChoices(choices, defaultSelections, requiredCount);
         }
     }
 }

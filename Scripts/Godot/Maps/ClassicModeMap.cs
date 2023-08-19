@@ -1,22 +1,52 @@
 using System;
+using System.Linq;
 using Godot;
+using Newtonsoft.Json;
+using TFCardBattle.Core;
 
 namespace TFCardBattle.Godot
 {
     public partial class ClassicModeMap : Control
     {
-        private LoadoutSelectionPage _loadoutSelectionPage => GetNode<LoadoutSelectionPage>("%LoadoutSelectionPage");
+        private PlayerLoadout _playerLoadout;
+
+        private TransformationSelectionPage _tfSelectionPage => GetNode<TransformationSelectionPage>("%TransformationSelectionPage");
+        private ThemePackSelectionPage _packSelectionPage => GetNode<ThemePackSelectionPage>("%ThemePackSelectionPage");
         private BattlePage _battlePage => GetNode<BattlePage>("%BattlePage");
 
         public override void _Ready()
         {
-            ChangePage(_loadoutSelectionPage);
+            string defaultPacksJson = FileAccess.GetFileAsString("res://Content/DefaultLoadout.json");
+            var defaultPacks = JsonConvert.DeserializeObject<CardPackId[]>(defaultPacksJson)
+                .Select(id => ContentRegistry.CardPacks[id])
+                .ToArray();
+
+            _playerLoadout = new PlayerLoadout
+            {
+                ThemePacks = defaultPacks,
+                PermanentBuyPile = ContentRegistry.CardPacks["StandardPermanentBuyPile"].Cards.Values,
+                StartingDeck = PlayerStartingDeck.StartingDeck()
+            };
+
+            GoToTransformationPage();
         }
 
-        public void OnLoadoutSelected()
+        public void GoToTransformationPage()
         {
+            _tfSelectionPage.Init(_playerLoadout);
+            ChangePage(_tfSelectionPage);
+        }
+
+        public void GoToThemePackPage()
+        {
+            _packSelectionPage.Init(_playerLoadout);
+            ChangePage(_packSelectionPage);
+        }
+
+        public void StartBattle()
+        {
+            _battlePage.StartBattle(_playerLoadout);
             ChangePage(_battlePage);
-            _battlePage.StartBattle(_loadoutSelectionPage.SelectedLoadout);
         }
 
         public void OnBattleEnded(bool playerWon)
