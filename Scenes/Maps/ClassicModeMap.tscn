@@ -25,6 +25,7 @@ unique_name_in_owner = true
 process_mode = 4
 visible = false
 layout_mode = 1
+ShowBackButton = true
 
 [node name="BattlePage" parent="." instance=ExtResource("1_5ipxr")]
 unique_name_in_owner = true
@@ -32,6 +33,7 @@ process_mode = 4
 visible = false
 layout_mode = 1
 
-[connection signal="Confirmed" from="TransformationSelectionPage" to="." method="OnTransformationSelected"]
-[connection signal="Confirmed" from="ThemePackSelectionPage" to="." method="OnThemePacksSelected"]
+[connection signal="Confirmed" from="TransformationSelectionPage" to="." method="GoToThemePackPage"]
+[connection signal="BackPressed" from="ThemePackSelectionPage" to="." method="GoToTransformationPage"]
+[connection signal="Confirmed" from="ThemePackSelectionPage" to="." method="StartBattle"]
 [connection signal="BattleEnded" from="BattlePage" to="." method="OnBattleEnded"]

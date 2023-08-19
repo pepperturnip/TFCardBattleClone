@@ -7,7 +7,14 @@ namespace TFCardBattle.Godot
 {
     public partial class ThemePackSelectionPage : Control
     {
+        [Signal] public delegate void BackPressedEventHandler();
         [Signal] public delegate void ConfirmedEventHandler();
+
+        [Export] public bool ShowBackButton = false;
+
+        private Button _confirmButton => GetNode<Button>("%ConfirmButton");
+        private Button _nextButton => GetNode<Button>("%NextButton");
+        private Control _nextAndBackButtons => GetNode<Control>("%NextAndBackButtons");
 
         private readonly CardPack[] _brainChoices = ContentRegistry.CardPacks
             .Values
@@ -33,6 +40,12 @@ namespace TFCardBattle.Godot
             _picker.SetChoices(_brainChoices, _heartChoices, _subChoices);
         }
 
+        public override void _Process(double delta)
+        {
+            _confirmButton.Visible = !ShowBackButton;
+            _nextAndBackButtons.Visible = ShowBackButton;
+        }
+
         public void Init(PlayerLoadout loadout)
         {
             _loadout = loadout;
@@ -44,7 +57,8 @@ namespace TFCardBattle.Godot
             if (_loadout == null)
                 return;
 
-            GetNode<Button>("%ConfirmButton").Disabled = !_picker.SelectionsValid;
+            _confirmButton.Disabled = !_picker.SelectionsValid;
+            _nextButton.Disabled = !_picker.SelectionsValid;
 
             if (!_picker.SelectionsValid)
                 return;
@@ -55,6 +69,11 @@ namespace TFCardBattle.Godot
         public void OnConfirmButtonPressed()
         {
             EmitSignal(SignalName.Confirmed);
+        }
+
+        public void OnBackButtonPressed()
+        {
+            EmitSignal(SignalName.BackPressed);
         }
     }
 }

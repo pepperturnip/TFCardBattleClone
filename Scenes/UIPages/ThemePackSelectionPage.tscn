@@ -34,5 +34,29 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Confirm"
 
+[node name="NextAndBackButtons" type="Control" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="VBoxContainer/NextAndBackButtons"]
+layout_mode = 1
+offset_right = 36.0
+offset_bottom = 31.0
+text = "<=="
+
+[node name="NextButton" type="Button" parent="VBoxContainer/NextAndBackButtons"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "==>"
+
 [connection signal="SelectionChanged" from="VBoxContainer/ThemePackPicker" to="." method="OnSelectionChanged"]
 [connection signal="pressed" from="VBoxContainer/ConfirmButton" to="." method="OnConfirmButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/NextAndBackButtons/BackButton" to="." method="OnBackButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/NextAndBackButtons/NextButton" to="." method="OnConfirmButtonPressed"]

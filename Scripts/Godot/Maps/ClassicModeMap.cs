@@ -28,17 +28,22 @@ namespace TFCardBattle.Godot
                 StartingDeck = PlayerStartingDeck.StartingDeck()
             };
 
+            GoToTransformationPage();
+        }
+
+        public void GoToTransformationPage()
+        {
             _tfSelectionPage.Init(_playerLoadout);
             ChangePage(_tfSelectionPage);
         }
 
-        public void OnTransformationSelected()
+        public void GoToThemePackPage()
         {
             _packSelectionPage.Init(_playerLoadout);
             ChangePage(_packSelectionPage);
         }
 
-        public void OnThemePacksSelected()
+        public void StartBattle()
         {
             _battlePage.StartBattle(_playerLoadout);
             ChangePage(_battlePage);
