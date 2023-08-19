@@ -1,19 +1,19 @@
 [gd_scene load_steps=16 format=3 uid="uid://tm66spq6dn0h"]
 
-[ext_resource type="Script" path="res://Scripts/Godot/Maps/BattleUI.cs" id="1_td4vb"]
-[ext_resource type="PackedScene" uid="uid://bxkjo1whiydj3" path="res://Scenes/CardModelFactory.tscn" id="2_7qx4c"]
-[ext_resource type="PackedScene" uid="uid://banf0dyorxitu" path="res://Scenes/UIWidgets/HandDisplay.tscn" id="3_423r0"]
-[ext_resource type="PackedScene" uid="uid://bnu088vlpj25r" path="res://Scenes/UIWidgets/ResourcesDisplay.tscn" id="4_36rf5"]
-[ext_resource type="PackedScene" uid="uid://b1ox1ej1baxb1" path="res://Scenes/UIWidgets/BuyPileDisplay.tscn" id="4_bxu7y"]
-[ext_resource type="Script" path="res://Scripts/Godot/BattleAnimationPlayer.cs" id="4_uf642"]
-[ext_resource type="PackedScene" uid="uid://ddsvkjp4pe5vt" path="res://Scenes/UIWidgets/ResourceCounter.tscn" id="6_2xymt"]
-[ext_resource type="PackedScene" uid="uid://c1axyhmauo5ge" path="res://Scenes/UIWidgets/ConsumablesDisplay.tscn" id="7_8jnav"]
-[ext_resource type="Texture2D" uid="uid://cl2dulidff7vn" path="res://Icons/rainbow.webp" id="7_rlhmv"]
-[ext_resource type="PackedScene" uid="uid://pwc8q4s75ea5" path="res://Scenes/UIWidgets/ForgetAnimationPlayer.tscn" id="7_s5ny6"]
-[ext_resource type="PackedScene" uid="uid://doy8c42dvds45" path="res://Scenes/UIWidgets/TFBar.tscn" id="8_knmsm"]
-[ext_resource type="PackedScene" uid="uid://ds6bssvw7cihl" path="res://Scenes/UIWidgets/OverlayAnimationPlayer.tscn" id="11_cr5yp"]
-[ext_resource type="PackedScene" uid="uid://btppoqavkkoqo" path="res://Scenes/UIWidgets/CardListDisplay.tscn" id="11_r54pf"]
-[ext_resource type="PackedScene" uid="uid://bout6816idhcc" path="res://Scenes/UIWidgets/CardButton.tscn" id="13_yhsqw"]
+[ext_resource type="Script" path="res://Scripts/Godot/UIPages/BattleUI.cs" id="1_lo0d2"]
+[ext_resource type="PackedScene" uid="uid://bxkjo1whiydj3" path="res://Scenes/CardModelFactory.tscn" id="2_ab7q2"]
+[ext_resource type="PackedScene" uid="uid://bout6816idhcc" path="res://Scenes/UIWidgets/CardButton.tscn" id="3_5qhcb"]
+[ext_resource type="PackedScene" uid="uid://banf0dyorxitu" path="res://Scenes/UIWidgets/HandDisplay.tscn" id="4_ed8ll"]
+[ext_resource type="PackedScene" uid="uid://b1ox1ej1baxb1" path="res://Scenes/UIWidgets/BuyPileDisplay.tscn" id="5_7tt86"]
+[ext_resource type="PackedScene" uid="uid://ddsvkjp4pe5vt" path="res://Scenes/UIWidgets/ResourceCounter.tscn" id="6_ekga1"]
+[ext_resource type="Texture2D" uid="uid://cl2dulidff7vn" path="res://Icons/rainbow.webp" id="7_1g2e2"]
+[ext_resource type="PackedScene" uid="uid://bnu088vlpj25r" path="res://Scenes/UIWidgets/ResourcesDisplay.tscn" id="8_mkovk"]
+[ext_resource type="PackedScene" uid="uid://c1axyhmauo5ge" path="res://Scenes/UIWidgets/ConsumablesDisplay.tscn" id="9_b46cr"]
+[ext_resource type="Script" path="res://Scripts/Godot/BattleAnimationPlayer.cs" id="10_nftf1"]
+[ext_resource type="PackedScene" uid="uid://doy8c42dvds45" path="res://Scenes/UIWidgets/TFBar.tscn" id="11_nx1bc"]
+[ext_resource type="PackedScene" uid="uid://pwc8q4s75ea5" path="res://Scenes/UIWidgets/ForgetAnimationPlayer.tscn" id="12_lx16n"]
+[ext_resource type="PackedScene" uid="uid://btppoqavkkoqo" path="res://Scenes/UIWidgets/CardListDisplay.tscn" id="13_4su0o"]
+[ext_resource type="PackedScene" uid="uid://ds6bssvw7cihl" path="res://Scenes/UIWidgets/OverlayAnimationPlayer.tscn" id="14_porad"]
 
 [sub_resource type="GDScript" id="GDScript_iy4y7"]
 script/source = "extends Panel
@@ -30,10 +30,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_td4vb")
+script = ExtResource("1_lo0d2")
 CardModelFactory = NodePath("CardModelFactory")
 
-[node name="CardModelFactory" parent="." instance=ExtResource("2_7qx4c")]
+[node name="CardModelFactory" parent="." instance=ExtResource("2_ab7q2")]
 
 [node name="InPlayPreview" type="Control" parent="."]
 layout_mode = 1
@@ -49,7 +49,7 @@ offset_bottom = 84.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="ShowInPlayButton" parent="InPlayPreview" instance=ExtResource("13_yhsqw")]
+[node name="ShowInPlayButton" parent="InPlayPreview" instance=ExtResource("3_5qhcb")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -74,7 +74,7 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="HandDisplay" parent="HandHolder" node_paths=PackedStringArray("ModelFactory", "CardSpawnPoint") instance=ExtResource("3_423r0")]
+[node name="HandDisplay" parent="HandHolder" node_paths=PackedStringArray("ModelFactory", "CardSpawnPoint") instance=ExtResource("4_ed8ll")]
 unique_name_in_owner = true
 layout_mode = 1
 ModelFactory = NodePath("../../CardModelFactory")
@@ -91,7 +91,7 @@ offset_right = -128.0
 offset_bottom = 224.0
 grow_horizontal = 2
 
-[node name="BuyPileDisplay" parent="BuyPileHolder" node_paths=PackedStringArray("ModelFactory") instance=ExtResource("4_bxu7y")]
+[node name="BuyPileDisplay" parent="BuyPileHolder" node_paths=PackedStringArray("ModelFactory") instance=ExtResource("5_7tt86")]
 unique_name_in_owner = true
 layout_mode = 1
 ModelFactory = NodePath("../../CardModelFactory")
@@ -112,16 +112,16 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="BossDamageCounter" parent="Resources" instance=ExtResource("6_2xymt")]
+[node name="BossDamageCounter" parent="Resources" instance=ExtResource("6_ekga1")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("7_rlhmv")
+texture = ExtResource("7_1g2e2")
 
-[node name="ResourcesDisplay" parent="Resources" instance=ExtResource("4_36rf5")]
+[node name="ResourcesDisplay" parent="Resources" instance=ExtResource("8_mkovk")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ConsumablesDisplay" parent="Resources" instance=ExtResource("7_8jnav")]
+[node name="ConsumablesDisplay" parent="Resources" instance=ExtResource("9_b46cr")]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -163,7 +163,7 @@ text = "Discard Pile
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="ShowDiscardButton" parent="DiscardPilePreview" instance=ExtResource("13_yhsqw")]
+[node name="ShowDiscardButton" parent="DiscardPilePreview" instance=ExtResource("3_5qhcb")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -196,7 +196,7 @@ text = "Deck"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="ShowDeckButton" parent="Deck" instance=ExtResource("13_yhsqw")]
+[node name="ShowDeckButton" parent="Deck" instance=ExtResource("3_5qhcb")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -209,7 +209,7 @@ grow_vertical = 2
 
 [node name="BattleAnimationPlayer" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("4_uf642")
+script = ExtResource("10_nftf1")
 
 [node name="ForgottenCardPos" type="Control" parent="."]
 unique_name_in_owner = true
@@ -246,7 +246,7 @@ grow_horizontal = 2
 text = "Player"
 horizontal_alignment = 1
 
-[node name="PlayerTFBar" parent="PlayerSideBar" instance=ExtResource("8_knmsm")]
+[node name="PlayerTFBar" parent="PlayerSideBar" instance=ExtResource("11_nx1bc")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -286,7 +286,7 @@ layout_mode = 2
 text = "0 - 0"
 horizontal_alignment = 1
 
-[node name="EnemyTFBar" parent="EnemySideBar" instance=ExtResource("8_knmsm")]
+[node name="EnemyTFBar" parent="EnemySideBar" instance=ExtResource("11_nx1bc")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -320,7 +320,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ForgetAnimationPlayer" parent="ForgetAnimationPlayerHolder" instance=ExtResource("7_s5ny6")]
+[node name="ForgetAnimationPlayer" parent="ForgetAnimationPlayerHolder" instance=ExtResource("12_lx16n")]
 unique_name_in_owner = true
 
 [node name="DiscardPilePopup" type="Panel" parent="."]
@@ -338,7 +338,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = SubResource("GDScript_iy4y7")
 
-[node name="DiscardPileDisplay" parent="DiscardPilePopup" node_paths=PackedStringArray("ModelFactory") instance=ExtResource("11_r54pf")]
+[node name="DiscardPileDisplay" parent="DiscardPilePopup" node_paths=PackedStringArray("ModelFactory") instance=ExtResource("13_4su0o")]
 unique_name_in_owner = true
 layout_mode = 1
 ModelFactory = NodePath("../../CardModelFactory")
@@ -358,7 +358,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = SubResource("GDScript_iy4y7")
 
-[node name="DeckDisplay" parent="DeckPopup" node_paths=PackedStringArray("ModelFactory") instance=ExtResource("11_r54pf")]
+[node name="DeckDisplay" parent="DeckPopup" node_paths=PackedStringArray("ModelFactory") instance=ExtResource("13_4su0o")]
 unique_name_in_owner = true
 layout_mode = 1
 ModelFactory = NodePath("../../CardModelFactory")
@@ -378,12 +378,12 @@ grow_vertical = 2
 mouse_filter = 1
 script = SubResource("GDScript_iy4y7")
 
-[node name="InPlayCardsDisplay" parent="InPlayCardsPopup" node_paths=PackedStringArray("ModelFactory") instance=ExtResource("11_r54pf")]
+[node name="InPlayCardsDisplay" parent="InPlayCardsPopup" node_paths=PackedStringArray("ModelFactory") instance=ExtResource("13_4su0o")]
 unique_name_in_owner = true
 layout_mode = 1
 ModelFactory = NodePath("../../CardModelFactory")
 
-[node name="OverlayAnimationPlayer" parent="." instance=ExtResource("11_cr5yp")]
+[node name="OverlayAnimationPlayer" parent="." instance=ExtResource("14_porad")]
 unique_name_in_owner = true
 layout_mode = 1
 
