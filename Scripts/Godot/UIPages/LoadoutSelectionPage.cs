@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace TFCardBattle.Godot
 {
-    public partial class PlayerLoadoutSelection : Control
+    public partial class LoadoutSelectionPage : Control
     {
         [Signal] public delegate void LoadoutSelectedEventHandler();
 
