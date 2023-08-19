@@ -90,6 +90,10 @@ grow_vertical = 2
 layout_mode = 2
 text = "Classic Mode"
 
+[node name="EndlessModeButton" type="Button" parent="ModeButtons"]
+layout_mode = 2
+text = "Endless Mode"
+
 [node name="FadeCurtain" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -108,3 +112,4 @@ libraries = {
 }
 
 [connection signal="pressed" from="ModeButtons/ClassicModeButton" to="." method="OnClassicModeClicked"]
+[connection signal="pressed" from="ModeButtons/EndlessModeButton" to="." method="OnEndlessModeClicked"]

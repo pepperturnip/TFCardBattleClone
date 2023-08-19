@@ -10,6 +10,7 @@ namespace TFCardBattle.Godot
 
         [Export] public PackedScene TitleScreen;
         [Export] public PackedScene ClassicMode;
+        [Export] public PackedScene EndlessMode;
 
         public override void _Ready()
         {
@@ -24,6 +25,11 @@ namespace TFCardBattle.Godot
         public void GoToClassicMode()
         {
             GetTree().ChangeSceneToPacked(ClassicMode);
+        }
+
+        public void GoToEndlessMode()
+        {
+            GetTree().ChangeSceneToPacked(EndlessMode);
         }
     }
 }
