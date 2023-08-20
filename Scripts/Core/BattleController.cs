@@ -284,12 +284,27 @@ namespace TFCardBattle.Core
 
         public int MinEnemyDamageOnTurn(int turnZeroBased)
         {
-            return ((turnZeroBased - 1) / 12) + 2;
+            return EvaluateLine(
+                turnZeroBased,
+                State.EnemyLoadout.MinDamageOffset,
+                State.EnemyLoadout.MinDamageSlopeRise,
+                State.EnemyLoadout.MinDamageSlopeRun
+            );
         }
 
         public int MaxEnemyDamageOnTurn(int turnZeroBased)
         {
-            return ((turnZeroBased - 1)) / 6 + 3;
+            return EvaluateLine(
+                turnZeroBased,
+                State.EnemyLoadout.MaxDamageOffset,
+                State.EnemyLoadout.MaxDamageSlopeRise,
+                State.EnemyLoadout.MaxDamageSlopeRun
+            );
+        }
+
+        private int EvaluateLine(int x, int offset, int rise, int run)
+        {
+            return offset + ((x * rise) / run);
         }
 
         public int TotalDamageToBoss()

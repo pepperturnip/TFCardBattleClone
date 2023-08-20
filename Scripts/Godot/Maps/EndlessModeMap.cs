@@ -50,7 +50,15 @@ namespace TFCardBattle.Godot
 
             var enemyLoadout = new EnemyLoadout
             {
-                MaxTF = 100 + (_winStreak * 10)
+                MaxTF = 100 + (_winStreak * 10),
+
+                MinDamageOffset = 2,
+                MinDamageSlopeRise = 1 + _winStreak,
+                MinDamageSlopeRun = 12,
+
+                MaxDamageOffset = 3,
+                MaxDamageSlopeRise = 1 + _winStreak,
+                MaxDamageSlopeRun = 6
             };
 
             _battlePage.StartBattle(_playerLoadout, enemyLoadout);
