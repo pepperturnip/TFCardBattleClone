@@ -32,6 +32,7 @@ namespace TFCardBattle.Godot
                 : Array.IndexOf(_choices, _loadout.Transformation);
 
             _picker.Select(selectionIndex);
+            OnSelectionChanged(selectionIndex);
         }
 
         public void OnSelectionChanged(int index)
@@ -40,6 +41,7 @@ namespace TFCardBattle.Godot
                 return;
 
             _loadout.Transformation = _choices[index];
+            GD.Print("Selection changed");
         }
 
         public void OnConfirmButtonPressed()
