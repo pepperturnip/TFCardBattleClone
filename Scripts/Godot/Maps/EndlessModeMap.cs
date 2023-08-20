@@ -9,6 +9,7 @@ namespace TFCardBattle.Godot
     public partial class EndlessModeMap : Control
     {
         private PlayerLoadout _playerLoadout;
+        private int _winStreak = 0;
 
         private TransformationSelectionPage _tfSelectionPage => GetNode<TransformationSelectionPage>("%TransformationSelectionPage");
         private ThemePackSelectionPage _packSelectionPage => GetNode<ThemePackSelectionPage>("%ThemePackSelectionPage");
@@ -59,6 +60,7 @@ namespace TFCardBattle.Godot
                 return;
             }
 
+            _winStreak++;
             GoToThemePackPage();
         }
 
