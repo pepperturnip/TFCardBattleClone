@@ -35,6 +35,8 @@ namespace TFCardBattle.Godot
 
         public async void StartBattle(PlayerLoadout loadout)
         {
+            GetNode<OverlayAnimationPlayer>("%OverlayAnimationPlayer").Reset();
+
             Battle = new BattleController(
                 loadout: loadout,
                 rng: new Random((int)DateTimeOffset.Now.ToUnixTimeMilliseconds()),
