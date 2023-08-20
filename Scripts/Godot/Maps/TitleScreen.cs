@@ -24,6 +24,11 @@ namespace TFCardBattle.Godot
             Maps.Instance.GoToClassicMode();
         }
 
+        public void OnEndlessModeClicked()
+        {
+            Maps.Instance.GoToEndlessMode();
+        }
+
         private static void LoadContentRegistry()
         {
             foreach (string packId in IdsInFolder("res://Content/CardPacks"))

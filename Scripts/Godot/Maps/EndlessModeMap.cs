@@ -6,9 +6,10 @@ using TFCardBattle.Core;
 
 namespace TFCardBattle.Godot
 {
-    public partial class ClassicModeMap : Control
+    public partial class EndlessModeMap : Control
     {
         private PlayerLoadout _playerLoadout;
+        private int _winStreak = 0;
 
         private TransformationSelectionPage _tfSelectionPage => GetNode<TransformationSelectionPage>("%TransformationSelectionPage");
         private ThemePackSelectionPage _packSelectionPage => GetNode<ThemePackSelectionPage>("%ThemePackSelectionPage");
@@ -45,13 +46,35 @@ namespace TFCardBattle.Godot
 
         public void StartBattle()
         {
-            _battlePage.StartBattle(_playerLoadout, new EnemyLoadout());
+            _packSelectionPage.ShowBackButton = false;
+
+            var enemyLoadout = new EnemyLoadout
+            {
+                MaxTF = 100 + (_winStreak * 10),
+
+                MinDamageOffset = 2,
+                MinDamageSlopeRise = 1 + _winStreak,
+                MinDamageSlopeRun = 12,
+
+                MaxDamageOffset = 3,
+                MaxDamageSlopeRise = 1 + _winStreak,
+                MaxDamageSlopeRun = 6
+            };
+
+            _battlePage.StartBattle(_playerLoadout, enemyLoadout);
             ChangePage(_battlePage);
         }
 
         public void OnBattleEnded(bool playerWon)
         {
-            Maps.Instance.GoToTitleScreen();
+            if (!playerWon)
+            {
+                Maps.Instance.GoToTitleScreen();
+                return;
+            }
+
+            _winStreak++;
+            GoToThemePackPage();
         }
 
         private void ChangePage(Control page)
