@@ -48,7 +48,12 @@ namespace TFCardBattle.Godot
         {
             _packSelectionPage.ShowBackButton = false;
 
-            _battlePage.StartBattle(_playerLoadout);
+            var enemyLoadout = new EnemyLoadout
+            {
+                MaxTF = 100 + (_winStreak * 10)
+            };
+
+            _battlePage.StartBattle(_playerLoadout, enemyLoadout);
             ChangePage(_battlePage);
         }
 

@@ -25,14 +25,13 @@ namespace TFCardBattle.Core
         public bool BattleEnded {get; private set;} = false;
 
         public BattleController(
-            PlayerLoadout loadout,
+            PlayerLoadout playerLoadout,
+            EnemyLoadout enemyLoadout,
             Random rng,
             IBattleAnimationPlayer animationPlayer
         )
         {
-            State = new BattleState(
-                loadout: loadout
-            );
+            State = new BattleState(playerLoadout, enemyLoadout);
 
             Rng = rng;
             AnimationPlayer = animationPlayer;

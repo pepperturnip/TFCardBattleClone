@@ -45,7 +45,7 @@ namespace TFCardBattle.Godot
 
         public void StartBattle()
         {
-            _battlePage.StartBattle(_playerLoadout);
+            _battlePage.StartBattle(_playerLoadout, new EnemyLoadout());
             ChangePage(_battlePage);
         }
 

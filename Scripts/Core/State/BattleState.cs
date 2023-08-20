@@ -13,12 +13,13 @@ namespace TFCardBattle.Core
         public List<ILingeringEffect> LingeringEffects = new List<ILingeringEffect>();
 
         public PlayerLoadout PlayerLoadout;
+        public EnemyLoadout EnemyLoadout;
 
         public int PlayerMaxTF = 100;
         public int PlayerTF = 0;
 
         public int EnemyTF = 0;
-        public int EnemyMaxTF = 100;
+        public int EnemyMaxTF => EnemyLoadout.MaxTF;
 
         public bool IsBossRound;
 
@@ -65,11 +66,14 @@ namespace TFCardBattle.Core
         public int TurnsElapsed = 0;
 
         public BattleState(
-            PlayerLoadout loadout
+            PlayerLoadout playerLoadout,
+            EnemyLoadout enemyLoadout
         )
         {
-            PlayerLoadout = loadout;
-            Deck.AddRange(loadout.StartingDeck);
+            PlayerLoadout = playerLoadout;
+            EnemyLoadout = enemyLoadout;
+
+            Deck.AddRange(playerLoadout.StartingDeck);
         }
 
         public int GetResource(ResourceType resource)
