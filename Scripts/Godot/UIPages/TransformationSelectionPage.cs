@@ -33,6 +33,14 @@ namespace TFCardBattle.Godot
 
             _picker.Select(selectionIndex);
             OnSelectionChanged(selectionIndex);
+
+            // HACK: Add all the debug relics to the loadout
+            // TODO: Move this to the relic selection page
+            foreach (var relic in ContentRegistry.Relics.Values)
+            {
+                if (relic.DebugAlwaysAdd)
+                    loadout.Relics.Add(relic);
+            }
         }
 
         public void OnSelectionChanged(int index)
