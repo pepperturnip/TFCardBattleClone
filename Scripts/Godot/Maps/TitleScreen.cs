@@ -54,6 +54,12 @@ namespace TFCardBattle.Godot
                 ContentRegistry.ImportCustomResources(FileAccess.GetFileAsString(path));
             }
 
+            foreach (string relicId in IdsInFolder("res://Content/Relics"))
+            {
+                string path = $"res://Content/Relics/{relicId}.json";
+                ContentRegistry.ImportRelic(relicId, FileAccess.GetFileAsString(path));
+            }
+
             IEnumerable<string> IdsInFolder(string folder)
             {
                 return DirAccess
