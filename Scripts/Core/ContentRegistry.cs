@@ -12,6 +12,7 @@ namespace TFCardBattle.Core
         public static IReadOnlyDictionary<ConsumableId, Consumable> Consumables => _consumables;
         public static IReadOnlyDictionary<TransformationId, Transformation> Transformations => _transformations;
         public static IReadOnlyDictionary<CustomResourceId, CustomResource> CustomResources => _customResources;
+        public static IReadOnlyDictionary<RelicId, Relic> Relics => _relics;
 
 
         private static Dictionary<CardId, Card> _cards = new Dictionary<CardId, Card>();
@@ -19,6 +20,7 @@ namespace TFCardBattle.Core
         private static Dictionary<ConsumableId, Consumable> _consumables = new Dictionary<ConsumableId, Consumable>();
         private static Dictionary<TransformationId, Transformation> _transformations = new Dictionary<TransformationId, Transformation>();
         private static Dictionary<CustomResourceId, CustomResource> _customResources = new Dictionary<CustomResourceId, CustomResource>();
+        private static Dictionary<RelicId, Relic> _relics = new Dictionary<RelicId, Relic>();
 
         public static IEnumerable<Card> CardsInPack(CardPackId id)
         {
@@ -69,6 +71,12 @@ namespace TFCardBattle.Core
             {
                 _customResources[kvp.Key] = kvp.Value;
             }
+        }
+
+        public static void ImportRelic(RelicId id, string json)
+        {
+            var relic = JsonConvert.DeserializeObject<Relic>(json);
+            _relics[id] = relic;
         }
     }
 }
