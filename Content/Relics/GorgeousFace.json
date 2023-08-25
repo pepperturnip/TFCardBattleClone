@@ -1,0 +1,10 @@
+{
+    "Name": "Gorgeous Face",
+    "Description": "When you gain heart, gain one extra.",
+    "TFCost": 20,
+    "Effect":
+    {
+        "Class": "IncreaseResourceGainForBattle",
+        "Resource": "Heart"
+    }
+}
