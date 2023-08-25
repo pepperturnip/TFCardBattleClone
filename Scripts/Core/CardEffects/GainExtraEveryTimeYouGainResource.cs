@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using TFCardBattle.Core.LingeringEffects;
 
 namespace TFCardBattle.Core.CardEffects
 {

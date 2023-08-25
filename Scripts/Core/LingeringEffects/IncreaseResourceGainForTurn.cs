@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace TFCardBattle.Core
+namespace TFCardBattle.Core.LingeringEffects
 {
     public class IncreaseResourceGainForTurn : ILingeringEffect
     {
