@@ -23,6 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ChooseNoneButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 text = "Choose none"
 
