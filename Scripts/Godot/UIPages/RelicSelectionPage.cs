@@ -42,9 +42,15 @@ namespace TFCardBattle.Godot
                 var relic = _choices[i];
 
                 var button = new Button();
-                button.Text = relic.Name;
-                button.TooltipText = $"+{relic.TFCost} TF.  {relic.Description}";
                 button.Pressed += () => OnRelicChosen(relic);
+                button.Text = $"{relic.Name}\n+{relic.TFCost} TF. {relic.Description}";
+                button.CustomMinimumSize = new Vector2(0, 96);
+
+                if (ResourceLoader.Exists(relic.IconPath))
+                {
+                    button.Icon = ResourceLoader.Load<Texture2D>(relic.IconPath);
+                    button.ExpandIcon = true;
+                }
 
                 _choicesContainer.AddChild(button);
             }
