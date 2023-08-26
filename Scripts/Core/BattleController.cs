@@ -60,7 +60,7 @@ namespace TFCardBattle.Core
                 await action(effect);
         }
 
-        public async Task DrawCard()
+        public async Task DrawCard(bool incrementDrawCount = true)
         {
             // Reshuffle discard pile into the deck if the deck is empty
             if (State.Deck.Count == 0)
@@ -96,7 +96,9 @@ namespace TFCardBattle.Core
             State.Deck.Remove(card);
             State.Hand.Add(card);
 
-            State.DrawCount++;
+            if (incrementDrawCount)
+                State.DrawCount++;
+
             await AnimationPlayer.DrawCard(card);
             await TriggerEffects(e => e.OnCardDrawn(this, card));
         }
@@ -223,11 +225,11 @@ namespace TFCardBattle.Core
             await DebugCheatCardsIntoHand();
 
             // Draw a fresh hand of cards
+            State.DrawCount = 0;
             for (int i = 0; i < StartingHandSize; i++)
             {
-                await DrawCard();
+                await DrawCard(incrementDrawCount: false);
             }
-            State.DrawCount = 0;
         }
 
         public Task EndTurn()
