@@ -10,6 +10,8 @@ namespace TFCardBattle.Godot
     {
         [Signal] public delegate void ConfirmedEventHandler();
 
+        [Export] public PackedScene RelicButtonPrefab;
+
         private PlayerLoadout _loadout;
 
         private Relic[] _choices;
@@ -41,10 +43,9 @@ namespace TFCardBattle.Godot
             {
                 var relic = _choices[i];
 
-                var button = new Button();
+                var button = RelicButtonPrefab.Instantiate<RelicCardButton>();
                 button.Pressed += () => OnRelicChosen(relic);
-                button.Text = $"{relic.Name}\n+{relic.TFCost} TF. {relic.Description}";
-                button.CustomMinimumSize = new Vector2(0, 96);
+                button.SetRelic(relic);
 
                 if (ResourceLoader.Exists(relic.IconPath))
                 {
