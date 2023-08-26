@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/RelicCardButton.cs" id="2_m1na3"]
 
 [node name="RelicCardButton" instance=ExtResource("1_1l85g")]
+custom_minimum_size = Vector2(150, 210)
 offset_right = 150.0
 offset_bottom = 210.0
 script = ExtResource("2_m1na3")
