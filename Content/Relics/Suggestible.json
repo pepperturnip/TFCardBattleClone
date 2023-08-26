@@ -1,0 +1,12 @@
+{
+    "Name": "Suggestible",
+    "IconPath": "res://Media/Relics/relic4.jpg",
+    "Description": "Deal double TF damage",
+    "TFCost": 40,
+    "Effect":
+    {
+        "Class": "MultiplyResourceGainForBattle",
+        "Resource": "Damage",
+        "Multiplier": 2
+    }
+}

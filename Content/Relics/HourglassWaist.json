@@ -1,0 +1,6 @@
+{
+    "Name": "Hourglass Waist",
+    "IconPath": "res://Media/Relics/relic5.jpg",
+    "Description": "Mysterious Pills deal 2 TF instead of 1",
+    "Effect": { "Class": "HourglassWaist" }
+}

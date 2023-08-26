@@ -60,7 +60,7 @@ namespace TFCardBattle.Core
                 await action(effect);
         }
 
-        public async Task DrawCard()
+        public async Task DrawCard(bool incrementDrawCount = true)
         {
             // Reshuffle discard pile into the deck if the deck is empty
             if (State.Deck.Count == 0)
@@ -95,9 +95,12 @@ namespace TFCardBattle.Core
             var card = Rng.PickFrom(State.Deck);
             State.Deck.Remove(card);
             State.Hand.Add(card);
-            State.DrawCount++;
+
+            if (incrementDrawCount)
+                State.DrawCount++;
 
             await AnimationPlayer.DrawCard(card);
+            await TriggerEffects(e => e.OnCardDrawn(this, card));
         }
 
         public async Task PlayCard(int handIndex)
@@ -222,11 +225,11 @@ namespace TFCardBattle.Core
             await DebugCheatCardsIntoHand();
 
             // Draw a fresh hand of cards
+            State.DrawCount = 0;
             for (int i = 0; i < StartingHandSize; i++)
             {
-                await DrawCard();
+                await DrawCard(incrementDrawCount: false);
             }
-            State.DrawCount = 0;
         }
 
         public Task EndTurn()
@@ -349,8 +352,11 @@ namespace TFCardBattle.Core
             await DiscardHand();
 
             // Allow the player to attack
+            int playerTfDamage = State.Damage;
+            await TriggerEffects(e => e.OnEnemyAboutToTakeDamage(this, ref playerTfDamage));
+
             State.EnemyTF += State.Damage;
-            await AnimationPlayer.DamageEnemy(State.Damage);
+            await AnimationPlayer.DamageEnemy(playerTfDamage);
 
             // Move to the boss round if the enemy is defeated
             if (State.EnemyTF >= State.EnemyMaxTF)
@@ -388,6 +394,8 @@ namespace TFCardBattle.Core
             // Allow the player to attack.
 
             int totalDamage = TotalDamageToBoss();
+            await TriggerEffects(e => e.OnEnemyAboutToTakeDamage(this, ref totalDamage));
+
             State.EnemyTF += totalDamage;
             await AnimationPlayer.DamageEnemy(totalDamage);
 
