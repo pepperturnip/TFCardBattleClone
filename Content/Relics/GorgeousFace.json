@@ -1,5 +1,6 @@
 {
     "Name": "Gorgeous Face",
+    "IconPath": "res://Media/Relics/relic1.jpg",
     "Description": "When you gain heart, gain one extra.",
     "TFCost": 20,
     "Effect":
