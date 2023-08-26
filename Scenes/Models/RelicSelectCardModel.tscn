@@ -87,6 +87,7 @@ text = "Description"
 label_settings = SubResource("LabelSettings_l5c6g")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="TF" type="TextureRect" parent="Card"]
 layout_mode = 0
