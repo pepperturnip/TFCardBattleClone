@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4wfpaebn5t1t"]
+
+[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/HoverGrowButton.cs" id="1_kn7xg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m5fev"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u7jsm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3mkdl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m6fe3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5elpc"]
+
+[node name="HoverGrowButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_m5fev")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_u7jsm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3mkdl")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_m6fe3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5elpc")
+flat = true
+script = ExtResource("1_kn7xg")
