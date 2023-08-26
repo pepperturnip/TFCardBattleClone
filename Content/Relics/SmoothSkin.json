@@ -1,0 +1,11 @@
+{
+    "Name": "Smooth Skin",
+    "IconPath": "res://Media/Relics/relic3.jpg",
+    "Description": "When you gain shield, gain one extra.",
+    "TFCost": 20,
+    "Effect":
+    {
+        "Class": "IncreaseResourceGainForBattle",
+        "Resource": "Shield"
+    }
+}
