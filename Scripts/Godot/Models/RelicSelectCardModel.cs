@@ -6,10 +6,8 @@ namespace TFCardBattle.Godot
 {
     public partial class RelicSelectCardModel : Control
     {
-        public void SetRelic(RelicId relicId)
+        public void SetRelic(Relic relic)
         {
-            var relic = ContentRegistry.Relics[relicId];
-
             GetNode<Label>("%NameLabel").Text = relic.Name;
             GetNode<Label>("%DescLabel").Text = relic.Description;
             GetNode<Label>("%CostLabel").Text = relic.TFCost.ToString();

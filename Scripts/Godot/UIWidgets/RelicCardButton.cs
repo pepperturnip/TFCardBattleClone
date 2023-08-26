@@ -6,10 +6,10 @@ namespace TFCardBattle.Godot
 {
     public partial class RelicCardButton : HoverGrowButton
     {
-        public void SetRelic(RelicId relicId)
+        public void SetRelic(Relic relic)
         {
             var model = GetChild<RelicSelectCardModel>(0);
-            model.SetRelic(relicId);
+            model.SetRelic(relic);
         }
     }
 }
