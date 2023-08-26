@@ -1,0 +1,7 @@
+{
+    "Name": "Blonde Hair",
+    "IconPath": "res://Media/Relics/relic2.jpg",
+    "Description": "If you draw 3 extra cards in a turn, gain 3 TF",
+    "TFCost": 10,
+    "Effect": { "Class": "BlondeHair" }
+}
