@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://chunr772o07as"]
+[gd_scene load_steps=6 format=3 uid="uid://chunr772o07as"]
 
 [ext_resource type="Script" path="res://Scripts/Godot/Maps/ClassicModeMap.cs" id="1_1xpoh"]
 [ext_resource type="PackedScene" uid="uid://tm66spq6dn0h" path="res://Scenes/UIPages/BattlePage.tscn" id="1_5ipxr"]
 [ext_resource type="PackedScene" uid="uid://bkiem38iqr7yu" path="res://Scenes/UIPages/TransformationSelectionPage.tscn" id="2_mwtoh"]
 [ext_resource type="PackedScene" uid="uid://sd7r1owj3cx4" path="res://Scenes/UIPages/ThemePackSelectionPage.tscn" id="3_8c3nf"]
+[ext_resource type="PackedScene" uid="uid://cwvs36cl7w4xl" path="res://Scenes/UIPages/RelicSelectionPage.tscn" id="3_osu1d"]
 
 [node name="ClassicModeMap" type="Control"]
 layout_mode = 3
@@ -15,6 +16,12 @@ grow_vertical = 2
 script = ExtResource("1_1xpoh")
 
 [node name="TransformationSelectionPage" parent="." instance=ExtResource("2_mwtoh")]
+unique_name_in_owner = true
+process_mode = 4
+visible = false
+layout_mode = 1
+
+[node name="RelicSelectionPage" parent="." instance=ExtResource("3_osu1d")]
 unique_name_in_owner = true
 process_mode = 4
 visible = false
@@ -33,7 +40,8 @@ process_mode = 4
 visible = false
 layout_mode = 1
 
-[connection signal="Confirmed" from="TransformationSelectionPage" to="." method="GoToThemePackPage"]
-[connection signal="BackPressed" from="ThemePackSelectionPage" to="." method="GoToTransformationPage"]
+[connection signal="Confirmed" from="TransformationSelectionPage" to="." method="GoToRelicPage"]
+[connection signal="Confirmed" from="RelicSelectionPage" to="." method="GoToThemePackPage"]
+[connection signal="BackPressed" from="ThemePackSelectionPage" to="." method="GoToRelicPage"]
 [connection signal="Confirmed" from="ThemePackSelectionPage" to="." method="StartBattle"]
 [connection signal="BattleEnded" from="BattlePage" to="." method="OnBattleEnded"]
