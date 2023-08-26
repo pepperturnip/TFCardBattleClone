@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=3 uid="uid://dhovpho7l4n0a"]
+
+[ext_resource type="Script" path="res://Scripts/Godot/Models/RelicSelectCardModel.cs" id="1_fteg0"]
+[ext_resource type="Texture2D" uid="uid://cwmhbo2025d7o" path="res://Textures/CardTemplate.png" id="1_wsdss"]
+[ext_resource type="Texture2D" uid="uid://3tm57g1sq7tb" path="res://Icons/tf.webp" id="2_hgfnf"]
+[ext_resource type="FontVariation" uid="uid://dj6psid2pnutk" path="res://Scenes/Fonts/CardFont.tres" id="3_57pyu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v4u3e"]
+texture = ExtResource("1_wsdss")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mucy3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aw32i"]
+width = 400
+height = 400
+noise = SubResource("FastNoiseLite_mucy3")
+
+[sub_resource type="LabelSettings" id="LabelSettings_7t7tc"]
+line_spacing = 0.0
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l5c6g"]
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kfa3q"]
+font = ExtResource("3_57pyu")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="RelicSelectCardModel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 150.0
+offset_bottom = 210.0
+script = ExtResource("1_fteg0")
+
+[node name="Card" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 96)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_v4u3e")
+
+[node name="Art" type="TextureRect" parent="Card"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 13.0
+offset_top = 24.0
+offset_right = 137.0
+offset_bottom = 128.0
+texture = SubResource("NoiseTexture2D_aw32i")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="NameLabel" type="Label" parent="Card"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.194
+anchor_top = 0.029
+anchor_right = 0.92
+anchor_bottom = 0.12
+offset_left = 0.0639992
+offset_top = -0.0320001
+offset_right = -0.479996
+offset_bottom = 0.039999
+text = "Relic Name"
+label_settings = SubResource("LabelSettings_7t7tc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescLabel" type="Label" parent="Card"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.086
+anchor_top = 0.624
+anchor_right = 0.915
+anchor_bottom = 0.895
+text = "Description"
+label_settings = SubResource("LabelSettings_l5c6g")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TF" type="TextureRect" parent="Card"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("2_hgfnf")
+expand_mode = 1
+
+[node name="CostLabel" type="Label" parent="Card"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+text = "30"
+label_settings = SubResource("LabelSettings_kfa3q")
+horizontal_alignment = 1
+vertical_alignment = 1

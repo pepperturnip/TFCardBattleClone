@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://ekpfwjd30pg3"]
+
+[ext_resource type="PackedScene" uid="uid://c4wfpaebn5t1t" path="res://Scenes/UIWidgets/HoverGrowButton.tscn" id="1_1l85g"]
+[ext_resource type="PackedScene" uid="uid://dhovpho7l4n0a" path="res://Scenes/Models/RelicSelectCardModel.tscn" id="2_4upn6"]
+[ext_resource type="Script" path="res://Scripts/Godot/UIWidgets/RelicCardButton.cs" id="2_m1na3"]
+
+[node name="RelicCardButton" instance=ExtResource("1_1l85g")]
+custom_minimum_size = Vector2(150, 210)
+offset_right = 150.0
+offset_bottom = 210.0
+script = ExtResource("2_m1na3")
+
+[node name="RelicSelectCardModel" parent="." index="0" instance=ExtResource("2_4upn6")]
