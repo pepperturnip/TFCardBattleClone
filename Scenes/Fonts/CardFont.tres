@@ -1,0 +1,13 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://dj6psid2pnutk"]
+
+[sub_resource type="SystemFont" id="SystemFont_s5t23"]
+font_names = PackedStringArray("Lucida Bright")
+oversampling = 2.0
+
+[resource]
+base_font = SubResource("SystemFont_s5t23")
+variation_opentype = {
+2003265652: 400
+}
+variation_embolden = 1.0
+variation_transform = Transform2D(1, 0, 0, 1, 1, 0)
