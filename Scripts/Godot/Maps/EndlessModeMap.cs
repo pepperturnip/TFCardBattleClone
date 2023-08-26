@@ -12,6 +12,7 @@ namespace TFCardBattle.Godot
         private int _winStreak = 0;
 
         private TransformationSelectionPage _tfSelectionPage => GetNode<TransformationSelectionPage>("%TransformationSelectionPage");
+        private RelicSelectionPage _relicSelectionPage => GetNode<RelicSelectionPage>("%RelicSelectionPage");
         private ThemePackSelectionPage _packSelectionPage => GetNode<ThemePackSelectionPage>("%ThemePackSelectionPage");
         private BattlePage _battlePage => GetNode<BattlePage>("%BattlePage");
 
@@ -36,6 +37,12 @@ namespace TFCardBattle.Godot
         {
             _tfSelectionPage.Init(_playerLoadout);
             ChangePage(_tfSelectionPage);
+        }
+
+        public void GoToRelicPage()
+        {
+            _relicSelectionPage.Init(_playerLoadout);
+            ChangePage(_relicSelectionPage);
         }
 
         public void GoToThemePackPage()
@@ -74,7 +81,7 @@ namespace TFCardBattle.Godot
             }
 
             _winStreak++;
-            GoToThemePackPage();
+            GoToRelicPage();
         }
 
         private void ChangePage(Control page)
