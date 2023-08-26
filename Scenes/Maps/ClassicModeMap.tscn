@@ -32,7 +32,6 @@ unique_name_in_owner = true
 process_mode = 4
 visible = false
 layout_mode = 1
-ShowBackButton = true
 
 [node name="BattlePage" parent="." instance=ExtResource("1_5ipxr")]
 unique_name_in_owner = true
