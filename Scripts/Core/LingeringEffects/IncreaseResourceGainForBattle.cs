@@ -3,24 +3,12 @@ using System.Threading.Tasks;
 
 namespace TFCardBattle.Core.LingeringEffects
 {
-    public class IncreaseResourceGainForTurn : ILingeringEffect
+    public class IncreaseResourceGainForBattle : ILingeringEffect
     {
+        public ResourceType Resource;
+        public int Bonus = 1;
+
         private int? _before;
-
-        private readonly ResourceType _resource;
-        private readonly int _bonus;
-
-        public IncreaseResourceGainForTurn(ResourceType resource, int bonus)
-        {
-            _resource = resource;
-            _bonus = bonus;
-        }
-
-        Task ILingeringEffect.OnTurnEnd(BattleController battle)
-        {
-            battle.RemoveEffect(this);
-            return Task.CompletedTask;
-        }
 
         Task ILingeringEffect.OnCardAboutToActivate(BattleController battle, Card card)
         {
@@ -48,7 +36,7 @@ namespace TFCardBattle.Core.LingeringEffects
 
         private void SetBefore(BattleController battle)
         {
-            _before = battle.State.GetResource(_resource);
+            _before = battle.State.GetResource(Resource);
         }
 
         private void AddBonus(BattleController battle)
@@ -56,12 +44,12 @@ namespace TFCardBattle.Core.LingeringEffects
             if (!_before.HasValue)
                 return;
 
-            int after = battle.State.GetResource(_resource);
+            int after = battle.State.GetResource(Resource);
 
             if (after > _before.Value)
-                after += _bonus;
+                after += Bonus;
 
-            battle.State.SetResource(_resource, after);
+            battle.State.SetResource(Resource, after);
             _before = null;
         }
     }

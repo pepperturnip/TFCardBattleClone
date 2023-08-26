@@ -35,6 +35,13 @@ namespace TFCardBattle.Core
 
             Rng = rng;
             AnimationPlayer = animationPlayer;
+
+            // Apply relics
+            foreach (var relic in playerLoadout.Relics)
+            {
+                State.PlayerTF += relic.TFCost;
+                AddEffect(relic.Effect);
+            }
         }
 
         public void AddEffect(ILingeringEffect effect)

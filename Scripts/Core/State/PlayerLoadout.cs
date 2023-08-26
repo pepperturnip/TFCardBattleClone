@@ -8,6 +8,7 @@ namespace TFCardBattle.Core
     {
         public IEnumerable<CardPack> ThemePacks;
         public Transformation Transformation;
+        public HashSet<Relic> Relics = new HashSet<Relic>();
 
         public IEnumerable<Card> PermanentBuyPile;
         public IEnumerable<Card> StartingDeck;
