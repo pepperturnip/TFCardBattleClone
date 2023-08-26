@@ -95,9 +95,10 @@ namespace TFCardBattle.Core
             var card = Rng.PickFrom(State.Deck);
             State.Deck.Remove(card);
             State.Hand.Add(card);
-            State.DrawCount++;
 
+            State.DrawCount++;
             await AnimationPlayer.DrawCard(card);
+            await TriggerEffects(e => e.OnCardDrawn(this, card));
         }
 
         public async Task PlayCard(int handIndex)

@@ -7,6 +7,8 @@ namespace TFCardBattle.Core
     {
         Task OnResourcesDiscarded(BattleController battle) => Task.CompletedTask;
 
+        Task OnCardDrawn(BattleController battle, Card card) => Task.CompletedTask;
+
         Task OnCardAboutToActivate(BattleController battle, Card card) => Task.CompletedTask;
         Task OnCardFinishedActivating(BattleController battle, Card card) => Task.CompletedTask;
 
