@@ -352,8 +352,11 @@ namespace TFCardBattle.Core
             await DiscardHand();
 
             // Allow the player to attack
+            int playerTfDamage = State.Damage;
+            await TriggerEffects(e => e.OnEnemyAboutToTakeDamage(this, ref playerTfDamage));
+
             State.EnemyTF += State.Damage;
-            await AnimationPlayer.DamageEnemy(State.Damage);
+            await AnimationPlayer.DamageEnemy(playerTfDamage);
 
             // Move to the boss round if the enemy is defeated
             if (State.EnemyTF >= State.EnemyMaxTF)
@@ -391,6 +394,8 @@ namespace TFCardBattle.Core
             // Allow the player to attack.
 
             int totalDamage = TotalDamageToBoss();
+            await TriggerEffects(e => e.OnEnemyAboutToTakeDamage(this, ref totalDamage));
+
             State.EnemyTF += totalDamage;
             await AnimationPlayer.DamageEnemy(totalDamage);
 
