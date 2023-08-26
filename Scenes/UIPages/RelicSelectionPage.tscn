@@ -24,13 +24,22 @@ offset_left = -0.255798
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ChooseNoneButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 96)
+[node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Choose none"
+text = "Choose a body modification"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ChoicesContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="ChoicesContainer" type="HBoxContainer" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+alignment = 1
+
+[node name="Spacer" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ChooseNoneButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Skip"
 
 [connection signal="pressed" from="VBoxContainer/ChooseNoneButton" to="." method="OnChooseNoneButtonPressed"]
