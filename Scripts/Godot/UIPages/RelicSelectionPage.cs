@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 using TFCardBattle.Core;
 using Godot;
@@ -14,9 +15,9 @@ namespace TFCardBattle.Godot
 
         private PlayerLoadout _loadout;
 
-        private Relic[] _choices;
-
         private Control _choicesContainer => GetNode<Control>("%ChoicesContainer");
+
+        private readonly Random _rng = new Random((int)GD.Randi());
 
         public void Init(PlayerLoadout loadout)
         {
@@ -31,17 +32,24 @@ namespace TFCardBattle.Godot
                 child.QueueFree();
             }
 
-            // TODO: Randomly select 3 relics to offer the player, instead of
-            // offering all of them
-            _choices = ContentRegistry.Relics
+            // Randomly select 3 relics to offer the player
+            var offerableRelics = ContentRegistry.Relics
                 .Values
                 .Where(r => !_loadout.Relics.Contains(r))
-                .OrderBy(r => r.Name)
-                .ToArray();
+                .ToList();
 
-            for (int i = 0; i < _choices.Length; i++)
+            var choices = new List<Relic>();
+            while (offerableRelics.Count > 0 && choices.Count < 3)
             {
-                var relic = _choices[i];
+                var relic = _rng.PickFrom(offerableRelics);
+                offerableRelics.Remove(relic);
+                choices.Add(relic);
+            }
+
+            // Create buttons for the offered relics
+            for (int i = 0; i < choices.Count; i++)
+            {
+                var relic = choices[i];
 
                 var button = RelicButtonPrefab.Instantiate<RelicCardButton>();
                 button.Pressed += () => OnRelicChosen(relic);
