@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwvs36cl7w4xl"]
+
+[ext_resource type="Script" path="res://Scripts/Godot/UIPages/RelicSelectionPage.cs" id="1_xsgu6"]
+
+[node name="RelicSelectionPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xsgu6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.278
+anchor_top = 0.5
+anchor_right = 0.666667
+anchor_bottom = 0.5
+offset_left = -0.255798
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChooseNoneButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Choose none"
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/ChooseNoneButton" to="." method="OnChooseNoneButtonPressed"]
