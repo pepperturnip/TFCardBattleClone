@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 WaitFor="*res://Scripts/Godot/Singletons/WaitFor.cs"
 Maps="*res://Scenes/Singletons/Maps.tscn"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="Tf Card Battle Clone"
