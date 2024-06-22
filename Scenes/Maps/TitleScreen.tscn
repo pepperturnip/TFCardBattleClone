@@ -106,10 +106,10 @@ mouse_filter = 2
 texture = SubResource("GradientTexture2D_krff3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FadeCurtain"]
-autoplay = "FadeIn"
 libraries = {
 "": SubResource("AnimationLibrary_pf01w")
 }
+autoplay = "FadeIn"
 
 [connection signal="pressed" from="ModeButtons/ClassicModeButton" to="." method="OnClassicModeClicked"]
 [connection signal="pressed" from="ModeButtons/EndlessModeButton" to="." method="OnEndlessModeClicked"]

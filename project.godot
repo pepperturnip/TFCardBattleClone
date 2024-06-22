@@ -12,13 +12,17 @@ config_version=5
 
 config/name="Tf Card Battle Clone"
 run/main_scene="res://Scenes/Maps/TitleScreen.tscn"
-config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 WaitFor="*res://Scripts/Godot/Singletons/WaitFor.cs"
 Maps="*res://Scenes/Singletons/Maps.tscn"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
@@ -28,3 +32,4 @@ project/assembly_name="Tf Card Battle Clone"
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
